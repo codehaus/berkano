@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+    <extend>../project.xml</extend>
+    <id>swaf-user-xstream</id>
+    <currentVersion>${berkanoVersion}</currentVersion>
+    <name>Swaf User XStream</name>
+    <description>A Swaf User implementation based on xstream (xml serialization) for persistence.</description>
+    <shortDescription>Swaf User XStream</shortDescription>
+
+    <dependencies>
+        <dependency>
+            <groupId>swaf-tools</groupId>
+            <artifactId>swaf-user</artifactId>
+            <version>${berkanoVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+</project>

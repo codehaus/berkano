@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project default="jar" xmlns:maven="jelly:maven" xmlns:artifact="artifact">
+
+    <preGoal name="java:compile">
+        <attainGoal name="xdoclet"/>
+    </preGoal>
+
+    <goal name="xdoclet">
+        <taskdef name="xdoclet" classname="org.xdoclet.ant.XDocletTask" classpathref="maven.dependency.classpath"/>
+        <xdoclet>
+            <fileset dir="${pom.build.sourceDirectory}">
+                <include name="**/*.java"/>
+            </fileset>
+            <component classname="org.generama.JellyTemplateEngine"/>
+            <component classname="org.xdoclet.plugin.web.TaglibPlugin"
+                destdir="${basedir}/target/classes/META-INF"
+		jspversion="2.0"
+                includelisteners="false"/>
+        </xdoclet>
+    </goal>
+
+    <goal name="build-all">
+        <maven:reactor basedir="${basedir}"
+                       includes="*/project.xml"
+                       goals="clean,jar:install"
+                       banner="Building"
+                       ignoreFailures="false"/>
+    </goal>
+
+    <goal name="deploy-all">
+        <maven:reactor basedir="${basedir}"
+                       includes="*/project.xml"
+                       goals="clean,jar:deploy"
+                       banner="Building"
+                       ignoreFailures="false"/>
+    </goal>
+
+    <goal name="snapshot-all">
+        <maven:reactor basedir="${basedir}"
+                       includes="*/project.xml"
+                       goals="clean,jar:deploy-snapshot"
+                       banner="Building"
+                       ignoreFailures="false"/>
+    </goal>
+</project>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+    <appender name="MAIN" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="../logs/swaf.log"/>
+        <param name="Append" value="true"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%-12.12t] %-5p [%c] %m%n"/>
+        </layout>
+    </appender>
+
+    <category name="org.apache.jasper" additivity="false">
+        <priority value="INFO"/>
+        <appender-ref ref="MAIN"/>
+    </category>
+
+    <category name="org.apache.catalina" additivity="false">
+        <priority value="INFO"/>
+        <appender-ref ref="MAIN"/>
+    </category>
+
+    <category name="org.apache.commons.digester" additivity="false">
+        <priority value="WARN"/>
+        <appender-ref ref="MAIN"/>
+    </category>
+
+    <category name="net.sf.hibernate" additivity="false">
+        <priority value="INFO"/>
+        <appender-ref ref="MAIN"/>
+    </category>
+
+    <category name="org.displaytag" additivity="false">
+        <priority value="INFO"/>
+        <appender-ref ref="MAIN"/>
+    </category>
+
+    <root>
+        <priority value="DEBUG"/>
+        <appender-ref ref="MAIN"/>
+    </root>
+
+</log4j:configuration>

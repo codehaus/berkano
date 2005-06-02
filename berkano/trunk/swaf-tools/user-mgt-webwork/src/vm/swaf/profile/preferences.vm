@@ -1,0 +1,20 @@
+<div id="swaf-profile">
+<div id="apps">
+<ul>
+#foreach ($app in $apps)
+ <li><a href="?app=$app.name">$action.getAppName($app)</a></li>
+#end
+</ul>
+</div>
+
+<div id="app-prefs">
+  <div class="app-pref">
+#bodytag (Form "action='preferences.save.action'" "method='post'")
+  #bodytag (Iterator "value=preferencesInfo")
+    #tag (Preference)
+  #end
+  #tag (Hidden "name='app'" "value=app")
+  #tag (Submit "value='Send Form'")
+#end
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project xmlns="http://maven.apache.org/xsd/maven-project-3.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <extend>../project.xml</extend>
+    <id>swaf-bookmarks</id>
+    <currentVersion>${berkanoVersion}</currentVersion>
+    <name>Swaf Bookmarks</name>
+    <description>Swaf Bookmarks is a simple API to manage "bookmarks" inside swaf applications. Hopefully it will be reusable outside swaf.</description>
+    <shortDescription>Swaf Bookmarks</shortDescription>
+
+    <dependencies>
+        <dependency>
+            <groupId>freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+</project>
