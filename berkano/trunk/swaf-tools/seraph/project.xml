@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+    <extend>../project.xml</extend>
+    <id>swaf-seraph</id>
+    <currentVersion>${berkanoVersion}</currentVersion>
+    <name>Swaf Seraph Tools</name>
+    <description>Swaf specific classes for Atlassian's Seraph.</description>
+    <shortDescription>Swaf Seraph Tools</shortDescription>
+
+    <dependencies>
+        <dependency>
+            <groupId>swaf-tools</groupId>
+            <artifactId>swaf-user</artifactId>
+            <version>${berkanoVersion}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>swaf</groupId>
+            <artifactId>seraph</artifactId>
+            <version>0.7.7-swaf-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>opensymphony</groupId>
+            <artifactId>oscore</artifactId>
+            <version>2.2.4</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>opensymphony</groupId>
+            <artifactId>webwork</artifactId>
+            <version>2.1.6</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>opensymphony</groupId>
+            <artifactId>xwork</artifactId>
+            <version>1.0.4</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>servletapi</groupId>
+            <artifactId>servletapi</artifactId>
+            <version>2.4-20040521</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.8</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+</project>

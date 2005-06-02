@@ -1,0 +1,45 @@
+Stuff to be done on swaf/swaf-skeleton
+---------------------------------------
+* Define a way to get anonymous-user (or "default") BookmarksTree, or even more
+  generaly a way to get "anonymous-user" stuff ?
+
+* A user's bookmarks could be set in session so that we could store the state
+  of each node.
+
+* Implement actions for self-bookmarks handling but also for the admin user to
+  modify other users or groups' bookmarks. (+the defaults/anonymous-user's)
+
+* bookmarks: ability to "include" bookmarks? (for user/group bookmarks for example)
+
+* permissions to edit : self-bookmarks, group-bookmarks or all-bookmarks
+  (specific-groups' bookmarks, specific-users' bookmarks???)
+
+* have a "domain" prefix for permissions, something like "swaf/bookmark/self-add",
+  "swaf/bookmark/self-edit", "swaf/usermgt/blah", "myapp/myaction/foobar"
+
+* provide simple access to the cache? (mention it's very simple and not meant for
+  storing lots of data etc) Maybe through a simple component on which actions
+  depend.
+
+Stuff done:
+------------------------------------
+* Implemented security/permissions : 
+        * Permissions are the smallest unit of security. they are represented by 
+          a String, their name. The permissions are the unit which are checked to
+          to make sure a user has access to a given resource or can perform a 
+          certain action.
+        * Roles are groups of permissions. They are mostly defined *by* the 
+          software itself, but could, should it be needed, be defined by config
+          files or else. The roles are assigned to groups by an admin user.
+        * Groups
+        * Users
+ 
+* Check how webwork stuff can be distributed. I guess it's possible to
+  distribute a jar with xwork xml config inside, and have it included from the
+  main. If so, then we can split the actions for bookmarks into a separate
+  project, same thing for user mgt. --> done for user-mgt
+
+
+* provide multiple-users/multi-groups assignments. provide real groups/roles
+  assignements (there are currently 2 roles hardcoded in the view, and the checkboxes
+  are not check accordingly)

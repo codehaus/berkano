@@ -1,0 +1,36 @@
+2004-03-17 00:42:33,779 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de xdoclet-plugin-web-1.0-SNAPSHOT.jar.
+2004-03-17 00:42:34,620 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de xdoclet-2.0-alpha-1-SNAPSHOT.jar.
+2004-03-17 00:42:35,672 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de qdox-1.4-SNAPSHOT.jar.
+2004-03-17 00:42:36,723 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de picocontainer-1.0-RC-1-SNAPSHOT.jar.
+2004-03-17 00:42:37,625 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de nanocontainer-ant-1.0-beta-1-SNAPSHOT.jar.
+2004-03-17 00:42:38,526 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de nanocontainer-1.0-beta-1-SNAPSHOT.jar.
+2004-03-17 00:42:39,477 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de generama-1.0-alpha-1-SNAPSHOT.jar.
+2004-03-17 00:42:42,482 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de xdoclet-plugin-web-1.0-SNAPSHOT.jar.
+2004-03-17 00:42:42,732 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de xdoclet-2.0-alpha-1-SNAPSHOT.jar.
+2004-03-17 00:42:42,992 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de qdox-1.4-SNAPSHOT.jar.
+2004-03-17 00:42:43,253 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de picocontainer-1.0-RC-1-SNAPSHOT.jar.
+2004-03-17 00:42:43,513 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de nanocontainer-ant-1.0-beta-1-SNAPSHOT.jar.
+2004-03-17 00:42:43,954 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de nanocontainer-1.0-beta-1-SNAPSHOT.jar.
+2004-03-17 00:42:44,204 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de generama-1.0-alpha-1-SNAPSHOT.jar.
+2004-03-17 00:42:50,093 INFO  com.werken.werkz.jelly.PostGoalTag - Running post goal: clean:clean
+2004-03-17 00:43:29,359 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de swaf-tags-test-1.0-SNAPSHOT.jar.
+2004-03-17 00:43:29,920 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de xdoclet-plugin-web-1.0-SNAPSHOT.jar.
+2004-03-17 00:43:30,521 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de xdoclet-2.0-alpha-1-SNAPSHOT.jar.
+2004-03-17 00:43:31,502 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de qdox-1.4-SNAPSHOT.jar.
+2004-03-17 00:43:32,604 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de picocontainer-1.0-RC-1-SNAPSHOT.jar.
+2004-03-17 00:43:33,655 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de nanocontainer-ant-1.0-beta-1-SNAPSHOT.jar.
+2004-03-17 00:43:34,607 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de nanocontainer-1.0-beta-1-SNAPSHOT.jar.
+2004-03-17 00:43:35,498 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de generama-1.0-alpha-1-SNAPSHOT.jar.
+2004-03-17 00:43:38,542 INFO  com.werken.werkz.jelly.PostGoalTag - Running post goal: clean:clean
+2004-03-17 00:44:09,897 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de swaf-tags-test-1.0-SNAPSHOT.jar.
+2004-03-17 00:44:10,578 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de xdoclet-plugin-web-1.0-SNAPSHOT.jar.
+2004-03-17 00:44:11,209 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de xdoclet-2.0-alpha-1-SNAPSHOT.jar.
+2004-03-17 00:44:12,301 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de qdox-1.4-SNAPSHOT.jar.
+2004-03-17 00:44:13,352 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de picocontainer-1.0-RC-1-SNAPSHOT.jar.
+2004-03-17 00:44:14,274 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de nanocontainer-ant-1.0-beta-1-SNAPSHOT.jar.
+2004-03-17 00:44:15,205 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de nanocontainer-1.0-beta-1-SNAPSHOT.jar.
+2004-03-17 00:44:16,106 INFO  org.apache.maven.verifier.DependencyVerifier - Tentative de téléchargement de generama-1.0-alpha-1-SNAPSHOT.jar.
+2004-03-17 00:44:18,560 INFO  com.werken.werkz.jelly.PostGoalTag - Running post goal: clean:clean
+2004-03-17 00:44:50,356 INFO  org.apache.maven.cli.App - Total time: 2 minutes 21 seconds
+2004-03-17 00:44:50,396 INFO  org.apache.maven.cli.App - Finished at: Wed Mar 17 00:44:50 CET 2004
+2004-03-17 00:44:50,406 INFO  org.apache.maven.cli.App - 

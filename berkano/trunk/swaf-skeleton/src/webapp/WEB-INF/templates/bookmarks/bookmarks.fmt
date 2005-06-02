@@ -1,0 +1,9 @@
+<hr/>
+this is a freemarker template
+<br/>
+
+<@bookmarks bookmarks=$bookmarks>
+proute
+</@bookmarks>
+
+<hr/>
