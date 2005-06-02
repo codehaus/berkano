@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project default="jar" xmlns:maven="jelly:maven" xmlns:artifact="artifact">
+
+    <path id="tools.classpath">
+        <pathelement location="${basedir}/target/classes"/>
+        <path refid="maven.dependency.classpath"/>
+    </path>
+
+    <preGoal name="jar:jar">
+        <!--attainGoal name="generate-hibernate-db-schema"/>-->
+        <attainGoal name="update-hibernate-db-schema"/>
+    </preGoal>
+
+    <goal name="generate-hibernate-db-schema">
+        <taskdef name="schemaexport"
+            classname="net.sf.hibernate.tool.hbm2ddl.SchemaExportTask"
+            classpathref="tools.classpath"/><!--dependency.classpath"/>-->
+
+        <schemaexport properties="${maven.src.dir}/hibernate/hibernate.properties"
+            quiet="no"  text="no" drop="no" delimiter=";"
+            output="${maven.build.dir}/${pom.artifactId}-${pom.currentVersion}-schema-create.sql">
+            <fileset dir="${maven.src.dir}/java">
+                <include name="**/*.hbm"/>
+            </fileset>
+        </schemaexport>
+    </goal>
+
+    <goal name="update-hibernate-db-schema">
+        <taskdef name="schemaupdate"
+            classname="net.sf.hibernate.tool.hbm2ddl.SchemaUpdateTask"
+            classpathref="tools.classpath"/>
+
+        <schemaupdate properties="${maven.src.dir}/hibernate/hibernate.properties"
+            quiet="no"  text="no" drop="no" delimiter=";"
+            output="${maven.build.dir}/${pom.artifactId}-${pom.currentVersion}-schema-update.sql">
+            <fileset dir="${maven.src.dir}/java">
+                <include name="**/*.hbm"/>
+            </fileset>
+        </schemaupdate>
+    </goal>
+</project>

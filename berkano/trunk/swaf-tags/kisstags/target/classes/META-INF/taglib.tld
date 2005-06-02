@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<taglib>
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>2.0</jsp-version>
+  <short-name>taglib</short-name>
+  <tag>
+    <name>numericoptions</name>
+    <tag-class>net.incongru.tags.simple.NumericOptionsTag</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <name>start</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>int</type>
+      <description>default value is 0.</description>
+    </attribute>
+    <attribute>
+      <name>end</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>int</type>
+    </attribute>
+    <attribute>
+      <name>step</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>int</type>
+      <description>default value is 1. can not be 0.</description>
+    </attribute>
+    <attribute>
+      <name>selected</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+      <description>default is none.</description>
+    </attribute>
+  </tag>
+  <tag>
+    <name>out</name>
+    <tag-class>net.incongru.tags.simple.OutTag</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <name>key</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+      <description>name of the attribute to print</description>
+    </attribute>
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+      <description>Default is request.</description>
+    </attribute>
+    <attribute>
+      <name>displayNull</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>boolean</type>
+      <description>Default is false.</description>
+    </attribute>
+  </tag>
+</taglib>

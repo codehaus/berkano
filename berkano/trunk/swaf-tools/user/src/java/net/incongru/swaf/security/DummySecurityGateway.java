@@ -1,0 +1,18 @@
+package net.incongru.swaf.security;
+
+/**
+ *
+ * @author greg
+ * @author $Author: gj $ (last edit)
+ * @version $Revision: 1.1 $
+ */
+public class DummySecurityGateway extends AbstractSecurityGateway {
+    public boolean authenticate(Authenticator authenticator) {
+        return false;
+    }
+
+    public boolean logout(Authenticator authenticator) {
+        return false;
+    }
+
+}

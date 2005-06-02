@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+    <extend>../project.xml</extend>
+    <id>swaf-tags-seraph</id>
+    <currentVersion>${berkanoVersion}</currentVersion>
+    <name>Jsp tags for swaf-seraph library</name>
+    <description></description>
+    <shortDescription>Jsp tags for swaf-seraph library</shortDescription>
+
+    <dependencies>
+        <dependency>
+            <groupId>swaf</groupId>
+            <artifactId>seraph</artifactId>
+            <version>0.7.7-swaf-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>swaf-tools</groupId>
+            <artifactId>swaf-seraph</artifactId>
+            <version>${berkanoVersion}</version>
+        </dependency>
+        <!-- tests only -->
+        <dependency>
+            <groupId>swaf-tags</groupId>
+            <artifactId>swaf-tags-test</artifactId>
+            <version>SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,3 @@
+Testsuite: net.incongru.tags.simple.IntArrayTest
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 0.72 sec
+

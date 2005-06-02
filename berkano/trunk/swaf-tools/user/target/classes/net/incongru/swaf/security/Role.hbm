@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+    <class name="net.incongru.swaf.security.RoleImpl" table="role" mutable="false">
+        <id name="name" type="string" column="name"><!--net.incongru.hibernate.EnumType" -->
+            <generator class="assigned"/>
+        </id>
+    </class>
+</hibernate-mapping>

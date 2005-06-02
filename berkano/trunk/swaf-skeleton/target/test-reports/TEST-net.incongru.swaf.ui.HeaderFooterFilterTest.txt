@@ -1,0 +1,6 @@
+Testsuite: net.incongru.swaf.ui.HeaderFooterFilterTest
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 1.294 sec
+
+------------- Standard Error -----------------
+Rhino classes (js.jar) not found - Javascript disabled
+------------- ---------------- ---------------

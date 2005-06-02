@@ -1,0 +1,6 @@
+<form action="retrieve.action" method="get">
+
+<label>Email:</label>
+<input type="text" name="email"/>
+<input type="submit"/>
+</form>

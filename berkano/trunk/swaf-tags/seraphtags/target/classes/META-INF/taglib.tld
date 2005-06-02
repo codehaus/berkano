@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<taglib>
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>2.0</jsp-version>
+  <short-name>taglib</short-name>
+  <tag>
+    <name>auth</name>
+    <tag-class>net.incongru.security.seraph.taglib.AuthorizeTag</tag-class>
+    <body-content>scriptless</body-content>
+    <display-name>Swaf-Seraph-Authorization Tag</display-name>
+    <description/>
+    <attribute>
+      <name>requiredrole</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+  <tag>
+    <name>slink</name>
+    <tag-class>net.incongru.security.seraph.taglib.SecuredLinkTag</tag-class>
+    <body-content>scriptless</body-content>
+    <display-name>Swaf-Seraph-SecuredLink Tag</display-name>
+    <description/>
+    <attribute>
+      <name>href</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>title</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>alwaysOutputBody</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>boolean</type>
+    </attribute>
+  </tag>
+  <tag>
+    <name>spath</name>
+    <tag-class>net.incongru.security.seraph.taglib.SecuredPathTag</tag-class>
+    <body-content>scriptless</body-content>
+    <display-name>Swaf-Seraph-SecuredPath Tag</display-name>
+    <description/>
+    <attribute>
+      <name>href</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+</taglib>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project default="build-all" xmlns:maven="jelly:maven" xmlns:artifact="artifact">
+
+    <goal name="build-all">
+        <maven:reactor basedir="${basedir}"
+                       includes="*/project.xml"
+		       excludes="user-xstream/project.xml"
+                       goals="clean,jar:install"
+                       banner="Building"
+                       ignoreFailures="false"/>
+    </goal>
+
+    <goal name="deploy-all">
+        <maven:reactor basedir="${basedir}"
+                       includes="*/project.xml"
+                       excludes="user-xstream/project.xml"
+                       goals="clean,jar:deploy"
+                       banner="Building"
+                       ignoreFailures="false"/>
+    </goal>
+
+    <goal name="snapshot-all">
+        <maven:reactor basedir="${basedir}"
+                       includes="*/project.xml"
+                       goals="clean,jar:deploy-snapshot"
+                       banner="Building"
+                       ignoreFailures="false"/>
+    </goal>
+
+<!--
+    <goal name="deploy" prereqs="jar:jar">
+        <echo message="Deploying ............................. ${maven.build.dir}/${maven.final.name}.jar"/>
+        <artifact:deploy artifact="${maven.build.dir}/${maven.final.name}.jar" type="jar" project="${pom}"/>
+    </goal>
+-->
+</project>
