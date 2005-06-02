@@ -1,3 +1,0 @@
-Testsuite: net.incongru.swaf.mail.VelocityMailerTest
-Tests run: 16, Failures: 0, Errors: 0, Time elapsed: 2.763 sec
-

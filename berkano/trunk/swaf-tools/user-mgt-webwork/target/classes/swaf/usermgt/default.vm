@@ -1,3 +1,0 @@
-<div id="swaf-user-mgt">
-#include("/swaf/usermgt/nav.vm")
-</div>

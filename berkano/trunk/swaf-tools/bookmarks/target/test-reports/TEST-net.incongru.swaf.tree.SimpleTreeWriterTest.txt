@@ -1,3 +1,0 @@
-Testsuite: net.incongru.swaf.tree.SimpleTreeWriterTest
-Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.697 sec
-
