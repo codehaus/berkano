@@ -10,7 +10,7 @@ import java.io.IOException;
  * If the PathService is not available, an exception will be thrown.
  * 
  * @jsp.tag name="spath"
- *          display-name="Swaf-Seraph-SecuredPath Tag"
+ *          display-name="Berkano-Seraph-SecuredPath Tag"
  *          body-content="scriptless"
  *          description=""
  *

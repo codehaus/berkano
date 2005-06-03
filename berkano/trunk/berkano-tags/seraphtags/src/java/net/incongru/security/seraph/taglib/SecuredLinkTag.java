@@ -12,7 +12,7 @@ import java.io.IOException;
  * If the PathService is not available, an exception will be thrown.
  * 
  * @jsp.tag name="slink"
- *          display-name="Swaf-Seraph-SecuredLink Tag"
+ *          display-name="Berkano-Seraph-SecuredLink Tag"
  *          body-content="scriptless"
  *          description=""
  *

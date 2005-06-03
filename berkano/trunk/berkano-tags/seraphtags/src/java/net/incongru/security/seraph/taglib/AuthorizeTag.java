@@ -8,7 +8,7 @@ import java.io.IOException;
  * is granted to the logged in user.
  *
  * @jsp.tag name="auth"
- *          display-name="Swaf-Seraph-Authorization Tag"
+ *          display-name="Berkano-Seraph-Authorization Tag"
  *          body-content="scriptless"
  *          description=""
  * */

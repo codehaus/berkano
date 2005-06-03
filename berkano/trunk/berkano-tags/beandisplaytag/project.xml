@@ -11,8 +11,8 @@
     <dependencies>
         <!-- tests only -->
         <dependency>
-            <groupId>swaf-tags</groupId>
-            <artifactId>swaf-tags-test</artifactId>
+            <groupId>berkano-tags</groupId>
+            <artifactId>berkano-tags-test</artifactId>
             <version>${berkanoVersion}</version>
         </dependency>
 

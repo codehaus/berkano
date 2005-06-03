@@ -2,7 +2,7 @@
 
 <project>
     <extend>../project.xml</extend>
-    <id>swaf-tags-test</id>
+    <id>berkano-tags-test</id>
     <currentVersion>${berkanoVersion}</currentVersion>
     <name>Test framework for taglibs</name>
     <description>A small test framework for taglibs.</description>

@@ -7,7 +7,7 @@
     <body>
         <release version="current" date="">
             <action dev="greg" date="2004-03-14">
-                Moved from old mixed-up swaf repository.
+                Moved from old mixed-up berkano repository.
             </action>
         </release>
     </body>

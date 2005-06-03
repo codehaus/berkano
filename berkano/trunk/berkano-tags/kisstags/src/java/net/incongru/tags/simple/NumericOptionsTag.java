@@ -119,7 +119,7 @@ public class NumericOptionsTag extends TagSupport {
      * returns an array with these integers.
      * Accepted "comma" characters include , ; and space
      *
-     * Todo: was in swaf.util. Move this back to a swaf-commons package?
+     * Todo: was in berkano.util. Move this back to a berkano-commons package?
      *
      * @param s the string to parse
      * @return an array of int's
