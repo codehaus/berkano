@@ -1,4 +1,4 @@
-package net.incongru.swaf.tree;
+package net.incongru.berkano.tree;
 
 import junit.framework.TestCase;
 

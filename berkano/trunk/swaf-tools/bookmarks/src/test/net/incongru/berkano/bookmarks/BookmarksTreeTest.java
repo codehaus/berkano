@@ -1,4 +1,4 @@
-package net.incongru.swaf.bookmarks;
+package net.incongru.berkano.bookmarks;
 
 import java.io.OutputStreamWriter;
 import java.io.IOException;
