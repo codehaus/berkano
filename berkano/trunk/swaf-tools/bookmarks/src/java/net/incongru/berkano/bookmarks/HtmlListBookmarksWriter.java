@@ -1,7 +1,7 @@
-package net.incongru.swaf.bookmarks;
+package net.incongru.berkano.bookmarks;
 
-import net.incongru.swaf.tree.SimpleTreeWriter;
-import net.incongru.swaf.tree.TreeWriter;
+import net.incongru.berkano.tree.SimpleTreeWriter;
+import net.incongru.berkano.tree.TreeWriter;
 
 import java.io.IOException;
 import java.io.Writer;

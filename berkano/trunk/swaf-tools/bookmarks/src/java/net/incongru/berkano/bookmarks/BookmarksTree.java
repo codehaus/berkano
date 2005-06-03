@@ -1,8 +1,8 @@
-package net.incongru.swaf.bookmarks;
+package net.incongru.berkano.bookmarks;
 
-import net.incongru.swaf.tree.Tree;
-import net.incongru.swaf.tree.TreeIterator;
-import net.incongru.swaf.tree.TreeNode;
+import net.incongru.berkano.tree.Tree;
+import net.incongru.berkano.tree.TreeIterator;
+import net.incongru.berkano.tree.TreeNode;
 
 import java.io.Serializable;
 

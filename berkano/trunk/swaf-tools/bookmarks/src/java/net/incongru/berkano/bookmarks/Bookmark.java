@@ -1,9 +1,9 @@
-package net.incongru.swaf.bookmarks;
+package net.incongru.berkano.bookmarks;
 
 import java.io.Serializable;
 
 /**
- * @todo For now, we only have internal (swaf only) and External bookmarks.
+ * @todo For now, we only have internal (berkano only) and External bookmarks.
  * @todo We might be able to support other type of links in the future and
  * @todo it might make sense to have another type for theses (files to download, jnlp, email and what not)
  * @todo (in this case, external might be renamed to ExternalHTTP)
