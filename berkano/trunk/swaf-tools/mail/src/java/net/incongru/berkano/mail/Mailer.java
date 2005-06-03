@@ -1,4 +1,4 @@
-package net.incongru.swaf.mail;
+package net.incongru.berkano.mail;
 
 import java.util.Map;
 

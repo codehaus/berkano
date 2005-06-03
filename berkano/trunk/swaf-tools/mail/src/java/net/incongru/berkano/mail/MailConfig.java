@@ -1,4 +1,4 @@
-package net.incongru.swaf.mail;
+package net.incongru.berkano.mail;
 
 /**
  * A generic config object for mailing. Implementations should provide their

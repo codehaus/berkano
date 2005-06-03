@@ -1,4 +1,4 @@
-package net.incongru.swaf.mail;
+package net.incongru.berkano.mail;
 
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.HtmlEmail;
@@ -35,7 +35,7 @@ public class VelocityMailerTest extends MockObjectTestCase {
         Map ctx = new HashMap();
         ctx.put("name", "Greg");
         ctx.put("password", "secret");
-        mailer.mail("to@to.to", null, null, "net/incongru/swaf/mail/test", ctx);
+        mailer.mail("to@to.to", null, null, "net/incongru/berkano/mail/test", ctx);
 
         assertTrue(mailer.email instanceof HtmlEmail);
         HtmlEmail htmlEmail = (HtmlEmail) mailer.email;
@@ -60,7 +60,7 @@ public class VelocityMailerTest extends MockObjectTestCase {
         Map ctx = new HashMap();
         ctx.put("foo", "message");
         ctx.put("bar", "plain text");
-        mailer.mail("to@to.to", null, null, "net/incongru/swaf/mail/textonly", ctx);
+        mailer.mail("to@to.to", null, null, "net/incongru/berkano/mail/textonly", ctx);
 
         assertTrue(mailer.email instanceof SimpleEmail);
         SimpleEmail email = (SimpleEmail) mailer.email;

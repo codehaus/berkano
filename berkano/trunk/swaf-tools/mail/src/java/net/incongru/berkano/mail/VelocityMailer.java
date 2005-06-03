@@ -1,4 +1,4 @@
-package net.incongru.swaf.mail;
+package net.incongru.berkano.mail;
 
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.HtmlEmail;
