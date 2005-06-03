@@ -1,4 +1,4 @@
-package net.incongru.swaf.bookmarksmgt;
+package net.incongru.berkano.bookmarksmgt;
 
 import com.opensymphony.xwork.ActionSupport;
 

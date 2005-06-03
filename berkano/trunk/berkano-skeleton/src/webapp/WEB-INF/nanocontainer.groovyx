@@ -4,7 +4,7 @@ import org.picocontainer.defaults.ConstantParameter
 
 pico = new org.picocontainer.defaults.DefaultPicoContainer(parent)
 if(assemblyScope instanceof javax.servlet.ServletContext) {
-   //pico.registerComponentImplementation(net.incongru.swaf.user.hibernate.HibernatedUserDAO)
+   //pico.registerComponentImplementation(net.incongru.berkano.user.hibernate.HibernatedUserDAO)
    //pico.registerComponentImplementation(org.nanocontainer.hibernate.FailoverSessionDelegator)
    //pico.registerComponentImplementation(org.nanocontainer.hibernate.SessionLifecycle)
 
@@ -13,10 +13,10 @@ if(assemblyScope instanceof javax.servlet.ServletContext) {
    println("**** Session-level pico components registered by Groovy")
 } else if(assemblyScope instanceof javax.servlet.ServletRequest) {
    println("**** Request-level pico components registered by Groovy")
-   pico.registerComponentImplementation(net.incongru.swaf.bookmarksmgt.UserBookmarksAccessor)
-   pico.registerComponentImplementation(net.incongru.swaf.usermgt.UserMgtRole)
-   pico.registerComponentImplementation(net.incongru.swaf.roles.BookmarkManagerRole)
-   pico.registerComponentImplementation(net.incongru.swaf.roles.DummyRole)
+   pico.registerComponentImplementation(net.incongru.berkano.bookmarksmgt.UserBookmarksAccessor)
+   pico.registerComponentImplementation(net.incongru.berkano.usermgt.UserMgtRole)
+   pico.registerComponentImplementation(net.incongru.berkano.roles.BookmarkManagerRole)
+   pico.registerComponentImplementation(net.incongru.berkano.roles.DummyRole)
    pico.registerComponentImplementation(org.nanocontainer.hibernate.ConstructableConfiguration)
    pico.registerComponentImplementation(org.nanocontainer.hibernate.SessionFactoryDelegator)
    pico.registerComponentImplementation(org.nanocontainer.hibernate.SessionFactoryLifecycle)

@@ -1,4 +1,4 @@
-package net.incongru.swaf.ui;
+package net.incongru.berkano.ui;
 
 import com.meterware.httpunit.GetMethodWebRequest;
 import com.meterware.httpunit.WebRequest;
@@ -63,7 +63,7 @@ public class HeaderFooterFilterTest extends TestCase {
                 "\n" +
                 "    <filter>\n" +
                 "         <filter-name>header-footer</filter-name>\n" +
-                "         <filter-class>net.incongru.swaf.ui.HeaderFooterFilter</filter-class>\n" +
+                "         <filter-class>net.incongru.berkano.ui.HeaderFooterFilter</filter-class>\n" +
                 (header != null ?
                 "         <init-param>\n" +
                 "             <param-name>header</param-name>\n" +

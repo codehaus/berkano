@@ -1,4 +1,4 @@
-package net.incongru.swaf;
+package net.incongru.berkano;
 
 import com.opensymphony.xwork.ActionSupport;
 

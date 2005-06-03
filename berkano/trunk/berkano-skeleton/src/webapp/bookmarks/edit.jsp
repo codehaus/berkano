@@ -1,9 +1,9 @@
 <%@ page import="com.opensymphony.user.User,
-                 net.incongru.swaf.bookmarks.BookmarksTree,
-                 net.incongru.swaf.bookmarks.BookmarksTreeWriter,
-                 net.incongru.swaf.bookmarks.HtmlListBookmarksWriter,
-                 net.incongru.swaf.bookmarks.ExternalBookmark,
-                 net.incongru.swaf.bookmarks.Bookmark"%>
+                 net.incongru.berkano.bookmarks.BookmarksTree,
+                 net.incongru.berkano.bookmarks.BookmarksTreeWriter,
+                 net.incongru.berkano.bookmarks.HtmlListBookmarksWriter,
+                 net.incongru.berkano.bookmarks.ExternalBookmark,
+                 net.incongru.berkano.bookmarks.Bookmark"%>
 <%@ taglib uri="webwork" prefix="ww" %>
 
 < w w : bean name="'webwork.util.Counter'" id="year">
@@ -19,7 +19,7 @@
     if (user == null) {
         throw new ServletException("no user found");
     }
-    BookmarksTree bookmarks = (BookmarksTree) user.getPropertySet().getObject("swaf.bookmarks");
+    BookmarksTree bookmarks = (BookmarksTree) user.getPropertySet().getObject("berkano.bookmarks");
     if (bookmarks == null) {
         throw new ServletException("no bookmarks found for user " + user);
     }

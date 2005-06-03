@@ -1,4 +1,4 @@
-Stuff to be done on swaf/swaf-skeleton
+Stuff to be done on berkano/berkano-skeleton
 ---------------------------------------
 * Define a way to get anonymous-user (or "default") BookmarksTree, or even more
   generaly a way to get "anonymous-user" stuff ?
@@ -14,8 +14,8 @@ Stuff to be done on swaf/swaf-skeleton
 * permissions to edit : self-bookmarks, group-bookmarks or all-bookmarks
   (specific-groups' bookmarks, specific-users' bookmarks???)
 
-* have a "domain" prefix for permissions, something like "swaf/bookmark/self-add",
-  "swaf/bookmark/self-edit", "swaf/usermgt/blah", "myapp/myaction/foobar"
+* have a "domain" prefix for permissions, something like "berkano/bookmark/self-add",
+  "berkano/bookmark/self-edit", "berkano/usermgt/blah", "myapp/myaction/foobar"
 
 * provide simple access to the cache? (mention it's very simple and not meant for
   storing lots of data etc) Maybe through a simple component on which actions

@@ -5,16 +5,16 @@
 
     <session-factory>
 
-        <property name="connection.datasource">java:comp/env/jdbc/swafDS</property>
+        <property name="connection.datasource">java:comp/env/jdbc/berkanoDS</property>
         <property name="show_sql">true</property>
         <property name="dialect">net.sf.hibernate.dialect.MySQLDialect</property>
         <!--<property name="cache.provider_class">net.sf.hibernate.cache.HashtableCacheProvider</property>-->
         <!--<property name="cglib.use_reflection_optimizer">false</property>-->
 
         <!-- fichiers de mapping -->
-        <mapping resource="net/incongru/swaf/user/User.hbm"/>
-        <mapping resource="net/incongru/swaf/user/Group.hbm"/>
-        <mapping resource="net/incongru/swaf/security/Role.hbm"/>
+        <mapping resource="net/incongru/berkano/user/User.hbm"/>
+        <mapping resource="net/incongru/berkano/user/Group.hbm"/>
+        <mapping resource="net/incongru/berkano/security/Role.hbm"/>
 
     </session-factory>
 

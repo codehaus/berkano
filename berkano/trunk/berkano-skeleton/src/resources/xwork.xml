@@ -3,7 +3,7 @@
 
 <xwork>
     <include file="webwork-default.xml"/>
-    <include file="swaf-usermgt-xwork.xml"/>
+    <include file="berkano-usermgt-xwork.xml"/>
 
     <package name="default" namespace="" extends="webwork-default">
         <default-interceptor-ref name="defaultStack"/>
@@ -25,11 +25,11 @@
             <result name="success" type="dispatcher">/WEB-INF/templates/login-required.jsp</result>
         </action>
 
-        <action name="logout" class="net.incongru.swaf.security.seraph.webwork.LogoutAction">
+        <action name="logout" class="net.incongru.berkano.security.seraph.webwork.LogoutAction">
             <result name="success" type="chain">default</result>
         </action>
 
-        <action name="upload" class="net.incongru.swaf.FileUploadTestAction">
+        <action name="upload" class="net.incongru.berkano.FileUploadTestAction">
             <result name="success" type="chain">default</result>
         </action>
 
@@ -37,27 +37,27 @@
             <result name="success">/test/pouet.jsp</result>
         </action>
 
-        <action name="user.addbookmark" class="net.incongru.swaf.bookmarksmgt.AddUserBookmarksAction">
+        <action name="user.addbookmark" class="net.incongru.berkano.bookmarksmgt.AddUserBookmarksAction">
             <result name="success" type="dispatcher">
                 <param name="location">/bookmarks/edit.jsp</param>
             </result>
         </action>
 
-        <action name="bookmarks.self" class="net.incongru.swaf.bookmarksmgt.UserBookmarksAccessor"/>
+        <action name="bookmarks.self" class="net.incongru.berkano.bookmarksmgt.UserBookmarksAccessor"/>
 
-        <action name="bookmark.up" class="net.incongru.swaf.bookmarksmgt.BookmarksOrderAction" method="up">
+        <action name="bookmark.up" class="net.incongru.berkano.bookmarksmgt.BookmarksOrderAction" method="up">
             <result name="success" type="dispatcher"><!--freemarker">
                 <param name="location">/WEB-INF/templates/bookmarks/bookmarks.fmt</param>-->
                 <param name="location">/bookmarks/edit.jsp</param>
             </result>
         </action>
-        <action name="bookmark.down" class="net.incongru.swaf.bookmarksmgt.BookmarksOrderAction" method="down">
+        <action name="bookmark.down" class="net.incongru.berkano.bookmarksmgt.BookmarksOrderAction" method="down">
             <result name="success" type="dispatcher"><!--freemarker">
                 <param name="location">/WEB-INF/templates/bookmarks/bookmarks.fmt</param>-->
                 <param name="location">/bookmarks/edit.jsp</param>
             </result>
         </action>
-        <action name="bookmark.changeparent" class="net.incongru.swaf.bookmarksmgt.BookmarksFolderAction">
+        <action name="bookmark.changeparent" class="net.incongru.berkano.bookmarksmgt.BookmarksFolderAction">
             <result name="success" type="dispatcher">
                 <param name="location">/bookmarks/edit.jsp</param>
             </result>

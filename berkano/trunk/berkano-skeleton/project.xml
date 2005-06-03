@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project>
     <pomVersion>3</pomVersion>
-    <artifactId>swaf-skeleton</artifactId>
+    <artifactId>berkano-skeleton</artifactId>
     <currentVersion>${berkanoVersion}</currentVersion>
     <name></name>
     <description></description>
     <shortDescription></shortDescription>
-    <groupId>swaf</groupId>
+    <groupId>berkano</groupId>
     <organization>
         <name>incongru.net</name>
         <url>http://incongru.net</url>
         <logo>http://incongru.net/images/incongru-logo.png</logo>
     </organization>
     <inceptionYear>2004</inceptionYear>
-    <url>http://incongru.net/swaf-skeleton</url>
+    <url>http://incongru.net/berkano-skeleton</url>
     <issueTrackingUrl></issueTrackingUrl>
-    <siteAddress>http://incongru.net/swaf-skeleton</siteAddress>
+    <siteAddress>http://incongru.net/berkano-skeleton</siteAddress>
     <siteDirectory></siteDirectory>
     <distributionDirectory></distributionDirectory>
     <repository>
@@ -394,9 +394,9 @@
             </properties>
         </dependency>
         <dependency>
-            <groupId>swaf</groupId>
+            <groupId>berkano</groupId>
             <artifactId>seraph</artifactId>
-            <version>0.7.6-swaf-SNAPSHOT</version>
+            <version>0.7.6-berkano-SNAPSHOT</version>
             <type>jar</type>
             <properties>
                 <war.bundle>true</war.bundle>
@@ -430,8 +430,8 @@
             </properties>
         </dependency>-->
         <dependency>
-            <groupId>swaf-tools</groupId>
-            <artifactId>swaf-hibernate</artifactId>
+            <groupId>berkano-tools</groupId>
+            <artifactId>berkano-hibernate</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
             <properties>
@@ -439,8 +439,8 @@
             </properties>
         </dependency>
         <dependency>
-            <groupId>swaf-tools</groupId>
-            <artifactId>swaf-bookmarks</artifactId>
+            <groupId>berkano-tools</groupId>
+            <artifactId>berkano-bookmarks</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
             <properties>
@@ -448,8 +448,8 @@
             </properties>
         </dependency>
         <dependency>
-            <groupId>swaf-tools</groupId>
-            <artifactId>swaf-mail</artifactId>
+            <groupId>berkano-tools</groupId>
+            <artifactId>berkano-mail</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
             <properties>
@@ -457,8 +457,8 @@
             </properties>
         </dependency>
         <dependency>
-            <groupId>swaf-tools</groupId>
-            <artifactId>swaf-user</artifactId>
+            <groupId>berkano-tools</groupId>
+            <artifactId>berkano-user</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
             <properties>
@@ -466,8 +466,8 @@
             </properties>
         </dependency>
         <dependency>
-            <groupId>swaf-tools</groupId>
-            <artifactId>swaf-seraph</artifactId>
+            <groupId>berkano-tools</groupId>
+            <artifactId>berkano-seraph</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
             <properties>
@@ -475,8 +475,8 @@
             </properties>
         </dependency>
         <dependency>
-            <groupId>swaf-tools</groupId>
-            <artifactId>swaf-user-mgt-webwork</artifactId>
+            <groupId>berkano-tools</groupId>
+            <artifactId>berkano-user-mgt-webwork</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
             <properties>

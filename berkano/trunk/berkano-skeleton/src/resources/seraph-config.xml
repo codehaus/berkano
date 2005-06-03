@@ -29,7 +29,7 @@
 
   <!-- Determines what roles (permissions) a user has. -->
   <!--rolemapper class="com.atlassian.seraph.auth.GroupRoleMapper"/-->
-  <rolemapper class="net.incongru.swaf.security.seraph.UserGroupRoleMapper"/>
+  <rolemapper class="net.incongru.berkano.security.seraph.UserGroupRoleMapper"/>
 
   <!-- A controller is not required. If not specified, security will always be on
   <controller class="com.atlassian.myapp.setup.MyAppSecurityController" />

@@ -1,13 +1,13 @@
-package net.incongru.swaf.bookmarksmgt;
+package net.incongru.berkano.bookmarksmgt;
 
 import com.opensymphony.xwork.ActionSupport;
-import net.incongru.swaf.bookmarks.Bookmark;
-import net.incongru.swaf.bookmarks.BookmarksTree;
-import net.incongru.swaf.bookmarks.ExternalBookmark;
-import net.incongru.swaf.user.UserDAO;
-import net.incongru.swaf.user.User;
-import net.incongru.swaf.user.UnknownUserException;
-import net.incongru.swaf.user.extensions.BookmarksDAO;
+import net.incongru.berkano.bookmarks.Bookmark;
+import net.incongru.berkano.bookmarks.BookmarksTree;
+import net.incongru.berkano.bookmarks.ExternalBookmark;
+import net.incongru.berkano.user.UserDAO;
+import net.incongru.berkano.user.User;
+import net.incongru.berkano.user.UnknownUserException;
+import net.incongru.berkano.user.extensions.BookmarksDAO;
 
 /**
  * @author greg

@@ -1,7 +1,7 @@
-package net.incongru.swaf.bookmarksmgt;
+package net.incongru.berkano.bookmarksmgt;
 
 import com.opensymphony.xwork.ActionSupport;
-import net.incongru.swaf.bookmarks.BookmarksTree;
+import net.incongru.berkano.bookmarks.BookmarksTree;
 
 /**
  * @author greg

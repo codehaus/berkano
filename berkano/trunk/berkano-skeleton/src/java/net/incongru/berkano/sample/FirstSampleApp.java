@@ -1,9 +1,9 @@
-package net.incongru.swaf.sample;
+package net.incongru.berkano.sample;
 
-import net.incongru.swaf.app.Application;
-import net.incongru.swaf.app.PreferenceInfo;
-import net.incongru.swaf.app.SimplePreferenceInfo;
-import net.incongru.swaf.app.PreferenceWidget;
+import net.incongru.berkano.app.Application;
+import net.incongru.berkano.app.PreferenceInfo;
+import net.incongru.berkano.app.SimplePreferenceInfo;
+import net.incongru.berkano.app.PreferenceWidget;
 
 import java.util.Date;
 

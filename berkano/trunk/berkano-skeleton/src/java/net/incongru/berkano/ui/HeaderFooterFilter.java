@@ -1,4 +1,4 @@
-package net.incongru.swaf.ui;
+package net.incongru.berkano.ui;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

@@ -1,27 +1,27 @@
-package net.incongru.swaf;
+package net.incongru.berkano;
 
 import com.atlassian.seraph.auth.AuthenticationContextImpl;
-import net.incongru.swaf.mail.ConstructableVelocityEngine;
-import net.incongru.swaf.mail.MailConfig;
-import net.incongru.swaf.mail.PropertiesMailConfig;
-import net.incongru.swaf.mail.VelocityMailer;
-import net.incongru.swaf.security.password.retrieval.MailNewPasswordRetrievalStrategy;
-import net.incongru.swaf.security.password.matching.CleanPasswordMatchingStrategy;
-import net.incongru.swaf.security.password.generator.BasicPasswordGenerator;
-import net.incongru.swaf.security.hibernate.HibernatedRoleDAO;
-import net.incongru.swaf.security.seraph.SwafSecurityConfig;
-import net.incongru.swaf.security.seraph.SwafUserAuthenticator;
-import net.incongru.swaf.security.seraph.UserGroupRoleMapper;
-import net.incongru.swaf.security.seraph.UserRoleCache;
-import net.incongru.swaf.security.seraph.filter.SwafLoginFilter;
-import net.incongru.swaf.security.seraph.filter.SwafSecurityFilter;
-import net.incongru.swaf.user.hibernate.HibernatedGroupDAO;
-import net.incongru.swaf.user.hibernate.HibernatedUserDAO;
-import net.incongru.swaf.user.hibernate.HibernatedUserPropertyAccessor;
-import net.incongru.swaf.user.extensions.SwafSeraphUserPropertyHelper;
-import net.incongru.swaf.sample.FirstSampleApp;
-import net.incongru.swaf.sample.SecondSampleApp;
-import net.incongru.swaf.app.ApplicationsProvider;
+import net.incongru.berkano.mail.ConstructableVelocityEngine;
+import net.incongru.berkano.mail.MailConfig;
+import net.incongru.berkano.mail.PropertiesMailConfig;
+import net.incongru.berkano.mail.VelocityMailer;
+import net.incongru.berkano.security.password.retrieval.MailNewPasswordRetrievalStrategy;
+import net.incongru.berkano.security.password.matching.CleanPasswordMatchingStrategy;
+import net.incongru.berkano.security.password.generator.BasicPasswordGenerator;
+import net.incongru.berkano.security.hibernate.HibernatedRoleDAO;
+import net.incongru.berkano.security.seraph.BerkanoSecurityConfig;
+import net.incongru.berkano.security.seraph.BerkanoUserAuthenticator;
+import net.incongru.berkano.security.seraph.UserGroupRoleMapper;
+import net.incongru.berkano.security.seraph.UserRoleCache;
+import net.incongru.berkano.security.seraph.filter.BerkanoLoginFilter;
+import net.incongru.berkano.security.seraph.filter.BerkanoSecurityFilter;
+import net.incongru.berkano.user.hibernate.HibernatedGroupDAO;
+import net.incongru.berkano.user.hibernate.HibernatedUserDAO;
+import net.incongru.berkano.user.hibernate.HibernatedUserPropertyAccessor;
+import net.incongru.berkano.user.extensions.BerkanoSeraphUserPropertyHelper;
+import net.incongru.berkano.sample.FirstSampleApp;
+import net.incongru.berkano.sample.SecondSampleApp;
+import net.incongru.berkano.app.ApplicationsProvider;
 import org.apache.velocity.app.VelocityEngine;
 import org.nanocontainer.integrationkit.ContainerComposer;
 import org.picocontainer.MutablePicoContainer;
@@ -56,19 +56,19 @@ public class PicoComposer implements ContainerComposer {
         pico.registerComponentImplementation(org.nanocontainer.hibernate.FailoverSessionDelegator.class);
         pico.registerComponentImplementation(org.nanocontainer.hibernate.SessionLifecycle.class);
 
-        pico.registerComponentImplementation(SwafSecurityFilter.class);
-        pico.registerComponentImplementation(SwafLoginFilter.class);
-        pico.registerComponentImplementation(SwafSecurityConfig.class);
-        pico.registerComponentImplementation(SwafUserAuthenticator.class);
+        pico.registerComponentImplementation(BerkanoSecurityFilter.class);
+        pico.registerComponentImplementation(BerkanoLoginFilter.class);
+        pico.registerComponentImplementation(BerkanoSecurityConfig.class);
+        pico.registerComponentImplementation(BerkanoUserAuthenticator.class);
         pico.registerComponentImplementation(UserGroupRoleMapper.class);
         pico.registerComponentImplementation(UserRoleCache.class);
-        //pico.registerComponentImplementation(AuthenticationContext.class, SwafAuthenticationContext.class);
+        //pico.registerComponentImplementation(AuthenticationContext.class, BerkanoAuthenticationContext.class);
         pico.registerComponentImplementation(AuthenticationContextImpl.class);//, AuthenticationContextImpl.class);
 
         pico.registerComponentImplementation(MailNewPasswordRetrievalStrategy.class);
 
         pico.registerComponentImplementation(HibernatedUserPropertyAccessor.class);
-        pico.registerComponentImplementation(SwafSeraphUserPropertyHelper.class);
+        pico.registerComponentImplementation(BerkanoSeraphUserPropertyHelper.class);
         
     }
 
@@ -76,7 +76,7 @@ public class PicoComposer implements ContainerComposer {
     }
 
     private void registerContextScope(MutablePicoContainer pico) {
-        pico.registerComponentImplementation(net.incongru.swaf.bookmarksmgt.UserBookmarksAccessor.class);
+        pico.registerComponentImplementation(net.incongru.berkano.bookmarksmgt.UserBookmarksAccessor.class);
 
         pico.registerComponentImplementation(org.nanocontainer.hibernate.ConstructableConfiguration.class);
         pico.registerComponentImplementation(org.nanocontainer.hibernate.SessionFactoryDelegator.class);
@@ -94,14 +94,14 @@ public class PicoComposer implements ContainerComposer {
         pico.registerComponentImplementation(VelocityEngine.class, ConstructableVelocityEngine.class,
                 new Parameter[]{new BasicComponentParameter("velocityConfig")});
 
-        Properties swafMailConfig = new Properties();
-        //swafMailConfig.setProperty("mail.host", "relay.skynet.be");
-        swafMailConfig.setProperty("mail.host", "mail.chello.fr");
-        swafMailConfig.setProperty("from.name", "Swaf");
-        swafMailConfig.setProperty("from.email", "swaf@swaf.org");
-        pico.registerComponentInstance("swafMailConfig", swafMailConfig);
+        Properties berkanoMailConfig = new Properties();
+        //berkanoMailConfig.setProperty("mail.host", "relay.skynet.be");
+        berkanoMailConfig.setProperty("mail.host", "mail.chello.fr");
+        berkanoMailConfig.setProperty("from.name", "Berkano");
+        berkanoMailConfig.setProperty("from.email", "berkano@berkano.org");
+        pico.registerComponentInstance("berkanoMailConfig", berkanoMailConfig);
         pico.registerComponentImplementation(MailConfig.class, PropertiesMailConfig.class, new Parameter[]{
-                            new BasicComponentParameter("swafMailConfig")});
+                            new BasicComponentParameter("berkanoMailConfig")});
         pico.registerComponentImplementation(VelocityMailer.class);
 
         //pico.registerComponentImplementation(MailCurrentPasswordRetrievalStrategy.class);

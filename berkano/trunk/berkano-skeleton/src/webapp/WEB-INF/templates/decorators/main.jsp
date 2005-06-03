@@ -13,9 +13,9 @@
 /*    User user = (User) session.getAttribute("seraph_defaultauthenticator_user");
     BookmarksTree bookmarks;
     if (user != null) {
-        bookmarks = (BookmarksTree) user.getPropertySet().getObject("swaf.bookmarks");
+        bookmarks = (BookmarksTree) user.getPropertySet().getObject("berkano.bookmarks");
     } else {
-        bookmarks = (BookmarksTree) application.getAttribute("swaf.default.bookmarks");
+        bookmarks = (BookmarksTree) application.getAttribute("berkano.default.bookmarks");
     }
     if (bookmarks == null) {
         bookmarks = new BookmarksTree();

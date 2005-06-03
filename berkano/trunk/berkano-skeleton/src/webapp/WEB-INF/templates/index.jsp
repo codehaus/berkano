@@ -1,9 +1,9 @@
 <%@ taglib uri="webwork" prefix="ww" %>
 <%@ page import="com.atlassian.seraph.config.SecurityConfig,
                  com.atlassian.seraph.auth.AuthenticationContext,
-                 net.incongru.swaf.user.User,
+                 net.incongru.berkano.user.User,
                  java.util.Iterator,
-                 net.incongru.swaf.user.Group"%><html>
+                 net.incongru.berkano.user.Group"%><html>
 <head>
   <title>Simple jsp page</title>
 </head>
