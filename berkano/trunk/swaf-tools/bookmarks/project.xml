@@ -3,11 +3,11 @@
 <project xmlns="http://maven.apache.org/xsd/maven-project-3.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <extend>../project.xml</extend>
-    <id>swaf-bookmarks</id>
+    <id>berkano-bookmarks</id>
     <currentVersion>${berkanoVersion}</currentVersion>
-    <name>Swaf Bookmarks</name>
-    <description>Swaf Bookmarks is a simple API to manage "bookmarks" inside swaf applications. Hopefully it will be reusable outside swaf.</description>
-    <shortDescription>Swaf Bookmarks</shortDescription>
+    <name>Berkano Bookmarks</name>
+    <description>Berkano Bookmarks is a simple API to manage "bookmarks" inside berkano applications. Hopefully it will be reusable outside berkano.</description>
+    <shortDescription>Berkano Bookmarks</shortDescription>
 
     <dependencies>
         <dependency>
