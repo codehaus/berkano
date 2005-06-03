@@ -1,10 +1,3 @@
-/***************************************
- *                                     *
- *                                     *
- *     Copyright @2005   KIALA         *
- *                                     *
- *                                     *
- ***************************************/
 package net.incongru.berkano.user.extensions;
 
 import com.atlassian.seraph.auth.AuthenticationContext;
