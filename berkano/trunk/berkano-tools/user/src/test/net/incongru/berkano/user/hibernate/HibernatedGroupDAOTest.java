@@ -1,4 +1,4 @@
-package net.incongru.swaf.user.hibernate;
+package net.incongru.berkano.user.hibernate;
 
 import junit.framework.TestCase;
 import net.sf.hibernate.HibernateException;
@@ -16,9 +16,9 @@ public class HibernatedGroupDAOTest extends TestCase {
     public void setUp() throws Exception {
         /*
         Configuration cfg = new Configuration();
-        cfg.addResource("net/incongru/swaf/user/User.hbm", TestCase.class.getClassLoader());
-        cfg.addResource("net/incongru/swaf/user/Group.hbm", TestCase.class.getClassLoader());
-        //cfg.addResource("net/incongru/swaf/security/Role.hbm", TestCase.class.getClassLoader());
+        cfg.addResource("net/incongru/berkano/user/User.hbm", TestCase.class.getClassLoader());
+        cfg.addResource("net/incongru/berkano/user/Group.hbm", TestCase.class.getClassLoader());
+        //cfg.addResource("net/incongru/berkano/security/Role.hbm", TestCase.class.getClassLoader());
         sessionFactory = cfg.buildSessionFactory();
         */
     }

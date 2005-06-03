@@ -1,8 +1,8 @@
-package net.incongru.swaf.user.extensions;
+package net.incongru.berkano.user.extensions;
 
-import net.incongru.swaf.bookmarks.BookmarksTree;
-import net.incongru.swaf.user.User;
-import net.incongru.swaf.user.UserDAO;
+import net.incongru.berkano.bookmarks.BookmarksTree;
+import net.incongru.berkano.user.User;
+import net.incongru.berkano.user.UserDAO;
 
 /**
  * Defines a strategy for serializing bookmarks.
@@ -22,10 +22,10 @@ public class BookmarksDAO {
     }
 
     public void storeUserBookmarks(User user, BookmarksTree bookmarksTree) {
-        userDAO.addProperty(user, "swaf.bookmarks", bookmarksTree);
+        userDAO.addProperty(user, "berkano.bookmarks", bookmarksTree);
     }
 
     public BookmarksTree getUserBookmarks(User user) {
-        return (BookmarksTree) userPropertyAccessor.getFirstValue(user, "swaf.bookmarks");
+        return (BookmarksTree) userPropertyAccessor.getFirstValue(user, "berkano.bookmarks");
     }
 }

@@ -1,12 +1,12 @@
-package net.incongru.swaf.user.hibernate;
+package net.incongru.berkano.user.hibernate;
 
-import net.incongru.swaf.user.GroupImpl;
-import net.incongru.swaf.user.PropertiesAware;
-import net.incongru.swaf.user.UnknownUserException;
-import net.incongru.swaf.user.User;
-import net.incongru.swaf.user.UserDAO;
-import net.incongru.swaf.user.UserImpl;
-import net.incongru.swaf.security.password.PasswordMatchingStrategy;
+import net.incongru.berkano.user.GroupImpl;
+import net.incongru.berkano.user.PropertiesAware;
+import net.incongru.berkano.user.UnknownUserException;
+import net.incongru.berkano.user.User;
+import net.incongru.berkano.user.UserDAO;
+import net.incongru.berkano.user.UserImpl;
+import net.incongru.berkano.security.password.PasswordMatchingStrategy;
 import net.sf.hibernate.Criteria;
 import net.sf.hibernate.HibernateException;
 import net.sf.hibernate.LockMode;

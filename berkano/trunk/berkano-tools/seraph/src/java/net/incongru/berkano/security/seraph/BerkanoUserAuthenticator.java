@@ -1,11 +1,11 @@
-package net.incongru.swaf.security.seraph;
+package net.incongru.berkano.security.seraph;
 
 import com.atlassian.seraph.auth.DefaultAuthenticator;
 import com.atlassian.seraph.auth.RoleMapper;
 import com.atlassian.seraph.interceptor.LogoutInterceptor;
-import net.incongru.swaf.user.User;
-import net.incongru.swaf.user.UserDAO;
-import net.incongru.swaf.security.password.PasswordMatchingStrategy;
+import net.incongru.berkano.user.User;
+import net.incongru.berkano.user.UserDAO;
+import net.incongru.berkano.security.password.PasswordMatchingStrategy;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Arrays;
 
 /**
- * A Seraph Authenticator based on swaf-user.
+ * A Seraph Authenticator based on berkano-user.
  *
  * @see com.atlassian.seraph.auth.Authenticator
  * @see com.atlassian.seraph.auth.DefaultAuthenticator
@@ -22,17 +22,17 @@ import java.util.Arrays;
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.4 $
  */
-public class SwafUserAuthenticator extends DefaultAuthenticator {
+public class BerkanoUserAuthenticator extends DefaultAuthenticator {
     private UserDAO userDAO;
     private PasswordMatchingStrategy passwordMatchingStrategy;
     private RoleMapper roleMapper;
     private List logoutInterceptors;
 
-    public SwafUserAuthenticator(UserDAO userDAO, PasswordMatchingStrategy passwordMatchingStrategy, RoleMapper roleMapper) {
+    public BerkanoUserAuthenticator(UserDAO userDAO, PasswordMatchingStrategy passwordMatchingStrategy, RoleMapper roleMapper) {
         this(userDAO, passwordMatchingStrategy, roleMapper, new LogoutInterceptor[0]);
     }
 
-    public SwafUserAuthenticator(UserDAO userDAO, PasswordMatchingStrategy passwordMatchingStrategy, RoleMapper roleMapper, LogoutInterceptor[] logoutInterceptors) {
+    public BerkanoUserAuthenticator(UserDAO userDAO, PasswordMatchingStrategy passwordMatchingStrategy, RoleMapper roleMapper, LogoutInterceptor[] logoutInterceptors) {
         this.userDAO = userDAO;
         this.passwordMatchingStrategy = passwordMatchingStrategy;
         this.roleMapper = roleMapper;
@@ -56,7 +56,7 @@ public class SwafUserAuthenticator extends DefaultAuthenticator {
     }
 
     protected String getLoginCookieKey() {
-        return "swaf-seraph-login";
+        return "berkano-seraph-login";
     }
 
     protected List getLogoutInterceptors() {

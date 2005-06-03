@@ -2,32 +2,32 @@
 
 <project>
     <extend>../project.xml</extend>
-    <id>swaf-user</id>
+    <id>berkano-user</id>
     <currentVersion>${berkanoVersion}</currentVersion>
-    <name>Swaf User</name>
-    <description>Swaf User defines a simple API for managing users in swaf applications.</description>
-    <shortDescription>Swaf User</shortDescription>
+    <name>Berkano User</name>
+    <description>Berkano User defines a simple API for managing users in berkano applications.</description>
+    <shortDescription>Berkano User</shortDescription>
 
     <dependencies>
         <dependency>
-            <groupId>swaf-tools</groupId>
-            <artifactId>swaf-bookmarks</artifactId>
+            <groupId>berkano-tools</groupId>
+            <artifactId>berkano-bookmarks</artifactId>
             <version>${berkanoVersion}</version>
         </dependency>
         <dependency>
-            <groupId>swaf-tools</groupId>
-            <artifactId>swaf-hibernate</artifactId>
+            <groupId>berkano-tools</groupId>
+            <artifactId>berkano-hibernate</artifactId>
             <version>${berkanoVersion}</version>
         </dependency>
         <dependency>
-            <groupId>swaf-tools</groupId>
-            <artifactId>swaf-mail</artifactId>
+            <groupId>berkano-tools</groupId>
+            <artifactId>berkano-mail</artifactId>
             <version>${berkanoVersion}</version>
         </dependency>
         <dependency>
-            <groupId>swaf</groupId>
+            <groupId>berkano</groupId>
             <artifactId>seraph</artifactId>
-            <version>0.7.7-swaf-SNAPSHOT</version>
+            <version>0.7.7-berkano-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
         <dependency>

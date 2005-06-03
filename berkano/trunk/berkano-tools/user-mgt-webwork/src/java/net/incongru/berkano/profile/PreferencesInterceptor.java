@@ -1,9 +1,9 @@
-package net.incongru.swaf.profile;
+package net.incongru.berkano.profile;
 
 import com.opensymphony.xwork.ActionInvocation;
 import com.opensymphony.xwork.interceptor.AroundInterceptor;
-import net.incongru.swaf.app.Application;
-import net.incongru.swaf.app.ApplicationsProvider;
+import net.incongru.berkano.app.Application;
+import net.incongru.berkano.app.ApplicationsProvider;
 
 /**
  * 

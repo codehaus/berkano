@@ -1,10 +1,10 @@
-package net.incongru.swaf.security.password.generator;
+package net.incongru.berkano.security.password.generator;
 
-import net.incongru.swaf.security.password.PasswordGenerator;
+import net.incongru.berkano.security.password.PasswordGenerator;
 import org.apache.commons.lang.RandomStringUtils;
 
 /**
- * This simple {@link net.incongru.swaf.security.password.PasswordGenerator} is based on RandomStringUtils from jakarta-commons-lang,
+ * This simple {@link net.incongru.berkano.security.password.PasswordGenerator} is based on RandomStringUtils from jakarta-commons-lang,
  * and returns a random word of 6 characters composed of letters and numbers only.
  *
  * @author greg

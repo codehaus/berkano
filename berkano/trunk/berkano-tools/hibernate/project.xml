@@ -2,11 +2,11 @@
 
 <project>
     <extend>../project.xml</extend>
-    <id>swaf-hibernate</id>
+    <id>berkano-hibernate</id>
     <currentVersion>${berkanoVersion}</currentVersion>
-    <name>Swaf Hibernate Tools</name>
+    <name>Berkano Hibernate Tools</name>
     <description>A small set of tools for hibernate.</description>
-    <shortDescription>Swaf User Hibernate</shortDescription>
+    <shortDescription>Berkano User Hibernate</shortDescription>
 
     <dependencies>
         <dependency>

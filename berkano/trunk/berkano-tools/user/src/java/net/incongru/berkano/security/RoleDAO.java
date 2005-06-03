@@ -1,6 +1,6 @@
-package net.incongru.swaf.security;
+package net.incongru.berkano.security;
 
-import net.incongru.swaf.app.Application;
+import net.incongru.berkano.app.Application;
 
 import java.util.Collection;
 import java.util.List;

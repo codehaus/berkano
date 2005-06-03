@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
 
 <hibernate-mapping>
-    <class name="net.incongru.swaf.user.UserImpl" table="user">
+    <class name="net.incongru.berkano.user.UserImpl" table="user">
         <id name="userId" type="java.lang.Long" column="user_id">
             <generator class="native">
             </generator>
@@ -18,7 +18,7 @@
 
         <set name="groups" table="user_group"><!-- lazy="true"--><!-- cascade="all" -->
             <key column="user_id"/>
-            <many-to-many column="group_id" class="net.incongru.swaf.user.GroupImpl"/>
+            <many-to-many column="group_id" class="net.incongru.berkano.user.GroupImpl"/>
         </set>
 
         <map name="properties" table="user_properties"><!-- lazy="true">-->

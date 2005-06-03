@@ -1,4 +1,4 @@
-package net.incongru.swaf.security.seraph.filter;
+package net.incongru.berkano.security.seraph.filter;
 
 import com.atlassian.seraph.config.SecurityConfig;
 import com.atlassian.seraph.filter.SecurityFilter;
@@ -6,13 +6,13 @@ import com.atlassian.seraph.filter.SecurityFilter;
 import javax.servlet.FilterConfig;
 
 /**
- * Copied from Seraph's original SwafSecurityFilter
+ * Copied from Seraph's original BerkanoSecurityFilter
  *
  */
-public class SwafSecurityFilter extends SecurityFilter {
+public class BerkanoSecurityFilter extends SecurityFilter {
     private SecurityConfig securityConfig;
 
-    public SwafSecurityFilter(SecurityConfig securityConfig) {
+    public BerkanoSecurityFilter(SecurityConfig securityConfig) {
         this.securityConfig = securityConfig;
     }
 

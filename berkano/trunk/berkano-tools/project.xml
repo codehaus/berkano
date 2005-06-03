@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project>
     <pomVersion>3</pomVersion>
-    <groupId>swaf-tools</groupId>
+    <groupId>berkano-tools</groupId>
     <organization>
         <name>incongru.net</name>
         <url>http://incongru.net</url>
         <logo>http://incongru.net/images/incongru-logo.png</logo>
     </organization>
     <inceptionYear>2004</inceptionYear>
-    <url>http://incongru.net/swaf-tools</url>
+    <url>http://incongru.net/berkano-tools</url>
     <issueTrackingUrl></issueTrackingUrl>
-    <siteAddress>http://incongru.net/swaf</siteAddress>
+    <siteAddress>http://incongru.net/berkano</siteAddress>
     <siteDirectory></siteDirectory>
     <distributionDirectory></distributionDirectory>
     <repository>

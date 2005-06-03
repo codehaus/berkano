@@ -1,4 +1,4 @@
-package net.incongru.swaf.security;
+package net.incongru.berkano.security;
 
 /**
  * A set of roles. Tied to a particular application. It only defines all possible

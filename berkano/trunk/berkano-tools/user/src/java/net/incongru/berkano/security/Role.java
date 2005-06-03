@@ -1,4 +1,4 @@
-package net.incongru.swaf.security;
+package net.incongru.berkano.security;
 
 import java.io.Serializable;
 

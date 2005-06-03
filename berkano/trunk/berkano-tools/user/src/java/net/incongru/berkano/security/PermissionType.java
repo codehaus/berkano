@@ -4,7 +4,7 @@
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
  */
-package net.incongru.swaf.security;
+package net.incongru.berkano.security;
 
 //public enum PermissionType {
 //    url, action;

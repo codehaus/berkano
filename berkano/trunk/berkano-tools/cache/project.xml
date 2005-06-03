@@ -2,9 +2,9 @@
 
 <project>
     <extend>../project.xml</extend>
-    <id>swaf-cache</id>
+    <id>berkano-cache</id>
     <currentVersion>${berkanoVersion}</currentVersion>
-    <name>Swaf Cache</name>
-    <description>Swaf Cache defines a simple API for caching data or operations.</description>
-    <shortDescription>Swaf Cache</shortDescription>
+    <name>Berkano Cache</name>
+    <description>Berkano Cache defines a simple API for caching data or operations.</description>
+    <shortDescription>Berkano Cache</shortDescription>
 </project>

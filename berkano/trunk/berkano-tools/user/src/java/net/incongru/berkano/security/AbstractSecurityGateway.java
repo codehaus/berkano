@@ -1,7 +1,7 @@
-package net.incongru.swaf.security;
+package net.incongru.berkano.security;
 
-import net.incongru.swaf.user.Group;
-import net.incongru.swaf.user.User;
+import net.incongru.berkano.user.Group;
+import net.incongru.berkano.user.User;
 
 import java.util.Iterator;
 import java.util.Set;

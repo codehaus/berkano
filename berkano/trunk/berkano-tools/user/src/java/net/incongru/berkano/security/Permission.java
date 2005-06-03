@@ -1,4 +1,4 @@
-package net.incongru.swaf.security;
+package net.incongru.berkano.security;
 
 /**
  * A permission. Usually, permissions seem to be represented as Strings, but I'd rather have an object.

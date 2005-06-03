@@ -1,10 +1,10 @@
-package net.incongru.swaf.usermgt.webwork;
+package net.incongru.berkano.usermgt.webwork;
 
 import com.opensymphony.xwork.ActionSupport;
-import net.incongru.swaf.user.UserDAO;
-import net.incongru.swaf.user.GroupDAO;
-import net.incongru.swaf.user.UnknownUserException;
-import net.incongru.swaf.user.User;
+import net.incongru.berkano.user.UserDAO;
+import net.incongru.berkano.user.GroupDAO;
+import net.incongru.berkano.user.UnknownUserException;
+import net.incongru.berkano.user.User;
 
 import java.util.List;
 

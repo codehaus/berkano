@@ -1,7 +1,7 @@
-package net.incongru.swaf.user.hibernate;
+package net.incongru.berkano.user.hibernate;
 
-import net.incongru.swaf.user.PropertiesAware;
-import net.incongru.swaf.user.UnknownUserException;
+import net.incongru.berkano.user.PropertiesAware;
+import net.incongru.berkano.user.UnknownUserException;
 import net.sf.hibernate.HibernateException;
 import net.sf.hibernate.Session;
 

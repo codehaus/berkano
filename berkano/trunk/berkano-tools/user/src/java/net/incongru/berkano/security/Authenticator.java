@@ -1,6 +1,6 @@
-package net.incongru.swaf.security;
+package net.incongru.berkano.security;
 
-import net.incongru.swaf.user.UnknownUserException;
+import net.incongru.berkano.user.UnknownUserException;
 
 /**
  *

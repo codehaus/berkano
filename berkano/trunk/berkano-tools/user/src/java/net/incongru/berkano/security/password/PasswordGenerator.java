@@ -1,4 +1,4 @@
-package net.incongru.swaf.security.password;
+package net.incongru.berkano.security.password;
 
 /**
  * Implementations of this interface generate a random (or not...) password

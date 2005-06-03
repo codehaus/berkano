@@ -1,4 +1,4 @@
-package net.incongru.swaf.profile;
+package net.incongru.berkano.profile;
 
 import com.opensymphony.webwork.views.jsp.ui.AbstractListTag;
 import com.opensymphony.webwork.views.jsp.ui.CheckboxListTag;
@@ -8,8 +8,8 @@ import com.opensymphony.webwork.views.jsp.ui.TextFieldTag;
 import com.opensymphony.xwork.ActionContext;
 import com.opensymphony.xwork.TextProvider;
 import com.opensymphony.xwork.util.OgnlValueStack;
-import net.incongru.swaf.app.PreferenceInfo;
-import net.incongru.swaf.app.PreferenceWidget;
+import net.incongru.berkano.app.PreferenceInfo;
+import net.incongru.berkano.app.PreferenceWidget;
 
 import java.util.HashMap;
 import java.util.Iterator;

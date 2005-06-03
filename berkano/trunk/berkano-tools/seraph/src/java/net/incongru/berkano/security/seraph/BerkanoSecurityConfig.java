@@ -1,4 +1,4 @@
-package net.incongru.swaf.security.seraph;
+package net.incongru.berkano.security.seraph;
 
 import com.atlassian.seraph.auth.Authenticator;
 import com.atlassian.seraph.auth.RoleMapper;
@@ -14,20 +14,20 @@ import java.util.HashMap;
  * Constructable SecurityConfig. Merely delegates to super constructor and inhibit some
  * of the configure* methods.
  */
-public class SwafSecurityConfig extends SecurityConfigImpl {
-    public SwafSecurityConfig(Authenticator authenticator, RoleMapper roleMapper) throws ConfigurationException {
+public class BerkanoSecurityConfig extends SecurityConfigImpl {
+    public BerkanoSecurityConfig(Authenticator authenticator, RoleMapper roleMapper) throws ConfigurationException {
         this(authenticator, roleMapper, new Interceptor[0], DEFAULT_CONFIG_LOCATION);
     }
 
-    public SwafSecurityConfig(Authenticator authenticator, RoleMapper roleMapper, Interceptor[] interceptors) throws ConfigurationException {
+    public BerkanoSecurityConfig(Authenticator authenticator, RoleMapper roleMapper, Interceptor[] interceptors) throws ConfigurationException {
         this(authenticator, roleMapper, interceptors, DEFAULT_CONFIG_LOCATION);
     }
 
-    public SwafSecurityConfig(Authenticator authenticator, RoleMapper roleMapper, String configFileLocation) throws ConfigurationException {
+    public BerkanoSecurityConfig(Authenticator authenticator, RoleMapper roleMapper, String configFileLocation) throws ConfigurationException {
         this(authenticator, roleMapper, new Interceptor[0], configFileLocation);
     }
 
-    public SwafSecurityConfig(Authenticator authenticator, RoleMapper roleMapper, Interceptor[] interceptors, String configFileLocation) throws ConfigurationException {
+    public BerkanoSecurityConfig(Authenticator authenticator, RoleMapper roleMapper, Interceptor[] interceptors, String configFileLocation) throws ConfigurationException {
         super(configFileLocation);
         this.authenticator = authenticator;
         this.roleMapper = roleMapper;

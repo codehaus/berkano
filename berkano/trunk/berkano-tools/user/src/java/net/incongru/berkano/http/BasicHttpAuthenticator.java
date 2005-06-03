@@ -1,10 +1,10 @@
-package net.incongru.swaf.http;
+package net.incongru.berkano.http;
 
-import net.incongru.swaf.security.Authenticator;
-import net.incongru.swaf.security.password.PasswordMatchingStrategy;
-import net.incongru.swaf.user.UnknownUserException;
-import net.incongru.swaf.user.User;
-import net.incongru.swaf.user.UserDAO;
+import net.incongru.berkano.security.Authenticator;
+import net.incongru.berkano.security.password.PasswordMatchingStrategy;
+import net.incongru.berkano.user.UnknownUserException;
+import net.incongru.berkano.user.User;
+import net.incongru.berkano.user.UserDAO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,7 +19,7 @@ public class BasicHttpAuthenticator implements Authenticator {
     private UserDAO userDAO;
     private PasswordMatchingStrategy passwordMatchingStrategy;
     private HttpServletRequest req;
-    private static final String USER_KEY = "swaf.user";
+    private static final String USER_KEY = "berkano.user";
 
     public BasicHttpAuthenticator(HttpServletRequest req, UserDAO userDAO, PasswordMatchingStrategy passwordMatchingStrategy) {
         this.req = req;
@@ -28,8 +28,8 @@ public class BasicHttpAuthenticator implements Authenticator {
     }
 
     public boolean authenticate() throws UnknownUserException {
-        String username = req.getParameter("swaf.username");
-        String password = req.getParameter("swaf.password");
+        String username = req.getParameter("berkano.username");
+        String password = req.getParameter("berkano.password");
         User user = userDAO.getUserByName(username);
         if (user != null && passwordMatchingStrategy.matches(password, user)) {
             req.getSession(true).setAttribute(USER_KEY, user);

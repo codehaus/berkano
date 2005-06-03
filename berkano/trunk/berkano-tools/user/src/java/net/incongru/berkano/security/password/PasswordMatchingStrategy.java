@@ -1,6 +1,6 @@
-package net.incongru.swaf.security.password;
+package net.incongru.berkano.security.password;
 
-import net.incongru.swaf.user.User;
+import net.incongru.berkano.user.User;
 
 /**
  * Is this any useful?

@@ -1,8 +1,8 @@
-package net.incongru.swaf.security.seraph;
+package net.incongru.berkano.security.seraph;
 
-import net.incongru.swaf.user.Group;
-import net.incongru.swaf.user.User;
-import net.incongru.swaf.security.Role;
+import net.incongru.berkano.user.Group;
+import net.incongru.berkano.user.User;
+import net.incongru.berkano.security.Role;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -28,7 +28,7 @@ public class UserRoleCache {
             return Collections.EMPTY_SET;
         }
         if (!(principal instanceof User)) {
-            throw new IllegalStateException("UserRoleCache can only work with swaf-user!");
+            throw new IllegalStateException("UserRoleCache can only work with berkano-user!");
         }
 
         Set permissions = (Set) req.getAttribute(ROLE_CACHE_KEY);

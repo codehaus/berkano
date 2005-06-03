@@ -1,7 +1,7 @@
-package net.incongru.swaf.profile;
+package net.incongru.berkano.profile;
 
-import net.incongru.swaf.app.ApplicationsProvider;
-import net.incongru.swaf.user.extensions.UserPropertyHelper;
+import net.incongru.berkano.app.ApplicationsProvider;
+import net.incongru.berkano.user.extensions.UserPropertyHelper;
 
 /**
  *

@@ -4,7 +4,7 @@
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */
-package net.incongru.swaf.app;
+package net.incongru.berkano.app;
 
 /**
  * Determines what kind of widget to use to set the value.

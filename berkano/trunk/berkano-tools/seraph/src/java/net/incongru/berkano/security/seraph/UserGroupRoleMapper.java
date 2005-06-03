@@ -1,4 +1,4 @@
-package net.incongru.swaf.security.seraph;
+package net.incongru.berkano.security.seraph;
 
 import com.atlassian.seraph.auth.RoleMapper;
 import com.atlassian.seraph.config.SecurityConfig;
@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Iterator;
 
-import net.incongru.swaf.security.Role;
+import net.incongru.berkano.security.Role;
 
 
 /**

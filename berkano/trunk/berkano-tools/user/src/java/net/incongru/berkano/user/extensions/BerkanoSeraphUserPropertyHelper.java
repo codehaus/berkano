@@ -5,26 +5,26 @@
  *                                     *
  *                                     *
  ***************************************/
-package net.incongru.swaf.user.extensions;
+package net.incongru.berkano.user.extensions;
 
 import com.atlassian.seraph.auth.AuthenticationContext;
-import net.incongru.swaf.user.User;
-import net.incongru.swaf.user.UserDAO;
+import net.incongru.berkano.user.User;
+import net.incongru.berkano.user.UserDAO;
 
 /**
  * Helper to store / retrieve user properties of the currently logged in user,
- * using swaf and seraph.
+ * using berkano and seraph.
  *
  * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */
-public class SwafSeraphUserPropertyHelper implements UserPropertyHelper {
+public class BerkanoSeraphUserPropertyHelper implements UserPropertyHelper {
     private UserDAO userDAO;
     private UserPropertyAccessor userPropertyAccessor;
     private AuthenticationContext authenticationContext;
 
-    public SwafSeraphUserPropertyHelper(UserPropertyAccessor userPropertyAccessor, UserDAO userDAO, AuthenticationContext authenticationContext) {
+    public BerkanoSeraphUserPropertyHelper(UserPropertyAccessor userPropertyAccessor, UserDAO userDAO, AuthenticationContext authenticationContext) {
         this.userPropertyAccessor = userPropertyAccessor;
         this.userDAO = userDAO;
         this.authenticationContext = authenticationContext;

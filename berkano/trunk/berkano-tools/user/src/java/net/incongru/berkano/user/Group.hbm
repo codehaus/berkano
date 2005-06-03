@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
 
 <hibernate-mapping>
-    <class name="net.incongru.swaf.user.GroupImpl" table="`group`">
+    <class name="net.incongru.berkano.user.GroupImpl" table="`group`">
         <id name="groupId" type="java.lang.Long" column="group_id">
             <generator class="native">
             </generator>
@@ -13,7 +13,7 @@
 
         <set name="roles" table="group_role">
             <key column="group_id"/>
-            <many-to-many column="role" class="net.incongru.swaf.security.RoleImpl"/>
+            <many-to-many column="role" class="net.incongru.berkano.security.RoleImpl"/>
         </set>
 
         <map name="properties" table="group_properties"><!-- lazy="true">-->
@@ -24,7 +24,7 @@
 
         <set name="users" table="user_group" lazy="true" inverse="true"><!-- cascade="all">-->
             <key column="group_id"/>
-            <many-to-many column="user_id" class="net.incongru.swaf.user.UserImpl"/>
+            <many-to-many column="user_id" class="net.incongru.berkano.user.UserImpl"/>
         </set>
     </class>
 </hibernate-mapping>

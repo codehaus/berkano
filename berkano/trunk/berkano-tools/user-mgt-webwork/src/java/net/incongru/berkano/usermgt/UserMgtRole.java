@@ -1,6 +1,6 @@
-package net.incongru.swaf.usermgt;
+package net.incongru.berkano.usermgt;
 
-import net.incongru.swaf.security.AbstractRole;
+import net.incongru.berkano.security.AbstractRole;
 
 /**
  * @author greg

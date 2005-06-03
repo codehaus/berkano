@@ -1,10 +1,10 @@
-package net.incongru.swaf.usermgt.webwork.lostpw;
+package net.incongru.berkano.usermgt.webwork.lostpw;
 
 import com.opensymphony.xwork.ActionSupport;
-import net.incongru.swaf.security.password.PasswordRetrievalStrategy;
-import net.incongru.swaf.security.password.PasswordRetrievalStrategy;
-import net.incongru.swaf.user.User;
-import net.incongru.swaf.user.UserDAO;
+import net.incongru.berkano.security.password.PasswordRetrievalStrategy;
+import net.incongru.berkano.security.password.PasswordRetrievalStrategy;
+import net.incongru.berkano.user.User;
+import net.incongru.berkano.user.UserDAO;
 
 /**
  * This action only triggers the configured {@link PasswordRetrievalStrategy}.

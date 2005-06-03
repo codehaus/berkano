@@ -1,4 +1,4 @@
-package net.incongru.swaf.security.seraph.filter;
+package net.incongru.berkano.security.seraph.filter;
 
 import com.atlassian.seraph.auth.Authenticator;
 import com.atlassian.seraph.config.SecurityConfig;
@@ -11,11 +11,11 @@ import javax.servlet.FilterConfig;
  * through the constructor.
  *
  */
-public class SwafLoginFilter extends LoginFilter {
+public class BerkanoLoginFilter extends LoginFilter {
     private SecurityConfig securityConfig;
     private Authenticator authenticator;
 
-    public SwafLoginFilter(SecurityConfig securityConfig, Authenticator authenticator) {
+    public BerkanoLoginFilter(SecurityConfig securityConfig, Authenticator authenticator) {
         this.securityConfig = securityConfig;
         this.authenticator = authenticator;
     }

@@ -1,13 +1,13 @@
-package net.incongru.swaf.bookmarksmgt;
+package net.incongru.berkano.bookmarksmgt;
 
 import com.atlassian.seraph.auth.AuthenticationContext;
 import com.opensymphony.xwork.ActionContext;
 import com.opensymphony.xwork.ActionSupport;
-import net.incongru.swaf.bookmarks.Bookmark;
-import net.incongru.swaf.bookmarks.BookmarksTree;
-import net.incongru.swaf.bookmarks.ExternalBookmark;
-import net.incongru.swaf.user.User;
-import net.incongru.swaf.user.extensions.BookmarksDAO;
+import net.incongru.berkano.bookmarks.Bookmark;
+import net.incongru.berkano.bookmarks.BookmarksTree;
+import net.incongru.berkano.bookmarks.ExternalBookmark;
+import net.incongru.berkano.user.User;
+import net.incongru.berkano.user.extensions.BookmarksDAO;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,8 +21,8 @@ import java.util.Properties;
  * @version $Revision: 1.1 $
  */
 public class UserBookmarksAccessor extends ActionSupport {
-    protected static final String USER_BOOKMARKS = "swaf.user.bookmarks";
-    protected static final String DEFAULT_BOOKMARKS = "swaf.app.default.bookmarks";
+    protected static final String USER_BOOKMARKS = "berkano.user.bookmarks";
+    protected static final String DEFAULT_BOOKMARKS = "berkano.app.default.bookmarks";
 
     private AuthenticationContext authenticationContext;
     private BookmarksDAO bookmarksDAO;

@@ -1,7 +1,7 @@
-package net.incongru.swaf.usermgt.webwork.lostpw;
+package net.incongru.berkano.usermgt.webwork.lostpw;
 
 import com.opensymphony.xwork.ActionSupport;
-import net.incongru.swaf.security.password.PasswordRetrievalStrategy;
+import net.incongru.berkano.security.password.PasswordRetrievalStrategy;
 
 import java.util.Arrays;
 import java.util.List;

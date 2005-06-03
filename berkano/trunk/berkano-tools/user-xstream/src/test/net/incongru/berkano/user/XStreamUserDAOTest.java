@@ -1,4 +1,4 @@
-package net.incongru.swaf.user;
+package net.incongru.berkano.user;
 
 import junit.framework.TestCase;
 

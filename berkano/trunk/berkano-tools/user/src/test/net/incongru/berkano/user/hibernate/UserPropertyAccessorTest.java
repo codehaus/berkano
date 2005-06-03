@@ -1,9 +1,9 @@
-package net.incongru.swaf.user.hibernate;
+package net.incongru.berkano.user.hibernate;
 
-import net.incongru.swaf.user.GroupImpl;
-import net.incongru.swaf.user.User;
-import net.incongru.swaf.user.UserImpl;
-import net.incongru.swaf.user.extensions.UserPropertyAccessor;
+import net.incongru.berkano.user.GroupImpl;
+import net.incongru.berkano.user.User;
+import net.incongru.berkano.user.UserImpl;
+import net.incongru.berkano.user.extensions.UserPropertyAccessor;
 import net.sf.hibernate.LockMode;
 import net.sf.hibernate.Session;
 import org.jmock.Mock;

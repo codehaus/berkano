@@ -1,12 +1,12 @@
-package net.incongru.swaf.profile;
+package net.incongru.berkano.profile;
 
 import com.opensymphony.xwork.ActionContext;
 import com.opensymphony.xwork.util.LocalizedTextUtil;
 import com.opensymphony.xwork.util.OgnlValueStack;
-import net.incongru.swaf.app.Application;
-import net.incongru.swaf.app.ApplicationsProvider;
-import net.incongru.swaf.app.PreferenceInfo;
-import net.incongru.swaf.user.extensions.UserPropertyHelper;
+import net.incongru.berkano.app.Application;
+import net.incongru.berkano.app.ApplicationsProvider;
+import net.incongru.berkano.app.PreferenceInfo;
+import net.incongru.berkano.user.extensions.UserPropertyHelper;
 
 import java.util.Collection;
 import java.util.List;

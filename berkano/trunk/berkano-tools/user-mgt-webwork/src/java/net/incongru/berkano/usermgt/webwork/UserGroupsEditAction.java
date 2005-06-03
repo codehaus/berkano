@@ -1,8 +1,8 @@
-package net.incongru.swaf.usermgt.webwork;
+package net.incongru.berkano.usermgt.webwork;
 
 import com.opensymphony.xwork.ActionSupport;
-import net.incongru.swaf.user.UnknownUserException;
-import net.incongru.swaf.user.UserDAO;
+import net.incongru.berkano.user.UnknownUserException;
+import net.incongru.berkano.user.UserDAO;
 
 /**
  *

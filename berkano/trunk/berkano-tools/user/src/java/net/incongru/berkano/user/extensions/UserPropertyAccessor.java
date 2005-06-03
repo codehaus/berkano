@@ -1,6 +1,6 @@
-package net.incongru.swaf.user.extensions;
+package net.incongru.berkano.user.extensions;
 
-import net.incongru.swaf.user.User;
+import net.incongru.berkano.user.User;
 
 import java.util.Collection;
 

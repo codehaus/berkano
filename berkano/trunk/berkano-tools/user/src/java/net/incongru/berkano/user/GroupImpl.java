@@ -1,6 +1,6 @@
-package net.incongru.swaf.user;
+package net.incongru.berkano.user;
 
-import net.incongru.swaf.security.Role;
+import net.incongru.berkano.security.Role;
 
 import java.util.HashMap;
 import java.util.HashSet;

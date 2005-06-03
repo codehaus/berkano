@@ -1,7 +1,7 @@
-package net.incongru.swaf.security.password.matching;
+package net.incongru.berkano.security.password.matching;
 
-import net.incongru.swaf.security.password.PasswordMatchingStrategy;
-import net.incongru.swaf.user.User;
+import net.incongru.berkano.security.password.PasswordMatchingStrategy;
+import net.incongru.berkano.user.User;
 
 /**
  *

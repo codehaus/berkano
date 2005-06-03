@@ -2,34 +2,34 @@
 
 <project>
     <extend>../project.xml</extend>
-    <id>swaf-user-mgt-webwork</id>
+    <id>berkano-user-mgt-webwork</id>
     <currentVersion>${berkanoVersion}</currentVersion>
-    <name>Swaf User Management for Webwork2</name>
-    <description>A couple of simple actions and views for swaf-user/osuser with webwork2</description>
-    <shortDescription>Swaf User Management for Webwork2</shortDescription>
+    <name>Berkano User Management for Webwork2</name>
+    <description>A couple of simple actions and views for berkano-user/osuser with webwork2</description>
+    <shortDescription>Berkano User Management for Webwork2</shortDescription>
 
     <dependencies>
         <dependency>
-            <groupId>swaf-tools</groupId>
-            <artifactId>swaf-user</artifactId>
+            <groupId>berkano-tools</groupId>
+            <artifactId>berkano-user</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>swaf</groupId>
+            <groupId>berkano</groupId>
             <artifactId>seraph</artifactId>
-            <version>0.7.6-swaf-SNAPSHOT</version>
+            <version>0.7.6-berkano-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>swaf-tools</groupId>
-            <artifactId>swaf-seraph</artifactId>
+            <groupId>berkano-tools</groupId>
+            <artifactId>berkano-seraph</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>swaf-tools</groupId>
-            <artifactId>swaf-bookmarks</artifactId>
+            <groupId>berkano-tools</groupId>
+            <artifactId>berkano-bookmarks</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
         </dependency>

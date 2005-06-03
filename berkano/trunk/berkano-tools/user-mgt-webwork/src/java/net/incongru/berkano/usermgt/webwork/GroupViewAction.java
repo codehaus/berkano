@@ -1,9 +1,9 @@
-package net.incongru.swaf.usermgt.webwork;
+package net.incongru.berkano.usermgt.webwork;
 
 import com.opensymphony.xwork.ActionSupport;
-import net.incongru.swaf.user.GroupDAO;
-import net.incongru.swaf.user.Group;
-import net.incongru.swaf.security.RoleDAO;
+import net.incongru.berkano.user.GroupDAO;
+import net.incongru.berkano.user.Group;
+import net.incongru.berkano.security.RoleDAO;
 
 import java.util.List;
 

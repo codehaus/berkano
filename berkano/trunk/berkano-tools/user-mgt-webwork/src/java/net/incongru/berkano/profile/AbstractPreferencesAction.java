@@ -1,9 +1,9 @@
-package net.incongru.swaf.profile;
+package net.incongru.berkano.profile;
 
 import com.opensymphony.xwork.ActionSupport;
 import com.opensymphony.xwork.ModelDriven;
-import net.incongru.swaf.app.ApplicationsProvider;
-import net.incongru.swaf.user.extensions.UserPropertyHelper;
+import net.incongru.berkano.app.ApplicationsProvider;
+import net.incongru.berkano.user.extensions.UserPropertyHelper;
 
 /**
  * 

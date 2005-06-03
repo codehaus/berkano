@@ -1,9 +1,9 @@
-package net.incongru.swaf.security.hibernate;
+package net.incongru.berkano.security.hibernate;
 
-import net.incongru.swaf.app.Application;
-import net.incongru.swaf.security.Role;
-import net.incongru.swaf.security.RoleDAO;
-import net.incongru.swaf.security.RoleImpl;
+import net.incongru.berkano.app.Application;
+import net.incongru.berkano.security.Role;
+import net.incongru.berkano.security.RoleDAO;
+import net.incongru.berkano.security.RoleImpl;
 import net.sf.hibernate.HibernateException;
 import net.sf.hibernate.Session;
 

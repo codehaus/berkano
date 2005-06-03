@@ -1,7 +1,7 @@
 #set ($userGroups = $user.groups)
 
-<div id="swaf-user-mgt">
-#include("/swaf/usermgt/nav.vm")
+<div id="berkano-user-mgt">
+#include("/berkano/usermgt/nav.vm")
 
 <h1>User: $user.userName</h1>
 

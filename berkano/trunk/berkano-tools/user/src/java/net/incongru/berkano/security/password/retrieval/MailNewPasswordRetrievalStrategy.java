@@ -1,9 +1,9 @@
-package net.incongru.swaf.security.password.retrieval;
+package net.incongru.berkano.security.password.retrieval;
 
-import net.incongru.swaf.mail.Mailer;
-import net.incongru.swaf.security.password.PasswordGenerator;
-import net.incongru.swaf.user.User;
-import net.incongru.swaf.user.UserDAO;
+import net.incongru.berkano.mail.Mailer;
+import net.incongru.berkano.security.password.PasswordGenerator;
+import net.incongru.berkano.user.User;
+import net.incongru.berkano.user.UserDAO;
 
 import java.util.Map;
 
@@ -36,6 +36,6 @@ public class MailNewPasswordRetrievalStrategy extends AbstractMailPasswordRetrie
     }
 
     protected String getTemplateName() {
-        return "swaf/lostpw/mail/new_password";
+        return "berkano/lostpw/mail/new_password";
     }
 }

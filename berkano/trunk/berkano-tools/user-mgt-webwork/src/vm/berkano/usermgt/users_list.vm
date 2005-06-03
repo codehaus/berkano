@@ -1,5 +1,5 @@
-<div id="swaf-user-mgt">
-#include("/swaf/usermgt/nav.vm")
+<div id="berkano-user-mgt">
+#include("/berkano/usermgt/nav.vm")
 
 <h1>Users</h1>
 

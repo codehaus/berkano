@@ -1,10 +1,10 @@
-package net.incongru.swaf.security;
+package net.incongru.berkano.security;
 
-import net.incongru.swaf.user.User;
+import net.incongru.berkano.user.User;
 
 
 /**
- * A SecurityGateway will often be specific to a swaf subapplication?.. then the getRoles
+ * A SecurityGateway will often be specific to a berkano subapplication?.. then the getRoles
  * method would only return the roles of that app...
  * And each app would register its own SecurityGateway in its own picocontainer?? that sounds interesting
  *

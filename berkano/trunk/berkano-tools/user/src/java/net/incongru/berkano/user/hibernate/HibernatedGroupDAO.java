@@ -1,10 +1,10 @@
-package net.incongru.swaf.user.hibernate;
+package net.incongru.berkano.user.hibernate;
 
-import net.incongru.swaf.user.Group;
-import net.incongru.swaf.user.GroupDAO;
-import net.incongru.swaf.user.GroupImpl;
-import net.incongru.swaf.user.PropertiesAware;
-import net.incongru.swaf.user.UnknownUserException;
+import net.incongru.berkano.user.Group;
+import net.incongru.berkano.user.GroupDAO;
+import net.incongru.berkano.user.GroupImpl;
+import net.incongru.berkano.user.PropertiesAware;
+import net.incongru.berkano.user.UnknownUserException;
 import net.sf.hibernate.HibernateException;
 import net.sf.hibernate.Session;
 

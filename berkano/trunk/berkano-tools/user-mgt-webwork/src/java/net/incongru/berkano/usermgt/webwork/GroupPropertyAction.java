@@ -1,7 +1,7 @@
-package net.incongru.swaf.usermgt.webwork;
+package net.incongru.berkano.usermgt.webwork;
 
 import com.opensymphony.xwork.ActionSupport;
-import net.incongru.swaf.user.GroupDAO;
+import net.incongru.berkano.user.GroupDAO;
 
 /**
  * @author greg

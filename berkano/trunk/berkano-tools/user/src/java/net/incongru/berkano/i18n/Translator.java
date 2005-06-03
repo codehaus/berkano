@@ -1,8 +1,8 @@
-package net.incongru.swaf.i18n;
+package net.incongru.berkano.i18n;
 
-import net.incongru.swaf.app.Application;
-import net.incongru.swaf.app.PreferenceInfo;
-import net.incongru.swaf.security.Role;
+import net.incongru.berkano.app.Application;
+import net.incongru.berkano.app.PreferenceInfo;
+import net.incongru.berkano.security.Role;
 
 /**
  * TODO : use this or trash this !

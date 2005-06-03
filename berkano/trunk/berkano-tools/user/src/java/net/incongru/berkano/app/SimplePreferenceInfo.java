@@ -1,4 +1,4 @@
-package net.incongru.swaf.app;
+package net.incongru.berkano.app;
 
 /**
  *

@@ -1,4 +1,4 @@
-package net.incongru.swaf.security.seraph.webwork;
+package net.incongru.berkano.security.seraph.webwork;
 
 import com.atlassian.seraph.auth.AuthenticationContext;
 

@@ -1,4 +1,4 @@
-<div id="swaf-profile">
+<div id="berkano-profile">
 <div id="apps">
 <ul>
 #foreach ($app in $apps)
