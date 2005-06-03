@@ -2,11 +2,11 @@
 
 <project>
     <extend>../project.xml</extend>
-    <id>swaf-mail</id>
+    <id>berkano-mail</id>
     <currentVersion>${berkanoVersion}</currentVersion>
-    <name>Swaf Mail</name>
-    <description>Swaf Mail provides a simple way to send emails from velocity templates.</description>
-    <shortDescription>Swaf Mail</shortDescription>
+    <name>Berkano Mail</name>
+    <description>Berkano Mail provides a simple way to send emails from velocity templates.</description>
+    <shortDescription>Berkano Mail</shortDescription>
 
     <dependencies>
         <dependency>
