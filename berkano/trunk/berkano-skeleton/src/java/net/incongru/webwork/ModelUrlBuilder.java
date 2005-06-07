@@ -52,13 +52,15 @@ public class ModelUrlBuilder {
             if (fields.get(field).getClass().equals(Object.class)) {
                 continue;
             }
-            String value = (String) stack.findValue(field, String.class);
-            if (value != null) {
-                result.append(field);
-                result.append('=');
-                result.append(URLEncoder.encode(value, "UTF-8")); // todo : use type converters : well they're used...
-                if (it.hasNext()) {
-                    result.append('&');
+            String[] value = (String[]) stack.findValue(field, String[].class);
+            if (value != null && value.length > 0) {
+                for (int i = 0; i < value.length; i++) {
+                    result.append(field);
+                    result.append('=');
+                    result.append(URLEncoder.encode(value[i], "UTF-8")); // todo : use type converters : well they're used...
+                    if (it.hasNext()) {
+                        result.append('&');
+                    }
                 }
             }
         }

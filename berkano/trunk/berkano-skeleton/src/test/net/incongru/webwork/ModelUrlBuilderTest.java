@@ -21,6 +21,13 @@ public class ModelUrlBuilderTest extends TestCase {
         b.setModel(m);
         assertEquals("http://host/test?bar=123", b.buildUrl());
     }
+    
+    public void testWithArray() throws Exception {
+        SomeComplexModel m = new SomeComplexModel(123, new String[]{"abc", "def"});
+        ModelUrlBuilder b = new ModelUrlBuilder("http://host/test");
+        b.setModel(m);
+        assertEquals("http://host/test?foo=abc&foo=def&bar=123", b.buildUrl());
+    }
 
     public static class SomeSimpleModel {
         private int bar;
@@ -36,6 +43,23 @@ public class ModelUrlBuilderTest extends TestCase {
         }
 
         public String getFoo() {
+            return foo;
+        }
+    }
+    public static class SomeComplexModel {
+        private int bar;
+        private String[] foo;
+
+        public SomeComplexModel(int bar, String[] foo) {
+            this.bar = bar;
+            this.foo = foo;
+        }
+
+        public int getBar() {
+            return bar;
+        }
+
+        public String[] getFoo() {
             return foo;
         }
     }
