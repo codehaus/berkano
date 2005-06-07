@@ -58,9 +58,12 @@ public class ModelUrlBuilder {
                     result.append(field);
                     result.append('=');
                     result.append(URLEncoder.encode(value[i], "UTF-8")); // todo : use type converters : well they're used...
-                    if (it.hasNext()) {
+                    if (i < value.length - 1) {
                         result.append('&');
                     }
+                }
+                if (it.hasNext()) {
+                    result.append('&');
                 }
             }
         }

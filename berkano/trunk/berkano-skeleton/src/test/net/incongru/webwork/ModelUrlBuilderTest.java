@@ -22,11 +22,18 @@ public class ModelUrlBuilderTest extends TestCase {
         assertEquals("http://host/test?bar=123", b.buildUrl());
     }
 
-    public void testWithArray() throws Exception {
+    public void testWithObjectAndArray() throws Exception {
         SomeComplexModel m = new SomeComplexModel(123, new String[]{"abc", "def"});
         ModelUrlBuilder b = new ModelUrlBuilder("http://host/test");
         b.setModel(m);
         assertEquals("http://host/test?arr=abc&arr=def&i=123", b.buildUrl());
+    }
+
+    public void testWithArrayWrapper() throws Exception {
+        ArrayWrapper m = new ArrayWrapper(new String[]{"abc", "def", "xyz"});
+        ModelUrlBuilder b = new ModelUrlBuilder("http://host/test");
+        b.setModel(m);
+        assertEquals("http://host/test?arr=abc&arr=def&arr=xyz", b.buildUrl());
     }
 
 //    public void testWithArrayAndNestedModel() throws Exception {
@@ -53,7 +60,19 @@ public class ModelUrlBuilderTest extends TestCase {
             return foo;
         }
     }
-    
+
+    public static class ArrayWrapper {
+        private String[] arr;
+
+        public ArrayWrapper(String[] arr) {
+            this.arr = arr;
+        }
+
+        public String[] getArr() {
+            return arr;
+        }
+    }
+
     public static class SomeComplexModel {
         private int i;
         private String[] arr;

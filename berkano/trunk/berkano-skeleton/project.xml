@@ -2,7 +2,7 @@
 <project>
     <pomVersion>3</pomVersion>
     <artifactId>berkano-skeleton</artifactId>
-    <currentVersion>${berkanoVersion}</currentVersion>
+    <currentVersion>20050607.1</currentVersion>
     <name></name>
     <description></description>
     <shortDescription></shortDescription>
