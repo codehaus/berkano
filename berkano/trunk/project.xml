@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project>
+    <pomVersion>3</pomVersion>
+
+<!-- poms extending one must define
+    <groupId></groupId>
+    <artifactId></artifactId>
+    -->
+
+    <organization>
+        <name></name>
+        <url></url>
+        <logo></logo>
+    </organization>
+    <inceptionYear>2004</inceptionYear>
+    <url>http://berkano.codehaus.org</url>
+    <issueTrackingUrl>http://jira.codehaus.org/browse/BERKANO</issueTrackingUrl>
+    <siteAddress>http://berkano.codehaus.org</siteAddress>
+    <siteDirectory></siteDirectory>
+    <distributionDirectory></distributionDirectory>
+    <repository>
+        <connection></connection>
+        <url></url>
+    </repository>
+
+    <mailingLists>
+        <mailingList>
+            <name>${pom.name} User mailing list</name>
+            <subscribe></subscribe>
+            <unsubscribe></unsubscribe>
+            <archive></archive>
+        </mailingList>
+        <mailingList>
+            <name>${pom.name} Developers mailing list</name>
+            <subscribe></subscribe>
+            <unsubscribe></unsubscribe>
+            <archive></archive>
+        </mailingList>
+        <mailingList>
+            <name>${pom.name} Announcements mailing list</name>
+            <subscribe></subscribe>
+            <unsubscribe></unsubscribe>
+            <archive></archive>
+        </mailingList>
+        <mailingList>
+            <name>${pom.name} SCM and issue tracking mailing list</name>
+            <subscribe></subscribe>
+            <unsubscribe></unsubscribe>
+            <archive></archive>
+        </mailingList>
+<!--
+        <mailingList>
+            <name>${pom.name} Despots mailing list</name>
+            <subscribe></subscribe>
+            <unsubscribe></unsubscribe>
+            <archive></archive>
+        </mailingList>
+            -->
+    </mailingLists>
+    <developers>
+        <developer>
+            <name>Gregory Joseph</name>
+            <id>gjoseph</id>
+            <email>gjoseph AT codehaus.org</email>
+            <organization></organization>
+            <roles>
+                <role>Project admin</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>0</timezone>
+        </developer>
+    </developers>
+
+    <dependencies>
+
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/java</sourceDirectory>
+
+        <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
+        <unitTest>
+            <includes>
+                <include>**/*Test.java</include>
+                <include>**/*Test.class</include><!-- this is needed if we use maven.test.search.classdir=true -->
+            </includes>
+            <resources>
+                <resource>
+                    <directory>${basedir}/src/test</directory>
+                    <includes>
+                        <include>**/*.properties</include>
+                        <include>**/*.xml</include>
+                        <include>**/*.vm</include>
+                        <include>**/*.ftm</include>
+                    </includes>
+                </resource>
+            </resources>
+        </unitTest>
+    </build>
+
+    <reports>
+        <report>maven-license-plugin</report>
+        <report>maven-checkstyle-plugin</report>
+        <report>maven-changes-plugin</report>
+        <report>maven-javadoc-plugin</report>
+        <report>maven-jdepend-plugin</report>
+        <report>maven-pmd-plugin</report>
+        <report>maven-jxr-plugin</report>
+        <report>maven-junit-report-plugin</report>
+        <report>maven-tasklist-plugin</report>
+        <report>maven-simian-plugin</report>
+        <report>maven-changelog-plugin</report>
+        <report>maven-file-activity-plugin</report>
+        <report>maven-developer-activity-plugin</report>
+        <report>maven-statcvs-plugin</report>
+        <report>maven-linkcheck-plugin</report>
+    </reports>
+</project>
