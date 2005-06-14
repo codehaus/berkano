@@ -3,7 +3,7 @@
 
 <hibernate-mapping>
     <class name="net.incongru.berkano.security.RoleImpl" table="role" mutable="false">
-        <id name="name" type="string" column="name"><!--net.incongru.hibernate.EnumType" -->
+        <id name="name" type="string" column="name"><!--net.incongru.util.hibernate.EnumType" -->
             <generator class="assigned"/>
         </id>
     </class>
