@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <project>
-    <extend>../project.xml</extend>
-    <id>berkano-tags-test</id>
+    <extend>../../project.xml</extend>
+    <artifactId>berkano-taglib-unit</artifactId>
     <currentVersion>${berkanoVersion}</currentVersion>
     <name>Test framework for taglibs</name>
     <description>A small test framework for taglibs.</description>
