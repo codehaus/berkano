@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <project>
-    <extend>../project.xml</extend>
-    <id>berkano-user-xstream</id>
+    <extend>../../project.xml</extend>
+    <artifactId>berkano-user-xstream</artifactId>
     <currentVersion>${berkanoVersion}</currentVersion>
     <name>Berkano User XStream</name>
     <description>A Berkano User implementation based on xstream (xml serialization) for persistence.</description>

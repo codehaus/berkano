@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <project>
-    <extend>../project.xml</extend>
-    <id>berkano-user-mgt-webwork</id>
+    <extend>../../project.xml</extend>
+    <artifactId>berkano-user-mgt-webwork</artifactId>
     <currentVersion>${berkanoVersion}</currentVersion>
     <name>Berkano User Management for Webwork2</name>
     <description>A couple of simple actions and views for berkano-user/osuser with webwork2</description>

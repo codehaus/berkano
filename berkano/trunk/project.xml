@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+xmlns="http://maven.apache.org/xsd/maven-project-3.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+-->
 <project>
     <pomVersion>3</pomVersion>
 
-<!-- poms extending one must define
-    <groupId></groupId>
+    <groupId>berkano</groupId>
+    <!-- poms extending one must define
     <artifactId></artifactId>
     -->
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <project>
-    <extend>../project.xml</extend>
-    <id>berkano-user</id>
+    <extend>../../project.xml</extend>
+    <artifactId>berkano-user</artifactId>
     <currentVersion>${berkanoVersion}</currentVersion>
     <name>Berkano User</name>
     <description>Berkano User defines a simple API for managing users in berkano applications.</description>
