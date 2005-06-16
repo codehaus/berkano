@@ -75,7 +75,6 @@ xmlns="http://maven.apache.org/xsd/maven-project-3.0.0.xsd" xmlns:xsi="http://ww
     </developers>
 
     <dependencies>
-
     </dependencies>
 
     <build>
@@ -115,7 +114,8 @@ xmlns="http://maven.apache.org/xsd/maven-project-3.0.0.xsd" xmlns:xsi="http://ww
         <report>maven-changelog-plugin</report>
         <report>maven-file-activity-plugin</report>
         <report>maven-developer-activity-plugin</report>
-        <report>maven-statcvs-plugin</report>
+        <!--<report>maven-statcvs-plugin</report>-->
         <report>maven-linkcheck-plugin</report>
+        <report>maven-multiproject-plugin</report>
     </reports>
 </project>

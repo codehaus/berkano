@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <project>
-    <extend>../project.xml</extend>
+    <extend>../../project.xml</extend>
     <id>berkano-util</id>
     <currentVersion>${berkanoVersion}</currentVersion>
     <name>Berkano Utilities</name>

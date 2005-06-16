@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <project>
-    <extend>../project.xml</extend>
+    <extend>../../project-taglib.xml</extend>
     <id>bean-displaytag</id>
     <currentVersion>${berkanoVersion}</currentVersion>
     <name>Bean display tag library</name>
@@ -11,8 +11,8 @@
     <dependencies>
         <!-- tests only -->
         <dependency>
-            <groupId>berkano-tags</groupId>
-            <artifactId>berkano-tags-test</artifactId>
+            <groupId>berkano</groupId>
+            <artifactId>berkano-taglib-unit</artifactId>
             <version>${berkanoVersion}</version>
         </dependency>
 
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>opensymphony</groupId>
             <artifactId>xwork</artifactId>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
         </dependency>
     </dependencies>
 </project>

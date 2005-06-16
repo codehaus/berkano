@@ -1,45 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project>
-    <pomVersion>3</pomVersion>
-    <groupId>berkano-tags</groupId>
-    <organization>
-        <name>incongru.net</name>
-        <url>http://incongru.net</url>
-        <logo>http://incongru.net/images/incongru-logo.png</logo>
-    </organization>
-    <inceptionYear>2004</inceptionYear>
-    <url>http://incongru.net/berkano-tags</url>
-    <issueTrackingUrl></issueTrackingUrl>
-    <siteAddress>http://incongru.net/berkano-tags</siteAddress>
-    <siteDirectory></siteDirectory>
-    <distributionDirectory></distributionDirectory>
-    <repository>
-        <connection></connection>
-        <url></url>
-    </repository>
-
-    <mailingLists>
-        <mailingList>
-            <name>${pom.name} User Mailing list</name>
-            <subscribe></subscribe>
-            <unsubscribe></unsubscribe>
-            <archive></archive>
-        </mailingList>
-    </mailingLists>
-    <developers>
-        <developer>
-            <name>Gregory Joseph</name>
-            <id>moinsmoins</id>
-            <email>moinsmoins AT incongru.net</email>
-            <organization>incongru.net</organization>
-            <roles>
-                <role>Project admin</role>
-                <role>Developer</role>
-            </roles>
-            <timezone>0</timezone>
-        </developer>
-        <!-- jeroen? -->
-    </developers>
+    <extend>project.xml</extend>
 
     <dependencies>
         <!-- tests only -->
@@ -68,6 +29,11 @@
             <artifactId>commons-el</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.0.4</version>
+        </dependency>
 
         <!-- build only -->
         <dependency>
@@ -81,22 +47,42 @@
             <version>2.0-20040521</version>
         </dependency>
 
+<!--
+        <dependency>
+            <groupId>xdoclet-plugins</groupId>
+            <artifactId>maven-xdoclet2-plugin</artifactId>
+            <version>1.0.1-patched</version>
+            <type>plugin</type>
+            <url>http://xdoclet.codehaus.org</url>
+        </dependency>
+        <dependency>
+            <groupId>xdoclet-plugins</groupId>
+            <artifactId>xdoclet-plugin-web</artifactId>
+            <version>1.0.2-nodtd-SNAPSHOT</version>
+            <type>jar</type>
+            <properties>
+                <xdoclet.dependency>true</xdoclet.dependency>
+            </properties>
+            <url>http://xdoclet.codehaus.org</url>
+        </dependency>
+-->
+
         <!-- grrrr all this for xdoclet ! -->
         <dependency>
             <groupId>xdoclet-plugins</groupId>
             <artifactId>xdoclet-plugin-web</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>xdoclet</groupId>
             <artifactId>xdoclet</artifactId>
-            <version>SNAPSHOT</version>
+            <version>2.0.2</version>
             <url>http://xdoclet.codehaus.org/</url>
         </dependency>
         <dependency>
-            <groupId>qfork</groupId>
-            <artifactId>qfork</artifactId>
-            <version>1.7-SNAPSHOT</version>
+            <groupId>qdox</groupId>
+            <artifactId>qdox</artifactId>
+            <version>1.6-SNAPSHOT</version>
             <url>http://qdox.codehaus.org/</url>
         </dependency>
         <dependency>
@@ -119,7 +105,7 @@
         <dependency>
             <groupId>generama</groupId>
             <artifactId>generama</artifactId>
-            <version>SNAPSHOT</version>
+            <version>1.2</version>
             <url>http://xdoclet.codehaus.org/generama/</url>
         </dependency>
         <dependency>
@@ -131,7 +117,7 @@
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
-            <version>2.1</version>
+            <version>3.1</version>
             <url>http://jakarta.apache.org/</url>
         </dependency>
         <dependency>
@@ -149,7 +135,7 @@
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
-            <version>1.6.1</version>
+            <version>1.7.0</version>
             <url>http://jakarta.apache.org/</url>
         </dependency>
         <dependency>
@@ -185,6 +171,7 @@
             <version>1.0</version>
             <url>http://jakarta.apache.org/jexl/</url>
         </dependency>
+
         <!-- also needed by tomcat-jasper -->
         <dependency>
             <groupId>ant</groupId>

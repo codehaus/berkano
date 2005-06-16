@@ -10,7 +10,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>berkano-tools</groupId>
+            <groupId>berkano</groupId>
             <artifactId>berkano-user</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
@@ -18,17 +18,17 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>seraph</artifactId>
-            <version>0.7.6-berkano-SNAPSHOT</version>
+            <version>0.7.7-berkano-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>berkano-tools</groupId>
+            <groupId>berkano</groupId>
             <artifactId>berkano-seraph</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>berkano-tools</groupId>
+            <groupId>berkano</groupId>
             <artifactId>berkano-bookmarks</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>

@@ -1,6 +1,6 @@
 package net.incongru.berkano.security.password.retrieval;
 
-import net.incongru.berkano.mail.Mailer;
+import net.incongru.util.mail.Mailer;
 
 /**
  * A simple PasswordRetrievalStrategy which will send an email

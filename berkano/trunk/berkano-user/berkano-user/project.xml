@@ -10,18 +10,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>berkano-tools</groupId>
+            <groupId>berkano</groupId>
             <artifactId>berkano-bookmarks</artifactId>
             <version>${berkanoVersion}</version>
         </dependency>
         <dependency>
-            <groupId>berkano-tools</groupId>
-            <artifactId>berkano-hibernate</artifactId>
-            <version>${berkanoVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>berkano-tools</groupId>
-            <artifactId>berkano-mail</artifactId>
+            <groupId>berkano</groupId>
+            <artifactId>berkano-util</artifactId>
             <version>${berkanoVersion}</version>
         </dependency>
         <dependency>

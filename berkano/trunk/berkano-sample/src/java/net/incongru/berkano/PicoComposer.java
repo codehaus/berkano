@@ -1,27 +1,27 @@
 package net.incongru.berkano;
 
 import com.atlassian.seraph.auth.AuthenticationContextImpl;
-import net.incongru.berkano.mail.ConstructableVelocityEngine;
-import net.incongru.berkano.mail.MailConfig;
-import net.incongru.berkano.mail.PropertiesMailConfig;
-import net.incongru.berkano.mail.VelocityMailer;
-import net.incongru.berkano.security.password.retrieval.MailNewPasswordRetrievalStrategy;
-import net.incongru.berkano.security.password.matching.CleanPasswordMatchingStrategy;
-import net.incongru.berkano.security.password.generator.BasicPasswordGenerator;
+import net.incongru.berkano.app.ApplicationsProvider;
+import net.incongru.berkano.sample.FirstSampleApp;
+import net.incongru.berkano.sample.SecondSampleApp;
 import net.incongru.berkano.security.hibernate.HibernatedRoleDAO;
+import net.incongru.berkano.security.password.generator.BasicPasswordGenerator;
+import net.incongru.berkano.security.password.matching.CleanPasswordMatchingStrategy;
+import net.incongru.berkano.security.password.retrieval.MailNewPasswordRetrievalStrategy;
 import net.incongru.berkano.security.seraph.BerkanoSecurityConfig;
 import net.incongru.berkano.security.seraph.BerkanoUserAuthenticator;
 import net.incongru.berkano.security.seraph.UserGroupRoleMapper;
 import net.incongru.berkano.security.seraph.UserRoleCache;
 import net.incongru.berkano.security.seraph.filter.BerkanoLoginFilter;
 import net.incongru.berkano.security.seraph.filter.BerkanoSecurityFilter;
+import net.incongru.berkano.user.extensions.BerkanoSeraphUserPropertyHelper;
 import net.incongru.berkano.user.hibernate.HibernatedGroupDAO;
 import net.incongru.berkano.user.hibernate.HibernatedUserDAO;
 import net.incongru.berkano.user.hibernate.HibernatedUserPropertyAccessor;
-import net.incongru.berkano.user.extensions.BerkanoSeraphUserPropertyHelper;
-import net.incongru.berkano.sample.FirstSampleApp;
-import net.incongru.berkano.sample.SecondSampleApp;
-import net.incongru.berkano.app.ApplicationsProvider;
+import net.incongru.util.mail.ConstructableVelocityEngine;
+import net.incongru.util.mail.MailConfig;
+import net.incongru.util.mail.PropertiesMailConfig;
+import net.incongru.util.mail.VelocityMailer;
 import org.apache.velocity.app.VelocityEngine;
 import org.nanocontainer.integrationkit.ContainerComposer;
 import org.picocontainer.MutablePicoContainer;
@@ -69,7 +69,7 @@ public class PicoComposer implements ContainerComposer {
 
         pico.registerComponentImplementation(HibernatedUserPropertyAccessor.class);
         pico.registerComponentImplementation(BerkanoSeraphUserPropertyHelper.class);
-        
+
     }
 
     private void registerSessionScope(MutablePicoContainer pico) {
@@ -101,7 +101,7 @@ public class PicoComposer implements ContainerComposer {
         berkanoMailConfig.setProperty("from.email", "berkano@berkano.org");
         pico.registerComponentInstance("berkanoMailConfig", berkanoMailConfig);
         pico.registerComponentImplementation(MailConfig.class, PropertiesMailConfig.class, new Parameter[]{
-                            new BasicComponentParameter("berkanoMailConfig")});
+            new BasicComponentParameter("berkanoMailConfig")});
         pico.registerComponentImplementation(VelocityMailer.class);
 
         //pico.registerComponentImplementation(MailCurrentPasswordRetrievalStrategy.class);

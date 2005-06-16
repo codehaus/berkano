@@ -27,7 +27,7 @@ public abstract class JspTestCase extends TestCase {
     private static final String RES_PREFIX = "/";
 
     private WebResponse setupJsp(String jsp) throws IOException, SAXException {
-        org.apache.log4j.BasicConfigurator.configure();
+        // TODO : why did we need this ? org.apache.log4j.BasicConfigurator.configure();
         HttpUnitOptions.setScriptingEnabled(false);
         ServletRunner sr = new ServletRunner();
         sr.registerServlet("jsp", JspTestServlet.class.getName());

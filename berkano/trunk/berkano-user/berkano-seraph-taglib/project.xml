@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <project>
-    <extend>../../project.xml</extend>
+    <extend>../../project-taglib.xml</extend>
     <artifactId>berkano-seraph-taglib</artifactId>
     <currentVersion>${berkanoVersion}</currentVersion>
     <name>Jsp tags for berkano-seraph library</name>
@@ -15,14 +15,14 @@
             <version>0.7.7-berkano-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>berkano-tools</groupId>
+            <groupId>berkano</groupId>
             <artifactId>berkano-seraph</artifactId>
             <version>${berkanoVersion}</version>
         </dependency>
         <!-- tests only -->
         <dependency>
-            <groupId>berkano-tags</groupId>
-            <artifactId>berkano-tags-test</artifactId>
+            <groupId>berkano</groupId>
+            <artifactId>berkano-taglib-unit</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
     </dependencies>

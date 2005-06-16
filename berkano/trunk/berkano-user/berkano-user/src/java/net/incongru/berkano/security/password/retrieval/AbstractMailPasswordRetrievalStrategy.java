@@ -1,8 +1,8 @@
 package net.incongru.berkano.security.password.retrieval;
 
-import net.incongru.berkano.mail.Mailer;
 import net.incongru.berkano.security.password.PasswordRetrievalStrategy;
 import net.incongru.berkano.user.User;
+import net.incongru.util.mail.Mailer;
 
 import java.util.HashMap;
 import java.util.Map;

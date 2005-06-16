@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project default="build-all" xmlns:maven="jelly:maven" xmlns:artifact="artifact">
+<project default="multiproject" xmlns:maven="jelly:maven" xmlns:artifact="artifact">
 
+<!--
     <goal name="build-all">
         <maven:reactor basedir="${basedir}"
                        includes="*/project.xml"
@@ -26,6 +27,7 @@
                        banner="Building"
                        ignoreFailures="false"/>
     </goal>
+-->
 
     <goal name="xdoclet-tld">
         <taskdef name="xdoclet" classname="org.xdoclet.ant.XDocletTask" classpathref="maven.dependency.classpath"/>
@@ -40,6 +42,12 @@
                        includelisteners="false"/>
         </xdoclet>
     </goal>
+
+<!--
+    <preGoal name="java:compile">
+        <attainGoal name="xdoclet"/>
+    </preGoal>
+-->
 
 <!--
     <goal name="deploy" prereqs="jar:jar">

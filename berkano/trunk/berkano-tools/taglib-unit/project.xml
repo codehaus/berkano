@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <project>
-    <extend>../../project.xml</extend>
+    <extend>../../project-taglib.xml</extend>
     <artifactId>berkano-taglib-unit</artifactId>
     <currentVersion>${berkanoVersion}</currentVersion>
     <name>Test framework for taglibs</name>

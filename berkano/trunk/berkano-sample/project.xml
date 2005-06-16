@@ -1,28 +1,43 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project>
-    <extend>../../project.xml</extend>
+    <extend>../project.xml</extend>
     <artifactId>berkano-sample</artifactId>
+    <name>Berkano sample app</name>
+    <description></description>
+    <shortDescription></shortDescription>
 
     <dependencies>
         <dependency>
             <groupId>xmlunit</groupId>
             <artifactId>xmlunit</artifactId>
             <version>1.0</version>
+            <properties>
+                <war.bundle>false</war.bundle>
+            </properties>
         </dependency>
         <dependency>
             <groupId>jetty</groupId>
             <artifactId>jetty</artifactId>
             <version>4.2.9</version>
+            <properties>
+                <war.bundle>false</war.bundle>
+            </properties>
         </dependency>
         <dependency>
            <groupId>servletapi</groupId>
            <artifactId>servletapi</artifactId>
            <version>2.4-20040521</version>
+            <properties>
+                <war.bundle>false</war.bundle>
+            </properties>
        </dependency>
        <dependency>
            <groupId>jspapi</groupId>
            <artifactId>jsp-api</artifactId>
            <version>2.0-20040521</version>
+           <properties>
+               <war.bundle>false</war.bundle>
+           </properties>
        </dependency>
 
         <!--
@@ -333,7 +348,7 @@
         <dependency>
             <groupId>freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>2.3</version>
+            <version>2.3.1</version>
             <type>jar</type>
             <properties>
                 <war.bundle>true</war.bundle>
@@ -351,7 +366,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>seraph</artifactId>
-            <version>0.7.6-berkano-SNAPSHOT</version>
+            <version>0.7.7-berkano-SNAPSHOT</version>
             <type>jar</type>
             <properties>
                 <war.bundle>true</war.bundle>
@@ -385,8 +400,8 @@
             </properties>
         </dependency>-->
         <dependency>
-            <groupId>berkano-tools</groupId>
-            <artifactId>berkano-hibernate</artifactId>
+            <groupId>berkano</groupId>
+            <artifactId>berkano-util</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
             <properties>
@@ -394,7 +409,7 @@
             </properties>
         </dependency>
         <dependency>
-            <groupId>berkano-tools</groupId>
+            <groupId>berkano</groupId>
             <artifactId>berkano-bookmarks</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
@@ -403,16 +418,7 @@
             </properties>
         </dependency>
         <dependency>
-            <groupId>berkano-tools</groupId>
-            <artifactId>berkano-mail</artifactId>
-            <version>${berkanoVersion}</version>
-            <type>jar</type>
-            <properties>
-                <war.bundle>true</war.bundle>
-            </properties>
-        </dependency>
-        <dependency>
-            <groupId>berkano-tools</groupId>
+            <groupId>berkano</groupId>
             <artifactId>berkano-user</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
@@ -421,7 +427,7 @@
             </properties>
         </dependency>
         <dependency>
-            <groupId>berkano-tools</groupId>
+            <groupId>berkano</groupId>
             <artifactId>berkano-seraph</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
@@ -430,7 +436,7 @@
             </properties>
         </dependency>
         <dependency>
-            <groupId>berkano-tools</groupId>
+            <groupId>berkano</groupId>
             <artifactId>berkano-user-mgt-webwork</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
@@ -455,15 +461,6 @@
             <type>jar</type>
             <properties>
                 <war.bundle>true</war.bundle>
-            </properties>
-        </dependency>
-        <dependency>
-            <groupId>servletapi</groupId>
-            <artifactId>servletapi</artifactId>
-            <version>2.4-20040521</version>
-            <type>jar</type>
-            <properties>
-                <war.bundle>false</war.bundle>
             </properties>
         </dependency>
         <dependency>

@@ -23,7 +23,7 @@ import java.io.IOException;
  * either be equals to start (in which cas there will only be one <option> tag output)
  * or bigger/equals than start+step
  *
- * @TODO : move to SimpleTag(jsp2)
+ * TODO : move to SimpleTag(jsp2)
  *
  * @jsp.tag name="numericoptions"
  *          body-content="empty"

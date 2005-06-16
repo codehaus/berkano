@@ -10,14 +10,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>berkano-tools</groupId>
+            <groupId>berkano</groupId>
             <artifactId>berkano-user</artifactId>
             <version>${berkanoVersion}</version>
         </dependency>
         <dependency>
             <groupId>xstream</groupId>
             <artifactId>xstream</artifactId>
-            <version>1.0</version>
+            <version>1.1.2</version>
         </dependency>
     </dependencies>
 </project>

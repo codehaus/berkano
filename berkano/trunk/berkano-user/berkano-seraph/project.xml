@@ -10,7 +10,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>berkano-tools</groupId>
+            <groupId>berkano</groupId>
             <artifactId>berkano-user</artifactId>
             <version>${berkanoVersion}</version>
             <type>jar</type>
