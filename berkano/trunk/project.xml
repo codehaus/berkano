@@ -6,8 +6,12 @@ xmlns="http://maven.apache.org/xsd/maven-project-3.0.0.xsd" xmlns:xsi="http://ww
     <pomVersion>3</pomVersion>
 
     <groupId>berkano</groupId>
-    <!-- poms extending one must define
+    <!-- poms extending this one must define
     <artifactId></artifactId>
+    <currentVersion>${berkanoVersion}</currentVersion>
+    <name></name>
+    <description></description>
+    <shortDescription></shortDescription>
     -->
 
     <organization>
@@ -19,7 +23,7 @@ xmlns="http://maven.apache.org/xsd/maven-project-3.0.0.xsd" xmlns:xsi="http://ww
     <url>http://berkano.codehaus.org</url>
     <issueTrackingUrl>http://jira.codehaus.org/browse/BERKANO</issueTrackingUrl>
     <siteAddress>http://berkano.codehaus.org</siteAddress>
-    <siteDirectory></siteDirectory>
+    <siteDirectory>/home/projects/berkano/public_html/maven</siteDirectory>
     <distributionDirectory></distributionDirectory>
     <repository>
         <connection></connection>
@@ -102,20 +106,24 @@ xmlns="http://maven.apache.org/xsd/maven-project-3.0.0.xsd" xmlns:xsi="http://ww
 
     <reports>
         <report>maven-license-plugin</report>
+        <!--
         <report>maven-checkstyle-plugin</report>
         <report>maven-changes-plugin</report>
+        -->
         <report>maven-javadoc-plugin</report>
         <report>maven-jdepend-plugin</report>
         <report>maven-pmd-plugin</report>
         <report>maven-jxr-plugin</report>
         <report>maven-junit-report-plugin</report>
+        <!--
         <report>maven-tasklist-plugin</report>
         <report>maven-simian-plugin</report>
         <report>maven-changelog-plugin</report>
         <report>maven-file-activity-plugin</report>
         <report>maven-developer-activity-plugin</report>
-        <!--<report>maven-statcvs-plugin</report>-->
+        <report>maven-statcvs-plugin</report>
         <report>maven-linkcheck-plugin</report>
+        -->
         <report>maven-multiproject-plugin</report>
     </reports>
 </project>
