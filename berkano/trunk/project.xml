@@ -24,10 +24,11 @@ xmlns="http://maven.apache.org/xsd/maven-project-3.0.0.xsd" xmlns:xsi="http://ww
     <issueTrackingUrl>http://jira.codehaus.org/browse/BERKANO</issueTrackingUrl>
     <siteAddress>http://berkano.codehaus.org</siteAddress>
     <siteDirectory>/home/projects/berkano/public_html/maven</siteDirectory>
-    <distributionDirectory></distributionDirectory>
+    <distributionDirectory>foo</distributionDirectory>
     <repository>
-        <connection></connection>
-        <url></url>
+        <developerConnection>scm:cvs:ext:user@host:/cvs/root:pouet</developerConnection>
+        <connection>scm:cvs:ext:anon@host:/cvs/root:pouet</connection>
+        <url>http://www.google.com</url>
     </repository>
 
     <mailingLists>

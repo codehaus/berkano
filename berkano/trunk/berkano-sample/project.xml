@@ -2,6 +2,7 @@
 <project>
     <extend>../project.xml</extend>
     <artifactId>berkano-sample</artifactId>
+    <currentVersion>${berkanoVersion}</currentVersion>
     <name>Berkano sample app</name>
     <description></description>
     <shortDescription></shortDescription>
