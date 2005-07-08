@@ -1,4 +1,4 @@
-package net.incongru.webwork;
+package net.incongru.util.webwork;
 
 import com.opensymphony.xwork.ActionContext;
 import com.opensymphony.xwork.util.OgnlValueStack;
