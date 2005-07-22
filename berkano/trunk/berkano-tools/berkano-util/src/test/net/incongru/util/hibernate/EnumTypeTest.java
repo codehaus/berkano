@@ -54,9 +54,9 @@ public class EnumTypeTest extends HibernateTestCase {
         assertTrue(rs.next());
         assertEquals("basic", rs.getString("name"));
         String sauceStr = rs.getString("sauce");
-        assertEquals(sauceStr, "net.incongru.hibernate.stuff.Sauce/mayonnaise");
+        assertEquals(sauceStr, "net.incongru.util.hibernate.stuff.Sauce/mayonnaise");
         String vegStr = rs.getString("vegetable");
-        assertEquals(vegStr, "net.incongru.hibernate.stuff.BasicVegetable/salad");
+        assertEquals(vegStr, "net.incongru.util.hibernate.stuff.BasicVegetable/salad");
         assertFalse(rs.next());
         s.close();
     }

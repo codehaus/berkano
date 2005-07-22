@@ -39,12 +39,13 @@ public class EnumType implements UserType {
             if (slashIdx < 1 || slashIdx >= value.length() - 1) {
                 throw new HibernateException("Value [" + value + "] is not valid for EnumType");
             }
-            String clazz = value.substring(0, slashIdx);
+            String className = value.substring(0, slashIdx);
             String constantName = value.substring(slashIdx + 1);
             try {
-                return Enum.valueOf(Class.forName(clazz), constantName);
+                Class clazz = Class.forName(className);
+                return Enum.valueOf(clazz, constantName);
             } catch (ClassNotFoundException e) {
-                throw new HibernateException(clazz + " can not be found: " + e.getMessage(), e);
+                throw new HibernateException(className + " can not be found: " + e.getMessage(), e);
             }
         }
         return null;

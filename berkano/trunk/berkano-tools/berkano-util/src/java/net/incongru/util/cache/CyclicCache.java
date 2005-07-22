@@ -11,6 +11,7 @@ public class CyclicCache extends AbstractCache {
     private long timeout;
 
     public CyclicCache(long timeout) {
+        super();
         this.timeout = timeout;
     }
 

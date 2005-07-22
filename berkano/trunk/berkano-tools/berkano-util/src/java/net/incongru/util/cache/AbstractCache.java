@@ -11,9 +11,6 @@ import java.util.Map;
 public abstract class AbstractCache implements Cache {
     private Map cache;
 
-    /**
-     * !! Any subclass must call super() in it's constructor!
-     */
     protected AbstractCache() {
         this.cache = new HashMap();
     }
