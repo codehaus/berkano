@@ -19,6 +19,10 @@ public class BeanTagTest extends JspTestCase {
         assertJspAsResource("expected/noproperties.html", "noproperties.jsp", true);
     }
 
+    public void testNoPropertiesAndBeanIsMap() throws Exception {
+        assertJspAsResource("expected/noproperties_map.html", "noproperties_map.jsp", true);
+    }
+
     /**
      * Tests absence of label both at bean level and at property level.
      */

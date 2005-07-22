@@ -2,6 +2,11 @@ package net.incongru.beantag;
 
 import javax.servlet.jsp.JspWriter;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.LinkedList;
+import java.util.Set;
 
 /**
  * 
@@ -34,6 +39,27 @@ public abstract class AbstractTableWriter implements TableWriter {
     }
 
     protected abstract Object lookupValue(String propertyName, Object o) throws PropertyDecoratorException;
+
+    public List getAllProperties(Object o) throws PropertyDecoratorException {
+        List<Property> props = new LinkedList<Property>();
+        List<String> propNames;
+        if (o instanceof Map) {
+            propNames = new LinkedList<String>();
+            Set mapKeys = ((Map) o).keySet();
+            for (Object mapKey : mapKeys) {
+                propNames.add(String.valueOf(mapKey));
+            }
+        } else {
+            propNames = getAllPropertyNames(o);
+        }
+        Collections.sort(propNames);
+        for (String propName : propNames) {
+            props.add(new Property(getValue(propName, o), propName, propName, null, null, null));
+        }
+        return props;
+    }
+
+    protected abstract List<String> getAllPropertyNames(Object o);
 
     // ideally, this should not be public, but it should still be in the interface, so... but do we need the interface?
     public final void setPropertyDecorator(PropertyDecorator propertyDecorator) {

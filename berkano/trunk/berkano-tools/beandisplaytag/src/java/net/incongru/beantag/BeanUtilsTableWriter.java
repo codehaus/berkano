@@ -1,8 +1,11 @@
 package net.incongru.beantag;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author gjoseph
@@ -43,5 +46,17 @@ public class BeanUtilsTableWriter extends AbstractTableWriter {
 
     public boolean evaluate(String condition, Object o) {
         throw new IllegalArgumentException("not implemented");
+    }
+
+    protected List<String> getAllPropertyNames(Object o) {
+        try {
+            return new ArrayList(BeanUtils.describe(o).keySet());
+        } catch (IllegalAccessException ex) {
+            throw new RuntimeException(ex);
+        } catch (InvocationTargetException ex) {
+            throw new RuntimeException(ex);
+        } catch (NoSuchMethodException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

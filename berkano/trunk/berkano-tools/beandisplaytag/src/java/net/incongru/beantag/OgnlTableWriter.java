@@ -3,6 +3,13 @@ package net.incongru.beantag;
 import ognl.NoSuchPropertyException;
 import ognl.Ognl;
 import ognl.OgnlException;
+import ognl.OgnlRuntime;
+
+import java.util.List;
+import java.util.Collections;
+import java.util.Map;
+import java.util.LinkedList;
+import java.beans.IntrospectionException;
 
 /**
  *
@@ -51,6 +58,20 @@ public class OgnlTableWriter extends AbstractTableWriter {
         } catch (OgnlException e) {
             logger.warn("Can't evaluate expression[" + expr + "]", e);
             return false;
+        }
+    }
+
+    protected List<String> getAllPropertyNames(Object o) {
+        if (o==null) {
+            return Collections.emptyList();
+        }
+        try {
+            Map propsDescs = OgnlRuntime.getPropertyDescriptors(o.getClass());
+            return new LinkedList(propsDescs.keySet());
+        } catch (OgnlException e) {
+            throw new RuntimeException(e);
+        } catch (IntrospectionException e) {
+            throw new RuntimeException(e);
         }
     }
 }

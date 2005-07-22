@@ -2,6 +2,7 @@ package net.incongru.beantag;
 
 import javax.servlet.jsp.JspWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -33,6 +34,8 @@ public interface TableWriter {
     public void setPropertyDecorator(PropertyDecorator pd);
 
     boolean evaluate(String condition, Object o);
+
+    List getAllProperties(Object o) throws PropertyDecoratorException;
 
     void setConfig(BeanTagConfig beanTagConfig);
 }

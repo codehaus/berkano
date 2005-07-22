@@ -1,17 +1,12 @@
 package net.incongru.beantag;
 
-import org.apache.commons.beanutils.BeanUtils;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.JspFragment;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -50,6 +45,7 @@ public class BeanDisplayTag extends SimpleTagSupport {
     private TableWriter tableWriter;
 
     // -- tag attributes --
+
     /**
      * @jsp.attribute rtexprvalue=true
      */
@@ -187,7 +183,7 @@ public class BeanDisplayTag extends SimpleTagSupport {
 
             // get all properties from bean if none specified
             if (properties.size() == 0) {
-                getAllProperties();
+                properties = getAllProperties();
             }
 
             JspWriter out = getJspContext().getOut();
@@ -201,25 +197,6 @@ public class BeanDisplayTag extends SimpleTagSupport {
             throw new JspException(e);
         } catch (IOException e) {
             throw new JspException(e);
-        }
-    }
-
-    /** TODO there is a beanutils dependency here oh! */
-    private void getAllProperties() throws JspException, PropertyDecoratorException {
-        try {
-            List all = new ArrayList(BeanUtils.describe(bean).keySet());
-            Collections.sort(all);
-            Iterator it = all.iterator();
-            while (it.hasNext()) {
-                String propName = (String) it.next();
-                addProperty(new Property(getValue(propName), propName, propName, null, null, null));
-            }
-        } catch (IllegalAccessException ex) {
-            throw new JspException(ex);
-        } catch (InvocationTargetException ex) {
-            throw new JspException(ex);
-        } catch (NoSuchMethodException ex) {
-            throw new JspException(ex);
         }
     }
 
@@ -309,6 +286,10 @@ public class BeanDisplayTag extends SimpleTagSupport {
                 throw new JspException("Can't read property[" + prop + "] for [" + bean + "]: " + ex.getMessage(), ex);
             }
         }
+    }
+
+    private List getAllProperties() throws PropertyDecoratorException {
+        return tableWriter.getAllProperties(bean);
     }
 
     /** used by child BeanPropertyTag instances */
