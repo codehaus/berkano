@@ -19,7 +19,7 @@
         <map name="properties" table="group_properties"><!-- lazy="true">-->
             <key column="group_id"/>
             <index column="name" type="string"/>
-            <element column="value" type="net.incongru.hibernate.XStreamType"/>
+            <element column="value" type="net.incongru.util.hibernate.XStreamType"/>
         </map>
 
         <set name="users" table="user_group" lazy="true" inverse="true"><!-- cascade="all">-->

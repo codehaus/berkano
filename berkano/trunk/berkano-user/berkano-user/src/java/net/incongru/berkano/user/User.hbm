@@ -24,7 +24,7 @@
         <map name="properties" table="user_properties"><!-- lazy="true">-->
             <key column="user_id"/>
             <index column="name" type="string"/>
-            <element column="value" type="net.incongru.hibernate.XStreamType"/>
+            <element column="value" type="net.incongru.util.hibernate.XStreamType"/>
         </map>
     </class>
 </hibernate-mapping>
