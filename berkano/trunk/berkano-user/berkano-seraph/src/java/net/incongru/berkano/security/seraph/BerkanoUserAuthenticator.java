@@ -12,6 +12,8 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Arrays;
 
+import org.apache.commons.codec.binary.Base64;
+
 /**
  * A Seraph Authenticator based on berkano-user.
  *
@@ -61,5 +63,15 @@ public class BerkanoUserAuthenticator extends DefaultAuthenticator {
 
     protected List getLogoutInterceptors() {
         return logoutInterceptors;
+    }
+
+    protected String encodeCookie(String username, String password) {
+        final String encoded = super.encodeCookie(username, password);
+        return new String(Base64.encodeBase64(encoded.getBytes()));
+    }
+
+    protected String[] decodeCookie(String base64value) {
+        final String value = new String(Base64.decodeBase64(base64value.getBytes()));
+        return super.decodeCookie(value);
     }
 }
