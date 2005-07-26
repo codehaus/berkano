@@ -38,8 +38,8 @@
 <h2>Add Property</h2>
 <form action="group.addproperty.action" method="post">
 <input type="hidden" name="groupId" value="$group.groupId">
-Key: <input name="propertyKey" type="text"><br>
-Value: <input name="newPropertyValue" type="text"><br>
+Key: <input name="propertyKey" type="text"><br />
+Value: <input name="newPropertyValue" type="text"><br />
 <input type="submit" name="propertyAdd" value="Add Property">
 </form>
 

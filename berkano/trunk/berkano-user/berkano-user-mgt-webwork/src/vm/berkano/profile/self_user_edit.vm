@@ -11,14 +11,14 @@
 <h1>Your profile</h1>
 <form action="profile.save.action" method="post">
 <table>
-#tag( TextField "label='Full Name'" "name='fullName'" "value=fullName")<br>
-#tag( TextField "label='Email'" "name='email'" "value=email")<br>
+#tag( TextField "label='Full Name'" "name='fullName'" "value=fullName")<br />
+#tag( TextField "label='Email'" "name='email'" "value=email")<br />
 
 #if ($user)
-<tr><td colspan="2">Don't fill these fields if you don't want to change the user's password:</td></tr>
+<tr><td colspan="2">Don't fill these fields if you don't want to change your password:</td></tr>
 #end
-#tag( Password "label='Password'" "name='password'")<br>
-#tag( Password "label='Confirm Password'" "name='passwordConfirm'")<br>
+#tag( Password "label='Password'" "name='password'")<br />
+#tag( Password "label='Confirm Password'" "name='passwordConfirm'")<br />
 
 <tr><th colspan="2"><input type="submit" value="Save User"></th></tr>
 </table>

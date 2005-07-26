@@ -1,6 +1,6 @@
 <form action="retrieve.action" method="post">
 <table>
-#tag( TextField "label='User Name'" "name='userName'")<br>
+#tag( TextField "label='User Name'" "name='userName'")<br />
 <tr><th colspan="2"><input type="submit" value="Submit"></th></tr>
 </table>
 </form>
