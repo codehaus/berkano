@@ -63,4 +63,19 @@
             </result>
         </action>
     </package>
+
+    <!-- get the berkano user mgt actions in custom namespaces -->
+    <package name="usermanagement" namespace="/usermanagement" extends="berkano-usermanagement">
+        <!-- could also extend another package, and use one of its interceptor stacks -->
+        <default-interceptor-ref name="some-default-stack"/>
+    </package>
+    <package name="lostpassword" namespace="/lostpassword" extends="berkano-lostpassword">
+        <!-- could also extend another package, and use one of its interceptor stacks -->
+        <default-interceptor-ref name="some-default-stack"/>
+    </package>
+    <package name="profile" namespace="/profile" extends="berkano-profile">
+        <!-- could also extend another package, and use one of its interceptor stacks -->
+        <default-interceptor-ref name="some-default-stack"/>
+    </package>
+
 </xwork>

@@ -24,7 +24,7 @@
         <default-interceptor-ref name="berkanoUserMgtStack"/>
     </package>
 
-    <package name="manager" extends="berkano-abstract" namespace="/manager">
+    <package name="berkano-usermanagement" extends="berkano-abstract" abstract="true">
         <action name="default" class="com.opensymphony.xwork.ActionSupport">
             <result name="success" type="velocity">
                 <param name="location">/berkano/usermgt/default.vm</param>
@@ -97,7 +97,7 @@
         </action>
     </package>
 
-    <package name="lostpassword" extends="berkano-abstract" namespace="/lostpassword">
+    <package name="berkano-lostpassword" extends="berkano-abstract" abstract="true">
         <action name="form" class="net.incongru.berkano.usermgt.webwork.lostpw.FormAction">
             <result name="username" type="velocity">/berkano/lostpw/form_username.vm</result>
             <result name="email" type="velocity">/berkano/lostpw/form_email.vm</result>
@@ -109,7 +109,7 @@
         </action>
     </package>
 
-    <package name="profile" extends="berkano-abstract" namespace="/profile">
+    <package name="berkano-profile" extends="berkano-abstract" abstract="true">
         <action name="preferences" class="net.incongru.berkano.profile.PreferencesListAction">
             <interceptor-ref name="berkanoPrefsStack"/>
             <result name="success" type="velocity">/berkano/profile/preferences.vm</result>
