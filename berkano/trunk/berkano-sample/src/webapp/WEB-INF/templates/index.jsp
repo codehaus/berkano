@@ -19,7 +19,7 @@ bar: <ww:property value="bar"/><br>
   <p><a href="bookmarks/edit.jsp">edit bookmarks</a></p>
   <p><a href="login.action">l'in</a></p>
   <p><a href="logout">l'out</a></p>
-  <p><a href="usermanagement/user.list.action">manager</a></p>
+  <p><a href="usermanagement/user.list.action">user management</a></p>
 
   <h1>File Upload</h1>
 
