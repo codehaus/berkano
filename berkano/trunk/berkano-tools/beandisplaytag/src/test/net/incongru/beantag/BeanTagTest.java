@@ -87,4 +87,8 @@ public class BeanTagTest extends JspTestCase {
         assertJspAsResource("expected/content_valueisexposed.html", "content_valueisexposed.jsp", true);
     }
 
+    public void testSplit() throws Exception {
+        assertJspAsResource("expected/split.html", "split.jsp", true);
+    }
+
 }

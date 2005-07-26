@@ -67,6 +67,7 @@ public abstract class AbstractTableWriter implements TableWriter {
     }
 
     public void writeHeader(JspWriter out, String label, String htmlTableClass, String htmlTableStyle, String htmlTableId) throws IOException {
+        rowCount = 0;
         out.print("<table");
         if (htmlTableClass != null) {
             out.print(" class=\"");

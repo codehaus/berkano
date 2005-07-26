@@ -27,6 +27,7 @@ public class BeanDisplayTag extends SimpleTagSupport {
     private String name;
     private String label;
     private String showNulls;
+    private int split;
     private String writerClass;
     private String decoratorClass;
     private String htmlTableClass;
@@ -72,6 +73,13 @@ public class BeanDisplayTag extends SimpleTagSupport {
      */
     public void setShownulls(String showNulls) {
         this.showNulls = showNulls;
+    }
+
+    /**
+     * @jsp.attribute
+     */
+    public void setSplit(int split) {
+        this.split = split;
     }
 
     /**
@@ -201,8 +209,17 @@ public class BeanDisplayTag extends SimpleTagSupport {
     }
 
     private void rows(JspWriter out) throws IOException, JspException {
+        int rowCount = 0;
+        int tableCount = 1;
         Iterator it = properties.iterator();
         while (it.hasNext()) {
+            if (split > 0 && rowCount == split) {
+                tableWriter.writeFooter(out);
+                tableCount++;
+                String id = htmlTableId != null ? htmlTableId + "-" + tableCount : null;
+                tableWriter.writeHeader(out, label, htmlTableClass, htmlTableStyle, id);
+                rowCount = 0;
+            }
             Property prop = (Property) it.next();
             try {
                 String expr = prop.getCondition();
@@ -285,6 +302,7 @@ public class BeanDisplayTag extends SimpleTagSupport {
             } catch (PropertyDecoratorException ex) {
                 throw new JspException("Can't read property[" + prop + "] for [" + bean + "]: " + ex.getMessage(), ex);
             }
+            rowCount++;
         }
     }
 
