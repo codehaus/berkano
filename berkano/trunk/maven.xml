@@ -39,7 +39,8 @@
             <component classname="org.xdoclet.plugin.web.TaglibPlugin"
                        destdir="${basedir}/target/classes/META-INF"
 		       jspversion="2.0"
-                       includelisteners="false"/>
+                       includelisteners="false"
+                       validate="false"/>
         </xdoclet>
     </goal>
 
