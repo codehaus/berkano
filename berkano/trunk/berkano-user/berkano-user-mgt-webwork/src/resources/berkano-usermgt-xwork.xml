@@ -110,12 +110,20 @@
     </package>
 
     <package name="profile" extends="berkano-abstract" namespace="/profile">
-        <default-interceptor-ref name="berkanoPrefsStack"/>
         <action name="preferences" class="net.incongru.berkano.profile.PreferencesListAction">
+            <interceptor-ref name="berkanoPrefsStack"/>
             <result name="success" type="velocity">/berkano/profile/preferences.vm</result>
         </action>
         <action name="preferences.save" class="net.incongru.berkano.profile.PreferencesSaveAction">
+            <interceptor-ref name="berkanoPrefsStack"/>
             <result name="success" type="chain">preferences</result>
+        </action>
+
+        <action name="profile" class="net.incongru.berkano.usermgt.webwork.self.SelfUserViewAction">
+            <result name="success" type="velocity">/berkano/profile/self_user_edit.vm</result>
+        </action>
+        <action name="profile.save" class="net.incongru.berkano.usermgt.webwork.self.SelfUserSaveAction">
+            <result name="success" type="velocity">/berkano/profile/self_user_saved.vm</result>
         </action>
     </package>
 </xwork>

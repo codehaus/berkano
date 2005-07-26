@@ -1,38 +1,28 @@
 package net.incongru.berkano.usermgt.webwork;
 
-import com.opensymphony.xwork.ActionSupport;
 import net.incongru.berkano.user.UserDAO;
-import net.incongru.berkano.user.UnknownUserException;
 
 /**
  * @author greg
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */
-public class UserSaveAction extends ActionSupport {
-    private UserDAO userDAO;
+public class UserSaveAction extends AbstractUserSaveAction {
     private Long userId;
-    private String userName;
-    private String password;
-    private String passwordConfirm;
-    private String email;
-    private String fullName;
 
     public UserSaveAction(UserDAO userDAO) {
-        this.userDAO = userDAO;
+        super(userDAO);
     }
 
-    public String execute() throws UnknownUserException {
+    protected String doSave() {
         if (userId == null) {
-            userDAO.newUser(userName, password, email, fullName);
+            userDAO.newUser(getUserName(), getPassword(), getEmail(), getFullName());
         } else {
-            userDAO.updateUser(userId, userName, email, fullName);
-            if (password != null && !password.equals("")) {
-                userDAO.changePassword(userId, password);
-            }
+            updateUser(userId, getUserName());
         }
         return SUCCESS;
     }
+
 
     public Long getUserId() {
         return userId;
@@ -42,43 +32,4 @@ public class UserSaveAction extends ActionSupport {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
 }
