@@ -16,7 +16,7 @@
             <many-to-many column="role" class="net.incongru.berkano.security.RoleImpl"/>
         </set>
 
-        <map name="properties" table="group_properties"><!-- lazy="true">-->
+        <map name="properties" table="group_properties" lazy="false">
             <key column="group_id"/>
             <index column="name" type="string"/>
             <element column="value" type="net.incongru.util.hibernate.XStreamType"/>

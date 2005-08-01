@@ -21,7 +21,7 @@
             <many-to-many column="group_id" class="net.incongru.berkano.user.GroupImpl"/>
         </set>
 
-        <map name="properties" table="user_properties"><!-- lazy="true">-->
+        <map name="properties" table="user_properties" lazy="false">
             <key column="user_id"/>
             <index column="name" type="string"/>
             <element column="value" type="net.incongru.util.hibernate.XStreamType"/>
