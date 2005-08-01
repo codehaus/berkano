@@ -4,8 +4,8 @@ import net.incongru.berkano.app.Application;
 import net.incongru.berkano.security.Role;
 import net.incongru.berkano.security.RoleDAO;
 import net.incongru.berkano.security.RoleImpl;
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.Session;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
 import java.util.Collection;
 import java.util.List;

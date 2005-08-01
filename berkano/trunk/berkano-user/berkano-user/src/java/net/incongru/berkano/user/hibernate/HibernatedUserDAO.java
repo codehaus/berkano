@@ -1,17 +1,17 @@
 package net.incongru.berkano.user.hibernate;
 
+import net.incongru.berkano.security.password.PasswordMatchingStrategy;
 import net.incongru.berkano.user.GroupImpl;
 import net.incongru.berkano.user.PropertiesAware;
 import net.incongru.berkano.user.UnknownUserException;
 import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.UserDAO;
 import net.incongru.berkano.user.UserImpl;
-import net.incongru.berkano.security.password.PasswordMatchingStrategy;
-import net.sf.hibernate.Criteria;
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.LockMode;
-import net.sf.hibernate.Session;
-import net.sf.hibernate.expression.Expression;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.LockMode;
+import org.hibernate.Session;
+import org.hibernate.criterion.Expression;
 
 import java.util.List;
 

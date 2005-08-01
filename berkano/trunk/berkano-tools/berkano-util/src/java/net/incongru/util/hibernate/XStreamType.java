@@ -1,11 +1,12 @@
 package net.incongru.util.hibernate;
 
 import com.thoughtworks.xstream.XStream;
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.UserType;
+import org.hibernate.HibernateException;
+import org.hibernate.usertype.UserType;
 
 import java.io.Reader;
 import java.io.StringReader;
+import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,6 +36,10 @@ public class XStreamType implements UserType {
 
     public boolean equals(Object x, Object y) {
         return (x == y) || (x != null && x.equals(y));
+    }
+
+    public int hashCode(Object o) throws HibernateException {
+        return o.hashCode();
     }
 
     public Object nullSafeGet(ResultSet rs, String[] names, Object owner) throws HibernateException, SQLException {
@@ -68,5 +73,17 @@ public class XStreamType implements UserType {
 
     public boolean isMutable() {
         return false;
+    }
+
+    public Serializable disassemble(Object o) throws HibernateException {
+        return (Serializable) o;
+    }
+
+    public Object assemble(Serializable cached, Object owner) throws HibernateException {
+        return cached;
+    }
+
+    public Object replace(Object original, Object target, Object owner) throws HibernateException {
+        return original;
     }
 }

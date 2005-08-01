@@ -13,7 +13,7 @@
 
     <goal name="generate-hibernate-db-schema">
         <taskdef name="schemaexport"
-            classname="net.sf.hibernate.tool.hbm2ddl.SchemaExportTask"
+            classname="org.hibernate.tool.hbm2ddl.SchemaExportTask"
             classpathref="tools.classpath"/><!--dependency.classpath"/>-->
 
         <schemaexport properties="${maven.src.dir}/hibernate/hibernate.properties"
@@ -27,7 +27,7 @@
 
     <goal name="update-hibernate-db-schema">
         <taskdef name="schemaupdate"
-            classname="net.sf.hibernate.tool.hbm2ddl.SchemaUpdateTask"
+            classname="org.hibernate.tool.hbm2ddl.SchemaUpdateTask"
             classpathref="tools.classpath"/>
 
         <schemaupdate properties="${maven.src.dir}/hibernate/hibernate.properties"

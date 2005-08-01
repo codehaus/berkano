@@ -5,8 +5,8 @@ import net.incongru.berkano.user.GroupDAO;
 import net.incongru.berkano.user.GroupImpl;
 import net.incongru.berkano.user.PropertiesAware;
 import net.incongru.berkano.user.UnknownUserException;
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.Session;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
 import java.util.List;
 import java.util.Set;

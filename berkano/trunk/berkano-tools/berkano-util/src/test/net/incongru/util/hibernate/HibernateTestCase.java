@@ -1,10 +1,10 @@
 package net.incongru.util.hibernate;
 
 import junit.framework.TestCase;
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.SessionFactory;
-import net.sf.hibernate.cfg.Configuration;
-import net.sf.hibernate.tool.hbm2ddl.SchemaExport;
+import org.hibernate.HibernateException;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 /**
  *

@@ -4,8 +4,8 @@ import net.incongru.berkano.user.GroupImpl;
 import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.UserImpl;
 import net.incongru.berkano.user.extensions.UserPropertyAccessor;
-import net.sf.hibernate.LockMode;
-import net.sf.hibernate.Session;
+import org.hibernate.LockMode;
+import org.hibernate.Session;
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
 

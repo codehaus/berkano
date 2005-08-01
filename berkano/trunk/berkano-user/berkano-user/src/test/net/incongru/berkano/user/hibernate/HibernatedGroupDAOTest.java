@@ -1,8 +1,8 @@
 package net.incongru.berkano.user.hibernate;
 
 import junit.framework.TestCase;
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.SessionFactory;
+import org.hibernate.HibernateException;
+import org.hibernate.SessionFactory;
 
 /**
  *

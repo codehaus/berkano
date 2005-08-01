@@ -28,7 +28,7 @@
         <dependency>
             <groupId>hibernate</groupId>
             <artifactId>hibernate</artifactId>
-            <version>2.1.7c</version>
+            <version>3.0.5</version>
         </dependency>
         <dependency>
             <groupId>commons-email</groupId>

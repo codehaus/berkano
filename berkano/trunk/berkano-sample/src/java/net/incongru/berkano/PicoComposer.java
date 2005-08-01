@@ -53,8 +53,8 @@ public class PicoComposer implements ContainerComposer {
         pico.registerComponentImplementation(HibernatedUserDAO.class);
         pico.registerComponentImplementation(HibernatedGroupDAO.class);
         pico.registerComponentImplementation(HibernatedRoleDAO.class);
-        pico.registerComponentImplementation(org.nanocontainer.hibernate.FailoverSessionDelegator.class);
-        pico.registerComponentImplementation(org.nanocontainer.hibernate.SessionLifecycle.class);
+        pico.registerComponentImplementation(org.nanocontainer.persistence.hibernate.FailoverSessionDelegator.class);
+        pico.registerComponentImplementation(org.nanocontainer.persistence.hibernate.SessionLifecycle.class);
 
         pico.registerComponentImplementation(BerkanoSecurityFilter.class);
         pico.registerComponentImplementation(BerkanoLoginFilter.class);
@@ -78,9 +78,9 @@ public class PicoComposer implements ContainerComposer {
     private void registerContextScope(MutablePicoContainer pico) {
         pico.registerComponentImplementation(net.incongru.berkano.bookmarksmgt.UserBookmarksAccessor.class);
 
-        pico.registerComponentImplementation(org.nanocontainer.hibernate.ConstructableConfiguration.class);
-        pico.registerComponentImplementation(org.nanocontainer.hibernate.SessionFactoryDelegator.class);
-        pico.registerComponentImplementation(org.nanocontainer.hibernate.SessionFactoryLifecycle.class);
+        pico.registerComponentImplementation(org.nanocontainer.persistence.hibernate.ConstructableConfiguration.class);
+        pico.registerComponentImplementation(org.nanocontainer.persistence.hibernate.SessionFactoryDelegator.class);
+        pico.registerComponentImplementation(org.nanocontainer.persistence.hibernate.SessionFactoryLifecycle.class);
 
         pico.registerComponentImplementation(CleanPasswordMatchingStrategy.class);
         //pico.registerComponentImplementation(BookmarksDAO.class);

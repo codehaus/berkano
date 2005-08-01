@@ -2,8 +2,8 @@ package net.incongru.util.hibernate;
 
 import com.thoughtworks.xstream.XStream;
 import net.incongru.util.hibernate.stuff.DummyBean;
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.Session;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -40,7 +40,7 @@ public class XStreamTypeTest extends HibernateTestCase {
         s.close();
 
         s = sessionFactory.openSession();
-        List resList = s.find("from pouet in class DummyBean");
+        List resList = s.createQuery("from pouet in class DummyBean").list();
         assertEquals(1, resList.size());
         DummyBean res = (DummyBean) resList.get(0);
         assertEquals("test", res.getName());

@@ -3,8 +3,9 @@ package net.incongru.util.hibernate;
 import net.incongru.util.hibernate.stuff.BasicVegetable;
 import net.incongru.util.hibernate.stuff.Sandwich;
 import net.incongru.util.hibernate.stuff.Sauce;
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.Session;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Query;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -37,7 +38,8 @@ public class EnumTypeTest extends HibernateTestCase {
         s.close();
 
         s = sessionFactory.openSession();
-        List resList = s.find("from pouet in class Sandwich");
+        final Query query = s.createQuery("from pouet in class Sandwich");
+        List resList = query.list();
         assertEquals(1, resList.size());
         Sandwich res = (Sandwich) resList.get(0);
         assertEquals("basic", res.getName());

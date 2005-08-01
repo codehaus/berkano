@@ -2,8 +2,8 @@ package net.incongru.berkano.user.hibernate;
 
 import net.incongru.berkano.user.PropertiesAware;
 import net.incongru.berkano.user.UnknownUserException;
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.Session;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
 /**
  * 

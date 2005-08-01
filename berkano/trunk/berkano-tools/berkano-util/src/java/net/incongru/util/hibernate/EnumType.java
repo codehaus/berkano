@@ -1,12 +1,13 @@
 package net.incongru.util.hibernate;
 
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.UserType;
+import org.hibernate.HibernateException;
+import org.hibernate.usertype.UserType;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.io.Serializable;
 
 /**
  * An hibernate user type to store java5 enums.
@@ -30,6 +31,10 @@ public class EnumType implements UserType {
 
     public boolean equals(Object o, Object o1) throws HibernateException {
         return o == o1;
+    }
+
+    public int hashCode(Object o) throws HibernateException {
+        return o.hashCode();
     }
 
     public Object nullSafeGet(ResultSet rs, String[] names, Object owner) throws HibernateException, SQLException {
@@ -65,5 +70,17 @@ public class EnumType implements UserType {
 
     public boolean isMutable() {
         return false;
+    }
+
+    public Serializable disassemble(Object o) throws HibernateException {
+        return (Serializable) o;
+    }
+
+    public Object assemble(Serializable cached, Object owner) throws HibernateException {
+        return cached;
+    }
+
+    public Object replace(Object original, Object target, Object owner) throws HibernateException {
+        return original;
     }
 }
