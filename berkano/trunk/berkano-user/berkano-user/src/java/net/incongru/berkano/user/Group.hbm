@@ -11,7 +11,7 @@
         <property name="groupName" length="32" column="group_name" not-null="true" unique="true">
         </property>
 
-        <set name="roles" table="group_role">
+        <set name="roles" table="group_role" lazy="false">
             <key column="group_id"/>
             <many-to-many column="role" class="net.incongru.berkano.security.RoleImpl"/>
         </set>

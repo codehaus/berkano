@@ -16,7 +16,7 @@
         <property name="fullName" length="128" column="full_name">
         </property>
 
-        <set name="groups" table="user_group"><!-- lazy="true"--><!-- cascade="all" -->
+        <set name="groups" table="user_group" lazy="false"><!-- lazy="true"--><!-- cascade="all" -->
             <key column="user_id"/>
             <many-to-many column="group_id" class="net.incongru.berkano.user.GroupImpl"/>
         </set>
