@@ -25,6 +25,7 @@ import java.io.IOException;
 public class SecuredLinkTag extends AbstractSecurityTag {
     private String href;
     private String title;
+    private String onclick; // TODO : if we add more attributes, we should find some easy way to delegate/abstract
     private boolean alwaysOutputBody = false;
 
     /**
@@ -42,6 +43,13 @@ public class SecuredLinkTag extends AbstractSecurityTag {
      */
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    /**
+     * @jsp.attribute rtexprvalue=true required=false
+     */
+    public void setOnclick(String onclick) {
+        this.onclick = onclick;
     }
 
     /**
@@ -71,6 +79,11 @@ public class SecuredLinkTag extends AbstractSecurityTag {
         if (title != null) {
             out.write(" title=\"");
             out.write(title);
+            out.write("\"");
+        }
+        if (onclick != null) {
+            out.write(" onclick=\"");
+            out.write(onclick);
             out.write("\"");
         }
         out.write(">");
