@@ -27,11 +27,13 @@ public class SecuredLinkTag extends AbstractSecurityTag {
     private String title;
     private String onclick; // TODO : if we add more attributes, we should find some easy way to delegate/abstract
     private boolean alwaysOutputBody = false;
+    private boolean includeContext = true;
 
     /**
      * A href use in the generated <code>&lt;a&gt;</code> tag,
      * either relative to the current page, or relative to the
-     * context path if it starts with a <code>/</code>.
+     * context path if it starts with a <code>/</code>, except
+     * if includeContext is false.
      * @jsp.attribute rtexprvalue=true required=true
      */
     public void setHref(String href) {
@@ -59,6 +61,13 @@ public class SecuredLinkTag extends AbstractSecurityTag {
         this.alwaysOutputBody = alwaysOutputBody;
     }
 
+    /**
+     * @jsp.attribute rtexprvalue=true required=false type=boolean
+     */
+    public void setIncludeContext(boolean includeContext) {
+        this.includeContext = includeContext;
+    }
+
     public void doTag() throws JspException, IOException {
         boolean granted = isUserAllowedPath(href);
         if (granted) {
@@ -71,7 +80,7 @@ public class SecuredLinkTag extends AbstractSecurityTag {
     private void outputLink() throws IOException, JspException {
         JspWriter out = getJspContext().getOut();
         out.write("<a href=\"");
-        if (href.startsWith("/")) {
+        if (href.startsWith("/") && includeContext) {
             out.write(getRequest().getContextPath());
         }
         out.write(href);
