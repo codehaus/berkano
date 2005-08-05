@@ -2,7 +2,6 @@ package net.incongru.berkano.usermgt.webwork.lostpw;
 
 import com.opensymphony.xwork.ActionSupport;
 import net.incongru.berkano.security.password.PasswordRetrievalStrategy;
-import net.incongru.berkano.security.password.PasswordRetrievalStrategy;
 import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.UserDAO;
 
@@ -19,10 +18,11 @@ import net.incongru.berkano.user.UserDAO;
  * @version $Revision: 1.2 $
  */
 public class RetrieveAction extends ActionSupport {
-    private UserDAO userDao;
-    private PasswordRetrievalStrategy passwordRetrievalStrategy;
+    private final UserDAO userDao;
+    private final PasswordRetrievalStrategy passwordRetrievalStrategy;
     private String userName;
     private String email;
+    private User user;
 
     public RetrieveAction(UserDAO userDao, PasswordRetrievalStrategy passwordRetrievalStrategy) {
         this.userDao = userDao;
@@ -30,38 +30,28 @@ public class RetrieveAction extends ActionSupport {
     }
 
     public String execute() throws Exception {
-        User u = null;
         if (userName != null) {
-            u = userDao.getUserByName(userName);
+            user = userDao.getUserByName(userName);
         } else if (email != null) {
-            u = userDao.getUserByEmail(email);
+            user = userDao.getUserByEmail(email);
         }
-        if (u == null) {
-            return ERROR;
+        if (user == null) {
+            return "user_not_found";
         }
 
-        passwordRetrievalStrategy.retrievePassword(u);
+        passwordRetrievalStrategy.retrievePassword(user);
 
         // TODO : should show a different view depending on the strategy
         return SUCCESS;
-    }
-
-    // TODO : don't think we need the getters here...
-
-    public String getUserName() {
-        return userName;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
+
 
 }

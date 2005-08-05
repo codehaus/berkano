@@ -99,13 +99,14 @@
 
     <package name="berkano-lostpassword" extends="berkano-abstract" abstract="true">
         <action name="form" class="net.incongru.berkano.usermgt.webwork.lostpw.FormAction">
-            <result name="username" type="velocity">/berkano/lostpw/form_username.vm</result>
+            <result name="username" type="freemarker">/berkano/lostpw/form_username.ftl</result>
             <result name="email" type="freemarker">/berkano/lostpw/form_email.ftl</result>
         </action>
         <action name="retrieve" class="net.incongru.berkano.usermgt.webwork.lostpw.RetrieveAction">
             <!-- this should also depend on the action: should either display pw on screen
                  or say a mail was sent, or whatever -->
-            <result name="success" type="velocity">/berkano/lostpw/done_email_with_password.vm</result>
+            <result name="success" type="freemarker">/berkano/lostpw/done_email.ftl</result>
+            <result name="user_not_found" type="freemarker">/berkano/lostpw/user_not_found.ftl</result>
         </action>
     </package>
 
