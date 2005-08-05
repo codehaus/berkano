@@ -1,6 +1,6 @@
 <#assign ww=JspTaglibs["/WEB-INF/lib/webwork-2.1.7.jar"] />
 
-        <div class="berkano-lostpassword">
+<div id="berkano-lostpassword">
 <p><@ww.text name="'lostpw.username.explain'"/></p>
 <form action="retrieve.action" method="get">
 <fieldset>
