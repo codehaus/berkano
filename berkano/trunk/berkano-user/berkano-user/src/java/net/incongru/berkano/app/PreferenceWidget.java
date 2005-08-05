@@ -11,6 +11,8 @@ package net.incongru.berkano.app;
  * TODO : replace with a java5 enum asap :(
  */
 public class PreferenceWidget {
+//public enum PreferenceWidget {
+    //text, dropdown, radios, checkboxes;
     public static final PreferenceWidget text = new PreferenceWidget("text");
     public static final PreferenceWidget dropdown = new PreferenceWidget("dropdown");
     public static final PreferenceWidget radios = new PreferenceWidget("radios");
