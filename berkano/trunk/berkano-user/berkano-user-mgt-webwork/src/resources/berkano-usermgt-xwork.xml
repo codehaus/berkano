@@ -121,10 +121,11 @@
         </action>
 
         <action name="profile" class="net.incongru.berkano.usermgt.webwork.self.SelfUserViewAction">
-            <result name="success" type="velocity">/berkano/profile/self_user_edit.vm</result>
+            <result name="success" type="freemarker">/berkano/profile/self_user_edit.ftl</result>
         </action>
         <action name="profile.save" class="net.incongru.berkano.usermgt.webwork.self.SelfUserSaveAction">
-            <result name="success" type="velocity">/berkano/profile/self_user_saved.vm</result>
+            <result name="input" type="chain">profile</result>
+            <result name="success" type="freemarker">/berkano/profile/self_user_saved.ftl</result>
         </action>
     </package>
 </xwork>
