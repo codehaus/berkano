@@ -230,7 +230,7 @@
         <dependency>
             <groupId>picocontainer</groupId>
             <artifactId>picocontainer</artifactId>
-            <version>1.2-SNAPSHOT</version>
+            <version>1.2-beta-1</version>
             <properties>
                 <war.bundle>true</war.bundle>
             </properties>
@@ -239,7 +239,7 @@
         <dependency>
             <groupId>nanocontainer</groupId>
             <artifactId>nanocontainer</artifactId>
-            <version>1.0-beta-5-SNAPSHOT</version>
+            <version>1.0-RC-1</version>
             <properties>
                 <war.bundle>true</war.bundle>
             </properties>
@@ -247,8 +247,8 @@
 
         <dependency>
             <groupId>nanocontainer</groupId>
-            <artifactId>nanocontainer-hibernate</artifactId>
-            <version>1.0-beta-5-SNAPSHOT</version>
+            <artifactId>nanocontainer-persistence</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <properties>
                 <war.bundle>true</war.bundle>
             </properties>
@@ -257,7 +257,7 @@
         <dependency>
             <groupId>nanocontainer</groupId>
             <artifactId>nanocontainer-nanowar</artifactId>
-            <version>1.0-beta-5-SNAPSHOT</version>
+            <version>1.0-RC-1</version>
             <properties>
                 <war.bundle>true</war.bundle>
             </properties>
