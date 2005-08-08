@@ -1,6 +1,8 @@
 package net.incongru.berkano.usermgt.webwork.self;
 
 import com.atlassian.seraph.auth.AuthenticationContext;
+import com.atlassian.seraph.auth.DefaultAuthenticator;
+import com.opensymphony.xwork.ActionContext;
 import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.UserDAO;
 import net.incongru.berkano.usermgt.webwork.AbstractUserSaveAction;
@@ -22,6 +24,11 @@ public class SelfUserSaveAction extends AbstractUserSaveAction {
         User user = (User) authenticationContext.getUser();
         user = updateUser(user.getUserId(), user.getUserName());
         authenticationContext.setUser(user);
+        
+        // ugly hack which introduces more dependency on seraph - this key should ideally not go outside the DefaultAuthenticator - but the jira folks used the same trick ;)
+        // TODO : we should rather have the authenticationContext be registered in the session-scope of pico
+        ActionContext.getContext().getSession().put(DefaultAuthenticator.LOGGED_IN_KEY, user);
+
         return SUCCESS;
     }
 }
