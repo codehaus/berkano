@@ -5,7 +5,6 @@ import com.opensymphony.xwork.util.LocalizedTextUtil;
 import com.opensymphony.xwork.util.OgnlValueStack;
 import net.incongru.berkano.app.Application;
 import net.incongru.berkano.app.ApplicationsProvider;
-import net.incongru.berkano.app.PreferenceInfo;
 import net.incongru.berkano.user.extensions.UserPropertyHelper;
 
 import java.util.Collection;
@@ -29,11 +28,7 @@ public class PreferencesListAction extends AbstractPreferencesAction {
         return appProvider.getAllApps();
     }
 
-    public PreferenceInfo[] getPreferencesInfo() {
-        Application app = appProvider.getApp(appName);
-        return app.getPreferencesInfo();
-    }
-
+    // i18n related methods :
     public String getAppName(Application app) {
         Class appClass = app.getClass();
         return getText(appClass, app.getName(), app.getName(), null, ActionContext.getContext().getValueStack());

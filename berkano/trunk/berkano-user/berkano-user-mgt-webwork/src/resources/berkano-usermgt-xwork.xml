@@ -10,16 +10,6 @@
                 <interceptor-ref name="validation"/>
                 <interceptor-ref name="workflow"/>
             </interceptor-stack>
-            <interceptor name="berkanoPrefs" class="net.incongru.berkano.profile.PreferencesInterceptor"/>
-            <interceptor-stack name="berkanoPrefsStack">
-                <interceptor-ref name="servlet-config"/>
-                <interceptor-ref name="prepare"/>
-                <interceptor-ref name="berkanoPrefs"/>
-                <interceptor-ref name="model-driven"/>
-                <interceptor-ref name="static-params"/>
-                <interceptor-ref name="params"/>
-                <interceptor-ref name="conversionError"/>
-            </interceptor-stack>
         </interceptors>
         <default-interceptor-ref name="berkanoUserMgtStack"/>
     </package>
@@ -112,11 +102,9 @@
 
     <package name="berkano-profile" extends="berkano-abstract" abstract="true">
         <action name="preferences" class="net.incongru.berkano.profile.PreferencesListAction">
-            <interceptor-ref name="berkanoPrefsStack"/>
             <result name="success" type="velocity">/berkano/profile/preferences.vm</result>
         </action>
         <action name="preferences.save" class="net.incongru.berkano.profile.PreferencesSaveAction">
-            <interceptor-ref name="berkanoPrefsStack"/>
             <result name="success" type="chain">preferences</result>
         </action>
 

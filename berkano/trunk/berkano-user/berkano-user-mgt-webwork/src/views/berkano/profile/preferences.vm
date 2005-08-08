@@ -7,14 +7,16 @@
 </ul>
 </div>
 
+#if ($app.name)
 <div id="app-prefs">
   <div class="app-pref">
 #bodytag (Form "action='preferences.save.action'" "method='post'")
-  #bodytag (Iterator "value=preferencesInfo")
+  #bodytag (Iterator "value=app.preferencesInfo")
     #tag (Preference)
   #end
-  #tag (Hidden "name='app'" "value=app")
+  #tag (Hidden "name='app'" "value=app.name")
   #tag (Submit "value='Send Form'")
 #end
   </div>
 </div>
+#end
