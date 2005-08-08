@@ -13,7 +13,7 @@
 
 <#if app.name?exists>
   <div id="berkano-preferences-prefs" class="prefs-${app.name}">
-    <@ww.form action="'preferences.save.action'" method="'post'">
+    <form action="preferences.save.action" method="post">
     <fieldset>
     <@ww.iterator value="app.preferencesInfo">
     <#switch preferenceWidget.name>
@@ -44,7 +44,7 @@
     <@ww.submit value="getText('preferences.form.submit')" />
     </div>
     </fieldset>
-    </@ww.form>
+    </form>
   </div>
 </#if>
 </div>
