@@ -38,8 +38,7 @@ public class PreferencesListAction extends AbstractPreferencesAction {
     }
 
     private Class getAppClass() {
-        Application app = appProvider.getApp(appName);
-        return app.getClass();
+        return getApp().getClass();
     }
 
     private TextProvider getTextProvider() {
