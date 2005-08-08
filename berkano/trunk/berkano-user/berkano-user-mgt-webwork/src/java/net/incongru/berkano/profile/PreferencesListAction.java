@@ -1,6 +1,7 @@
 package net.incongru.berkano.profile;
 
-import com.opensymphony.xwork.ActionContext;
+import com.opensymphony.xwork.TextProvider;
+import com.opensymphony.xwork.TextProviderSupport;
 import com.opensymphony.xwork.util.LocalizedTextUtil;
 import com.opensymphony.xwork.util.OgnlValueStack;
 import net.incongru.berkano.app.Application;
@@ -20,6 +21,8 @@ import java.util.ResourceBundle;
  * @version $Revision: 1.3 $
  */
 public class PreferencesListAction extends AbstractPreferencesAction {
+    private transient TextProvider textProvider;
+
     public PreferencesListAction(ApplicationsProvider appProvider, UserPropertyHelper userPropertyHelper) {
         super(appProvider, userPropertyHelper);
     }
@@ -29,32 +32,49 @@ public class PreferencesListAction extends AbstractPreferencesAction {
     }
 
     // i18n related methods :
-    public String getAppName(Application app) {
-        Class appClass = app.getClass();
-        return getText(appClass, app.getName(), app.getName(), null, ActionContext.getContext().getValueStack());
-    }
-
-    public String getText(String key, String defaultValue, List args, OgnlValueStack stack) {
-        Class appClass = getAppClass();
-        return getText(appClass, key, defaultValue, args, stack);
-    }
-
-    private String getText(Class appClass, String key, String defaultValue, List args, OgnlValueStack stack) {
-        if (appClass == null) {
-            return super.getText(key, defaultValue, args, stack);
-        }
-        Object[] argsArray = ((args != null) ? args.toArray(new Object[args.size()]) : null);
-        return LocalizedTextUtil.findText(appClass, key, getLocale(), defaultValue, argsArray, stack);
-    }
-
-    public ResourceBundle getTexts() {
-        Class appClass = getAppClass();
-        return appClass != null ? getTexts(appClass.getName()) : super.getTexts();
+    public String getTranslatedAppName(String appName) {
+        Class<? extends Application> clazz = appProvider.getApp(appName).getClass();
+        return LocalizedTextUtil.findText(clazz, appName, getLocale());
     }
 
     private Class getAppClass() {
         Application app = appProvider.getApp(appName);
-        Class appClass = app.getClass();
-        return appClass;
+        return app.getClass();
+    }
+
+    private TextProvider getTextProvider() {
+        if (textProvider == null) {
+            textProvider = new TextProviderSupport(getAppClass(), this);
+        }
+        return textProvider;
+    }
+
+    // --- text provider methods
+    public String getText(String aTextName) {
+        return getTextProvider().getText(aTextName);
+    }
+
+    public String getText(String aTextName, String defaultValue) {
+        return getTextProvider().getText(aTextName, defaultValue);
+    }
+
+    public String getText(String aTextName, List args) {
+        return getTextProvider().getText(aTextName, args);
+    }
+
+    public String getText(String aTextName, String defaultValue, List args) {
+        return getTextProvider().getText(aTextName, defaultValue, args);
+    }
+
+    public String getText(String key, String defaultValue, List args, OgnlValueStack stack) {
+        return getTextProvider().getText(key, defaultValue, args, stack);
+    }
+
+    public ResourceBundle getTexts() {
+        return getTextProvider().getTexts();
+    }
+
+    public ResourceBundle getTexts(String aBundleName) {
+        return getTextProvider().getTexts(aBundleName);
     }
 }

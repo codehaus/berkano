@@ -102,7 +102,7 @@
 
     <package name="berkano-profile" extends="berkano-abstract" abstract="true">
         <action name="preferences" class="net.incongru.berkano.profile.PreferencesListAction">
-            <result name="success" type="velocity">/berkano/profile/preferences.vm</result>
+            <result name="success" type="freemarker">/berkano/profile/preferences.ftl</result>
         </action>
         <action name="preferences.save" class="net.incongru.berkano.profile.PreferencesSaveAction">
             <result name="success" type="chain">preferences</result>
