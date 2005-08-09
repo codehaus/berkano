@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="net.incongru.berkano.user.UserImpl" table="user">
+        <id name="userId" type="java.lang.Long" column="user_id">
+            <generator class="native">
+            </generator>
+        </id>
+        <property name="password" length="255" column="password" not-null="true">
+        </property>
+        <property name="userName" length="32" column="user_name" not-null="true">
+        </property>
+        <property name="email" length="128" column="email">
+        </property>
+        <property name="fullName" length="128" column="full_name">
+        </property>
+
+        <set name="groups" table="user_group" lazy="false"><!-- lazy="true"--><!-- cascade="all" -->
+            <key column="user_id"/>
+            <many-to-many column="group_id" class="net.incongru.berkano.user.GroupImpl"/>
+        </set>
+
+        <map name="properties" table="user_properties" lazy="false">
+            <key column="user_id"/>
+            <index column="name" type="string"/>
+            <element column="value" type="net.incongru.util.hibernate.XStreamType"/>
+        </map>
+    </class>
+</hibernate-mapping>
