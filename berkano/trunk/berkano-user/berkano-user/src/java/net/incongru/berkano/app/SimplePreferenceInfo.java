@@ -1,5 +1,7 @@
 package net.incongru.berkano.app;
 
+import java.util.Map;
+
 /**
  *
  * @author greg
@@ -8,10 +10,10 @@ package net.incongru.berkano.app;
  */
 public class SimplePreferenceInfo implements PreferenceInfo {
     private String keyName;
-    private Object[] allowedValues;
+    private Map allowedValues;
     private PreferenceWidget preferenceWidget;
 
-    public SimplePreferenceInfo(String keyName, Object[] allowedValues, PreferenceWidget preferenceWidget) {
+    public SimplePreferenceInfo(String keyName, Map allowedValues, PreferenceWidget preferenceWidget) {
         this.keyName = keyName;
         this.allowedValues = allowedValues;
         this.preferenceWidget = preferenceWidget;
@@ -21,7 +23,7 @@ public class SimplePreferenceInfo implements PreferenceInfo {
         return keyName;
     }
 
-    public Object[] getAllowedValues() {
+    public Map getAllowedValues() {
         return allowedValues;
     }
 

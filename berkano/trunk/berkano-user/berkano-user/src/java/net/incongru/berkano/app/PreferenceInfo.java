@@ -1,5 +1,7 @@
 package net.incongru.berkano.app;
 
+import java.util.Map;
+
 /**
  * A user preference.
  * todo:
@@ -18,8 +20,12 @@ package net.incongru.berkano.app;
 public interface PreferenceInfo {
     public String getKeyName();
 
-    /** an empty array means any value is allowed */
-    public Object[] getAllowedValues();
+    /**
+     * A Map of <actualValue, displayableValue> of values
+     * allowed for this preference setting.
+     * An empty or null Map means any value is allowed.
+     */
+    public Map getAllowedValues();
 
     public PreferenceWidget getPreferenceWidget();
 

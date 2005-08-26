@@ -18,7 +18,7 @@
     <@ww.iterator value="app.preferencesInfo">
     <#switch preferenceWidget.name>
     <#case 'dropdown'>
-      <@ww.select name="keyName" id="keyName" list="allowedValues" label="getText(keyName)"/>
+      <@ww.select name="keyName" id="keyName" list="allowedValues" listKey="key" listValue="value" label="getText(keyName)"/>
       <br />
       <#break>
     <#case 'radios'>
