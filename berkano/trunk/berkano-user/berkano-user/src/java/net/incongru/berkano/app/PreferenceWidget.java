@@ -15,6 +15,7 @@ public class PreferenceWidget {
     //text, dropdown, radios, checkboxes;
     public static final PreferenceWidget text = new PreferenceWidget("text");
     public static final PreferenceWidget dropdown = new PreferenceWidget("dropdown");
+    public static final PreferenceWidget combobox = new PreferenceWidget("combobox");
     public static final PreferenceWidget radios = new PreferenceWidget("radios");
     public static final PreferenceWidget checkboxes = new PreferenceWidget("checkboxes");
 

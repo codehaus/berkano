@@ -18,11 +18,16 @@
     <@ww.iterator value="app.preferencesInfo">
     <#switch preferenceWidget.name>
     <#case 'dropdown'>
-      <@ww.select name="keyName" id="keyName" list="allowedValues" listKey="key" listValue="value" label="getText(keyName)"/>
+      <@ww.select name="keyName" id="pref-%{keyName}" list="allowedValues" listKey="key" listValue="getText(value)" label="getText(keyName)"/>
+      <br />
+      <#break>
+    <#case 'combobox'>
+      <@ww.textfield name="keyName" id="keyName" label="getText(keyName)"/>
+      <@ww.select name="keyName" id="pref-%{keyName}" list="allowedValues" listKey="key" listValue="getText(value)"/>
       <br />
       <#break>
     <#case 'radios'>
-      radios to be implemented
+      <@ww.radio name="keyName" id="pref-%{keyName}" list="allowedValues" listKey="key" listValue="getText(value)" label="getText(keyName)"/>
       <br />
       <#break>
     <#case 'checkboxes'>
@@ -30,7 +35,7 @@
       <br />
       <#break>
     <#case 'text'>
-      <@ww.textfield name="keyName" id="keyName" label="getText(keyName)"/><br />
+      <@ww.textfield name="keyName" id="keyName" label="getText(keyName)"/>
       <br />
       <#break>
     <#default>

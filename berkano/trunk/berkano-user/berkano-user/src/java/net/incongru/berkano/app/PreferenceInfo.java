@@ -21,8 +21,8 @@ public interface PreferenceInfo {
     public String getKeyName();
 
     /**
-     * A Map of <actualValue, displayableValue> of values
-     * allowed for this preference setting.
+     * A Map of <actualValue, displayableValue translation key>
+     * for values allowed/proposed for this preference setting.
      * An empty or null Map means any value is allowed.
      */
     public Map getAllowedValues();
