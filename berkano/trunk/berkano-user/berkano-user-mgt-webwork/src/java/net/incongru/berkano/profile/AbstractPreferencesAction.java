@@ -37,6 +37,6 @@ public abstract class AbstractPreferencesAction extends ActionSupport implements
     }
 
     protected String getPreferenceKey() {
-        return "preferences/" + appName;
+        return "preferences/" + getApp().getName();
     }
 }

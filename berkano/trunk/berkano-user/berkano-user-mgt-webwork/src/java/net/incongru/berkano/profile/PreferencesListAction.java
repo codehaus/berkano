@@ -1,5 +1,6 @@
 package net.incongru.berkano.profile;
 
+import com.opensymphony.xwork.ActionContext;
 import com.opensymphony.xwork.TextProvider;
 import com.opensymphony.xwork.TextProviderSupport;
 import com.opensymphony.xwork.util.LocalizedTextUtil;
@@ -25,6 +26,16 @@ public class PreferencesListAction extends AbstractPreferencesAction {
 
     public PreferencesListAction(ApplicationsProvider appProvider, UserPropertyHelper userPropertyHelper) {
         super(appProvider, userPropertyHelper);
+    }
+
+    /**
+     * Pushes the current preferences values on the stack so the view can display it.
+     */
+    public String execute() throws Exception {
+        Object prefs = userPropertyHelper.getUserOnlyValue(getPreferenceKey());
+        ActionContext.getContext().getValueStack().push(prefs);
+
+        return super.execute();
     }
 
     public Collection getApps() {
