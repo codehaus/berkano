@@ -14,7 +14,7 @@ import java.io.IOException;
 public class SecuredLinkTagTest extends JspTestCase {
     protected static final String PACKAGE = "net/incongru/security/seraph/taglib/";
 
-    public void assertJspAsResource(String resourceName, String jsp, boolean ignoreWhiteSpace) throws IOException, SAXException {
+    public void assertJspAsResource(String resourceName, String jsp, boolean ignoreWhiteSpace) throws Throwable, SAXException {
         super.assertJspAsResource(PACKAGE + resourceName, PACKAGE + jsp, ignoreWhiteSpace);
     }
 

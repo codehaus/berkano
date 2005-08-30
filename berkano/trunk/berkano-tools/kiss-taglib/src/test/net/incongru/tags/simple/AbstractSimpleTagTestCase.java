@@ -1,9 +1,6 @@
 package net.incongru.tags.simple;
 
 import net.incongru.tags.test.JspTestCase;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 
 /**
  *
@@ -12,11 +9,11 @@ import java.io.IOException;
  * @version $Revision: 1.1 $
  */
 public abstract class AbstractSimpleTagTestCase extends JspTestCase {
-    public void assertJspAsResource(String resourceName, String jsp, boolean ignoreWhiteSpace) throws IOException, SAXException {
+    public void assertJspAsResource(String resourceName, String jsp, boolean ignoreWhiteSpace) throws Throwable {
         super.assertJspAsResource("net/incongru/tags/simple/"+resourceName, "net/incongru/tags/simple/"+jsp, ignoreWhiteSpace);
     }
 
-    public void assertJspAsText(String expectedContent, String jsp) throws IOException, SAXException {
+    public void assertJspAsText(String expectedContent, String jsp) throws Throwable {
         super.assertJspAsText(expectedContent, "net/incongru/tags/simple/"+jsp);
     }
 }

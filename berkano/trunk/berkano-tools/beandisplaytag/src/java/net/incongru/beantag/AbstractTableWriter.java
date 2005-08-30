@@ -127,7 +127,7 @@ public abstract class AbstractTableWriter implements TableWriter {
         } else {
             classs = rowCount % 2 == 0 ? DEFAULT_EVEN_CLASS : DEFAULT_ODD_CLASS;
         }
-        if (conditionPositive) {
+        if (conditionPositive && p.getConditionalClass() != null) {
             classs = classs.concat(" ").concat(p.getConditionalClass());
         }
         return classs;

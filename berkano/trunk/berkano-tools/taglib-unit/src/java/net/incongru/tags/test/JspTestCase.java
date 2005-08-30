@@ -1,10 +1,10 @@
 package net.incongru.tags.test;
 
 import com.meterware.httpunit.GetMethodWebRequest;
+import com.meterware.httpunit.HttpInternalErrorException;
 import com.meterware.httpunit.HttpUnitOptions;
 import com.meterware.httpunit.WebRequest;
 import com.meterware.httpunit.WebResponse;
-import com.meterware.httpunit.HttpInternalErrorException;
 import com.meterware.servletunit.ServletRunner;
 import com.meterware.servletunit.ServletUnitClient;
 import junit.framework.TestCase;
@@ -26,8 +26,11 @@ public abstract class JspTestCase extends TestCase {
     private static final String ABS_PREFIX = "src/test/";
     private static final String RES_PREFIX = "/";
 
-    private WebResponse setupJsp(String jsp) throws IOException, SAXException {
-        // TODO : why did we need this ? org.apache.log4j.BasicConfigurator.configure();
+    static {
+        org.apache.log4j.BasicConfigurator.configure();
+    }
+
+    private WebResponse setupJsp(String jsp) throws Throwable {
         HttpUnitOptions.setScriptingEnabled(false);
         ServletRunner sr = new ServletRunner();
         sr.registerServlet("jsp", JspTestServlet.class.getName());
@@ -47,7 +50,7 @@ public abstract class JspTestCase extends TestCase {
         }
     }
 
-    public void assertJspAsText(String expectedContent, String jsp) throws IOException, SAXException {
+    public void assertJspAsText(String expectedContent, String jsp) throws Throwable {
         WebResponse response = setupJsp(jsp);
         assertEquals(expectedContent, response.getText());
     }
@@ -59,7 +62,7 @@ public abstract class JspTestCase extends TestCase {
      * @throws IOException
      * @throws SAXException
      */
-    public void assertJspAsResource(String resourceName, String jsp, boolean ignoreWhiteSpace) throws IOException, SAXException {
+    public void assertJspAsResource(String resourceName, String jsp, boolean ignoreWhiteSpace) throws Throwable {
         WebResponse res = setupJsp(jsp);
         Reader actualIn = new InputStreamReader(res.getInputStream());
         InputStream expectedInputStream = this.getClass().getResourceAsStream(RES_PREFIX + resourceName);
@@ -78,10 +81,10 @@ public abstract class JspTestCase extends TestCase {
         BufferedReader bActual = new BufferedReader(actual);
         StringBuffer actualBuffer = new StringBuffer(); // TODO omg u are teh ugly
         while (true) {
-            String expectedLine = ignoreWhiteSpace?getNextNotEmptyLine(bExpected):bExpected.readLine();
-            String actualLine = ignoreWhiteSpace?getNextNotEmptyLine(bActual):bActual.readLine();
+            String expectedLine = ignoreWhiteSpace ? getNextNotEmptyLine(bExpected) : bExpected.readLine();
+            String actualLine = ignoreWhiteSpace ? getNextNotEmptyLine(bActual) : bActual.readLine();
             actualBuffer.append(actualLine).append('\n');
-            if (expectedLine==null) {
+            if (expectedLine == null) {
                 assertNull(actualLine);
                 break;
             }
@@ -97,7 +100,7 @@ public abstract class JspTestCase extends TestCase {
 
     private String getNextNotEmptyLine(BufferedReader reader) throws IOException {
         String line;
-        while ((line=reader.readLine())!=null) {
+        while ((line = reader.readLine()) != null) {
             line = line.trim();
             if (!line.equals("")) {
                 return line;
