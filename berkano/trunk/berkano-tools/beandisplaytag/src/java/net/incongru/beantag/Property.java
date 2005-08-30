@@ -16,14 +16,16 @@ class Property {
     private String valueClass;
     private String valueStyle;
     private String condition;
+    private String conditionalClass;
 
-    Property(Object value, String propertyName, String label, String rowClass, String rowStyle, String condition) {
+    Property(Object value, String propertyName, String label, String rowClass, String rowStyle, String condition, String conditionalClass) {
         this.value = value;
         this.propertyName = propertyName;
         this.label = label;
         this.rowClass = rowClass;
         this.rowStyle = rowStyle;
         this.condition = condition;
+        this.conditionalClass = conditionalClass;
     }
 
     public Object getValue() {
@@ -104,6 +106,14 @@ class Property {
 
     public void setCondition(String condition) {
         this.condition = condition;
+    }
+
+    public String getConditionalClass() {
+        return conditionalClass;
+    }
+
+    public void setConditionalClass(String conditionalClass) {
+        this.conditionalClass = conditionalClass;
     }
 
     public String toString() {

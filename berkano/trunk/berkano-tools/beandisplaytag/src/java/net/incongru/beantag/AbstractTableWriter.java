@@ -54,7 +54,7 @@ public abstract class AbstractTableWriter implements TableWriter {
         }
         Collections.sort(propNames);
         for (String propName : propNames) {
-            props.add(new Property(getValue(propName, o), propName, propName, null, null, null));
+            props.add(new Property(getValue(propName, o), propName, propName, null, null, null, null));
         }
         return props;
     }
@@ -119,13 +119,18 @@ public abstract class AbstractTableWriter implements TableWriter {
         }
     }
 
-    public String getRowClass(Property p, Object o) throws PropertyDecoratorException {
+    public String getRowClass(Property p, Object o, boolean conditionPositive) throws PropertyDecoratorException {
         rowCount++;
+        String classs;
         if (p.getRowClass() != null) {
-            return p.getRowClass();
+            classs = p.getRowClass();
         } else {
-            return rowCount % 2 == 0 ? DEFAULT_EVEN_CLASS : DEFAULT_ODD_CLASS;
+            classs = rowCount % 2 == 0 ? DEFAULT_EVEN_CLASS : DEFAULT_ODD_CLASS;
         }
+        if (conditionPositive) {
+            classs = classs.concat(" ").concat(p.getConditionalClass());
+        }
+        return classs;
     }
 
     public String getRowStyle(Property p, Object o) throws PropertyDecoratorException {

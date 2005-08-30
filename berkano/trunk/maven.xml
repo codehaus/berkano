@@ -37,7 +37,7 @@
             </fileset>
             <component classname="org.generama.JellyTemplateEngine"/>
             <component classname="org.xdoclet.plugin.web.TaglibPlugin"
-                       destdir="${basedir}/target/classes/META-INF"
+                       destdir="${basedir}/target/xdoclet/META-INF"
 		       jspversion="2.0"
                        includelisteners="false"
                        validate="false"/>

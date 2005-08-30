@@ -223,7 +223,8 @@ public class BeanDisplayTag extends SimpleTagSupport {
             Property prop = (Property) it.next();
             try {
                 String expr = prop.getCondition();
-                if (expr != null && !evalCondition(expr, bean)) {
+                boolean conditionPositive = expr == null || evalCondition(expr, bean);
+                if (!conditionPositive && prop.getConditionalClass()==null) {
                     continue;
                 }
 
@@ -232,8 +233,9 @@ public class BeanDisplayTag extends SimpleTagSupport {
                 if ("skip".equals(showNulls) && value == null) {
                     continue;
                 }
+
                 out.print("<tr");
-                String s = tableWriter.getRowClass(prop, bean);
+                String s = tableWriter.getRowClass(prop, bean, conditionPositive);
                 if (s != null) {
                     out.print(" class=\"");
                     out.print(s);

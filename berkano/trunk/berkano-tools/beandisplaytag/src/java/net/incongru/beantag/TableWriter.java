@@ -19,7 +19,7 @@ public interface TableWriter {
 
     public Object getValue(String propertyName, Object o) throws PropertyDecoratorException;
 
-    public String getRowClass(Property p, Object o) throws PropertyDecoratorException;
+    public String getRowClass(Property p, Object o, boolean conditionFailed) throws PropertyDecoratorException;
 
     public String getRowStyle(Property p, Object o) throws PropertyDecoratorException;
 

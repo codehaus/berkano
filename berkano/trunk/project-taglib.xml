@@ -12,12 +12,12 @@
         <dependency>
             <groupId>tomcat</groupId>
             <artifactId>jasper-compiler</artifactId>
-            <version>5.0.28</version>
+            <version>5.5.4</version>
         </dependency>
         <dependency>
             <groupId>tomcat</groupId>
             <artifactId>jasper-runtime</artifactId>
-            <version>5.0.28</version>
+            <version>5.5.4</version>
         </dependency>
         <dependency>
             <groupId>eclipse</groupId>
@@ -71,7 +71,7 @@
         <dependency>
             <groupId>xdoclet-plugins</groupId>
             <artifactId>xdoclet-plugin-web</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>xdoclet</groupId>
@@ -141,13 +141,13 @@
         <dependency>
             <groupId>commons-jelly</groupId>
             <artifactId>commons-jelly</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0</version>
             <url>http://jakarta.apache.org/jelly/</url>
         </dependency>
         <dependency>
             <groupId>commons-jelly</groupId>
             <artifactId>commons-jelly-tags-xml</artifactId>
-            <version>1.0</version>
+            <version>1.1</version>
             <url>http://jakarta.apache.org/jelly/</url>
         </dependency>
         <dependency>
@@ -187,6 +187,14 @@
                 <directory>src/java</directory>
                 <includes>
                     <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+        <resources>
+            <resource>
+                <directory>target/xdoclet</directory>
+                <includes>
+                    <include>**/*.tld</include>
                 </includes>
             </resource>
         </resources>

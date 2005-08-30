@@ -27,6 +27,7 @@ public class BeanPropertyTag extends SimpleTagSupport {
     private String htmlClass;
     private String htmlStyle;
     private String condition;
+    private String conditionalClass;
 
     /**
      * @param propertyName If not specified, then the body will be printed.
@@ -76,6 +77,14 @@ public class BeanPropertyTag extends SimpleTagSupport {
         this.condition = test;
     }
 
+    /**
+     * @param conditionalClass a css class which is added to the row if the test evaluated positively.
+     * @jsp.attribute
+     */
+    public void setConditionalClass(String conditionalClass) {
+        this.conditionalClass = conditionalClass;
+    }
+
     public void doTag() throws JspException, IOException {
         BeanDisplayTag parentTag = (BeanDisplayTag) findAncestorWithClass(this, BeanDisplayTag.class);
         if (parentTag == null) {
@@ -96,7 +105,7 @@ public class BeanPropertyTag extends SimpleTagSupport {
                     body.getJspContext().removeAttribute(refName);
                 }
             }
-            Property p = new Property(value, propertyName, label, htmlClass, htmlStyle, condition);
+            Property p = new Property(value, propertyName, label, htmlClass, htmlStyle, condition, conditionalClass);
             parentTag.addProperty(p);
         } catch (PropertyDecoratorException e) {
             throw new JspException(e);
