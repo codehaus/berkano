@@ -141,13 +141,13 @@
         <dependency>
             <groupId>commons-jelly</groupId>
             <artifactId>commons-jelly</artifactId>
-            <version>1.0</version>
+            <version>20050813.225330</version>
             <url>http://jakarta.apache.org/jelly/</url>
         </dependency>
         <dependency>
             <groupId>commons-jelly</groupId>
             <artifactId>commons-jelly-tags-xml</artifactId>
-            <version>1.1</version>
+            <version>20050823.222913</version>
             <url>http://jakarta.apache.org/jelly/</url>
         </dependency>
         <dependency>
