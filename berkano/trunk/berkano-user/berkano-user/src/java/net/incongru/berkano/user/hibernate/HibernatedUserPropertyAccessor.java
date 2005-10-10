@@ -5,8 +5,6 @@ import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.UserImpl;
 import net.incongru.berkano.user.extensions.UserPropertyAccessor;
 import org.hibernate.HibernateException;
-import org.hibernate.LockMode;
-import org.hibernate.Session;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,10 +20,11 @@ import java.util.Map;
  * @version $Revision: 1.3 $
  */
 public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
-    private Session session;
+    //private Session session;
 
-    public HibernatedUserPropertyAccessor(Session session) {
-        this.session = session;
+    //public HibernatedUserPropertyAccessor(Session session) {
+    public HibernatedUserPropertyAccessor() {
+        //this.session = session;
     }
 
     /**
@@ -34,7 +33,8 @@ public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
      */
     public Object getUserOnlyValue(User u, String key) {
         try {
-            session.lock(u, LockMode.NONE);
+            //session.lock(u, LockMode.NONE);
+
             return ((UserImpl) u).getProperty(key);
         } catch (HibernateException e) {
             throw new RuntimeException(e);
@@ -51,7 +51,7 @@ public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
      */
     public Object getFirstValue(User u, String key) {
         try {
-            session.lock(u, LockMode.NONE);
+            //session.lock(u, LockMode.NONE);
 
             Object value = ((UserImpl) u).getProperty(key);
             if (value != null) {
@@ -86,7 +86,8 @@ public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
      */
     public Object getSingleValue(User u, String key) {
         try {
-            session.lock(u, LockMode.NONE);
+            //session.lock(u, LockMode.NONE);
+
             Object value = ((UserImpl) u).getProperty(key);
             if (value != null) {
                 return value;
@@ -110,7 +111,7 @@ public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
      */
     public Object getGroupSingleValue(User u, String key) {
         try {
-            session.lock(u, LockMode.NONE);
+            //session.lock(u, LockMode.NONE);
 
             Object value = null;
             int definedInGroupsCount = 0;
@@ -140,7 +141,8 @@ public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
      */
     public Collection getValues(User u, String key) {
         try {
-            session.lock(u, LockMode.NONE);
+            //session.lock(u, LockMode.NONE);
+
             Collection values = getGroupValues(u, key);
             Object v = ((UserImpl) u).getProperty(key);
             if (v != null) {
@@ -159,7 +161,8 @@ public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
      */
     public Collection getGroupValues(User u, String key) {
         try {
-            session.lock(u, LockMode.NONE);
+            //session.lock(u, LockMode.NONE);
+
             Collection values = new LinkedList();
             Iterator it = ((UserImpl) u).getGroups().iterator();
             while (it.hasNext()) {
@@ -183,7 +186,7 @@ public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
      */
     public Object aggregate(User u, String key) {
         try {
-            session.lock(u, LockMode.NONE);
+            //session.lock(u, LockMode.NONE);
 
             Object result = null;
             Collection values = getValues(u, key);

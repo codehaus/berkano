@@ -34,7 +34,7 @@ public class HibernatedUserDAO extends AbstractHibernatedDAO implements UserDAO 
 
     public void addProperty(User user, String propertyKey, Object value) throws UnknownUserException {
         try {
-            session.lock(user, LockMode.READ);
+            session.lock(user, LockMode.NONE);
             ((UserImpl) user).getProperties().put(propertyKey, value);
             session.save(user);
         } catch (HibernateException e) {
