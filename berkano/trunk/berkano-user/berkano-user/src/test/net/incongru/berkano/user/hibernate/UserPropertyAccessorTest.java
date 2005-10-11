@@ -46,7 +46,7 @@ public class UserPropertyAccessorTest extends MockObjectTestCase {
         u.addGroup(g3);
         sessionMock = mock(Session.class);
         //sessionMock.expects(atLeastOnce()).method("lock").with(isA(User.class), isA(LockMode.class));
-        a = new HibernatedUserPropertyAccessor((Session) sessionMock.proxy());
+        a = new HibernatedUserPropertyAccessor();//(Session) sessionMock.proxy());
     }
 
     protected void tearDown() throws Exception {
