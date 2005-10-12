@@ -224,7 +224,7 @@ public class BeanDisplayTag extends SimpleTagSupport {
             try {
                 String expr = prop.getCondition();
                 boolean conditionPositive = expr == null || evalCondition(expr, bean);
-                if (!conditionPositive && prop.getConditionalClass()==null) {
+                if (!conditionPositive) {
                     continue;
                 }
 

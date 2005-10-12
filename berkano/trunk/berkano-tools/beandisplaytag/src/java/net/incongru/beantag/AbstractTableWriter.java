@@ -3,9 +3,9 @@ package net.incongru.beantag;
 import javax.servlet.jsp.JspWriter;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.LinkedList;
 import java.util.Set;
 
 /**
@@ -127,8 +127,11 @@ public abstract class AbstractTableWriter implements TableWriter {
         } else {
             classs = rowCount % 2 == 0 ? DEFAULT_EVEN_CLASS : DEFAULT_ODD_CLASS;
         }
-        if (conditionPositive && p.getConditionalClass() != null) {
-            classs = classs.concat(" ").concat(p.getConditionalClass());
+        if (p.getDynClass() != null) {
+            Object dynClass = lookupValue(p.getDynClass(), o);
+            if (dynClass != null) {
+                classs = classs.concat(" ").concat(dynClass.toString());
+            }
         }
         return classs;
     }

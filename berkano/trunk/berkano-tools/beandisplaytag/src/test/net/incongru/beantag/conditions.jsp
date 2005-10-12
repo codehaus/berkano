@@ -1,7 +1,7 @@
 <%@ page import="net.incongru.beantag.SomeObject"%>
 <%@ taglib prefix="b" uri="/target/xdoclet/META-INF/taglib.tld"%>
 <%
-SomeObject someObject = new SomeObject("Some Value", "Other Value", 123);
+SomeObject someObject = new SomeObject("SomeValue", "Other Value", 123);
 pageContext.setAttribute("test.obj", someObject);
 %>
 <b:beandisplay name="test.obj" label="Some Object">
@@ -22,8 +22,11 @@ pageContext.setAttribute("test.obj", someObject);
  <b:property name="integerProperty"/>
 </b:beandisplay>
 
-<b:beandisplay name="test.obj" label="Some Object With Conditional Style">
+<b:beandisplay name="test.obj" label="Some Object With Dynamic Style">
  <b:property name="someProperty" test="integerProperty==123"/>
  <b:property name="anotherProperty" label="Another Property" test="anotherProperty=='ThisValue'"/>
- <b:property name="integerProperty" test="integerProperty==123" conditionalClass="foo"/>
+ <b:property name="integerProperty" dynClass="integerProperty==123?'foo':'bar'"/>
+ <b:property name="integerProperty" test="2==5" dynClass="integerProperty==123?'hahaha':'ohohoh'"/>
+ <b:property name="integerProperty" test="5==5" dynClass="integerProperty!=123?'hahaha':'ohohoh'"/>
+ <b:property name="someProperty" dynClass="'yop_'+someProperty"/>
 </b:beandisplay>

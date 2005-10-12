@@ -27,7 +27,7 @@ public class BeanPropertyTag extends SimpleTagSupport {
     private String htmlClass;
     private String htmlStyle;
     private String condition;
-    private String conditionalClass;
+    private String dynClass;
 
     /**
      * @param propertyName If not specified, then the body will be printed.
@@ -78,11 +78,11 @@ public class BeanPropertyTag extends SimpleTagSupport {
     }
 
     /**
-     * @param conditionalClass a css class which is added to the row if the test evaluated positively.
+     * @param dynClass a css class which is added to the row if the test evaluated positively.
      * @jsp.attribute
      */
-    public void setConditionalClass(String conditionalClass) {
-        this.conditionalClass = conditionalClass;
+    public void setDynClass(String dynClass) {
+        this.dynClass = dynClass;
     }
 
     public void doTag() throws JspException, IOException {
@@ -105,7 +105,7 @@ public class BeanPropertyTag extends SimpleTagSupport {
                     body.getJspContext().removeAttribute(refName);
                 }
             }
-            Property p = new Property(value, propertyName, label, htmlClass, htmlStyle, condition, conditionalClass);
+            Property p = new Property(value, propertyName, label, htmlClass, htmlStyle, condition, dynClass);
             parentTag.addProperty(p);
         } catch (PropertyDecoratorException e) {
             throw new JspException(e);
