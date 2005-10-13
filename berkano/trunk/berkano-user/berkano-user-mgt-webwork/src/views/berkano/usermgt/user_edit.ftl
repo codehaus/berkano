@@ -1,5 +1,5 @@
 <div id="berkano-user-mgt">
-#include("/berkano/usermgt/nav.vm")
+<#include "nav.ftl">
 
 #if( $actionErrors.size() > 0 )
   <ul class="error">

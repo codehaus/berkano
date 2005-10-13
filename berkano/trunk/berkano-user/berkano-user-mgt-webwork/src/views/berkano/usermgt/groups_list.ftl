@@ -1,5 +1,5 @@
 <div id="berkano-user-mgt">
-#include("/berkano/usermgt/nav.vm")
+<#include "nav.ftl">
 
 <h1>Groups</h1>
 
