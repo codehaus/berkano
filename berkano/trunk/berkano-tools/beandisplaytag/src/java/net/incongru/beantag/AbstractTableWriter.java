@@ -121,11 +121,9 @@ public abstract class AbstractTableWriter implements TableWriter {
 
     public String getRowClass(Property p, Object o, boolean conditionPositive) throws PropertyDecoratorException {
         rowCount++;
-        String classs;
+        String classs = rowCount % 2 == 0 ? DEFAULT_EVEN_CLASS : DEFAULT_ODD_CLASS;
         if (p.getRowClass() != null) {
-            classs = p.getRowClass();
-        } else {
-            classs = rowCount % 2 == 0 ? DEFAULT_EVEN_CLASS : DEFAULT_ODD_CLASS;
+            classs = classs.concat(" ").concat(p.getRowClass());
         }
         if (p.getDynClass() != null) {
             Object dynClass = lookupValue(p.getDynClass(), o);
