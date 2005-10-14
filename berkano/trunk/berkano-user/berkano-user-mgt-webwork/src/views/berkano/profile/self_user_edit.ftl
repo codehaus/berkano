@@ -9,8 +9,8 @@
 <@ww.textfield label="getText('profile.form.email')" name="'email'" id="fullName" value="email" /><br />
 
 <p><@ww.text name="'profile.form.password.hint'"/></p>
-<@ww.password label="getText('profile.form.password')" name="'password'" id="fullName" /><br />
-<@ww.password label="getText('profile.form.password.confirm')" name="'passwordConfirm'" id="fullName" /><br />
+<@ww.password label="getText('profile.form.password')" name="'password'" id="password" /><br />
+<@ww.password label="getText('profile.form.password.confirm')" name="'passwordConfirm'" id="passwordConfirm" /><br />
 
     <div class="form-buttons">
     <@ww.submit value="getText('profile.form.submit')" />
