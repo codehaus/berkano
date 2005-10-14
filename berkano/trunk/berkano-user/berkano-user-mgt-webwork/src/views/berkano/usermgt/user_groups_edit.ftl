@@ -1,10 +1,9 @@
-<div id="berkano-user-mgt">
-<#include "nav.ftl">
+<#include "header.ftl">
 
-<h1>Edit groups for user: $user.userName</h1>
+<h1>Edit groups for user: ${user.userName}</h1>
 
 <form action="usergroups.edit.action" method="post">
-<input type="hidden" name="userId" value="$user.userId">
+<input type="hidden" name="userId" value="${user.userId}">
 
 <table>
 <tr>
@@ -15,11 +14,9 @@
 <tr>
   <td>
     <select name="groupsToAdd" size="7" multiple>
-    #foreach ($group in $allGroups)
-        #if (!$user.groups.contains($group))
-            <option value="$group.groupId">($group.groupId) $group.groupName</option>
-        #end
-    #end
+    <#list availableGroups as group>
+        <option value="${group.groupId}">(${group.groupId}) ${group.groupName}</option>
+    </#list>
     </select>
   </td>
   <td>
@@ -29,9 +26,9 @@
   </td>
   <td>
     <select name="groupsToRemove" size="7" multiple>
-    #foreach ($group in $user.groups)
-      <option value="$group.groupId">($group.groupId) $group.groupName</option>
-    #end
+    <#list memberOfGroups as group>
+      <option value="${group.groupId}">(${group.groupId}) ${group.groupName}</option>
+    </#list>
     </select>
   </td>
 </tr>
@@ -39,6 +36,6 @@
 
 </form>
 
-<p><a href="user.view.action?userId=$user.userId">back to user details</a>.</p>
+<p><a href="user.view.action?userId=${user.userId}">back to user details</a>.</p>
 
-</div>
+<#include "footer.ftl">

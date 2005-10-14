@@ -1,12 +1,15 @@
 package net.incongru.berkano.usermgt.webwork;
 
 import com.opensymphony.xwork.ActionSupport;
-import net.incongru.berkano.user.UserDAO;
 import net.incongru.berkano.user.GroupDAO;
 import net.incongru.berkano.user.UnknownUserException;
 import net.incongru.berkano.user.User;
+import net.incongru.berkano.user.UserDAO;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 
@@ -19,7 +22,8 @@ public class UserGroupsViewAction extends ActionSupport {
     private GroupDAO groupDAO;
     private Long userId;
     private User user;
-    private List allGroups;
+    private Set memberOfGroups;
+    private List availableGroups;
 
     public UserGroupsViewAction(UserDAO userDAO, GroupDAO groupDAO) {
         this.userDAO = userDAO;
@@ -28,7 +32,9 @@ public class UserGroupsViewAction extends ActionSupport {
 
     public String execute() throws UnknownUserException {
         user = userDAO.getUserById(userId);
-        allGroups = groupDAO.listAllGroups();
+        List allGroups = groupDAO.listAllGroups();
+        memberOfGroups = user.getGroups();
+        availableGroups = subtract(allGroups, memberOfGroups);
         return SUCCESS;
     }
 
@@ -36,11 +42,24 @@ public class UserGroupsViewAction extends ActionSupport {
         return user;
     }
 
-    public List getAllGroups() {
-        return allGroups;
+    public Set getMemberOfGroups() {
+        return memberOfGroups;
+    }
+
+    public List getAvailableGroups() {
+        return availableGroups;
     }
 
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+    private List subtract(final Collection all, final Collection toBeRemoved) {
+        List result = new ArrayList(all);
+        for (Object o : toBeRemoved) {
+            result.remove(o);
+        }
+        return result;
+    }
+
 }

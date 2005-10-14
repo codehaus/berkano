@@ -1,16 +1,15 @@
-<div id="berkano-user-mgt">
-<#include "nav.ftl">
+<#include "header.ftl">
 
 <h1>Groups</h1>
 
 <ol>
-#foreach ($group in $allGroups)
+<#list allGroups as group>
     <li>
-      $group.groupName
-      [<a href="group.view.action?groupId=$!group.groupId">View</a>
-      | <a href="group.remove.action?groupId=$!group.groupId">Del</a>]
+      ${group.groupName}
+      [<a href="group.view.action?groupId=${group.groupId}">View</a>
+      | <a href="group.remove.action?groupId=${group.groupId}">Del</a>]
     </li>
-#end
+</#list>
 </ol>
 
 <hr>
@@ -23,4 +22,4 @@
 </table>
 </form>
 
-</div>
+<#include "footer.ftl">

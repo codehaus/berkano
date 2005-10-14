@@ -1,7 +1,6 @@
 <#assign userGroups=user.groups />
 
-<div id="berkano-user-mgt">
-<#include "nav.ftl">
+<#include "header.ftl">
 
 <h1>User: ${user.userName}</h1>
 
@@ -37,7 +36,7 @@
     <tr>
         <td colspan="2">user</td>
         <td>${propKey}</td>
-        <td>${props[propKey]}</td>
+        <td><@showProps props[propKey] /></td>
         <!--TODO : url encoding with ?url-->
         <td>[<a href="user.delproperty.action?userId=${user.userId}&propertyKey=${propKey}">Del</a>]</td>
     </tr>
@@ -49,13 +48,7 @@
         <td>group</td>
         <td>${group.groupName}</td>
         <td>${propKey}</td>
-        <td><#assign value=props[propKey] />
-            <#if value?is_enumerable>
-              <#list value as v>${v}<#if v_has_next>, </#if></#list>
-            <#else />
-              ${value}
-            </#if>
-        </td>
+        <td><@showProps props[propKey] /></td>
         <!--TODO : url encoding with ?url-->
         <td>[<a href="user.delproperty.action?userId=${user.userId}&propertyKey=${propKey}">Del</a>]</td>
     </tr>
@@ -71,4 +64,4 @@ Value: <input name="newPropertyValue" type="text"><br/>
 <input type="submit" name="propertyAdd" value="Add Property"/>
 </form>
 
-</div>
+<#include "footer.ftl">

@@ -1,5 +1,4 @@
-<div id="berkano-user-mgt">
-<#include "nav.ftl">
+<#include "header.ftl">
 
 <h1>Users</h1>
 
@@ -16,4 +15,4 @@
 
 <p><a href="user.new.action">New user</a></p>
 
-</div>
+<#include "footer.ftl">
