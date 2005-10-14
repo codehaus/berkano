@@ -11,7 +11,7 @@
 <div id="berkano-user-mgt">
 <div id="berkano-usermgt-nav">
 <ul>
-  <li><a href="user.list.action">Users</a></li>
-  <li><a href="group.list.action">Groups</a></li>
+  <li><a href="user.list.action"><@ww.text name="'menu.users'"/></a></li>
+  <li><a href="group.list.action"><@ww.text name="'menu.groups'"/></a></li>
 </ul>
 </div>

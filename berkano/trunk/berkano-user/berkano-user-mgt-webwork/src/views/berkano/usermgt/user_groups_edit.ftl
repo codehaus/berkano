@@ -1,15 +1,15 @@
 <#include "header.ftl">
 
-<h1>Edit groups for user: ${user.userName}</h1>
+<h1><@ww.text name="'usergroups.title'"><@ww.param value="user.userName"/></@ww.text></h1>
 
 <form action="usergroups.edit.action" method="post">
 <input type="hidden" name="userId" value="${user.userId}">
 
 <table>
 <tr>
-  <th>Other Groups</th>
+  <th><@ww.text name="'usergroups.availablegroups'"/></th>
   <th/>
-  <th>Member Of</th>
+  <th><@ww.text name="'usergroups.memberofgroups'"/></th>
 </tr>
 <tr>
   <td>
@@ -36,6 +36,6 @@
 
 </form>
 
-<p><a href="user.view.action?userId=${user.userId}">back to user details</a>.</p>
+<p><a href="user.view.action?userId=${user.userId}"><@ww.text name="'usergroups.backtouserdetails'"/></a>.</p>
 
 <#include "footer.ftl">
