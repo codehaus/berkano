@@ -38,7 +38,7 @@
           <td>${propKey}</td>
           <td><@showProps props[propKey] /></td>
           <!--TODO : url encoding with ?url-->
-          <td>[<a href="user.delproperty.action?userId=${user.userId}&propertyKey=${propKey}"><@ww.text name="'userdetails.properties.actions.del'"/></a>]</td>
+          <td>[<a href="user.delproperty.action?userId=${user.userId}&propertyKey=${propKey}"><@ww.text name="'userdetails.properties.actions.delete'"/></a>]</td>
       </tr>
   </#list>
   <#list userGroups as group>
@@ -50,7 +50,7 @@
           <td>${propKey}</td>
           <td><@showProps props[propKey] /></td>
           <!--TODO : url encoding with ?url-->
-          <td>[<a href="user.delproperty.action?userId=${user.userId}&propertyKey=${propKey}"><@ww.text name="'userdetails.properties.actions.del'"/></a>]</td>
+          <td>[<a href="user.delproperty.action?userId=${user.userId}&propertyKey=${propKey}"><@ww.text name="'userdetails.properties.actions.delete'"/></a>]</td>
       </tr>
     </#list>
   </#list>

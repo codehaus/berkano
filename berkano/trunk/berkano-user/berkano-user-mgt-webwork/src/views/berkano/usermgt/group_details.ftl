@@ -32,7 +32,7 @@
       <td>${propKey}</td>
       <td><@showProps props[propKey] /></td>
       <!--TODO : url encoding with ?url-->
-      <td>[<a href="group.delproperty.action?groupId=${group.groupId}&propertyKey=${propKey}"><@ww.text name="'groupdetails.properties.actions.del'"/></a>]</td>
+      <td>[<a href="group.delproperty.action?groupId=${group.groupId}&propertyKey=${propKey}"><@ww.text name="'groupdetails.properties.actions.delete'"/></a>]</td>
     </tr>
   </#list>
 </table>
