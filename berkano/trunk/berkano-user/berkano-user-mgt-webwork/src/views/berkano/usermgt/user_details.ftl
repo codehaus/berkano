@@ -12,11 +12,11 @@
 </ul>
 
 <h2><@ww.text name="'userdetails.groups'"><@ww.param value="user.userName"/></@ww.text></h2>
-<p><@ww.text name="'userdetails.groupscount'"><@ww.param value="user.groups.size()"/></@ww.text></p>
+<p><@ww.text name="'userdetails.groups.count'"><@ww.param value="user.groups.size()"/></@ww.text></p>
 
 <ul>
 <#list userGroups as group>
-   <li><a href="group.view.action?groupId=${group.groupId}">(#${group.groupId}) ${group.groupName}</a></li>
+   <li><a href="group.view.action?groupId=${group.groupId}">${group.groupName}</a> (#${group.groupId})</li>
 </#list>
 </ul>
 
@@ -38,7 +38,7 @@
           <td>${propKey}</td>
           <td><@showProps props[propKey] /></td>
           <!--TODO : url encoding with ?url-->
-          <td>[<a href="user.delproperty.action?userId=${user.userId}&propertyKey=${propKey}"><@ww.text name="'userdetails.properties.actions.delete'"/></a>]</td>
+          <td><a href="user.delproperty.action?userId=${user.userId}&propertyKey=${propKey}"><@ww.text name="'userdetails.properties.actions.delete'"/></a></td>
       </tr>
   </#list>
   <#list userGroups as group>
@@ -46,11 +46,10 @@
     <#list props?keys as propKey>
       <tr>
           <td>group</td>
-          <td>${group.groupName}</td>
+          <td><a href="group.view.action?groupId=${group.groupId}">${group.groupName}</a></td>
           <td>${propKey}</td>
           <td><@showProps props[propKey] /></td>
-          <!--TODO : url encoding with ?url-->
-          <td>[<a href="user.delproperty.action?userId=${user.userId}&propertyKey=${propKey}"><@ww.text name="'userdetails.properties.actions.delete'"/></a>]</td>
+          <td></td>
       </tr>
     </#list>
   </#list>
@@ -60,8 +59,9 @@
 <form action="user.addproperty.action" method="post">
 <fieldset>
 <input type="hidden" name="userId" value="${user.userId}">
-<@ww.text name="'userdetails.property.add.name'"/>: <input name="propertyKey" type="text"><br/>
-<@ww.text name="'userdetails.property.add.value'"/>: <input name="newPropertyValue" type="text"><br/>
+<p><@ww.text name="'userdetails.property.add.hint'"/></p>
+<@ww.textfield label="getText('userdetails.property.add.name')" name="'propertyKey'" id="propertyKey" /><br />
+<@ww.textfield label="getText('userdetails.property.add.value')" name="'newPropertyValue'" id="newPropertyValue" /><br />
 <@ww.submit value="getText('userdetails.property.add.submit')" />
 </fieldset>
 </form>

@@ -4,17 +4,17 @@
 
 <h2><@ww.text name="'groupdetails.members.title'"/></h2>
 <p><@ww.text name="'groupdetails.members.count'"><@ww.param value="group.users.size()"/></@ww.text></p>
-<ol>
+<ul>
 <#list group.users as user>
-    <li><a href="user.view.action?userId=${user.userId}">${user.userName}</a></li>
+    <li><a href="user.view.action?userId=${user.userId}">${user.userName}</a> (#${user.userId})</li>
 </#list>
-</ol>
+</ul>
 
 <h2><@ww.text name="'groupdetails.roles.title'"/></h2>
 <form action="group.roles.action" method="post">
-  <fieldset>
+  <fieldset id="berkano-roles">
   <@ww.hidden name="'groupId'" value="group.groupId"/>
-  <@ww.checkboxlist label="getText('groupdetails.roles.label')" name="'roleNames'" value="group.roles.{name}" list="allRoles" listKey="name" listValue="name" /><br />
+  <@ww.checkboxlist label="getText('groupdetails.roles.label')" name="'roleNames'" id="roleNames" value="group.roles.{name}" list="allRoles" listKey="name" listValue="name" /><br />
   <@ww.submit value="getText('groupdetails.roles.submit')" />
   </fieldset>
 </form>
@@ -32,18 +32,18 @@
       <td>${propKey}</td>
       <td><@showProps props[propKey] /></td>
       <!--TODO : url encoding with ?url-->
-      <td>[<a href="group.delproperty.action?groupId=${group.groupId}&propertyKey=${propKey}"><@ww.text name="'groupdetails.properties.actions.delete'"/></a>]</td>
+      <td><a href="group.delproperty.action?groupId=${group.groupId}&propertyKey=${propKey}"><@ww.text name="'groupdetails.properties.actions.delete'"/></a></td>
     </tr>
   </#list>
 </table>
-<hr/>
 
 <h2><@ww.text name="'groupdetails.property.add'"><@ww.param value="group.groupName"/></@ww.text></h2>
 <form action="group.addproperty.action" method="post">
 <fieldset>
 <input type="hidden" name="groupId" value="${group.groupId}">
-<@ww.text name="'groupdetails.property.add.name'"/>: <input name="propertyKey" type="text"><br/>
-<@ww.text name="'groupdetails.property.add.value'"/>: <input name="newPropertyValue" type="text"><br/>
+<p><@ww.text name="'groupdetails.property.add.hint'"/></p>
+<@ww.textfield label="getText('groupdetails.property.add.name')" name="'propertyKey'" id="propertyKey" /><br />
+<@ww.textfield label="getText('groupdetails.property.add.value')" name="'newPropertyValue'" id="newPropertyValue" /><br />
 <@ww.submit value="getText('groupdetails.property.add.submit')" />
 </fieldset>
 </form>
