@@ -8,13 +8,13 @@ package net.incongru.berkano.bookmarks;
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */
-public class ExternalBookmark implements Bookmark {
+public class DefaultBookmark implements Bookmark {
     private int id;
     private String url;
     private String name;
     private String description;
 
-    public ExternalBookmark(int id, String url, String name, String description) {
+    public DefaultBookmark(int id, String url, String name, String description) {
         this.id = id;
         this.url = url;
         this.name = name;

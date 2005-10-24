@@ -10,6 +10,19 @@ import java.io.StringWriter;
  * @version $Revision: 1.3 $
  */
 public class BookmarksTreeTest extends AbstractBookmarksTestCase {
+    public void testGetBookmark() {
+        BookmarksTree tree = setupSimpleTree();
+        Bookmark bm1 = tree.getBookmark(1);
+        assertEquals(1, bm1.getId());
+        assertEquals("url1", bm1.getLink());
+        assertEquals("name1", bm1.getName());
+        assertEquals(null, bm1.getDescription());
+        Bookmark bm3 = tree.getBookmark(3);
+        assertEquals(3, bm3.getId());
+        assertEquals("url3", bm3.getLink());
+        assertEquals("name3", bm3.getName());
+        assertEquals(null, bm3.getDescription());
+    }
 
     public void testMoveRemove() {
         BookmarksTree t = setupSimpleTree();

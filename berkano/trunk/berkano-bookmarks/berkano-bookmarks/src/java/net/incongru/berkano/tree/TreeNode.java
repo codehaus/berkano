@@ -29,7 +29,7 @@ public class TreeNode implements Serializable {
     }
 
 
-    Object getObject() {
+    public Object getObject() {
         return object;
     }
 

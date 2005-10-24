@@ -5,7 +5,7 @@ import com.opensymphony.xwork.ActionContext;
 import com.opensymphony.xwork.ActionSupport;
 import net.incongru.berkano.bookmarks.Bookmark;
 import net.incongru.berkano.bookmarks.BookmarksTree;
-import net.incongru.berkano.bookmarks.ExternalBookmark;
+import net.incongru.berkano.bookmarks.DefaultBookmark;
 import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.extensions.BookmarksDAO;
 
@@ -82,7 +82,7 @@ public class UserBookmarksAccessor extends ActionSupport {
         int i = 0;
         while (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
-            Bookmark b = new ExternalBookmark(i, (String) entry.getValue(), (String) entry.getKey(), null);
+            Bookmark b = new DefaultBookmark(i, (String) entry.getValue(), (String) entry.getKey(), null);
             tree.add(b, null);
             i++;
         }

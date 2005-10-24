@@ -22,17 +22,17 @@ public abstract class AbstractBookmarksTestCase extends TestCase {
     protected Bookmark notadded2;
 
     protected void setUp() throws Exception {
-        b1 = new DummyBookmark("url1", "name1");
-        b2 = new DummyBookmark("url2", "name2");
-        b3 = new DummyBookmark("url3", "name3");
-        b4 = new DummyBookmark("url4", "name4");
-        b5 = new DummyBookmark("url5", "name5");
-        b6 = new DummyBookmark("url6", "name6");
-        b7 = new DummyBookmark("url7", "name7");
-        notadded = new DummyBookmark("notadded-url", "notadded");
-        notadded2 = new DummyBookmark("notadded2-url", "notadded2");
-        dir = new DummyBookmark(null, "dir");
-        subdir = new DummyBookmark(null, "subdir");
+        b1 = new DummyBookmark(1, "url1", "name1");
+        b2 = new DummyBookmark(2, "url2", "name2");
+        b3 = new DummyBookmark(3, "url3", "name3");
+        b4 = new DummyBookmark(4, "url4", "name4");
+        b5 = new DummyBookmark(5, "url5", "name5");
+        b6 = new DummyBookmark(6, "url6", "name6");
+        b7 = new DummyBookmark(7, "url7", "name7");
+        notadded = new DummyBookmark(8, "notadded-url", "notadded");
+        notadded2 = new DummyBookmark(9, "notadded2-url", "notadded2");
+        dir = new DummyBookmark(10, null, "dir");
+        subdir = new DummyBookmark(11, null, "subdir");
     }
 
     protected BookmarksTree setupSimpleTree() {
@@ -51,16 +51,18 @@ public abstract class AbstractBookmarksTestCase extends TestCase {
     }
 
     private class DummyBookmark implements Bookmark {
+        private int id;
         private String link;
         private String name;
 
-        public DummyBookmark(String link, String name) {
+        public DummyBookmark(int id, String link, String name) {
+            this.id = id;
             this.link = link;
             this.name = name;
         }
 
         public int getId() {
-            return -1;
+            return id;
         }
 
         public String getLink() {

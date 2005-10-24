@@ -26,12 +26,13 @@ public class BookmarksTree implements Serializable {
 
     private Bookmark searchBookmark(TreeIterator it, int bookmarkId) {
         while (it.hasNext()) {
-            Bookmark bm = (Bookmark) it.next();
-            if (bm.getId() == bookmarkId) {
-                return bm;
+            final TreeNode node = (TreeNode) it.next();
+            final Bookmark bookmark = (Bookmark) node.getObject();
+            if (bookmark.getId() == bookmarkId) {
+                return bookmark;
             }
             if (it.hasChildren()) {
-                Bookmark res = searchBookmark(it.getChildIterator(), bookmarkId);
+                final Bookmark res = searchBookmark(it.getChildIterator(), bookmarkId);
                 if (res != null) {
                     return res;
                 }
