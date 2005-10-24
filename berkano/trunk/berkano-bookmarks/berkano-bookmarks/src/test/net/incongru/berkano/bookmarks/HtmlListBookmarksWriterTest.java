@@ -21,7 +21,7 @@ public class HtmlListBookmarksWriterTest extends AbstractBookmarksTestCase {
                 "<li><a href=\"url2\" title=\"name2\">name2</a></li>\n" +
                 "<li><a href=\"null\" title=\"dir\">dir</a></li>\n" +
                 "<ul>\n" +
-                "<li><a href=\"url3\" title=\"name3\">name3</a></li>\n" +
+                "<li><a href=\"url3\" title=\"and a desc for link 3\">name3</a></li>\n" +
                 "<li><a href=\"null\" title=\"subdir\">subdir</a></li>\n" +
                 "<ul>\n" +
                 "<li><a href=\"url4\" title=\"name4\">name4</a></li>\n" +
@@ -48,7 +48,7 @@ public class HtmlListBookmarksWriterTest extends AbstractBookmarksTestCase {
                 "<li><a href=\"url7\" title=\"name7\">name7</a></li>\n" +
                 "<li><a href=\"null\" title=\"dir\">dir</a></li>\n" +
                 "<ul>\n" +
-                "<li><a href=\"url3\" title=\"name3\">name3</a></li>\n" +
+                "<li><a href=\"url3\" title=\"and a desc for link 3\">name3</a></li>\n" +
                 "<li><a href=\"null\" title=\"subdir\">subdir</a></li>\n" +
                 "<ul>\n" +
                 "<li><a href=\"url4\" title=\"name4\">name4</a></li>\n" +

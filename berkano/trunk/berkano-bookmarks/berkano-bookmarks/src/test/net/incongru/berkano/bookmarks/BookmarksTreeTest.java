@@ -21,7 +21,7 @@ public class BookmarksTreeTest extends AbstractBookmarksTestCase {
         assertEquals(3, bm3.getId());
         assertEquals("url3", bm3.getLink());
         assertEquals("name3", bm3.getName());
-        assertEquals(null, bm3.getDescription());
+        assertEquals("and a desc for link 3", bm3.getDescription());
     }
 
     public void testMoveRemove() {

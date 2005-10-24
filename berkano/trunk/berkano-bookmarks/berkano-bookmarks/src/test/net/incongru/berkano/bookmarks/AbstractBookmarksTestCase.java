@@ -24,7 +24,7 @@ public abstract class AbstractBookmarksTestCase extends TestCase {
     protected void setUp() throws Exception {
         b1 = new DummyBookmark(1, "url1", "name1");
         b2 = new DummyBookmark(2, "url2", "name2");
-        b3 = new DummyBookmark(3, "url3", "name3");
+        b3 = new DummyBookmark(3, "url3", "name3", "and a desc for link 3");
         b4 = new DummyBookmark(4, "url4", "name4");
         b5 = new DummyBookmark(5, "url5", "name5");
         b6 = new DummyBookmark(6, "url6", "name6");
@@ -54,11 +54,19 @@ public abstract class AbstractBookmarksTestCase extends TestCase {
         private int id;
         private String link;
         private String name;
+        private String desc;
 
         public DummyBookmark(int id, String link, String name) {
             this.id = id;
             this.link = link;
             this.name = name;
+        }
+
+        public DummyBookmark(int id, String link, String name, String desc) {
+            this.id = id;
+            this.link = link;
+            this.name = name;
+            this.desc = desc;
         }
 
         public int getId() {
@@ -74,7 +82,7 @@ public abstract class AbstractBookmarksTestCase extends TestCase {
         }
 
         public String getDescription() {
-            return null;
+            return desc;
         }
     }
 }

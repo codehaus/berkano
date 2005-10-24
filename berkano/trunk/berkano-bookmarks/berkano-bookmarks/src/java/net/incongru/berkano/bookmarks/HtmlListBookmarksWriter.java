@@ -29,13 +29,15 @@ public class HtmlListBookmarksWriter extends SimpleBookmarksWriter {
     }
 
     protected void writeBookmark(Bookmark bookmark, Writer out) throws IOException {
+        final String name = bookmark.getName();
+        final String desc = bookmark.getDescription();
         out.write("<li>");
         out.write("<a href=\"");
         out.write(bookmark.getLink());
         out.write("\" title=\"");
-        out.write(bookmark.getName());
+        out.write(desc != null ? desc : name);
         out.write("\">");
-        out.write(bookmark.getName());
+        out.write(name);
         out.write("</a>");
         out.write("</li>");
     }
