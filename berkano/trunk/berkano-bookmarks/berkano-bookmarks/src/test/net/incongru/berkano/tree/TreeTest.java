@@ -67,16 +67,16 @@ public class TreeTest extends TestCase {
         }
 
         assertTrue(it.hasNext());
-        assertEquals("pouet", ((TreeNode)it.next()).getObject());
+        assertEquals("pouet", ((TreeNode) it.next()).getObject());
         assertTrue(it.hasChildren());
         TreeIterator subIt = it.getChildIterator();
         assertTrue(subIt.hasNext());
-        assertEquals("tralala", ((TreeNode)subIt.next()).getObject());
+        assertEquals("tralala", ((TreeNode) subIt.next()).getObject());
         assertTrue(subIt.hasNext());
-        assertEquals("yopyop", ((TreeNode)subIt.next()).getObject());
+        assertEquals("yopyop", ((TreeNode) subIt.next()).getObject());
         assertFalse(subIt.hasNext());
         assertTrue(it.hasNext());
-        assertEquals("blah", ((TreeNode)it.next()).getObject());
+        assertEquals("blah", ((TreeNode) it.next()).getObject());
         assertFalse(it.hasChildren());
         assertFalse(it.hasNext());
     }
@@ -100,22 +100,22 @@ public class TreeTest extends TestCase {
 
         TreeIterator tit = tree.getTreeIterator();
         assertTrue(tit.hasNext());
-        assertEquals("cheeses", ((TreeNode)tit.next()).getObject());
+        assertEquals("cheeses", ((TreeNode) tit.next()).getObject());
         assertTrue(tit.hasChildren());
         TreeIterator cheeses = tit.getChildIterator();
         assertTrue(cheeses.hasNext());
-        assertEquals("emmenthal", ((TreeNode)cheeses.next()).getObject());
-        assertEquals("gouda", ((TreeNode)cheeses.next()).getObject());
-        assertEquals("cheddar", ((TreeNode)cheeses.next()).getObject());
-        assertEquals("parmiggiano", ((TreeNode)cheeses.next()).getObject());
+        assertEquals("emmenthal", ((TreeNode) cheeses.next()).getObject());
+        assertEquals("gouda", ((TreeNode) cheeses.next()).getObject());
+        assertEquals("cheddar", ((TreeNode) cheeses.next()).getObject());
+        assertEquals("parmiggiano", ((TreeNode) cheeses.next()).getObject());
         assertFalse(cheeses.hasNext());
 
-        assertEquals("fishes", ((TreeNode)tit.next()).getObject());
+        assertEquals("fishes", ((TreeNode) tit.next()).getObject());
         TreeIterator fishes = tit.getChildIterator();
         assertTrue(fishes.hasNext());
-        assertEquals("salmon", ((TreeNode)fishes.next()).getObject());
-        assertEquals("tuna", ((TreeNode)fishes.next()).getObject());
-        assertEquals("clown fish", ((TreeNode)fishes.next()).getObject());
+        assertEquals("salmon", ((TreeNode) fishes.next()).getObject());
+        assertEquals("tuna", ((TreeNode) fishes.next()).getObject());
+        assertEquals("clown fish", ((TreeNode) fishes.next()).getObject());
         assertFalse(fishes.hasNext());
     }
 

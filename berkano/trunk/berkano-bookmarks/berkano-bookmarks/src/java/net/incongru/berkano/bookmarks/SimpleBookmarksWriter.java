@@ -30,7 +30,7 @@ public class SimpleBookmarksWriter implements BookmarksTreeWriter {
     }
 
     protected void writeBookmark(Bookmark bookmark, Writer out) throws IOException {
-        out.write(bookmark.getDescription());
+        out.write(bookmark.getName());
         out.write(" (");
         out.write(bookmark.getLink());
         out.write(")");

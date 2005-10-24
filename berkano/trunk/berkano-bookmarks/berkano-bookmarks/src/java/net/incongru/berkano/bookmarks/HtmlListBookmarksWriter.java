@@ -33,9 +33,9 @@ public class HtmlListBookmarksWriter extends SimpleBookmarksWriter {
         out.write("<a href=\"");
         out.write(bookmark.getLink());
         out.write("\" title=\"");
-        out.write(bookmark.getDescription());
+        out.write(bookmark.getName());
         out.write("\">");
-        out.write(bookmark.getDescription());
+        out.write(bookmark.getName());
         out.write("</a>");
         out.write("</li>");
     }

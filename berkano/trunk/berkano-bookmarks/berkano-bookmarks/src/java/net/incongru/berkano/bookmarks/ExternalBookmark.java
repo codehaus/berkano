@@ -11,14 +11,14 @@ package net.incongru.berkano.bookmarks;
 public class ExternalBookmark implements Bookmark {
     private int id;
     private String url;
+    private String name;
     private String description;
-    private String longDescription;
 
-    public ExternalBookmark(int id, String url, String description, String longDescription) {
+    public ExternalBookmark(int id, String url, String name, String description) {
         this.id = id;
         this.url = url;
+        this.name = name;
         this.description = description;
-        this.longDescription = longDescription;
     }
 
     public int getId() {
@@ -29,12 +29,12 @@ public class ExternalBookmark implements Bookmark {
         return url;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public String getLongDescription() {
-        return longDescription;
+    public String getDescription() {
+        return description;
     }
 
 }

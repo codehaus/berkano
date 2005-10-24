@@ -31,8 +31,8 @@ public interface Bookmark extends Serializable {
      * @todo should each bookmark store its own translations, or should it be left to the
      * @todo web application layer to display these translated, and manage the translations itself?
      */
-    public String getDescription();
+    public String getName();
 
-    public String getLongDescription();
+    public String getDescription();
 
 }

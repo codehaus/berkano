@@ -52,11 +52,11 @@ public abstract class AbstractBookmarksTestCase extends TestCase {
 
     private class DummyBookmark implements Bookmark {
         private String link;
-        private String desc;
+        private String name;
 
-        public DummyBookmark(String link, String desc) {
+        public DummyBookmark(String link, String name) {
             this.link = link;
-            this.desc = desc;
+            this.name = name;
         }
 
         public int getId() {
@@ -67,11 +67,11 @@ public abstract class AbstractBookmarksTestCase extends TestCase {
             return link;
         }
 
-        public String getDescription() {
-            return desc;
+        public String getName() {
+            return name;
         }
 
-        public String getLongDescription() {
+        public String getDescription() {
             return null;
         }
     }

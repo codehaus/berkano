@@ -2,7 +2,6 @@ package net.incongru.berkano.bookmarks;
 
 import freemarker.template.TemplateModelException;
 import freemarker.template.TemplateTransformModel;
-import freemarker.template.Configuration;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -43,7 +42,7 @@ public class FreemarkerTransform implements TemplateTransformModel {
             this.buff = new StringBuffer();
         }
 
-        public void write(char[] cbuf,  int off,  int len)  throws IOException {
+        public void write(char[] cbuf, int off, int len) throws IOException {
             //buff.append(cbuf, off, len);
         }
 
