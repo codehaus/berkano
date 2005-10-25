@@ -12,9 +12,10 @@ import java.io.StringWriter;
  * @version $Revision: $
  */
 public class XmlBookmarksTreeReaderTest extends TestCase {
-    private static final String XML_SIMPLE_FLAT = "<bookmarks-tree>" +
-            "<bookmark id=\"1\" href=\"foo\" name=\"foo.link\"/>" +
-            "<bookmark id=\"2\" href=\"bar\" name=\"bar.link\">some link to bar</bookmark>" +
+    private static final String XML_SIMPLE_FLAT = "" +
+            "<bookmarks-tree>" +
+            "  <bookmark id=\"1\" href=\"foo\" name=\"foo.link\"/>" +
+            "  <bookmark id=\"2\" href=\"bar\" name=\"bar.link\">some link to bar</bookmark>" +
             "</bookmarks-tree>";
 
     public void testCanReadSimpleFlatTree() throws Exception {
@@ -31,6 +32,22 @@ public class XmlBookmarksTreeReaderTest extends TestCase {
         assertEquals("bar.link", bm2.getName());
         assertEquals("some link to bar", bm2.getDescription());
     }
+
+    private static final String XML_COMPLEX_TREE = "" +
+            "<bookmarks-tree>\n" +
+            "    <bookmark id=\"1\" href=\"foo\" name=\"foo.link\"/>\n" +
+            "    <bookmark id=\"2\" href=\"bar\" name=\"bar.link\">some link to bar</bookmark>\n" +
+            "    <bookmark id=\"3\" href=\"baz\" name=\"baz.link\">has a sub menu\n" +
+            "        <bookmark id=\"4\" href=\"baz-sub-1\" name=\"baz-sub-1\"/>\n" +
+            "        <bookmark id=\"5\" href=\"baz-sub-2\" name=\"baz-sub-2\"/>\n" +
+            "        <bookmark id=\"6\" href=\"baz-sub-3\" name=\"baz-sub-3\">\n" +
+            "            <bookmark id=\"16\" href=\"baz-sub-sub-1\" name=\"baz-sub-sub-1\"/>\n" +
+            "            <bookmark id=\"17\" href=\"baz-sub-sub-2\" name=\"baz-sub-sub-2\"/>\n" +
+            "            <bookmark id=\"18\" href=\"baz-sub-sub-3\" name=\"baz-sub-sub-3\"/>\n" +
+            "        </bookmark>\n" +
+            "        <bookmark id=\"7\" href=\"baz-sub-4\" name=\"baz-sub-4\"/>\n" +
+            "    </bookmark>\n" +
+            "</bookmarks-tree>";
 
     public void testCanReadMoreComplexTreeWithNestedBookmarks() throws Exception {
         BookmarksTreeReader reader = new XmlBookmarksTreeReader(new ByteArrayInputStream(XML_COMPLEX_TREE.getBytes()));
@@ -56,18 +73,4 @@ public class XmlBookmarksTreeReaderTest extends TestCase {
                 "</ul>\n", out.toString());
     }
 
-    public static final String XML_COMPLEX_TREE = "<bookmarks-tree>\n" +
-            "    <bookmark id=\"1\" href=\"foo\" name=\"foo.link\"/>\n" +
-            "    <bookmark id=\"2\" href=\"bar\" name=\"bar.link\">some link to bar</bookmark>\n" +
-            "    <bookmark id=\"3\" href=\"baz\" name=\"baz.link\">has a sub menu\n" +
-            "        <bookmark id=\"4\" href=\"baz-sub-1\" name=\"baz-sub-1\"/>\n" +
-            "        <bookmark id=\"5\" href=\"baz-sub-2\" name=\"baz-sub-2\"/>\n" +
-            "        <bookmark id=\"6\" href=\"baz-sub-3\" name=\"baz-sub-3\">\n" +
-            "            <bookmark id=\"16\" href=\"baz-sub-sub-1\" name=\"baz-sub-sub-1\"/>\n" +
-            "            <bookmark id=\"17\" href=\"baz-sub-sub-2\" name=\"baz-sub-sub-2\"/>\n" +
-            "            <bookmark id=\"18\" href=\"baz-sub-sub-3\" name=\"baz-sub-sub-3\"/>\n" +
-            "        </bookmark>\n" +
-            "        <bookmark id=\"7\" href=\"baz-sub-4\" name=\"baz-sub-4\"/>\n" +
-            "    </bookmark>\n" +
-            "</bookmarks-tree>";
 }
