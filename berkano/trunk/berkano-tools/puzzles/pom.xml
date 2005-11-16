@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>berkano</groupId>
+    <artifactId>puzzles</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>Puzzles</name>
+    <url>http://dasouk.free.fr/puzzles/</url>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.0.2</version>
+            <scope>compile</scope>
+        </dependency>
+        -->
+    </dependencies>
+    <scm>
+        <connection>scm:svn://svn.berkano.codehaus.org/berkano/scm</connection>
+    </scm>
+    <ciManagement>
+        <system>Continuum</system>
+        <url>http://localhost:8080/continuum/</url>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <address>souk@codehaus.org</address>
+            </notifier>
+        </notifiers>
+    </ciManagement>
+</project>
