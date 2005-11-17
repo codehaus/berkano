@@ -47,7 +47,7 @@
             <notifier>
                 <type>mail</type>
                 <configuration>
-                    <address>dev@berkano.codehaus.org</address>
+                    <address>scm@berkano.codehaus.org</address>
                 </configuration>
             </notifier>
         </notifiers>
