@@ -38,15 +38,15 @@
         -->
     </dependencies>
     <scm>
-        <connection>scm:svn://svn.berkano.codehaus.org/berkano/scm</connection>
+        <connection>scm:svn:https://svn.codehaus.org/berkano/berkano/trunk/berkano-tools/puzzles/</connection>
     </scm>
     <ciManagement>
         <system>Continuum</system>
-        <url>http://localhost:8080/continuum/</url>
+        <url>http://ci.codehaus.org:8001/continuum/</url>
         <notifiers>
             <notifier>
                 <type>mail</type>
-                <address>souk@codehaus.org</address>
+                <address>dev@berkano.codehaus.org</address>
             </notifier>
         </notifiers>
     </ciManagement>
