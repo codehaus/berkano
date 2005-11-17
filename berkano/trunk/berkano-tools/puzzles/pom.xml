@@ -46,7 +46,9 @@
         <notifiers>
             <notifier>
                 <type>mail</type>
-                <address>dev@berkano.codehaus.org</address>
+                <configuration>
+                    <address>dev@berkano.codehaus.org</address>
+                </configuration>
             </notifier>
         </notifiers>
     </ciManagement>
