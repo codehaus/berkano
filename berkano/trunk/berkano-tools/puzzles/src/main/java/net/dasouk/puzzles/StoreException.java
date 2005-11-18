@@ -1,13 +1,11 @@
 package net.dasouk.puzzles;
 
 /**
- * Created by IntelliJ IDEA.
- * User: olivier
- * Date: Nov 9, 2005
- * Time: 4:27:54 PM
- * To change this template use File | Settings | File Templates.
+ * General wrapper for any Exception that may occur inside a {@link PluginStore}.
  *
- * @todo documentation
+ * @author souk
+ * @version 0.1
+ * @see PluginStore
  */
 public class StoreException extends Exception {
     public StoreException() {

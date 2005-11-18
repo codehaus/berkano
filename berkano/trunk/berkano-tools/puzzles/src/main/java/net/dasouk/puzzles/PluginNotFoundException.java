@@ -1,7 +1,8 @@
 package net.dasouk.puzzles;
 
 /**
- * @todo documentation
+ * Exception to be thrown by the {@link PluginRegistry} when no plugin with a given name could be found.
+ * @see net.dasouk.puzzles.PluginRegistry
  */
 public class PluginNotFoundException extends Exception {
     private String pluginName;

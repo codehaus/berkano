@@ -1,7 +1,12 @@
 package net.dasouk.puzzles;
 
 /**
- * @todo documentation
+ * Exception thrown if a resource is not found in a plugin package by the {@link PackageReader}.
+ * It encapsulates the name of the concerned plugin and the missing resource's name.
+ *
+ * @author souk
+ * @version 0.1
+ * @see PackageReader
  */
 public class ResourceNotFoundException extends Exception{
     private String pluginName;

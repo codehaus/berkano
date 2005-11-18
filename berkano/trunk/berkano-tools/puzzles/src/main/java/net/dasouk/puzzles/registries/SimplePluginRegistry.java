@@ -6,13 +6,13 @@ import java.util.*;
 import java.net.URL;
 
 /**
- * Simple PluginsRegistry implementation with only one store and one loader.
+ * Simple PluginRegistry implementation with only one store and one loader.
  * Having only one pluginLoader means that this registry can only load plugins from
  * one type of packaging (being zip, jars, or anything else)
  *
  * @todo documentation
  */
-public class SimplePluginRegistry<PluginClass> implements PluginsRegistry<PluginClass> {
+public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginClass> {
     private PluginStore pluginStore;
     private PluginLoader<PluginClass> pluginLoader;
     private Map<String, PackagedPlugin<PluginClass>> plugins;
@@ -35,7 +35,7 @@ public class SimplePluginRegistry<PluginClass> implements PluginsRegistry<Plugin
         return new HashSet<PackagedPlugin<PluginClass>>(plugins.values());
     }
 
-    public PluginDescriptor getPluginInfo(String name) throws PluginNotFoundException {
+    public PluginDescriptor getPluginDescriptor(String name) throws PluginNotFoundException {
         PackagedPlugin<PluginClass> packagedPlugin = getPackagedPlugin(name);
         return  packagedPlugin.getPluginDescriptor();
     }
@@ -86,7 +86,7 @@ public class SimplePluginRegistry<PluginClass> implements PluginsRegistry<Plugin
     }
 
     public URL getPluginResource(String name, String resourceName) throws PluginNotFoundException, ResourceNotFoundException {
-        PluginDescriptor pluginDescriptor = getPluginInfo(name);
+        PluginDescriptor pluginDescriptor = getPluginDescriptor(name);
         if (pluginDescriptor.hasPublicResource(resourceName)){
             URL pluginUrl = pluginsUrl.get(name);
             return pluginLoader.getResource(pluginUrl,resourceName);

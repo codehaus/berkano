@@ -5,15 +5,18 @@ import java.net.URL;
 import java.util.List;
 
 /**
- * The PluginStore's role, if it was not obvious, is to store plugins.
- * Besides that, it must be able to retrieve a Plugin from a URL. Once retrieved
- * from that URL (the url can be remote, local, http, file, whatever) the store provides
- * a another url with wich other components will access the plugin package
- *
+ * General interface for a component aimed at retrieving and storing plugins.
+ * It is a local repository that is able to retrieve a Plugin from a URL.
+ * Once retrieved from that URL (the url can be remote, local, http, file, whatever)
+ * the store provides another url with wich other components will access the plugin
+ * package.
+ * The implementation is free to keep the plugin packaged or to explode it or leave it
+ * unpackaged if the plugin consists of only one file (e.g. a "Style" plugin for a web application,
+ * consisting of only one CSS file).
  *
  * @author souk
  * @version 0.1
- * @todo do not use URL for local storage.
+ * @see net.dasouk.puzzles.stores.SimpleFileSystemStore
  */
 public interface PluginStore extends Serializable {
     /**
