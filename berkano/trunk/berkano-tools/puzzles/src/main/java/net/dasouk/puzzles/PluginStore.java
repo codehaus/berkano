@@ -21,15 +21,17 @@ import java.util.List;
 public interface PluginStore extends Serializable {
     /**
      * Retrieves a plugin from the given URL and store it.
+     *
      * @param pluginUrl the URL to download the plugin
      * @return the URL of the plugin inside the store
      * @throws StoreException thrown if anything related to the downloading
-     * or the storing of the plugin goes wrong
+     *                        or the storing of the plugin goes wrong
      */
     public URL store(URL pluginUrl) throws StoreException;
 
     /**
      * removes a plugin from the store
+     *
      * @param pluginUrl the URL of the plugin inside the store
      * @throws StoreException if the removal encounters problems
      */
@@ -38,6 +40,7 @@ public interface PluginStore extends Serializable {
     /**
      * List the urls of the installed plugins. the returned URLs are the
      * urls of the plugins inside the store.
+     *
      * @return a list of the URLs of the installed plugins.
      * @throws StoreException
      */

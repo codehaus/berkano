@@ -1,16 +1,19 @@
 package net.dasouk.puzzles;
 
 /**
- * Created by IntelliJ IDEA.
- * User: olivier
- * Date: Nov 9, 2005
- * Time: 3:02:30 PM
- * To change this template use File | Settings | File Templates.
+ * Listener interface to receive plugins related events notification from a {@link PluginRegistry}.
  *
- * @todo documentation
+ * @author souk
+ * @version 0.1
  */
 public interface PluginListener<PluginClass> {
+    /**
+     * called whenever a plugin is successfully installed in the registry
+     */
     public void installedPlugin(PackagedPlugin<PluginClass> plugin);
 
+    /**
+     * called whenever a plugin is successfully uninstalled and removed from the registry
+     */
     public void uninstalledPlugin(PackagedPlugin<PluginClass> plugin);
 }

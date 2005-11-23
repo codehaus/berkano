@@ -3,13 +3,10 @@ package net.dasouk.puzzles;
 import java.io.Serializable;
 
 /**
- * Created by IntelliJ IDEA.
- * User: olivier
- * Date: Nov 16, 2005
- * Time: 4:21:12 PM
- * To change this template use File | Settings | File Templates.
+ * Simple model class to hold information related to a plugin: it includes the descriptor and the plugin instance (if there is one)
  *
- * @todo documentation
+ * @author souk
+ * @version 0.1
  */
 public class PackagedPlugin<PluginClass> implements Serializable {
     private PluginDescriptor pluginDescriptor;

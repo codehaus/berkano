@@ -3,37 +3,27 @@ package net.dasouk.puzzles;
 import java.net.URL;
 
 /**
- * Created by IntelliJ IDEA.
- * User: olivier
- * Date: Nov 16, 2005
- * Time: 4:05:25 PM
- * To change this template use File | Settings | File Templates.
+ * General Exception to report an exception
+ * happening when building/reading the descriptor of a plugin.
  *
- * @todo documentation
+ * @author souk
+ * @version 0.1
  */
-public class PluginDescriptorException extends Exception {
-    private URL descriptorUrl;
+public class PluginDescriptorException extends PluginException {
 
-    public PluginDescriptorException(URL descriptorUrl) {
-        this.descriptorUrl = descriptorUrl;
+    protected PluginDescriptorException(URL url) {
+        super(url);
     }
 
-    public PluginDescriptorException(String message, URL descriptorUrl) {
-        super(message);
-        this.descriptorUrl = descriptorUrl;
+    protected PluginDescriptorException(String message, URL url) {
+        super(message, url);
     }
 
-    public PluginDescriptorException(String message, Throwable cause, URL descriptorUrl) {
-        super(message, cause);
-        this.descriptorUrl = descriptorUrl;
+    protected PluginDescriptorException(String message, Throwable cause, URL url) {
+        super(message, cause, url);
     }
 
-    public PluginDescriptorException(Throwable cause, URL descriptorUrl) {
-        super(cause);
-        this.descriptorUrl = descriptorUrl;
-    }
-
-    public URL getDescriptorUrl() {
-        return descriptorUrl;
+    protected PluginDescriptorException(Throwable cause, URL url) {
+        super(cause, url);
     }
 }

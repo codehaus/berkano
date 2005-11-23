@@ -2,15 +2,15 @@ package net.dasouk.puzzles.registries;
 
 import net.dasouk.puzzles.*;
 
-import java.util.*;
 import java.net.URL;
+import java.util.*;
 
 /**
  * Simple PluginRegistry implementation with only one store and one loader.
  * Having only one pluginLoader means that this registry can only load plugins from
  * one type of packaging (being zip, jars, or anything else)
  *
- * @todo documentation
+ * @todo refine documentation
  */
 public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginClass> {
     private PluginStore pluginStore;
@@ -37,7 +37,7 @@ public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginC
 
     public PluginDescriptor getPluginDescriptor(String name) throws PluginNotFoundException {
         PackagedPlugin<PluginClass> packagedPlugin = getPackagedPlugin(name);
-        return  packagedPlugin.getPluginDescriptor();
+        return packagedPlugin.getPluginDescriptor();
     }
 
     public PluginClass getPluginInstance(String name) throws PluginNotFoundException {
@@ -53,7 +53,7 @@ public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginC
         return packagedPlugin;
     }
 
-    public PackagedPlugin<PluginClass> installPlugin(URL pluginUrl) throws PluginInstanciationException, StoreException {
+    public PackagedPlugin<PluginClass> installPlugin(URL pluginUrl) throws PluginException, StoreException {
         //store plugin
         URL inStoreUrl = pluginStore.store(pluginUrl);
 
@@ -61,13 +61,13 @@ public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginC
         try {
             PackagedPlugin<PluginClass> packagedPlugin = pluginLoader.load(inStoreUrl);
             String name = packagedPlugin.getPluginDescriptor().getName();
-            plugins.put(name,packagedPlugin);
+            plugins.put(name, packagedPlugin);
             pluginsUrl.put(name, inStoreUrl);
 
             //notify listeners
             fireInstalledPlugin(packagedPlugin);
             return packagedPlugin;
-        } catch (PluginInstanciationException e) {
+        } catch (PluginException e) {
             pluginStore.remove(pluginUrl);
             throw e;//rethrow the exception after cleaning the store
         }
@@ -87,20 +87,12 @@ public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginC
 
     public URL getPluginResource(String name, String resourceName) throws PluginNotFoundException, ResourceNotFoundException {
         PluginDescriptor pluginDescriptor = getPluginDescriptor(name);
-        if (pluginDescriptor.hasPublicResource(resourceName)){
+        if (pluginDescriptor.isPublicResource(resourceName)) {
             URL pluginUrl = pluginsUrl.get(name);
-            return pluginLoader.getResource(pluginUrl,resourceName);
-        }else{
-            throw new ResourceNotFoundException(name,resourceName);
+            return pluginLoader.getResource(pluginUrl, resourceName);
+        } else {
+            throw new ResourceNotFoundException(name, resourceName);
         }
-    }
-
-    public boolean addPluginListener(PluginListener<PluginClass> pluginListener) {
-        return listeners.add(pluginListener);
-    }
-
-    public boolean removePluginListener(PluginListener<PluginClass> pluginListener) {
-        return listeners.remove(pluginListener);
     }
 
     public void startUp() throws StoreException {
@@ -109,8 +101,8 @@ public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginC
         for (URL pluginUrl : pluginsInStore) {
             try {
                 installPlugin(pluginUrl);
-            } catch (PluginInstanciationException e) {
-                pluginStore.remove(pluginUrl);
+            } catch (PluginException e) {
+                pluginStore.remove(pluginUrl); //maybe too extreme :petrus75:
             }
         }
     }
@@ -131,15 +123,23 @@ public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginC
         this.pluginLoader = pluginLoader;
     }
 
+    public boolean addPluginListener(PluginListener<PluginClass> pluginListener) {
+        return listeners.add(pluginListener);
+    }
+
+    public boolean removePluginListener(PluginListener<PluginClass> pluginListener) {
+        return listeners.remove(pluginListener);
+    }
+
     //listeners stuff
     private void fireUninstalledPlugin(PackagedPlugin<PluginClass> packagedPlugin) {
-        for(PluginListener<PluginClass> listener : listeners){
+        for (PluginListener<PluginClass> listener : listeners) {
             listener.uninstalledPlugin(packagedPlugin);
         }
     }
 
     private void fireInstalledPlugin(PackagedPlugin<PluginClass> packagedPlugin) {
-        for(PluginListener<PluginClass> listener : listeners){
+        for (PluginListener<PluginClass> listener : listeners) {
             listener.installedPlugin(packagedPlugin);
         }
     }

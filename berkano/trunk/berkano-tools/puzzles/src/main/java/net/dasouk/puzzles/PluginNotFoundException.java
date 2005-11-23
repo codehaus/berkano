@@ -2,6 +2,9 @@ package net.dasouk.puzzles;
 
 /**
  * Exception to be thrown by the {@link PluginRegistry} when no plugin with a given name could be found.
+ *
+ * @author souk
+ * @version 0.1
  * @see net.dasouk.puzzles.PluginRegistry
  */
 public class PluginNotFoundException extends Exception {

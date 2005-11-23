@@ -3,21 +3,18 @@ package net.dasouk.puzzles.stores;
 import net.dasouk.puzzles.PluginStore;
 import net.dasouk.puzzles.StoreException;
 
-import java.net.URL;
-import java.net.URISyntaxException;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.util.List;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
-import java.io.*;
+import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * User: olivier
- * Date: Nov 9, 2005
- * Time: 4:04:03 PM
- * To change this template use File | Settings | File Templates.
- *
- * @todo documentation
+ * @todo documentation + file naming strategy
  */
 public class SimpleFileSystemStore implements PluginStore {
     private File folder;

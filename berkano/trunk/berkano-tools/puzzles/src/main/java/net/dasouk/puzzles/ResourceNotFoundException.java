@@ -8,7 +8,7 @@ package net.dasouk.puzzles;
  * @version 0.1
  * @see PackageReader
  */
-public class ResourceNotFoundException extends Exception{
+public class ResourceNotFoundException extends Exception {
     private String pluginName;
     private String resourceName;
 

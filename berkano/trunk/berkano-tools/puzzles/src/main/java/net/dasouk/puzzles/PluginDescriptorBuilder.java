@@ -4,14 +4,12 @@ import java.io.Serializable;
 import java.net.URL;
 
 /**
- * Created by IntelliJ IDEA.
- * User: olivier
- * Date: Nov 16, 2005
- * Time: 4:04:18 PM
- * To change this template use File | Settings | File Templates.
+ * A PluginDescriptorBuilder's role is to ... well ... build a plugin's descriptor, given the URL to
+ * the descriptor document inside the plugin's package.
  *
- * @todo documentation
+ * @author souk
+ * @version 0.1
  */
 public interface PluginDescriptorBuilder extends Serializable {
-    public PluginDescriptor builDeacriptor(URL descriptorUrl)throws PluginDescriptorException;
+    public PluginDescriptor buildDescriptor(URL descriptorUrl) throws PluginDescriptorException;
 }

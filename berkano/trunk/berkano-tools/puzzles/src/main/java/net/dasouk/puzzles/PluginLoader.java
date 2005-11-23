@@ -3,16 +3,28 @@ package net.dasouk.puzzles;
 import java.net.URL;
 
 /**
- * Created by IntelliJ IDEA.
- * User: olivier
- * Date: Nov 9, 2005
- * Time: 3:11:02 PM
- * To change this template use File | Settings | File Templates.
+ * This class is a simple front end to the whole process of reading the descriptor of a plugin,
+ * building the descriptor, reading the blue prints, instanciate it, etc.
+ * A PluginRegistry's implementation may choose to do all this itself, but the PluginLoader abstraction
+ * enables reuse among different PluginRegitry's implementations.
  *
- * @todo documentation
+ * @author souk
+ * @version 0.1
  */
 public interface PluginLoader<PluginClass> {
-    public PackagedPlugin<PluginClass> load(URL pluginPackageUrl) throws PluginInstanciationException;
+    /**
+     * Produces a PackagedPlugin containing both the PluginDescriptor and the plugin instance
+     * from the URL of the plugin's package's URL inside a PluginStore.
+     *
+     * @throws PluginException if any exception related to the PluginDescriptor or plugin instanciation goes wrong
+     */
+    public PackagedPlugin<PluginClass> load(URL pluginPackageUrl) throws PluginException;
 
+    /**
+     * @param pluginUrl
+     * @param resourceName
+     * @return
+     * @throws ResourceNotFoundException
+     */
     public URL getResource(URL pluginUrl, String resourceName) throws ResourceNotFoundException;
 }
