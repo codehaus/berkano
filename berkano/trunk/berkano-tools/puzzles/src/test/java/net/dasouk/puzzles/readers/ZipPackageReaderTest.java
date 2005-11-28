@@ -8,32 +8,33 @@ import java.net.URL;
 
 
 public class ZipPackageReaderTest extends TestCase {
-    private ZipPackageReader reader;
+    private static final String DUMMY_DESCRIPTOR_NAME = "descriptor.ext";
+    private static final String DUMMY_RES_NAME = "lib/toto.jar";
+    private static final String DUMMY_SPEC = "http://sub.domain.com:48/repository/plugins/";
+    private static final String DUMMY_JAR_SPEC = "jar:" + DUMMY_SPEC + "!/";
+    private static final String EXPECTED_RES_URL = DUMMY_JAR_SPEC + "lib/toto.jar";
 
     public void testGetResource() throws MalformedURLException {
-        String descriptorName = "descriptor.ext";
-        reader = new ZipPackageReader(descriptorName);
-        String spec = "http://sub.domain.com:48/repository/plugins/";
-        String jarSpec = "jar:" + spec + "!/";
-        URL pluginUrl = new URL(spec);
+        final ZipPackageReader reader = new ZipPackageReader(DUMMY_DESCRIPTOR_NAME);
+        URL pluginUrl = new URL(DUMMY_SPEC);
         try {
-            URL resourceUrl = reader.getResource(pluginUrl, "lib/toto.jar");
+            URL resourceUrl = reader.getResource(pluginUrl, DUMMY_RES_NAME);
             String s = resourceUrl.toString();
-            assertEquals(jarSpec + "lib/toto.jar", s);
+            assertEquals(EXPECTED_RES_URL, s);
         } catch (ResourceNotFoundException e) {
-            fail("the URL is correct and thus it should not fail");
+            fail("the URL is correct and thus it should not fail : " + e.getMessage());
         }
-        //test with a leading /
-        reader = new ZipPackageReader("/" + descriptorName);
-        spec = "http://sub.domain.com:48/repository/plugins/";
-        jarSpec = "jar:" + spec + "!/";
-        pluginUrl = new URL(spec);
+    }
+
+    public void testGetResourceWithLeadingSlash() throws MalformedURLException {
+        final ZipPackageReader reader = new ZipPackageReader("/" + DUMMY_DESCRIPTOR_NAME);
+        URL pluginUrl = new URL(DUMMY_SPEC);
         try {
-            URL resourceUrl = reader.getResource(pluginUrl, "/lib/toto.jar");
+            URL resourceUrl = reader.getResource(pluginUrl, "/" + DUMMY_RES_NAME);
             String s = resourceUrl.toString();
-            assertEquals(jarSpec + "lib/toto.jar", s);
+            assertEquals(EXPECTED_RES_URL, s);
         } catch (ResourceNotFoundException e) {
-            fail("the URL is correct and thus it should not fail");
+            fail("the URL is correct and thus it should not fail : " + e.getMessage());
         }
     }
 }

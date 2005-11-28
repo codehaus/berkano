@@ -1,13 +1,12 @@
 package net.dasouk.puzzles.stores;
 
 import junit.framework.TestCase;
+import net.dasouk.puzzles.StoreException;
 
 import java.io.File;
-import java.net.URL;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
-
-import net.dasouk.puzzles.StoreException;
 
 
 public class SimpleFileSystemStoreTest extends TestCase {
@@ -30,27 +29,28 @@ public class SimpleFileSystemStoreTest extends TestCase {
         folder.delete();
     }
 
-    public void testStore(){
+    // TODO : test method name should be more explicit
+    public void testStoreShouldFail() throws MalformedURLException {
         try {
-            URL url = sfss.store(new URL("http://trucmuchE.ppp/bofbof.jar"));
+            sfss.store(new URL("http://trucmuchE.ppp/bofbof.jar"));
             fail("should not work [:joce]");
         } catch (StoreException e) {
-            assertTrue(true);
-        } catch (MalformedURLException e) {
-            fail("just hoping the url is ok @.@V");
+            // TODO : the exception message should more explicit
+            assertEquals("Error while storing plugin: trucmuchE.ppp", e.getMessage());
         }
+    }
 
+    // TODO : test method name should be more explicit
+    public void testStoreShouldWork() throws MalformedURLException {
         try {
             URL url = sfss.store(new URL("http://www.google.fr/intl/fr_fr/images/logo.gif"));
-            File f = new File(sfss.getFolder(),"logo.gif");
+            File f = new File(sfss.getFolder(), "logo.gif");
             assertTrue(url.sameFile(f.toURL()));
             List<URL> pluginsInStore = sfss.getPluginsInStore();
-            assertEquals(1,pluginsInStore.size());
+            assertEquals(1, pluginsInStore.size());
             assertTrue(url.sameFile(pluginsInStore.get(0)));
         } catch (StoreException e) {
-            fail("no no no, storing the file should be ok");
-        } catch (MalformedURLException e) {
-            fail("just hoping the url is ok @.@V");
+            fail("no no no, storing the file should be ok : " + e.getMessage());
         }
     }
 }

@@ -40,7 +40,6 @@ public class SimpleFileSystemStore implements PluginStore {
         InputStream inputStream = null;
         boolean markToBeDeleted = false;
         try {
-
             boolean createdFile = pluginStoreFile.createNewFile();
             if (!createdFile) throw new StoreException("could not store plugin");
             fos = new FileOutputStream(pluginStoreFile);
@@ -53,7 +52,7 @@ public class SimpleFileSystemStore implements PluginStore {
             return pluginStoreFile.toURL();
         } catch (IOException e) {
             markToBeDeleted = true;
-            throw new StoreException("error while storing plugin", e);
+            throw new StoreException("Error while storing plugin: " + e.getMessage(), e);
         } finally {
             if (fos != null) {
                 try {

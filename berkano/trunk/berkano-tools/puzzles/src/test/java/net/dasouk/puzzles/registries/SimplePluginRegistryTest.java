@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 public class SimplePluginRegistryTest extends TestCase {
     private SimplePluginRegistry registry;
 
-    public void testDummy(){
+    public void testDummy() {
         boolean todo = true;
         assertTrue(todo);
     }
