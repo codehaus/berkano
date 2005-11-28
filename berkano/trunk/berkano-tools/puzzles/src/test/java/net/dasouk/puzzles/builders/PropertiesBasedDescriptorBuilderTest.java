@@ -11,8 +11,7 @@ public class PropertiesBasedDescriptorBuilderTest extends TestCase {
 
     public void testBuildDescriptor() {
         final PropertiesBasedDescriptorBuilder builder = new PropertiesBasedDescriptorBuilder();
-        ClassLoader classLoader = this.getClass().getClassLoader();
-        URL propertiesUrl = classLoader.getResource("net/dasouk/puzzles/builders/descriptor.properties");
+        URL propertiesUrl = getClass().getResource("/net/dasouk/puzzles/builders/descriptor.properties");
         try {
             PluginDescriptor descriptor = builder.buildDescriptor(propertiesUrl);
             assertEquals("name", descriptor.getName());
