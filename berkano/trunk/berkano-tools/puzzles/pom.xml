@@ -52,4 +52,22 @@
             </notifier>
         </notifiers>
     </ciManagement>
+    <distributionManagement>
+        <site>
+            <id>website</id>
+            <url>scp://gjoseph@beaver.codehaus.org/home/projects/berkano/public_html/puzzles</url>
+        </site>
+    </distributionManagement>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
