@@ -27,6 +27,11 @@ public class SimpleFileSystemStore implements PluginStore {
         }
     }
 
+    public SimpleFileSystemStore(File folder, int bufferSize) {
+        this(folder);
+        this.bufferSize = bufferSize;
+    }
+
     public URL store(URL pluginUrl) throws StoreException {
         //retrieve name of file
         String filename = new File(pluginUrl.getPath()).getName();

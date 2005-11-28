@@ -10,6 +10,9 @@ import java.util.Set;
  * The PluginRegistry is the core of Puzzles. It is the actual entry point to the
  * Puzzles Plugin Management system. When using Puzzles, you will only interact with
  * a PluginRegistry.
+ * Note that the PluginRegistry interface supports Generics. But the interface itself cannot
+ * enforce any Class constrint on plugins, this maybe delegated to specific implementations of the registry
+ * or on the application level.
  *
  * @author souk
  * @version 0.1

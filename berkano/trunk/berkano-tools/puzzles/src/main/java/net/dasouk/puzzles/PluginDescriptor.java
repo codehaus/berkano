@@ -16,10 +16,8 @@ import java.util.Map;
  * is built in Puzzles, maybe it'll come later when we have something up and running) and finally
  * a collection of public resources' names (that is, resources that are accessible from the outside
  * of a PluginRegistry), a list of jar files' names to instanciate the plugin's class, and the name
- * and type of the plugin's blueprints (the type is here to indicate which PluginBuilder is to be used
- * in case one chooses to allow for multiple types of instanciations: some plugin may only require a simple
- * reflection powered instanciation while others may require much more powerfull mechanisms such as Spring's
- * or hivemind's etc)
+ * of the plugin's main class to be instanciated. Note that the main class needs to have a no argument
+ * constructor.
  *
  * @author souk
  * @version 0.1
@@ -28,16 +26,15 @@ public class PluginDescriptor implements Serializable {
     private final String name;
     private final String family;
     private final String author;
-    private final URL url;
+    private final String url;
     private final Map<Locale, String> descriptions;
     private final String defaultDescription;
     private final String version;
     private final Collection<String> publicResources;
     private final Collection<String> jars;
-    private final String bluePrintsName;
-    private final String type;
+    private final String mainClass;
 
-    public PluginDescriptor(String name, String family, String author, URL url, Map<Locale, String> descriptions, String defaultDescription, String version, Collection<String> publicResources, Collection<String> jars, String bluePrintsName, String type) {
+    public PluginDescriptor(String name, String family, String author, String url, Map<Locale, String> descriptions, String defaultDescription, String version, Collection<String> publicResources, Collection<String> jars, String mainClass) {
         this.name = name;
         this.family = family;
         this.author = author;
@@ -47,8 +44,7 @@ public class PluginDescriptor implements Serializable {
         this.version = version;
         this.publicResources = Collections.unmodifiableCollection(publicResources);
         this.jars = Collections.unmodifiableCollection(jars);
-        this.bluePrintsName = bluePrintsName;
-        this.type = type;
+        this.mainClass = mainClass;
     }
 
     public String getName() {
@@ -63,7 +59,7 @@ public class PluginDescriptor implements Serializable {
         return author;
     }
 
-    public URL getUrl() {
+    public String getUrl() {
         return url;
     }
 
@@ -92,12 +88,8 @@ public class PluginDescriptor implements Serializable {
         return jars;
     }
 
-    public String getBluePrintsName() {
-        return bluePrintsName;
-    }
-
-    public String getType() {
-        return type;
+    public String getMainClass() {
+        return mainClass;
     }
 
     public boolean isPublicResource(String resourceName) {

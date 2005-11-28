@@ -18,17 +18,9 @@ public interface PackageReader extends Serializable {
      * Retrieves the URL to the plugin descriptor, given the URL of the plugin inside a
      * plugin store.
      *
-     * @throws ResourceNotFoundException if the descriptor could not be found
+     * @throws PluginDescriptorException if the descriptor could not be found
      */
-    public URL getPluginDescriptor(URL pluginUrl) throws ResourceNotFoundException;
-
-    /**
-     * Retrieves the URL to the plugin blue prints, given the URL of the plugin inside a
-     * plugin store.
-     *
-     * @throws ResourceNotFoundException if the blue prints could not be found.
-     */
-    public URL getPluginBluePrints(URL pluginUrl) throws ResourceNotFoundException;
+    public URL getPluginDescriptor(URL pluginUrl) throws PluginDescriptorException;
 
     /**
      * Retrieves the URL to a plugin's resource (public or private), given the URL of the plugin inside a
@@ -36,5 +28,5 @@ public interface PackageReader extends Serializable {
      *
      * @throws ResourceNotFoundException if the resource with the given name could not be found.
      */
-    public URL getResource(String name) throws ResourceNotFoundException;
+    public URL getResource(URL pluginUrl, String name) throws ResourceNotFoundException;
 }

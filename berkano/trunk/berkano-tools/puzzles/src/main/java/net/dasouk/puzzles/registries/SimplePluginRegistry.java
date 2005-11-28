@@ -18,6 +18,7 @@ public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginC
     private Map<String, PackagedPlugin<PluginClass>> plugins;
     private Map<String, URL> pluginsUrl;
     private Set<PluginListener<PluginClass>> listeners;
+    private Class enforceClass = null;
 
     public SimplePluginRegistry() {
         plugins = new HashMap<String, PackagedPlugin<PluginClass>>();
@@ -29,6 +30,11 @@ public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginC
         this();
         this.pluginStore = pluginStore;
         this.pluginLoader = pluginLoader;
+    }
+
+    public SimplePluginRegistry(PluginStore pluginStore, PluginLoader<PluginClass> pluginLoader, Class enforceClass) {
+        this(pluginStore, pluginLoader);
+        this.enforceClass = enforceClass;
     }
 
     public Set<PackagedPlugin<PluginClass>> getInstalledPlugins() {
@@ -56,10 +62,19 @@ public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginC
     public PackagedPlugin<PluginClass> installPlugin(URL pluginUrl) throws PluginException, StoreException {
         //store plugin
         URL inStoreUrl = pluginStore.store(pluginUrl);
+        return load(inStoreUrl);
+    }
 
+    private PackagedPlugin<PluginClass> load(URL inStoreUrl) throws StoreException, PluginException {
         //load plugin
         try {
             PackagedPlugin<PluginClass> packagedPlugin = pluginLoader.load(inStoreUrl);
+            if (enforceClass != null) {
+                PluginClass pluginInstance = packagedPlugin.getPlugin();
+                if (!enforceClass.isAssignableFrom(pluginInstance.getClass())){
+                    throw new PluginInstanciationException("Wrong plugin class: plugin must be a "+enforceClass.getCanonicalName(),inStoreUrl);
+                }
+            }
             String name = packagedPlugin.getPluginDescriptor().getName();
             plugins.put(name, packagedPlugin);
             pluginsUrl.put(name, inStoreUrl);
@@ -68,7 +83,7 @@ public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginC
             fireInstalledPlugin(packagedPlugin);
             return packagedPlugin;
         } catch (PluginException e) {
-            pluginStore.remove(pluginUrl);
+            pluginStore.remove(inStoreUrl);
             throw e;//rethrow the exception after cleaning the store
         }
     }
@@ -91,7 +106,7 @@ public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginC
             URL pluginUrl = pluginsUrl.get(name);
             return pluginLoader.getResource(pluginUrl, resourceName);
         } else {
-            throw new ResourceNotFoundException(name, resourceName);
+            throw new PluginNotFoundException(name);
         }
     }
 
@@ -100,7 +115,7 @@ public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginC
         List<URL> pluginsInStore = pluginStore.getPluginsInStore();
         for (URL pluginUrl : pluginsInStore) {
             try {
-                installPlugin(pluginUrl);
+                load(pluginUrl);
             } catch (PluginException e) {
                 pluginStore.remove(pluginUrl); //maybe too extreme :petrus75:
             }

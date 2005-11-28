@@ -11,19 +11,19 @@ import java.net.URL;
  */
 public class PluginDescriptorException extends PluginException {
 
-    protected PluginDescriptorException(URL url) {
+    public PluginDescriptorException(URL url) {
         super(url);
     }
 
-    protected PluginDescriptorException(String message, URL url) {
+    public PluginDescriptorException(String message, URL url) {
         super(message, url);
     }
 
-    protected PluginDescriptorException(String message, Throwable cause, URL url) {
+    public PluginDescriptorException(String message, Throwable cause, URL url) {
         super(message, cause, url);
     }
 
-    protected PluginDescriptorException(Throwable cause, URL url) {
+    public PluginDescriptorException(Throwable cause, URL url) {
         super(cause, url);
     }
 }
