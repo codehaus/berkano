@@ -6,6 +6,10 @@ import junit.framework.TestCase;
 public class SimplePluginRegistryTest extends TestCase {
     private SimplePluginRegistry registry;
 
+    public void emptyTest(){
+        boolean todo = true;
+        assertTrue(todo);
+    }
 //    public void test
     /*
     public Set<PackagedPlugin<PluginClass>> getInstalledPlugins();
