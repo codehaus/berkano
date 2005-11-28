@@ -4,9 +4,7 @@ import net.dasouk.puzzles.PluginDescriptor;
 import net.dasouk.puzzles.PluginDescriptorException;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.net.URL;
-import java.net.MalformedURLException;
 
 import junit.framework.TestCase;
 
