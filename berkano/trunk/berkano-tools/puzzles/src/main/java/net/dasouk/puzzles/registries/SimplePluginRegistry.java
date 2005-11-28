@@ -20,20 +20,16 @@ public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginC
     private Set<PluginListener<PluginClass>> listeners;
     private Class enforceClass = null;
 
-    public SimplePluginRegistry() {
-        plugins = new HashMap<String, PackagedPlugin<PluginClass>>();
-        pluginsUrl = new HashMap<String, URL>();
-        listeners = new HashSet<PluginListener<PluginClass>>();
-    }
-
     public SimplePluginRegistry(PluginStore pluginStore, PluginLoader<PluginClass> pluginLoader) {
-        this();
-        this.pluginStore = pluginStore;
-        this.pluginLoader = pluginLoader;
+        this(pluginStore,  pluginLoader, null);
     }
 
     public SimplePluginRegistry(PluginStore pluginStore, PluginLoader<PluginClass> pluginLoader, Class enforceClass) {
-        this(pluginStore, pluginLoader);
+        this.plugins = new HashMap<String, PackagedPlugin<PluginClass>>();
+        this.pluginsUrl = new HashMap<String, URL>();
+        this.listeners = new HashSet<PluginListener<PluginClass>>();
+        this.pluginStore = pluginStore;
+        this.pluginLoader = pluginLoader;
         this.enforceClass = enforceClass;
     }
 
