@@ -48,7 +48,7 @@ public class SimpleFileSystemStore implements PluginStore {
         try {
             while (!pluginStoreFile.createNewFile()) {//beware of infinite loops >_<
                 if (fileRenamer==null){
-                    throw new StoreException("could not store plugin: a file with the same name already exists in the store");
+                    throw new StoreException("Could not store plugin: a file with the same name already exists in the store");
                 }
                 filename = fileRenamer.generateNewName(filename);
                 pluginStoreFile = new File(folder, filename);
