@@ -19,17 +19,23 @@ import java.util.List;
 public class SimpleFileSystemStore implements PluginStore {
     private File folder;
     private int bufferSize = 2048;
+    private FileRenamer fileRenamer;
 
-    public SimpleFileSystemStore(File folder) throws IllegalArgumentException {
+    public SimpleFileSystemStore(File folder)throws IllegalArgumentException{
+        this(folder,null, 2048);
+    }
+
+    public SimpleFileSystemStore(File folder, FileRenamer fileRenamer) throws IllegalArgumentException {
+        this(folder, fileRenamer, 2048);
+    }
+
+    public SimpleFileSystemStore(File folder, FileRenamer fileRenamer, int bufferSize) {
+        this.fileRenamer = fileRenamer;
+        this.bufferSize = bufferSize;
         this.folder = folder;
         if (!folder.exists() || !folder.isDirectory()) {
             throw new IllegalArgumentException(folder.getAbsolutePath() + " does not exist or is not a folder");
         }
-    }
-
-    public SimpleFileSystemStore(File folder, int bufferSize) {
-        this(folder);
-        this.bufferSize = bufferSize;
     }
 
     public URL store(URL pluginUrl) throws StoreException {
@@ -40,8 +46,13 @@ public class SimpleFileSystemStore implements PluginStore {
         InputStream inputStream = null;
         boolean markToBeDeleted = false;
         try {
-            boolean createdFile = pluginStoreFile.createNewFile();
-            if (!createdFile) throw new StoreException("could not store plugin");
+            while (!pluginStoreFile.createNewFile()) {//beware of infinite loops >_<
+                if (fileRenamer==null){
+                    throw new StoreException("could not store plugin: a file with the same name already exists in the store");
+                }
+                filename = fileRenamer.generateNewName(filename);
+                pluginStoreFile = new File(folder, filename);
+            }
             fos = new FileOutputStream(pluginStoreFile);
             inputStream = pluginUrl.openStream();
             byte[] buffer = new byte[bufferSize];
@@ -114,6 +125,14 @@ public class SimpleFileSystemStore implements PluginStore {
 
     public void setBufferSize(int bufferSize) {
         this.bufferSize = bufferSize;
+    }
+
+    public FileRenamer getFileRenamer() {
+        return fileRenamer;
+    }
+
+    public void setFileRenamer(FileRenamer fileRenamer) {
+        this.fileRenamer = fileRenamer;
     }
 
 }
