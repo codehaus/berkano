@@ -2,10 +2,7 @@ package net.dasouk.puzzles;
 
 import java.io.Serializable;
 import java.net.URL;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
  * A Plugin descriptor contains the metadata of the plugin.
@@ -72,6 +69,7 @@ public class PluginDescriptor implements Serializable {
     }
 
     public String getDescription(Locale locale) {
+        if (descriptions==null) return defaultDescription;
         String description = descriptions.get(locale);
         if (description == null) {
             return defaultDescription;
@@ -94,5 +92,13 @@ public class PluginDescriptor implements Serializable {
 
     public boolean isPublicResource(String resourceName) {
         return publicResources.contains(resourceName);
+    }
+
+    public Set<Locale> getAvailableLocales(){
+        if (descriptions==null) {
+            return new HashSet<Locale>();//would returning null be better ?
+        }else{
+            return descriptions.keySet();
+        }
     }
 }

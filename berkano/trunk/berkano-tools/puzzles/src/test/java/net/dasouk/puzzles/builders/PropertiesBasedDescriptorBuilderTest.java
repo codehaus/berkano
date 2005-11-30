@@ -6,6 +6,7 @@ import net.dasouk.puzzles.PluginDescriptorException;
 
 import java.net.URL;
 import java.util.Collection;
+import java.util.Locale;
 
 public class PropertiesBasedDescriptorBuilderTest extends TestCase {
 
@@ -21,6 +22,11 @@ public class PropertiesBasedDescriptorBuilderTest extends TestCase {
             assertEquals("this is the description", descriptor.getDefaultDescription());
             assertEquals("1.0-SNAPSHOT", descriptor.getVersion());
             assertEquals("net.dasouk.puzzles.example.Something", descriptor.getMainClass());
+            assertEquals(2,descriptor.getAvailableLocales().size());
+            assertTrue(descriptor.getAvailableLocales().contains(Locale.FRENCH));
+            assertTrue(descriptor.getAvailableLocales().contains(Locale.JAPANESE));
+            assertEquals("la description en francais sans cedille ni accent", descriptor.getDescription(Locale.FRENCH));
+            assertEquals("nihongo no desukuripushan (-.-)V", descriptor.getDescription(Locale.JAPANESE));
             final Collection<String> jars = descriptor.getJars();
             assertTrue(jars.contains("lib/dep1.jar"));
             assertTrue(jars.contains("lib/dep2.jar"));

@@ -6,10 +6,7 @@ import net.dasouk.puzzles.PluginDescriptorException;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Properties;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /**
  * Builds a PluginDescriptor from a properties file.
@@ -21,20 +18,34 @@ import java.util.StringTokenizer;
  *      <li>family</li>
  *      <li>author</li>
  *      <li>url</li>
- *      <li>description</li>
+ *      <li>description => default description</li>
+ *      <li>description.#2 LETTER LOCALE# => for localized description</li>
  *      <li>version</li>
  *      <li>class => the main class of the plugin, the one to be instanciated</li>
  *      <li>jars => list of dependencies packaged with the plugin, comma separated values</li>
  *      <li>resources => list of public resources packaged with the plugin, comma separated values</li> 
  * </ul>
- *
- * @todo add support for localized descriptions
  */
 public class PropertiesBasedDescriptorBuilder implements PluginDescriptorBuilder {
     public PluginDescriptor buildDescriptor(URL descriptorUrl) throws PluginDescriptorException {
         Properties properties = new Properties();
         try {
             properties.load(descriptorUrl.openStream());
+
+            Map<Locale, String> localizedDescriptions = new HashMap<Locale, String>();
+            Set allKeys = properties.keySet();
+            for(Object key:allKeys){
+                String keyString = (String) key;//safe cast: cf javadoc "Each key and its corresponding value in the property list is a string."
+                if (keyString.startsWith("description.")){
+                    try {
+                        Locale locale = new Locale(keyString.substring("description.".length()));
+                        localizedDescriptions.put(locale, (String) properties.get(key));
+                    } catch (Exception e) {
+                        //if the locale is not valid, the corresponding description is not taken into account
+                    }
+                }
+            }
+
             String name = properties.getProperty("name");
             if (name == null || name.trim().length()==0){
                 throw new PluginDescriptorException("plugin name cannot be empty",descriptorUrl);
@@ -48,7 +59,7 @@ public class PropertiesBasedDescriptorBuilder implements PluginDescriptorBuilder
             Collection<String> jars = explode(properties.getProperty("jars")," ,");
             Collection<String> publicResources = explode(properties.getProperty("resources")," ,");
 
-            return new PluginDescriptor(name, family, author, url, null, defaultDescription, version, publicResources, jars, mainClass);
+            return new PluginDescriptor(name, family, author, url, localizedDescriptions, defaultDescription, version, publicResources, jars, mainClass);
         } catch (IOException e) {
             throw new PluginDescriptorException(e,descriptorUrl);
         }
