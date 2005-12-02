@@ -12,7 +12,7 @@ import java.io.InputStream;
  *     public void process(InputStream in) {
  *         System.out.println("ah! ah! messing with my stream");
  *     }
- * } 
+ * }
  * </code>
  * @author greg
  * @author $Author: $ (last edit)
@@ -20,23 +20,23 @@ import java.io.InputStream;
  */
 public class SmartInputStreamProcessor {
     public void processAndClose(InputStream in, InputStreamProcessor processor) throws IOException {
+        assert in != null;
         IOException e = null;
         try {
             processor.process(in);
         } catch (IOException processEx) {
             e = processEx;
         } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException finallyEx) {
-                    if (e != null) {
-                        // throwing a specific exception with the process-exception nested
-                        throw new IONestedException("IOException in process (" + e.getMessage() + ") but also when trying to close (" + e.getMessage() + ")", e);
-                    } else {
-                        throw new IONestedException("Could not close stream: " + finallyEx.getMessage(), finallyEx);
-                    }
+            try {
+                in.close();
+            } catch (IOException finallyEx) {
+                if (e != null) {
+                    // throwing a specific exception with the process-exception nested
+                    throw new IONestedException("IOException in process (" + e.getMessage() + ") but also when trying to close (" + e.getMessage() + ")", e);
+                } else {
+                    throw new IONestedException("Could not close stream: " + finallyEx.getMessage(), finallyEx);
                 }
+
             }
         }
     }
