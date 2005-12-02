@@ -10,6 +10,8 @@ import net.incongru.berkano.security.Role;
  * @author greg
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.3 $
+ *
+ * @deprecated currently unused - staying there for now just as a reminder
  */
 public interface Translator {
     public String getApplicationName(Application application);

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
  * @author greg
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.4 $
+ *
+ * @deprecated currently unused - staying there for now just as a reminder
  */
 public class BasicHttpAuthenticator implements Authenticator {
     private UserDAO userDAO;

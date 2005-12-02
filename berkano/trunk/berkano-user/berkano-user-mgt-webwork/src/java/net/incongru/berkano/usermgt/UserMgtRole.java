@@ -6,6 +6,8 @@ import net.incongru.berkano.security.AbstractRole;
  * @author greg
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
+ *
+ * @deprecated currently unused - staying there for now just as a reminder
  */
 public class UserMgtRole extends AbstractRole {
     public String getName() {

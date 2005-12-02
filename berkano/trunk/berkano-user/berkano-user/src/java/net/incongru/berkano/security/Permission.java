@@ -11,6 +11,8 @@ package net.incongru.berkano.security;
  * @author greg
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
+ *
+ * @deprecated currently unused - staying there for now just as a reminder
  */
 public class Permission {
 //    private long id;

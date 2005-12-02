@@ -10,6 +10,11 @@ package net.incongru.berkano.security;
 //    url, action;
 //}
 
+/**
+ *
+ *
+ * @deprecated currently unused - staying there for now just as a reminder
+ */
 public class PermissionType {
     public static final PermissionType url = new PermissionType(1, "url");
     public static final PermissionType action = new PermissionType(2, "action");

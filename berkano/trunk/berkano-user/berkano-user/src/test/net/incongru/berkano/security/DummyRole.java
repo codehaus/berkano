@@ -4,6 +4,8 @@ package net.incongru.berkano.security;
  * @author greg
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
+ *
+ * @deprecated currently unused - staying there for now just as a reminder
  */
 //public enum DummyRole implements Role {
 //    littleRole(DummyPermission.blabla),
