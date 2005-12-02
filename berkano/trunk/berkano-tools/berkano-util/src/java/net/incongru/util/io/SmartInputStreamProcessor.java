@@ -16,10 +16,12 @@ import java.io.InputStream;
  * </code>
  * @author greg
  * @author $Author: $ (last edit)
- * @version $Revision: $ 
+ * @version $Revision: $
+ *
+ * TODO : how about finding a decent name for this class ?
  */
 public class SmartInputStreamProcessor {
-    public void processAndClose(InputStream in, InputStreamProcessor processor) throws IOException {
+    public void processAndClose(final InputStream in, final InputStreamProcessor processor) throws IOException {
         assert in != null;
         IOException e = null;
         try {

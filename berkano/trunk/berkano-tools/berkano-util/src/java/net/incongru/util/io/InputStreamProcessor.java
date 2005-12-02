@@ -10,5 +10,5 @@ import java.io.InputStream;
  * @version $Revision: $ 
  */
 public interface InputStreamProcessor {
-    void process(InputStream in) throws IOException;
+    void process(final InputStream in) throws IOException;
 }
