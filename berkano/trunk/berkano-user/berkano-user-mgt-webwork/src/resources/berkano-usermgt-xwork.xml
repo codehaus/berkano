@@ -103,6 +103,7 @@
             <result name="success" type="freemarker">/berkano/profile/preferences.ftl</result>
         </action>
         <action name="preferences.save" class="net.incongru.berkano.profile.PreferencesSaveAction">
+            <result name="input" type="freemarker">/berkano/profile/preferences.ftl</result>
             <result name="success" type="chain">preferences</result>
         </action>
 
