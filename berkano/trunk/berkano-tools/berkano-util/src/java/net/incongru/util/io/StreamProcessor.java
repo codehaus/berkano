@@ -1,7 +1,7 @@
 package net.incongru.util.io;
 
+import java.io.Closeable;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  *
@@ -9,6 +9,6 @@ import java.io.InputStream;
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */
-public interface InputStreamProcessor {
-    void process(final InputStream in) throws IOException;
+public interface StreamProcessor {
+    void process(final Closeable stream) throws IOException;
 }
