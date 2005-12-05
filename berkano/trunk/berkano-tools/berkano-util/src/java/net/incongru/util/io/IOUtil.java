@@ -12,6 +12,9 @@ import java.util.Properties;
  * @version $Revision: $
  */
 public class IOUtil {
+    /**
+     * Loads properties from an InputStream, closes it and returns.
+     */
     public static Properties loadProperties(InputStream in) throws IOException {
         final Properties props = new Properties();
         new SmartStreamProcessor().processAndClose(in, new StreamProcessor() {
