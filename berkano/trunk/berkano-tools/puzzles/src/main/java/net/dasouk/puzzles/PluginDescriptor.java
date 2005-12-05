@@ -1,7 +1,6 @@
 package net.dasouk.puzzles;
 
 import java.io.Serializable;
-import java.net.URL;
 import java.util.*;
 
 /**

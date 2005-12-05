@@ -66,6 +66,7 @@ public class PropertiesBasedDescriptorBuilder implements PluginDescriptorBuilder
     }
 
     private Collection<String> explode(String concatenatedString, String separators) {
+        if (concatenatedString==null) return new HashSet<String>();//return empty collection
         StringTokenizer tokenizer = new StringTokenizer(concatenatedString,separators);
         Collection<String> elements = new HashSet<String>();
         while(tokenizer.hasMoreTokens()){
