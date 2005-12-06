@@ -72,6 +72,10 @@ public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginC
                 }
             }
             String name = packagedPlugin.getPluginDescriptor().getName();
+            //check if no plugin in the registry has the same name
+            if(plugins.keySet().contains(name)){
+                throw new PluginDescriptorException("there is already an installed plugin with the same name",null);
+            }
             plugins.put(name, packagedPlugin);
             pluginsUrl.put(name, inStoreUrl);
 
