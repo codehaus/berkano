@@ -7,5 +7,6 @@ package net.incongru.taskman;
  * @version $Revision: $ 
  */
 public enum TaskEvent {
-    start, stop, cancel, assign, comment, remind, takeAction
+    instanciated, started, stopped, cancelled, assigned, commented, reminded
+    //, actionExecuted
 }

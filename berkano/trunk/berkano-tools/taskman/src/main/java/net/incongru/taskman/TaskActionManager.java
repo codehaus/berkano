@@ -6,6 +6,6 @@ package net.incongru.taskman;
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */
-public enum TaskStatus {
-    started, finished, cancelled
+public interface TaskActionManager {
+    TaskAction getTaskAction(TaskInstance task, TaskEvent event);
 }

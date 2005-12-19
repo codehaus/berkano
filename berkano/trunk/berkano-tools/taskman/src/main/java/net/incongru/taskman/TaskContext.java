@@ -13,7 +13,7 @@ public interface TaskContext {
 
     void cancelTask();
 
-    Task getTask();
+    TaskInstance getTask();
 
     TaskEvent getEvent();
 }

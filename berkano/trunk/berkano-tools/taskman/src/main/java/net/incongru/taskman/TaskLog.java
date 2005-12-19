@@ -2,16 +2,20 @@ package net.incongru.taskman;
 
 import org.joda.time.DateTime;
 
+import java.io.Serializable;
+
 /**
- * .. some thing to keep a trace of events, assignements etc ?
  *
  * @author greg
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */
-public class TaskLog {
-    private DateTime dateTime;
-    private TaskEvent taskEvent;
-    private String oldValue;
-    private String newValue;
+public interface TaskLog extends Serializable {
+    DateTime getDateTime();
+
+    TaskEvent getTaskEvent();
+
+    String getOldValue();
+
+    String getNewValue();
 }
