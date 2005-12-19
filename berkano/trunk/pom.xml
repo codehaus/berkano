@@ -1,0 +1,79 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>berkano</groupId>
+    <artifactId>berkano-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>SNAPSHOT</version>
+    <url>http://berkano.codehaus.org</url>
+    <issueManagement>
+        <url>http://jira.codehaus.org/browse/BERKANO</url>
+    </issueManagement>
+    <inceptionYear>2004</inceptionYear>
+    <developers>
+        <developer>
+            <id>gjoseph</id>
+            <name>Gregory Joseph</name>
+            <email>gjoseph AT codehaus.org</email>
+            <roles>
+                <role>Project admin</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>0</timezone>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:cvs:ext:anon@host:/cvs/root:pouet</connection>
+        <developerConnection>scm:cvs:ext:user@host:/cvs/root:pouet</developerConnection>
+        <url>http://www.google.com</url>
+    </scm>
+    <organization>
+        <name></name>
+        <url></url>
+    </organization>
+    <build>
+        <!--<sourceDirectory>src/java</sourceDirectory>-->
+        <!--<testSourceDirectory>src/test</testSourceDirectory>-->
+        <!--<testResources>-->
+            <!--<testResource>-->
+                <!--<directory>${basedir}/src/test</directory>-->
+                <!--<includes>-->
+                    <!--<include>**/*.properties</include>-->
+                    <!--<include>**/*.xml</include>-->
+                    <!--<include>**/*.vm</include>-->
+                    <!--<include>**/*.ftm</include>-->
+                <!--</includes>-->
+            <!--</testResource>-->
+        <!--</testResources>-->
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <target>1.5</target>
+                    <source>1.5</source>
+                </configuration>
+            </plugin>
+            <!--<plugin>-->
+                <!--<artifactId>maven-surefire-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<includes>-->
+                        <!--<include>**/*Test.java</include>-->
+                        <!--<include>**/*Test.class</include>-->
+                    <!--</includes>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+        </plugins>
+    </build>
+    <distributionManagement>
+        <repository>
+            <id>default</id>
+            <name>Default Repository</name>
+            <url>file://foo</url>
+        </repository>
+        <site>
+            <id>default</id>
+            <name>Default Site</name>
+            <url>scp://http://berkano.codehaus.org//home/projects/berkano/public_html/maven</url>
+        </site>
+    </distributionManagement>
+</project>
