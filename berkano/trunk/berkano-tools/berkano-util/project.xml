@@ -3,11 +3,11 @@
 <project>
     <extend>../../project.xml</extend>
     <id>berkano-util</id>
-    <currentVersion>${berkanoVersion}</currentVersion>
+    <currentVersion>SNAPSHOT</currentVersion>
     <name>Berkano Utilities</name>
     <description>A bunch of utilities of various purposes. Please see docs for details.</description>
     <shortDescription>Berkano Utilities</shortDescription>
-<package>net.incongru.util</package>
+    <package>net.incongru.util</package>
     <dependencies>
         <dependency>
             <groupId>ognl</groupId>
@@ -61,7 +61,7 @@
         <dependency>
             <groupId>commons-email</groupId>
             <artifactId>commons-email</artifactId>
-            <version>SNAPSHOT</version>
+            <version>1.0</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -141,6 +141,8 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <unitTestSourceDirectory>src/test/java</unitTestSourceDirectory>
         <sourceModifications>
             <sourceModification>
                 <className>java.lang.Enum</className>
