@@ -32,7 +32,6 @@ public abstract class AbstractTaskManTestCase extends MockObjectTestCase {
 
     protected TaskDef getDummyTaskDef() {
         final TaskDefImpl taskDefImpl = new TaskDefImpl();
-        taskDefImpl.setDeploymentDateTime(new DateTime());
         taskDefImpl.setDescription("some desc");
         taskDefImpl.setDuePeriod(Period.weeks(2));
         taskDefImpl.setDueDateTimeout(Period.days(3));

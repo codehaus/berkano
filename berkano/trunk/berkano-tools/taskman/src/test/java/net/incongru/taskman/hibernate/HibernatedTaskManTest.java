@@ -1,14 +1,15 @@
 package net.incongru.taskman.hibernate;
 
 import net.incongru.taskman.AbstractTaskManTestCase;
+import net.incongru.taskman.TaskAction;
 import net.incongru.taskman.TaskActionManager;
+import net.incongru.taskman.TaskContext;
 import net.incongru.taskman.TaskEvent;
 import net.incongru.taskman.TaskInstance;
-import net.incongru.taskman.TaskLog;
-import net.incongru.taskman.TaskAction;
-import net.incongru.taskman.TaskContext;
 import net.incongru.taskman.TaskInstanceImpl;
+import net.incongru.taskman.TaskLog;
 import net.incongru.taskman.def.TaskDef;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.jmock.Mock;
 
@@ -73,7 +74,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
     }
 
     public void testNewTaskInstanceGeneratesAnIdIfNonePassed() {
-
+        //TODO
     }
 
     public void testNewTaskInstanceUsesTheGivenTaskId() {
@@ -99,9 +100,15 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         assertEquals("some specific task name", taskInstance.getName());
         assertEquals("some specific desc", taskInstance.getDescription());
         assertEquals(getDummyTaskDef(), taskInstance.getTaskDef());
-
-
     }
 
+//    public void testFindRemainingTasks() {
+//        Mock session = mock(Session.class);
+//        Mock crit = mock(Criteria.class);
+//        session.expects(once()).method("createCriteria").with(eq(TaskInstance.class)).will(returnValue(crit.proxy()));
+//
+//        final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), null);
+//        taskMan.findRemainingTasks();
+//    }
 
 }

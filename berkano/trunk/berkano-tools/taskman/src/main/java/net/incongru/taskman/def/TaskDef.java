@@ -20,6 +20,8 @@ import net.incongru.taskman.TaskAction;
 public interface TaskDef extends Serializable {
     String getId();
 
+    // TODO add version ? 
+
     DateTime getDeploymentDateTime();
 
     /**

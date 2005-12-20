@@ -4,14 +4,14 @@ import net.incongru.taskman.Assignee;
 import net.incongru.taskman.TaskAction;
 import net.incongru.taskman.TaskActionManager;
 import net.incongru.taskman.TaskContext;
-import net.incongru.taskman.TaskContextImpl;
 import net.incongru.taskman.TaskEvent;
 import net.incongru.taskman.TaskInstance;
+import net.incongru.taskman.TaskInstanceImpl;
 import net.incongru.taskman.TaskLogImpl;
 import net.incongru.taskman.TaskMan;
-import net.incongru.taskman.TaskInstanceImpl;
 import net.incongru.taskman.def.TaskDef;
 import org.hibernate.Session;
+import org.hibernate.Criteria;
 import org.joda.time.DateTime;
 
 import java.util.List;
@@ -84,11 +84,16 @@ public class HibernatedTaskMan implements TaskMan {
     }
 
     public void addVariable(String name, Object value) {
+        // TODO : either user should modify the variables Map and call some save() method,
+        // or the TaskInstance should be passed here AND ideally the getVariables should return an immutable map instance
         throw new IllegalStateException("not implemented yet");
     }
 
     public List<TaskInstance> findRemainingTasks() {
+        final Criteria criteria = session.createCriteria(TaskInstance.class);
+
         throw new IllegalStateException("not implemented yet");
+
     }
 
     private String generateTaskId() {
@@ -112,5 +117,39 @@ public class HibernatedTaskMan implements TaskMan {
 
     private String toString(Object value) {
         return value != null ? value.toString() : null;
+    }
+
+    protected final class TaskContextImpl implements TaskContext {
+        private TaskInstance task;
+        private TaskEvent event;
+
+        private TaskContextImpl(TaskInstance task, TaskEvent event) {
+            this.task = task;
+            this.event = event;
+        }
+
+        public void assignTask(Assignee assignee) {
+            assign(this.task, assignee);
+        }
+
+        public void startTask() {
+            start(this.task);
+        }
+
+        public void stopTask() {
+            stop(this.task);
+        }
+
+        public void cancelTask() {
+            cancel(this.task);
+        }
+
+        public TaskInstance getTask() {
+            return task;
+        }
+
+        public TaskEvent getEvent() {
+            return event;
+        }
     }
 }
