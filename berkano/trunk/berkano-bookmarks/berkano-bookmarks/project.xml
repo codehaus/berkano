@@ -16,5 +16,57 @@
             <version>2.3.1</version>
             <type>jar</type>
         </dependency>
+
+       <dependency>
+            <groupId>hibernate</groupId>
+            <artifactId>hibernate</artifactId>
+            <version>3.0.5</version>
+        </dependency>
+        <dependency><!-- required by hibernate's schemaexport tool -->
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+        <dependency><!-- required by hibernate's schemaupdate tool -->
+            <groupId>odmg</groupId>
+            <artifactId>odmg</artifactId>
+            <version>3.0</version>
+        </dependency>
+        <dependency><!-- for hibernate -->
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency><!-- 2.1 required by hibernate's schemaexport tool -->
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>jta</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.0.1B</version>
+        </dependency>
+
+        <dependency><!-- to build the ddl / 3.0.16-ga is available on mysql.com -->
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>3.0.10-stable-bin</version>
+        </dependency>
     </dependencies>
 </project>
