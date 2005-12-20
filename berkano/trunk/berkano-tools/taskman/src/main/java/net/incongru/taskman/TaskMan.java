@@ -13,7 +13,8 @@ import java.util.List;
  * @version $Revision: $ 
  */
 public interface TaskMan {
-    void deployTaskDef(TaskDef taskDef);
+    // TODO : maybe avoid the user manipulation of the incomplete TaskDef: pass a parser instead ?
+    TaskDef deployTaskDef(TaskDef taskDef);
 
     TaskInstance getTaskById(String taskId);
 
@@ -33,7 +34,7 @@ public interface TaskMan {
      * id, name and description. Any of these 3 parameters can be null, in which case
      * they get a default value. (a generated id, null and null, respectively)
      */
-    TaskInstance newTaskInstance(String taskDefId, String taskId, String taskName, String taskDesc);
+    TaskInstance newTaskInstance(Long taskDefId, String taskId, String taskName, String taskDesc);
 
     void assign(TaskInstance task, Assignee assignee);
 

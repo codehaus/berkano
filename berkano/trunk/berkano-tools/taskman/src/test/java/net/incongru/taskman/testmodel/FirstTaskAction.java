@@ -1,4 +1,4 @@
-package net.incongru.taskmantestmodel;
+package net.incongru.taskman.testmodel;
 
 import net.incongru.taskman.TaskAction;
 import net.incongru.taskman.TaskContext;

@@ -18,15 +18,16 @@ import net.incongru.taskman.TaskAction;
  * @version $Revision: $ 
  */
 public interface TaskDef extends Serializable {
-    String getId();
+    Long getId();
 
-    // TODO add version ? 
+    Long getVersionId();
 
     DateTime getDeploymentDateTime();
 
     /**
      * A generic name for this task definition, thus shared by all instances of
-     * this definition.
+     * this definition. This is what determines if the version should be incremented
+     * (i.e. if a TaskDef with this name already exists)
      */
     String getName();
 

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="net.incongru.taskman.def.TaskDefImpl" table="taskdef">
+        <id name="id" type="long" column="id">
+            <generator class="native"/>
+        </id>
+
+        <property name="versionId"/>
+        <property name="deploymentDateTime" type="org.joda.time.contrib.hibernate.PersistentDateTime"/>
+        <property name="name"/>
+        <property name="description"/>
+
+        <property name="duePeriod" type="net.incongru.jodatime.hibernate.PeriodType"/>
+        <property name="reminderPeriod" type="net.incongru.jodatime.hibernate.PeriodType"/>
+        <property name="dueDateTimeout" type="net.incongru.jodatime.hibernate.PeriodType"/>
+
+        <map name="eventActionMap" table="taskdef_actions" lazy="true">
+            <key column="id"/>
+            <index column="event" type="net.incongru.util.hibernate.EnumType"/>
+            <element column="value" type="class"/>
+        </map>
+
+    </class>
+
+</hibernate-mapping>

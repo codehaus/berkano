@@ -2,8 +2,8 @@ package net.incongru.taskman;
 
 import net.incongru.taskman.def.TaskDef;
 import net.incongru.taskman.def.TaskDefImpl;
-import net.incongru.taskmantestmodel.FirstTaskAction;
-import net.incongru.taskmantestmodel.SecondTaskAction;
+import net.incongru.taskman.testmodel.FirstTaskAction;
+import net.incongru.taskman.testmodel.SecondTaskAction;
 import org.jmock.MockObjectTestCase;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
@@ -32,11 +32,10 @@ public abstract class AbstractTaskManTestCase extends MockObjectTestCase {
 
     protected TaskDef getDummyTaskDef() {
         final TaskDefImpl taskDefImpl = new TaskDefImpl();
+        taskDefImpl.setName("some name");
         taskDefImpl.setDescription("some desc");
         taskDefImpl.setDuePeriod(Period.weeks(2));
         taskDefImpl.setDueDateTimeout(Period.days(3));
-        taskDefImpl.setId("TASKDEF-ID");
-        taskDefImpl.setName("some name");
         taskDefImpl.setReminderPeriod(Period.minutes(10));
         Map<TaskEvent, Class<? extends TaskAction>> map = new HashMap<TaskEvent, Class<? extends TaskAction>>();
         map.put(TaskEvent.started, FirstTaskAction.class);

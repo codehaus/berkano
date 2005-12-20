@@ -14,7 +14,8 @@ import java.util.Map;
  * @version $Revision: $ 
  */
 public class TaskDefImpl implements TaskDef {
-    private String id;
+    private Long id;
+    private Long versionId;
     private String name;
     private String description;
     private DateTime deploymentDateTime;
@@ -31,12 +32,20 @@ public class TaskDefImpl implements TaskDef {
     }
 
     // generated getters and setters
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long  id) {
         this.id = id;
+    }
+
+    public Long getVersionId() {
+        return versionId;
+    }
+
+    public void setVersionId(Long versionId) {
+        this.versionId = versionId;
     }
 
     public String getName() {

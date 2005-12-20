@@ -10,8 +10,13 @@ import net.incongru.taskman.TaskInstanceImpl;
 import net.incongru.taskman.TaskLogImpl;
 import net.incongru.taskman.TaskMan;
 import net.incongru.taskman.def.TaskDef;
-import org.hibernate.Session;
+import net.incongru.taskman.def.TaskDefImpl;
+import net.incongru.taskman.id.IdGenerator;
+import net.incongru.taskman.id.NullIdGenerator;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.criterion.Expression;
 import org.joda.time.DateTime;
 
 import java.util.List;
@@ -23,15 +28,54 @@ import java.util.List;
  * @version $Revision: $ 
  */
 public class HibernatedTaskMan implements TaskMan {
+    private static final String FINDLATESTTASKDEF_QUERY = "select taskDef from net.incongru.taskman.def.TaskDefImpl as taskDef where taskDef.name = :name order by taskDef.versionId desc";
+    private static final Long DEFAULT_VERSION_ID = new Long(1L);
+
     private final Session session;
     private final TaskActionManager actionManager;
+    private final IdGenerator idGenerator;
 
     public HibernatedTaskMan(Session session, TaskActionManager actionManager) {
-        this.session = session;
-        this.actionManager = actionManager;
+        this(session, actionManager, new NullIdGenerator());
     }
 
-    public void deployTaskDef(TaskDef taskDef) {
+    public HibernatedTaskMan(Session session, TaskActionManager actionManager, IdGenerator idGenerator) {
+        this.session = session;
+        this.actionManager = actionManager;
+        this.idGenerator = idGenerator;
+    }
+
+    public TaskDef deployTaskDef(final TaskDef taskDef) {
+        assert taskDef instanceof TaskDefImpl;
+        assert taskDef.getId() == null;
+        assert taskDef.getVersionId() == null;
+        assert taskDef.getDeploymentDateTime() == null;
+
+        return deployTaskDefImpl((TaskDefImpl) taskDef);
+    }
+
+    private TaskDef deployTaskDefImpl(final TaskDefImpl taskDef) {
+        final TaskDef latestTaskDef = findLatestTaskDef(taskDef.getName());
+        Long newVersion = DEFAULT_VERSION_ID;
+        if (latestTaskDef != null) {
+            newVersion = Long.valueOf(latestTaskDef.getVersionId().longValue() + 1);
+        }
+        taskDef.setVersionId(newVersion);
+        taskDef.setDeploymentDateTime(new DateTime());
+        session.save(taskDef);
+        return taskDef;
+    }
+
+    private TaskDef findLatestTaskDef(String taskDefName) {
+//        final Query query = session.createQuery(FINDLATESTTASKDEF_QUERY);
+//        query.setString("name", taskDefName);
+        //query.setMaxResults(1); // TODO : see how this gets translated, maybe it is incompatible with oracle ?
+//        return (TaskDef) query.uniqueResult();
+
+        final Criteria criteria = session.createCriteria(TaskDefImpl.class);
+        criteria.add(Expression.eq("name", taskDefName));
+        criteria.setMaxResults(1); // TODO : see how this gets translated, maybe it is incompatible with oracle ?
+        return (TaskDef) criteria.uniqueResult();
     }
 
     public TaskInstance getTaskById(String taskId) {
@@ -46,11 +90,11 @@ public class HibernatedTaskMan implements TaskMan {
         throw new IllegalStateException("not implemented yet");
     }
 
-    public TaskInstance newTaskInstance(final String taskDefId, final String taskId, final String taskName, final String taskDesc) {
-        final TaskDef taskDef = (TaskDef) session.load(TaskDef.class, taskDefId);
+    public TaskInstance newTaskInstance(final Long taskDefId, final String taskId, final String taskName, final String taskDesc) {
+        final TaskDef taskDef = (TaskDef) session.load(TaskDefImpl.class, taskDefId);
         final TaskInstanceImpl task = new TaskInstanceImpl();
         if (taskId == null) {
-            task.setId(generateTaskId());
+            task.setId(idGenerator.generate());
         } else {
             task.setId(taskId);
         }
@@ -93,7 +137,7 @@ public class HibernatedTaskMan implements TaskMan {
         final Criteria criteria = session.createCriteria(TaskInstance.class);
 
         throw new IllegalStateException("not implemented yet");
-
+        //return null;
     }
 
     private String generateTaskId() {

@@ -9,6 +9,8 @@ import net.incongru.taskman.TaskInstance;
 import net.incongru.taskman.TaskInstanceImpl;
 import net.incongru.taskman.TaskLog;
 import net.incongru.taskman.def.TaskDef;
+import net.incongru.taskman.def.TaskDefImpl;
+import net.incongru.taskman.id.IdGenerator;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.jmock.Mock;
@@ -50,7 +52,6 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         assertEquals(null, taskLog.getNewValue());
     }
 
-
     public void testEventDispatchingExecutesAction() {
         Mock session = mock(Session.class);
         Mock taskDef = mock(TaskDef.class);
@@ -73,13 +74,10 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         assertEquals(null, taskLog.getNewValue());
     }
 
-    public void testNewTaskInstanceGeneratesAnIdIfNonePassed() {
-        //TODO
-    }
-
     public void testNewTaskInstanceUsesTheGivenTaskId() {
         Mock session = mock(Session.class);
         Mock actionMan = mock(TaskActionManager.class);
+        Mock idGen = mock(IdGenerator.class);
 
         TaskInstanceImpl task = new TaskInstanceImpl();
         task.setId("myId");
@@ -87,28 +85,64 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         task.setDescription("some specific desc");
         task.setTaskDef(getDummyTaskDef());
 
-        session.expects(once()).method("load").with(eq(TaskDef.class), eq("TASKDEF-ID")).will(returnValue(getDummyTaskDef()));
+        //"TASKDEF-ID"
+        session.expects(once()).method("load").with(eq(TaskDefImpl.class), eq(Long.valueOf(3560))).will(returnValue(getDummyTaskDef()));
+
+        idGen.expects(never());
+
         // can't expect eq(task) as a parameter, because creationDate will differ
         session.expects(once()).method("save").with(isA(TaskInstance.class));
 
         // can't expect eq(task) as a parameter, because creationDate will differ
         actionMan.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.instanciated)).will(returnValue(null));
 
-        final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy());
-        final TaskInstance taskInstance = taskMan.newTaskInstance("TASKDEF-ID", "myId", "some specific task name", "some specific desc");
+        final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy(), (IdGenerator) idGen.proxy());
+        // "TASKDEF-ID"
+        final TaskInstance taskInstance = taskMan.newTaskInstance(Long.valueOf(3560), "myId", "some specific task name", "some specific desc");
         assertEquals("myId", taskInstance.getId());
         assertEquals("some specific task name", taskInstance.getName());
         assertEquals("some specific desc", taskInstance.getDescription());
         assertEquals(getDummyTaskDef(), taskInstance.getTaskDef());
     }
 
-//    public void testFindRemainingTasks() {
-//        Mock session = mock(Session.class);
-//        Mock crit = mock(Criteria.class);
-//        session.expects(once()).method("createCriteria").with(eq(TaskInstance.class)).will(returnValue(crit.proxy()));
-//
-//        final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), null);
-//        taskMan.findRemainingTasks();
-//    }
+    public void testNewTaskInstanceGeneratesAnIdIfNonePassed() {
+        Mock session = mock(Session.class);
+        Mock actionMan = mock(TaskActionManager.class);
+        Mock idGen = mock(IdGenerator.class);
 
+        TaskInstanceImpl task = new TaskInstanceImpl();
+        task.setId("myId");
+        task.setName("some specific task name");
+        task.setDescription("some specific desc");
+        task.setTaskDef(getDummyTaskDef());
+
+        //"TASKDEF-ID"
+        session.expects(once()).method("load").with(eq(TaskDefImpl.class), eq(Long.valueOf(3560))).will(returnValue(getDummyTaskDef()));
+
+        idGen.expects(once()).method("generate").withNoArguments().will(returnValue("generatedID"));
+
+        // can't expect eq(task) as a parameter, because creationDate will differ
+        session.expects(once()).method("save").with(isA(TaskInstance.class));
+
+        // can't expect eq(task) as a parameter, because creationDate will differ
+        actionMan.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.instanciated)).will(returnValue(null));
+
+        final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy(), (IdGenerator) idGen.proxy());
+        //"TASKDEF-ID"
+        final TaskInstance taskInstance = taskMan.newTaskInstance(Long.valueOf(3560), null, "some specific task name", "some specific desc");
+        assertEquals("generatedID", taskInstance.getId());
+        assertEquals("some specific task name", taskInstance.getName());
+        assertEquals("some specific desc", taskInstance.getDescription());
+        assertEquals(getDummyTaskDef(), taskInstance.getTaskDef());
+    }
+
+    public void testFindRemainingTasks() {
+        Mock session = mock(Session.class);
+        Mock crit = mock(Criteria.class);
+        session.expects(once()).method("createCriteria").with(eq(TaskInstance.class)).will(returnValue(crit.proxy()));
+
+        final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), null);
+        taskMan.findRemainingTasks();
+        // TODO : more to test ?
+    }
 }
