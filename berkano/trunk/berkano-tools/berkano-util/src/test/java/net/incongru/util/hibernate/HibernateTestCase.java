@@ -18,12 +18,12 @@ public abstract class HibernateTestCase extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         Configuration cfg = new Configuration();
-        for (String file : getXmlFiles()) {
+        for (String file : getHbmFiles()) {
             cfg.addResource(file, TestCase.class.getClassLoader());
         }
         new SchemaExport(cfg).create(true, true);
         sessionFactory = cfg.buildSessionFactory(/*new TestInterceptor()*/);
     }
 
-    protected abstract String[] getXmlFiles() throws HibernateException;
+    protected abstract String[] getHbmFiles() throws HibernateException;
 }

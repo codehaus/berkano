@@ -19,7 +19,7 @@ import java.util.List;
  * @version $Revision: 1.1 $
  */
 public class EnumTypeTest extends HibernateTestCase {
-    protected String[] getXmlFiles() throws HibernateException {
+    protected String[] getHbmFiles() throws HibernateException {
         return new String[]{"net/incongru/util/hibernate/dummy-enum.hbm.xml"};
     }
 

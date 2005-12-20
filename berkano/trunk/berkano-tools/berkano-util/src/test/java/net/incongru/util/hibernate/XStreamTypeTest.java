@@ -20,7 +20,7 @@ import java.util.Set;
  * @version $Revision: 1.5 $
  */
 public class XStreamTypeTest extends HibernateTestCase {
-    protected String[] getXmlFiles() throws HibernateException {
+    protected String[] getHbmFiles() throws HibernateException {
         return new String[]{"net/incongru/util/hibernate/dummy-xstream.hbm.xml"};
     }
 
