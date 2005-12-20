@@ -19,8 +19,8 @@ import java.util.List;
  * @version $Revision: 1.1 $
  */
 public class EnumTypeTest extends HibernateTestCase {
-    protected void exportSchema() throws HibernateException {
-        exportSchema(new String[]{"net/incongru/util/hibernate/dummy-enum.hbm.xml"});
+    protected String[] getXmlFiles() throws HibernateException {
+        return new String[]{"net/incongru/util/hibernate/dummy-enum.hbm.xml"};
     }
 
     public void testBasic() throws Exception {
