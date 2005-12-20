@@ -66,9 +66,9 @@
     </build>
     <distributionManagement>
         <repository>
-            <id>default</id>
-            <name>Default Repository</name>
-            <url>file://foo</url>
+            <id>codehaus</id>
+            <name>beaver.codehaus.org</name>
+            <url>scp://beaver.codehaus.org:/dist</url>
         </repository>
         <site>
             <id>default</id>
