@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project>
     <extend>project.xml</extend>
-
+<artifactId>berkano-taglib-parfent</artifactId>
+<groupId>berkano</groupId>
+<currentVersion>SNAPSHOT</currentVersion>
     <dependencies>
         <!-- tests only -->
         <dependency>
@@ -189,8 +191,6 @@
                     <include>**/*.properties</include>
                 </includes>
             </resource>
-        </resources>
-        <resources>
             <resource>
                 <directory>target/xdoclet</directory>
                 <includes>

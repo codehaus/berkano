@@ -8,11 +8,13 @@ xmlns="http://maven.apache.org/xsd/maven-project-3.0.0.xsd" xmlns:xsi="http://ww
     <groupId>berkano</groupId>
     <!-- poms extending this one must define
     <artifactId></artifactId>
-    <currentVersion>${berkanoVersion}</currentVersion>
+    <currentVersion>SNAPSHOT</currentVersion>
     <name></name>
     <description></description>
     <shortDescription></shortDescription>
     -->
+<artifactId>berkano-parent</artifactId>
+    <currentVersion>SNAPSHOT</currentVersion>
 
     <organization>
         <name></name>
@@ -94,6 +96,15 @@ xmlns="http://maven.apache.org/xsd/maven-project-3.0.0.xsd" xmlns:xsi="http://ww
             <resources>
                 <resource>
                     <directory>${basedir}/src/test</directory>
+                    <includes>
+                        <include>**/*.properties</include>
+                        <include>**/*.xml</include>
+                        <include>**/*.vm</include>
+                        <include>**/*.ftm</include>
+                    </includes>
+                </resource>
+                <resource>
+                    <directory>${basedir}/src/test/java</directory>
                     <includes>
                         <include>**/*.properties</include>
                         <include>**/*.xml</include>

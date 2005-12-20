@@ -22,28 +22,38 @@
             <timezone>0</timezone>
         </developer>
     </developers>
+    <organization>
+        <name></name>
+        <url></url>
+    </organization>
     <scm>
         <connection>scm:cvs:ext:anon@host:/cvs/root:pouet</connection>
         <developerConnection>scm:cvs:ext:user@host:/cvs/root:pouet</developerConnection>
         <url>http://www.google.com</url>
     </scm>
-    <organization>
-        <name></name>
-        <url></url>
-    </organization>
+    <distributionManagement>
+        <repository>
+            <id>codehaus</id>
+            <name>beaver.codehaus.org</name>
+            <url>scp://beaver.codehaus.org:/dist/</url>
+        </repository>
+        <site>
+            <id>default</id>
+            <name>Default Site</name>
+            <url>scp://http://berkano.codehaus.org//home/projects/berkano/public_html/maven</url>
+        </site>
+    </distributionManagement>
     <build>
-        <!--<sourceDirectory>src/java</sourceDirectory>-->
-        <!--<testSourceDirectory>src/test</testSourceDirectory>-->
         <!--<testResources>-->
-            <!--<testResource>-->
-                <!--<directory>${basedir}/src/test</directory>-->
-                <!--<includes>-->
-                    <!--<include>**/*.properties</include>-->
-                    <!--<include>**/*.xml</include>-->
-                    <!--<include>**/*.vm</include>-->
-                    <!--<include>**/*.ftm</include>-->
-                <!--</includes>-->
-            <!--</testResource>-->
+        <!--<testResource>-->
+        <!--<directory>${basedir}/src/test</directory>-->
+        <!--<includes>-->
+        <!--<include>**/*.properties</include>-->
+        <!--<include>**/*.xml</include>-->
+        <!--<include>**/*.vm</include>-->
+        <!--<include>**/*.ftm</include>-->
+        <!--</includes>-->
+        <!--</testResource>-->
         <!--</testResources>-->
         <plugins>
             <plugin>
@@ -54,26 +64,24 @@
                 </configuration>
             </plugin>
             <!--<plugin>-->
-                <!--<artifactId>maven-surefire-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<includes>-->
-                        <!--<include>**/*Test.java</include>-->
-                        <!--<include>**/*Test.class</include>-->
-                    <!--</includes>-->
-                <!--</configuration>-->
+            <!--<artifactId>maven-surefire-plugin</artifactId>-->
+            <!--<configuration>-->
+            <!--<includes>-->
+            <!--<include>**/*Test.java</include>-->
+            <!--<include>**/*Test.class</include>-->
+            <!--</includes>-->
+            <!--</configuration>-->
             <!--</plugin>-->
         </plugins>
     </build>
-    <distributionManagement>
-        <repository>
-            <id>codehaus</id>
-            <name>beaver.codehaus.org</name>
-            <url>scp://beaver.codehaus.org:/dist</url>
-        </repository>
-        <site>
-            <id>default</id>
-            <name>Default Site</name>
-            <url>scp://http://berkano.codehaus.org//home/projects/berkano/public_html/maven</url>
-        </site>
-    </distributionManagement>
+    <!--<dependencyManagement>-->
+        <dependencies>
+            <dependency>
+                <groupId>jmock</groupId>
+                <artifactId>jmock</artifactId>
+                <version>1.0.1</version>
+                <scope>tests</scope>
+            </dependency>
+        </dependencies>
+    <!--</dependencyManagement>-->
 </project>
