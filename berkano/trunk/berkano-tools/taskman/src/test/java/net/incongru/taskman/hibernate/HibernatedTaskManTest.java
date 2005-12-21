@@ -85,7 +85,6 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         task.setDescription("some specific desc");
         task.setTaskDef(getDummyTaskDef());
 
-        //"TASKDEF-ID"
         session.expects(once()).method("load").with(eq(TaskDefImpl.class), eq(Long.valueOf(3560))).will(returnValue(getDummyTaskDef()));
 
         idGen.expects(never());
@@ -97,7 +96,6 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         actionMan.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.instanciated)).will(returnValue(null));
 
         final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy(), (IdGenerator) idGen.proxy());
-        // "TASKDEF-ID"
         final TaskInstance taskInstance = taskMan.newTaskInstance(Long.valueOf(3560), "myId", "some specific task name", "some specific desc");
         assertEquals("myId", taskInstance.getId());
         assertEquals("some specific task name", taskInstance.getName());
@@ -116,7 +114,6 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         task.setDescription("some specific desc");
         task.setTaskDef(getDummyTaskDef());
 
-        //"TASKDEF-ID"
         session.expects(once()).method("load").with(eq(TaskDefImpl.class), eq(Long.valueOf(3560))).will(returnValue(getDummyTaskDef()));
 
         idGen.expects(once()).method("generate").withNoArguments().will(returnValue("generatedID"));
@@ -128,7 +125,6 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         actionMan.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.instanciated)).will(returnValue(null));
 
         final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy(), (IdGenerator) idGen.proxy());
-        //"TASKDEF-ID"
         final TaskInstance taskInstance = taskMan.newTaskInstance(Long.valueOf(3560), null, "some specific task name", "some specific desc");
         assertEquals("generatedID", taskInstance.getId());
         assertEquals("some specific task name", taskInstance.getName());
@@ -136,13 +132,20 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         assertEquals(getDummyTaskDef(), taskInstance.getTaskDef());
     }
 
-    public void testFindRemainingTasks() {
+    public void testFindRemainingTasksIsNotImplementedYet() {
         Mock session = mock(Session.class);
         Mock crit = mock(Criteria.class);
         session.expects(once()).method("createCriteria").with(eq(TaskInstance.class)).will(returnValue(crit.proxy()));
 
         final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), null);
-        taskMan.findRemainingTasks();
+
+        try {
+            taskMan.findRemainingTasks();
+            fail("darn, i thought this wasn't implemented yet?");
+        } catch (IllegalStateException e) {
+            assertEquals("darn, i thought this wasn't implemented yet?", "not implemented yet", e.getMessage());
+        }
+
         // TODO : more to test ?
     }
 }

@@ -1,13 +1,11 @@
 package net.incongru.taskman.def;
 
+import net.incongru.taskman.TaskAction;
+import net.incongru.taskman.TaskEvent;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 
-import java.util.Map;
 import java.io.Serializable;
-
-import net.incongru.taskman.TaskEvent;
-import net.incongru.taskman.TaskAction;
 
 /**
  * A TaskDef is a task definition: once deployed, it can tell TaskMan what TaskAction
@@ -18,7 +16,8 @@ import net.incongru.taskman.TaskAction;
  * @version $Revision: $ 
  */
 public interface TaskDef extends Serializable {
-    Long getId();
+    Long getId(); // TODO : we might want to make this a string, if it is to be used by apps.
+    // TODO : OR APPS should use the name property as the identifier.
 
     Long getVersionId();
 

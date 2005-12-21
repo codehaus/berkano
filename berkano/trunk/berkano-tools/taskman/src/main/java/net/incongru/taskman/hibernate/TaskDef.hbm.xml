@@ -17,9 +17,9 @@
         <property name="dueDateTimeout" type="net.incongru.jodatime.hibernate.PeriodType"/>
 
         <map name="eventActionMap" table="taskdef_actions" lazy="true">
-            <key column="id"/>
+            <key column="taskdef_id"/>
             <index column="event" type="net.incongru.util.hibernate.EnumType"/>
-            <element column="value" type="class"/>
+            <element column="action_class" type="class"/>
         </map>
 
     </class>

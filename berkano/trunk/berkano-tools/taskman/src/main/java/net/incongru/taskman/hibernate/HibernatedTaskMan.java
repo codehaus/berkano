@@ -14,9 +14,9 @@ import net.incongru.taskman.def.TaskDefImpl;
 import net.incongru.taskman.id.IdGenerator;
 import net.incongru.taskman.id.NullIdGenerator;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Order;
 import org.joda.time.DateTime;
 
 import java.util.List;
@@ -66,6 +66,7 @@ public class HibernatedTaskMan implements TaskMan {
         return taskDef;
     }
 
+    // TODO make this public or package friendly, to test it more ?
     private TaskDef findLatestTaskDef(String taskDefName) {
 //        final Query query = session.createQuery(FINDLATESTTASKDEF_QUERY);
 //        query.setString("name", taskDefName);
@@ -74,7 +75,8 @@ public class HibernatedTaskMan implements TaskMan {
 
         final Criteria criteria = session.createCriteria(TaskDefImpl.class);
         criteria.add(Expression.eq("name", taskDefName));
-        criteria.setMaxResults(1); // TODO : see how this gets translated, maybe it is incompatible with oracle ?
+        criteria.addOrder(Order.desc("versionId"));
+        criteria.setMaxResults(1); // TODO : see how this gets translated : doesn't seem to appear in derby queries + maybe it is incompatible with oracle ?
         return (TaskDef) criteria.uniqueResult();
     }
 
