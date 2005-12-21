@@ -1,13 +1,12 @@
 package net.incongru.taskman;
 
+import net.incongru.taskman.def.TaskDef;
 import org.joda.time.DateTime;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
-import java.util.ArrayList;
-
-import net.incongru.taskman.def.TaskDef;
 
 /**
  *

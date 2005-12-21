@@ -1,12 +1,11 @@
 package net.incongru.taskman;
 
+import net.incongru.taskman.def.TaskDef;
 import org.joda.time.DateTime;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-
-import net.incongru.taskman.def.TaskDef;
 
 /**
  * An immutable interface for Tasks.

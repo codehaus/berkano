@@ -43,6 +43,17 @@
             <url>scp://http://berkano.codehaus.org//home/projects/berkano/public_html/maven</url>
         </site>
     </distributionManagement>
+    <repositories>
+        <repository>
+            <id>codehaus</id>
+            <name>codehaus</name>
+            <url>http://dist.codehaus.org</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
     <build>
         <!--<testResources>-->
         <!--<testResource>-->
@@ -84,4 +95,11 @@
             </dependency>
         </dependencies>
     <!--</dependencyManagement>-->
+
+    <modules>
+        <module>berkano-tools/berkano-util</module>
+        <module>berkano-tools/taskman</module>
+        <module>berkano-tools/jodatime-hibernate</module>
+    </modules>
+
 </project>

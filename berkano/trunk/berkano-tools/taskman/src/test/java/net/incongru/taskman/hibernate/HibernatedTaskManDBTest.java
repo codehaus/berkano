@@ -41,10 +41,10 @@ import java.util.Properties;
  */
 public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
     private static final String DERBY_REL_PATH = "target/derby/";
+    private static final String DB_URL = "jdbc:derby:db-test";
 
     private SessionFactory sessionFactory;
     private Session session;
-    private static final String DB_URL = "jdbc:derby:db-test";
 
     protected void setUp() throws Exception {
         super.setUp();
