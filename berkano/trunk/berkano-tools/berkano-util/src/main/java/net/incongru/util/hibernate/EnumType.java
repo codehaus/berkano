@@ -3,11 +3,11 @@ package net.incongru.util.hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.usertype.UserType;
 
+import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.io.Serializable;
 
 /**
  * An hibernate user type to store java5 enums.

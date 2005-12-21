@@ -82,10 +82,11 @@ public class ModelUrlBuilderTest extends TestCase {
             this.i = i;
             this.arr = arr;
         }
+
         public SomeComplexModel(int i, String[] arr, SomeSimpleModel nested) {
             this.i = i;
             this.arr = arr;
-            this.nested=nested;
+            this.nested = nested;
         }
 
         public int getI() {

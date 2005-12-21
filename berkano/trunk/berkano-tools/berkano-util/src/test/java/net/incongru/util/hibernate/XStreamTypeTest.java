@@ -1,7 +1,7 @@
 package net.incongru.util.hibernate;
 
 import com.thoughtworks.xstream.XStream;
-import net.incongru.util.hibernate.stuff.DummyBean;
+import net.incongru.util.hibernate.testmodel.DummyBean;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -19,16 +19,16 @@ import java.util.Set;
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.5 $
  */
-public class XStreamTypeTest extends HibernateTestCase {
+public class XStreamTypeTest extends AbstractHibernateTest {
     protected String[] getHbmFiles() throws HibernateException {
-        return new String[]{"net/incongru/util/hibernate/dummy-xstream.hbm.xml"};
+        return new String[]{"net/incongru/util/hibernate/testmodel/dummy-xstream.hbm.xml"};
     }
 
     public void testWithLinkedHashSet() throws Exception {
         Session s = sessionFactory.openSession();
 
         DummyBean dummy = new DummyBean();
-        Set complexObject = new LinkedHashSet();
+        Set<String> complexObject = new LinkedHashSet<String>();
         complexObject.add("abc");
         complexObject.add("def");
         complexObject.add("ghi");

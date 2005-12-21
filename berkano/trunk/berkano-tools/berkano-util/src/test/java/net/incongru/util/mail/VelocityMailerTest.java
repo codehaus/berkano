@@ -105,7 +105,7 @@ public class VelocityMailerTest extends MockObjectTestCase {
 
 
     // tests for template naming
-            public void testGetPlainTextTemplateNameWithoutExtensionAndSuffixNorExtensionExistShouldUseOriginalName() {
+    public void testGetPlainTextTemplateNameWithoutExtensionAndSuffixNorExtensionExistShouldUseOriginalName() {
         velocity.expects(once()).method("templateExists").with(eq("tmpl-text.vm")).will(returnValue(false));
         velocity.expects(once()).method("templateExists").with(eq("tmpl-text")).will(returnValue(false));
         velocity.expects(once()).method("templateExists").with(eq("tmpl.vm")).will(returnValue(false));

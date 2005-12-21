@@ -5,8 +5,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.usertype.UserType;
 
 import java.io.Reader;
-import java.io.StringReader;
 import java.io.Serializable;
+import java.io.StringReader;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

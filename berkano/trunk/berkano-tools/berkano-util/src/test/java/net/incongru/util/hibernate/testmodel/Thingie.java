@@ -1,7 +1,7 @@
-package net.incongru.util.hibernate.stuff;
+package net.incongru.util.hibernate.testmodel;
 
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  *

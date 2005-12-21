@@ -1,11 +1,11 @@
 package net.incongru.util.hibernate;
 
-import net.incongru.util.hibernate.stuff.BasicVegetable;
-import net.incongru.util.hibernate.stuff.Sandwich;
-import net.incongru.util.hibernate.stuff.Sauce;
+import net.incongru.util.hibernate.testmodel.BasicVegetable;
+import net.incongru.util.hibernate.testmodel.Sandwich;
+import net.incongru.util.hibernate.testmodel.Sauce;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import org.hibernate.Query;
+import org.hibernate.Session;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,9 +18,9 @@ import java.util.List;
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */
-public class EnumTypeTest extends HibernateTestCase {
+public class EnumTypeTest extends AbstractHibernateTest {
     protected String[] getHbmFiles() throws HibernateException {
-        return new String[]{"net/incongru/util/hibernate/dummy-enum.hbm.xml"};
+        return new String[]{"net/incongru/util/hibernate/testmodel/dummy-enum.hbm.xml"};
     }
 
     public void testBasic() throws Exception {
@@ -56,9 +56,9 @@ public class EnumTypeTest extends HibernateTestCase {
         assertTrue(rs.next());
         assertEquals("basic", rs.getString("name"));
         String sauceStr = rs.getString("sauce");
-        assertEquals(sauceStr, "net.incongru.util.hibernate.stuff.Sauce/mayonnaise");
+        assertEquals(sauceStr, "net.incongru.util.hibernate.testmodel.Sauce/mayonnaise");
         String vegStr = rs.getString("vegetable");
-        assertEquals(vegStr, "net.incongru.util.hibernate.stuff.BasicVegetable/salad");
+        assertEquals(vegStr, "net.incongru.util.hibernate.testmodel.BasicVegetable/salad");
         assertFalse(rs.next());
         s.close();
     }

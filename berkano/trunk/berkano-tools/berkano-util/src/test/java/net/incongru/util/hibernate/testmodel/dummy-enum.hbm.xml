@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="net.incongru.util.hibernate.stuff.DummyBean" table="dummy">
+    <class name="net.incongru.util.hibernate.testmodel.Sandwich" table="sandwich">
         <id name="id" column="id" type="long">
             <generator class="native">
             </generator>
@@ -11,6 +11,9 @@
         <property name="name" column="name" length="255">
         </property>
 
-        <property name="complexObject" column="complex_object" type="net.incongru.util.hibernate.XStreamType"/>
+        <property name="cheeseAmount" type="int"/>
+        <property name="sauce" type="net.incongru.util.hibernate.EnumType"/>
+        <property name="vegetable" type="net.incongru.util.hibernate.EnumType"/>
+
     </class>
 </hibernate-mapping>

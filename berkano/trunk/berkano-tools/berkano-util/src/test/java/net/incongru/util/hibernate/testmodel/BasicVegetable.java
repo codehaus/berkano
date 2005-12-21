@@ -1,4 +1,4 @@
-package net.incongru.util.hibernate.stuff;
+package net.incongru.util.hibernate.testmodel;
 
 /**
  *
