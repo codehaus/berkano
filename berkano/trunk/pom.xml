@@ -3,6 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>berkano</groupId>
     <artifactId>berkano-parent</artifactId>
+    <name>Berkano Parent POM</name>
     <packaging>pom</packaging>
     <version>SNAPSHOT</version>
     <url>http://berkano.codehaus.org</url>

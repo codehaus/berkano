@@ -8,6 +8,7 @@
     </parent>
 
     <artifactId>taskman</artifactId>
+    <name>Berkano Simple Task Manager</name>
     <packaging>jar</packaging>
 
     <build>
