@@ -28,10 +28,20 @@
         <url></url>
     </organization>
     <scm>
-        <connection>scm:cvs:ext:anon@host:/cvs/root:pouet</connection>
-        <developerConnection>scm:cvs:ext:user@host:/cvs/root:pouet</developerConnection>
-        <url>http://www.google.com</url>
+        <connection>scm:svn:https://svn.codehaus.org/berkano/berkano/trunk/berkano-tools/puzzles/</connection>
     </scm>
+    <ciManagement>
+        <system>Continuum</system>
+        <url>http://ci.codehaus.org:8001/continuum/</url>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <configuration>
+                    <address>scm@berkano.codehaus.org</address>
+                </configuration>
+            </notifier>
+        </notifiers>
+    </ciManagement>
     <distributionManagement>
         <repository>
             <id>codehaus</id>
@@ -39,8 +49,8 @@
             <url>scpexe://beaver.codehaus.org:/dist/</url>
         </repository>
         <site>
-            <id>default</id>
-            <name>Default Site</name>
+            <id>codehaus</id>
+            <name>codehaus</name>
             <url>scp://http://berkano.codehaus.org//home/projects/berkano/public_html/maven</url>
         </site>
     </distributionManagement>
@@ -105,9 +115,36 @@
     <!--</dependencyManagement>-->
 
     <modules>
+        <module>berkano-tools/pom-taglib</module>
+
         <module>berkano-tools/berkano-util</module>
-        <module>berkano-tools/taskman</module>
         <module>berkano-tools/jodatime-hibernate</module>
+        <module>berkano-tools/taskman</module>
+        <module>berkano-tools/puzzles</module>
+
+        <!--<module>berkano-tools/taglib-unit</module>-->
+        <!--<module>berkano-tools/beandisplaytag</module>-->
+        <!--<module>berkano-tools/kiss-taglib</module>-->
+
+        <!--<module>berkano-user/berkano-user</module>-->
+        <!--<module>berkano-user/berkano-user-mgt-webwork</module>-->
+        <!--<module>berkano-user/berkano-seraph</module>-->
+        <!--<module>berkano-user/berkano-seraph-taglib</module>-->
+
+        <!--<module>berkano-bookmarks/berkano-bookmarks</module>-->
     </modules>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>

@@ -7,6 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>berkano-taglib-parent</artifactId>
+    <name>Berkano Parent Taglib POM</name>
     <packaging>pom</packaging>
     <build>
         <resources>
