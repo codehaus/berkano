@@ -70,8 +70,7 @@ public class HibernatedUserDAO extends AbstractHibernatedDAO implements UserDAO 
         try {
             Criteria criteria = session.createCriteria(UserImpl.class);
             criteria.add(Expression.eq(fieldName, value).ignoreCase());
-            User user = (User) criteria.uniqueResult();
-            return user;
+            return (User) criteria.uniqueResult();
         } catch (HibernateException e) {
             throw new RuntimeException(e);
         }
@@ -92,19 +91,18 @@ public class HibernatedUserDAO extends AbstractHibernatedDAO implements UserDAO 
 
     public List listAllUsers() {
         try {
-            List list = session.createCriteria(UserImpl.class).list();
-            return list;
+            return session.createCriteria(UserImpl.class).list();
         } catch (HibernateException e) {
             throw new RuntimeException(e);
         }
 
     }
 
-    public User newUser(String userName, String password, String email, String fullName) {
+    public User newUser(String userName, String cleanPassword, String email, String fullName) {
         try {
             UserImpl newUser = new UserImpl();
             newUser.setUserName(userName);
-            newUser.setPassword(passwordMatchingStrategy.encode(password));
+            newUser.setPassword(passwordMatchingStrategy.encode(cleanPassword));
             newUser.setEmail(email);
             newUser.setFullName(fullName);
             session.save(newUser);
