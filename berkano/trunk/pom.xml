@@ -28,7 +28,7 @@
         <url></url>
     </organization>
     <scm>
-        <connection>scm:svn:https://svn.codehaus.org/berkano/berkano/trunk/berkano-tools/puzzles/</connection>
+        <connection>scm:svn:https://svn.codehaus.org/berkano/berkano/trunk/</connection>
     </scm>
     <ciManagement>
         <system>Continuum</system>
@@ -51,7 +51,8 @@
         <site>
             <id>codehaus</id>
             <name>codehaus</name>
-            <url>scp://http://berkano.codehaus.org//home/projects/berkano/public_html/maven</url>
+            <!--<url>scp://http://berkano.codehaus.org//home/projects/berkano/public_html/maven</url>-->
+            <url>scp://beaver.codehaus.org/home/projects/berkano/public_html/maven</url>
         </site>
     </distributionManagement>
     <repositories>
