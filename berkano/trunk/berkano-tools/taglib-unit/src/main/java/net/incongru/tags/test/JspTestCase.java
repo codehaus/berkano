@@ -8,10 +8,11 @@ import com.meterware.httpunit.WebResponse;
 import com.meterware.servletunit.ServletRunner;
 import com.meterware.servletunit.ServletUnitClient;
 import junit.framework.TestCase;
-import org.xml.sax.SAXException;
 import org.apache.log4j.varia.NullAppender;
+import org.xml.sax.SAXException;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -19,12 +20,12 @@ import java.io.Reader;
 
 /**
  * Extend this class to test jsp results.
- * JSPs and resources names should be relative to src/test/.
+ * JSPs and resources names should be relative to src/test/java/.
  * @author gjoseph
  * @author $ $ (last edit)
  */
 public abstract class JspTestCase extends TestCase {
-    private static final String ABS_PREFIX = "src/test/";
+    private static final String ABS_PREFIX = "src/test/java/";
     private static final String RES_PREFIX = "/";
 
     static {
@@ -38,7 +39,7 @@ public abstract class JspTestCase extends TestCase {
 
         ServletUnitClient sc = sr.newClient();
         WebRequest request = new GetMethodWebRequest("http://blah/jsp");
-        request.setParameter("jsp", ABS_PREFIX + jsp);
+        request.setParameter("jsp", getBaseDir() + ABS_PREFIX + jsp);
         try {
             WebResponse response = sc.getResponse(request);
             assertNotNull("No response received", response);
@@ -67,7 +68,7 @@ public abstract class JspTestCase extends TestCase {
         WebResponse res = setupJsp(jsp);
         Reader actualIn = new InputStreamReader(res.getInputStream());
         InputStream expectedInputStream = this.getClass().getResourceAsStream(RES_PREFIX + resourceName);
-        assertNotNull("can't get expected resource", expectedInputStream);
+        assertNotNull("can't get expected resource " + resourceName, expectedInputStream);
         Reader expectedIn = new InputStreamReader(expectedInputStream);
         compareText(expectedIn, actualIn, ignoreWhiteSpace);
     }
@@ -108,5 +109,29 @@ public abstract class JspTestCase extends TestCase {
             }
         }
         return null;
+    }
+
+    /**
+     * Figures out the current building dir, because the jsp path
+     * must be relative to that, for some reason. Since when building
+     * from maven with the reactor, the current directory is *not*
+     * the project's basedir, we're relying on the "basedire" system
+     * property set by maven. If the property's not there, we're
+     * assuming the current dir was set properly.
+     */
+    private String getBaseDir() {
+        String basedirProp = System.getProperty("basedir");
+        String currentPath = new File("").getAbsolutePath();
+        if (basedirProp != null) {
+            if (!basedirProp.startsWith(currentPath)) {
+                fail("Can't figure out the current directory(basedirProp=" + basedirProp + ",currentPath=" + currentPath + ")");
+            }
+
+            String res = basedirProp.substring(currentPath.length()) + File.separatorChar;
+            res = res.substring(res.startsWith(File.separator) ? 1 : 0);
+            return res;
+        } else {
+            return "";
+        }
     }
 }

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<project default="jar:jar">
-    <preGoal name="java:compile">
-        <attainGoal name="xdoclet-tld"/>
-    </preGoal>
-</project>

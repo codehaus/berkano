@@ -123,8 +123,8 @@
         <module>berkano-tools/taskman</module>
         <module>berkano-tools/puzzles</module>
 
-        <!--<module>berkano-tools/taglib-unit</module>-->
-        <!--<module>berkano-tools/beandisplaytag</module>-->
+        <module>berkano-tools/taglib-unit</module>
+        <module>berkano-tools/beandisplaytag</module>
         <!--<module>berkano-tools/kiss-taglib</module>-->
 
         <!--<module>berkano-user/berkano-user</module>-->
