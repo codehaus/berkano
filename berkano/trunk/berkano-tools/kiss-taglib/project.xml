@@ -3,7 +3,7 @@
 <project>
     <extend>../../project-taglib.xml</extend>
     <artifactId>berkano-kisstags</artifactId>
-    <currentVersion>${berkanoVersion}</currentVersion>
+    <currentVersion>SNAPSHOT</currentVersion>
     <name>Simple tags tag library</name>
     <description>The Simple tags tag library is a collection of very small tags, with a very etroit focus blabla.</description>
     <shortDescription>Simple tags tag library</shortDescription>
@@ -13,7 +13,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-taglib-unit</artifactId>
-            <version>${berkanoVersion}</version>
+            <version>SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
