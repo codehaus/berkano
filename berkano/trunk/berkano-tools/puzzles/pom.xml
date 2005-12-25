@@ -51,9 +51,15 @@
         </notifiers>
     </ciManagement>
     <distributionManagement>
+        <repository>
+            <id>codehaus</id>
+            <name>beaver.codehaus.org</name>
+            <url>scpexe://beaver.codehaus.org:/dist/</url>
+        </repository>
         <site>
-            <id>website</id>
-            <url>scp://gjoseph@beaver.codehaus.org/home/projects/berkano/public_html/puzzles</url>
+            <id>codehaus</id>
+            <name>codehaus</name>
+            <url>scp://beaver.codehaus.org/home/projects/berkano/public_html/puzzles</url>
         </site>
     </distributionManagement>
     <reporting>

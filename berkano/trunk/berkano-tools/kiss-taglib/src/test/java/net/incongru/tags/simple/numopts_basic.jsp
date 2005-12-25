@@ -1,4 +1,4 @@
-<%@ taglib prefix="s" uri="/target/classes/META-INF/taglib.tld"%>
+<%@ taglib prefix="s" uri="../../../../../../../target/xdoclet/META-INF/taglib.tld"%>
 Basic, just end attribute:
 <s:numericoptions end="5"/>
 Assert counter is reset:

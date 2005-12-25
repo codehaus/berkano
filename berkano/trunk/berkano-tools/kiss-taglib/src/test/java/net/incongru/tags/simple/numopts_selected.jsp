@@ -1,4 +1,4 @@
-<%@taglib uri="/target/classes/META-INF/taglib.tld" prefix="s"%>
+<%@ taglib prefix="s" uri="../../../../../../../target/xdoclet/META-INF/taglib.tld"%>
 Basic:
 <s:numericoptions end="5" selected="3"/>
 Out of bounds:

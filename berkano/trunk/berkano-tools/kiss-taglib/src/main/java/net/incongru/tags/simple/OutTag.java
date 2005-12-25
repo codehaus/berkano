@@ -1,10 +1,10 @@
 package net.incongru.tags.simple;
 
-import javax.servlet.jsp.tagext.TagSupport;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.IOException;
 
 /**
  * A very simple tag that outputs an attribute stored in one of PageContext,
@@ -21,13 +21,14 @@ import java.io.IOException;
  * @jsp.tag name="out"
  *          body-content="empty"
  *
- * @author     gjoseph
- * @author     $Author: gj $ (last edit)
- * @version    $Revision: 1.2 $
+ * @author gjoseph
+ * @author $Author: gj $ (last edit)
+ * @version $Revision: 1.2 $
  */
 public class OutTag extends TagSupport {
     // TODO : There's another construct which i can't find right now that involves anonymous subclassing...
     private final static List scopes = new ArrayList();
+
     static {
         scopes.add("page");
         scopes.add("request");

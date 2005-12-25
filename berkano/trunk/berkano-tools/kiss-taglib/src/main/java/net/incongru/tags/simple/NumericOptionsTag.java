@@ -28,9 +28,9 @@ import java.io.IOException;
  * @jsp.tag name="numericoptions"
  *          body-content="empty"
  *
- * @author     <a href="mailto:greg@incongru.net">greg</a>
- * @author     $Author: gj $ (last edit)
- * @version    $Revision: 1.2 $
+ * @author greg
+ * @author $Author: gj $ (last edit)
+ * @version $Revision: 1.2 $
  */
 public class NumericOptionsTag extends TagSupport {
     private int start = 0;

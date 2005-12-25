@@ -39,8 +39,10 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.codehaus.xdoclet</groupId>
+                    <inherited>true</inherited>
+                    <groupId>xdoclet</groupId>
                     <artifactId>maven2-xdoclet2-plugin</artifactId>
+                    <version>2.0.5-SNAPSHOT</version>
                     <configuration>
                         <configs>
                             <config>
@@ -56,7 +58,7 @@
                         <dependency>
                             <groupId>xdoclet-plugins</groupId>
                             <artifactId>xdoclet-plugin-web</artifactId>
-                            <version>1.0.3-SNAPSHOT</version>
+                            <version>1.0.3</version>
                         </dependency>
                         <dependency>
                             <groupId>javax.servlet</groupId>

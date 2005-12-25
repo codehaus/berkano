@@ -93,15 +93,6 @@
                     <source>1.5</source>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-            <!--<artifactId>maven-surefire-plugin</artifactId>-->
-            <!--<configuration>-->
-            <!--<includes>-->
-            <!--<include>**/*Test.java</include>-->
-            <!--<include>**/*Test.class</include>-->
-            <!--</includes>-->
-            <!--</configuration>-->
-            <!--</plugin>-->
         </plugins>
     </build>
     <!--<dependencyManagement>-->
@@ -125,7 +116,7 @@
 
         <module>berkano-tools/taglib-unit</module>
         <module>berkano-tools/beandisplaytag</module>
-        <!--<module>berkano-tools/kiss-taglib</module>-->
+        <module>berkano-tools/kiss-taglib</module>
 
         <!--<module>berkano-user/berkano-user</module>-->
         <!--<module>berkano-user/berkano-user-mgt-webwork</module>-->

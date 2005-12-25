@@ -16,20 +16,8 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.xdoclet</groupId>
+                <groupId>xdoclet</groupId>
                 <artifactId>maven2-xdoclet2-plugin</artifactId>
-                <configuration>
-                        <configs>
-                            <config>
-                                <plugin>org.xdoclet.plugin.web.TaglibPlugin</plugin>
-                                <params>
-                                    <uri>http://berkano.codehaus.org/beandisplaytag</uri>
-                                    <jspversion>2.0</jspversion>
-                                    <destdir>${basedir}/target/xdoclet/META-INF</destdir>
-                                </params>
-                            </config>
-                        </configs>
-                    </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>xdoclet-plugins</groupId>

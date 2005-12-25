@@ -10,10 +10,10 @@ import net.incongru.tags.test.JspTestCase;
  */
 public abstract class AbstractSimpleTagTestCase extends JspTestCase {
     public void assertJspAsResource(String resourceName, String jsp, boolean ignoreWhiteSpace) throws Throwable {
-        super.assertJspAsResource("net/incongru/tags/simple/"+resourceName, "net/incongru/tags/simple/"+jsp, ignoreWhiteSpace);
+        super.assertJspAsResource("net/incongru/tags/simple/" + resourceName, "net/incongru/tags/simple/" + jsp, ignoreWhiteSpace);
     }
 
     public void assertJspAsText(String expectedContent, String jsp) throws Throwable {
-        super.assertJspAsText(expectedContent, "net/incongru/tags/simple/"+jsp);
+        super.assertJspAsText(expectedContent, "net/incongru/tags/simple/" + jsp);
     }
 }

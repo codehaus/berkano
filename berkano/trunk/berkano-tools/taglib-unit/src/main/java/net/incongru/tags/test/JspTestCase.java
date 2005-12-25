@@ -8,7 +8,6 @@ import com.meterware.httpunit.WebResponse;
 import com.meterware.servletunit.ServletRunner;
 import com.meterware.servletunit.ServletUnitClient;
 import junit.framework.TestCase;
-import org.apache.log4j.varia.NullAppender;
 import org.xml.sax.SAXException;
 
 import java.io.BufferedReader;
@@ -28,9 +27,9 @@ public abstract class JspTestCase extends TestCase {
     private static final String ABS_PREFIX = "src/test/java/";
     private static final String RES_PREFIX = "/";
 
-    static {
-        org.apache.log4j.BasicConfigurator.configure(new NullAppender());
-    }
+//    static {
+//        org.apache.log4j.BasicConfigurator.configure(new NullAppender());
+//    }
 
     private WebResponse setupJsp(String jsp) throws Throwable {
         HttpUnitOptions.setScriptingEnabled(false);
