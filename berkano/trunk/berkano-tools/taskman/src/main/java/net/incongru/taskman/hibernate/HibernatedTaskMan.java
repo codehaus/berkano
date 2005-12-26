@@ -28,7 +28,6 @@ import java.util.List;
  * @version $Revision: $ 
  */
 public class HibernatedTaskMan implements TaskMan {
-    private static final String FINDLATESTTASKDEF_QUERY = "select taskDef from net.incongru.taskman.def.TaskDefImpl as taskDef where taskDef.name = :name order by taskDef.versionId desc";
     private static final Long DEFAULT_VERSION_ID = new Long(1L);
 
     private final Session session;
@@ -66,13 +65,7 @@ public class HibernatedTaskMan implements TaskMan {
         return taskDef;
     }
 
-    // TODO make this public or package friendly, to test it more ?
     private TaskDef findLatestTaskDef(String taskDefName) {
-//        final Query query = session.createQuery(FINDLATESTTASKDEF_QUERY);
-//        query.setString("name", taskDefName);
-        //query.setMaxResults(1); // TODO : see how this gets translated, maybe it is incompatible with oracle ?
-//        return (TaskDef) query.uniqueResult();
-
         final Criteria criteria = session.createCriteria(TaskDefImpl.class);
         criteria.add(Expression.eq("name", taskDefName));
         criteria.addOrder(Order.desc("versionId"));
@@ -84,10 +77,12 @@ public class HibernatedTaskMan implements TaskMan {
         return (TaskInstance) session.load(TaskInstance.class, taskId);
     }
 
+    // TODO
     public List<TaskInstance> getTasksByActorId(String actorId) {
         throw new IllegalStateException("not implemented yet");
     }
 
+    // TODO
     public List<TaskInstance> getTasksByAssignee(Assignee assignee) {
         throw new IllegalStateException("not implemented yet");
     }
@@ -129,21 +124,19 @@ public class HibernatedTaskMan implements TaskMan {
         session.merge(task);
     }
 
+    // TODO
     public void addVariable(String name, Object value) {
         // TODO : either user should modify the variables Map and call some save() method,
         // or the TaskInstance should be passed here AND ideally the getVariables should return an immutable map instance
         throw new IllegalStateException("not implemented yet");
     }
 
+    // TODO
     public List<TaskInstance> findRemainingTasks() {
         final Criteria criteria = session.createCriteria(TaskInstance.class);
 
         throw new IllegalStateException("not implemented yet");
         //return null;
-    }
-
-    private String generateTaskId() {
-        throw new IllegalStateException("not implemented yet");
     }
 
     private void logAndDispatchSimpleEvent(final TaskInstance task, final TaskEvent event, final Object oldValue, final Object newValue) {
