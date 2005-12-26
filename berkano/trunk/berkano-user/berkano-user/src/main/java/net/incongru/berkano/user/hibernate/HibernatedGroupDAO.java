@@ -5,8 +5,10 @@ import net.incongru.berkano.user.GroupDAO;
 import net.incongru.berkano.user.GroupImpl;
 import net.incongru.berkano.user.PropertiesAware;
 import net.incongru.berkano.user.UnknownUserException;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Expression;
 
 import java.util.List;
 import java.util.Set;
@@ -34,7 +36,9 @@ public class HibernatedGroupDAO extends AbstractHibernatedDAO implements GroupDA
     }
 
     public Group getGroupByName(String groupName) {
-        throw new RuntimeException("not implemented yet");
+        Criteria criteria = session.createCriteria(GroupImpl.class);
+        criteria.add(Expression.eq("groupName", groupName).ignoreCase());
+        return (Group) criteria.uniqueResult();
     }
 
     public Group newGroup(String groupName) {
