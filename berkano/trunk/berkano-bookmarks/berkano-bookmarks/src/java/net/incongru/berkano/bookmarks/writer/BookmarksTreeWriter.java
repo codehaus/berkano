@@ -1,4 +1,6 @@
-package net.incongru.berkano.bookmarks;
+package net.incongru.berkano.bookmarks.writer;
+
+import net.incongru.berkano.bookmarks.BookmarksTree;
 
 import java.io.IOException;
 import java.io.Writer;

@@ -1,4 +1,6 @@
-package net.incongru.berkano.bookmarks;
+package net.incongru.berkano.bookmarks.reader;
+
+import net.incongru.berkano.bookmarks.BookmarksTree;
 
 /**
  *

@@ -1,5 +1,7 @@
 package net.incongru.berkano.bookmarks;
 
+import net.incongru.berkano.bookmarks.writer.SimpleBookmarksWriter;
+
 import java.io.IOException;
 import java.io.StringWriter;
 

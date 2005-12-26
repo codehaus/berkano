@@ -1,6 +1,10 @@
 package net.incongru.berkano.bookmarks;
 
 import junit.framework.TestCase;
+import net.incongru.berkano.bookmarks.reader.BookmarksTreeReader;
+import net.incongru.berkano.bookmarks.reader.XmlBookmarksTreeReader;
+import net.incongru.berkano.bookmarks.writer.BookmarksTreeWriter;
+import net.incongru.berkano.bookmarks.writer.HtmlListBookmarksWriter;
 
 import java.io.ByteArrayInputStream;
 import java.io.StringWriter;
@@ -36,7 +40,7 @@ public class XmlBookmarksTreeReaderTest extends TestCase {
     private static final String XML_COMPLEX_TREE = "" +
             "<bookmarks-tree>\n" +
             "    <bookmark id=\"1\" href=\"foo\" name=\"foo.link\"/>\n" +
-            "    <bookmark id=\"2\" href=\"bar\" name=\"bar.link\">some link to bar</bookmark>\n" +
+            "    <bookmark id=\"2\" href=\"bar\" name=\"bar.link\" highlight=\"haha\">some link to bar</bookmark>\n" +
             "    <bookmark id=\"3\" href=\"baz\" name=\"baz.link\">has a sub menu\n" +
             "        <bookmark id=\"4\" href=\"baz-sub-1\" name=\"baz-sub-1\"/>\n" +
             "        <bookmark id=\"5\" href=\"baz-sub-2\" name=\"baz-sub-2\"/>\n" +
@@ -52,25 +56,29 @@ public class XmlBookmarksTreeReaderTest extends TestCase {
     public void testCanReadMoreComplexTreeWithNestedBookmarks() throws Exception {
         BookmarksTreeReader reader = new XmlBookmarksTreeReader(new ByteArrayInputStream(XML_COMPLEX_TREE.getBytes()));
         BookmarksTree tree = reader.readBookmarksTree();
-        BookmarksTreeWriter writer = new HtmlListBookmarksWriter();
+        BookmarksTreeWriter writer = new HtmlListBookmarksWriter(new NullMenuTranslator());
         StringWriter out = new StringWriter();
         writer.write(tree, out);
-        assertEquals("<ul>\n" +
-                "<li><a href=\"foo\" title=\"foo.link\">foo.link</a></li>\n" +
-                "<li><a href=\"bar\" title=\"some link to bar\">bar.link</a></li>\n" +
-                "<li><a href=\"baz\" title=\"has a sub menu\">baz.link</a></li>\n" +
-                "<ul>\n" +
-                "<li><a href=\"baz-sub-1\" title=\"baz-sub-1\">baz-sub-1</a></li>\n" +
-                "<li><a href=\"baz-sub-2\" title=\"baz-sub-2\">baz-sub-2</a></li>\n" +
-                "<li><a href=\"baz-sub-3\" title=\"baz-sub-3\">baz-sub-3</a></li>\n" +
-                "<ul>\n" +
-                "<li><a href=\"baz-sub-sub-1\" title=\"baz-sub-sub-1\">baz-sub-sub-1</a></li>\n" +
-                "<li><a href=\"baz-sub-sub-2\" title=\"baz-sub-sub-2\">baz-sub-sub-2</a></li>\n" +
-                "<li><a href=\"baz-sub-sub-3\" title=\"baz-sub-sub-3\">baz-sub-sub-3</a></li>\n" +
-                "</ul>\n" +
-                "<li><a href=\"baz-sub-4\" title=\"baz-sub-4\">baz-sub-4</a></li>\n" +
-                "</ul>\n" +
-                "</ul>\n", out.toString());
+        assertEquals(EXPECTED_HTML_COMPLEX_TREE, out.toString());
+        Bookmark b = tree.getBookmark(2);
+        assertEquals("haha", b.getHighlightMatchingExpression());
     }
+
+    private static final String EXPECTED_HTML_COMPLEX_TREE = "<ul>\n" +
+            "<li><a href=\"foo\" title=\"foo.link\">foo.link</a></li>\n" +
+            "<li><a href=\"bar\" title=\"some link to bar\">bar.link</a></li>\n" +
+            "<li><a href=\"baz\" title=\"has a sub menu\">baz.link</a></li>\n" +
+            "<ul>\n" +
+            "<li><a href=\"baz-sub-1\" title=\"baz-sub-1\">baz-sub-1</a></li>\n" +
+            "<li><a href=\"baz-sub-2\" title=\"baz-sub-2\">baz-sub-2</a></li>\n" +
+            "<li><a href=\"baz-sub-3\" title=\"baz-sub-3\">baz-sub-3</a></li>\n" +
+            "<ul>\n" +
+            "<li><a href=\"baz-sub-sub-1\" title=\"baz-sub-sub-1\">baz-sub-sub-1</a></li>\n" +
+            "<li><a href=\"baz-sub-sub-2\" title=\"baz-sub-sub-2\">baz-sub-sub-2</a></li>\n" +
+            "<li><a href=\"baz-sub-sub-3\" title=\"baz-sub-sub-3\">baz-sub-sub-3</a></li>\n" +
+            "</ul>\n" +
+            "<li><a href=\"baz-sub-4\" title=\"baz-sub-4\">baz-sub-4</a></li>\n" +
+            "</ul>\n" +
+            "</ul>\n";
 
 }

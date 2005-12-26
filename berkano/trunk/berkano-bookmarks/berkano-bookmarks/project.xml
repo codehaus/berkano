@@ -3,7 +3,7 @@
 <project>
     <extend>../../project.xml</extend>
     <artifactId>berkano-bookmarks</artifactId>
-    <currentVersion>${berkanoVersion}</currentVersion>
+    <currentVersion>SNAPSHOT</currentVersion>
     <name>Berkano Bookmarks</name>
     <description>Berkano Bookmarks is a simple API to manage "bookmarks" inside berkano applications. Hopefully it will
         be reusable outside berkano.</description>

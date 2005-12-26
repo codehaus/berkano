@@ -61,7 +61,8 @@ public class BookmarksTree implements Serializable {
         tree.changeOrder(bookmark, up);
     }
 
-    protected Tree getTree() {
+    // TODO : set this back to protected ?
+    public Tree getTree() {
         return this.tree;
     }
 }

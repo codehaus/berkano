@@ -84,5 +84,9 @@ public abstract class AbstractBookmarksTestCase extends TestCase {
         public String getDescription() {
             return desc;
         }
+
+        public String getHighlightMatchingExpression() {
+            return null;
+        }
     }
 }

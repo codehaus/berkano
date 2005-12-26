@@ -1,5 +1,7 @@
-package net.incongru.berkano.bookmarks;
+package net.incongru.berkano.bookmarks.writer;
 
+import net.incongru.berkano.bookmarks.Bookmark;
+import net.incongru.berkano.bookmarks.BookmarksTree;
 import net.incongru.berkano.tree.SimpleTreeWriter;
 import net.incongru.berkano.tree.Tree;
 import net.incongru.berkano.tree.TreeWriter;

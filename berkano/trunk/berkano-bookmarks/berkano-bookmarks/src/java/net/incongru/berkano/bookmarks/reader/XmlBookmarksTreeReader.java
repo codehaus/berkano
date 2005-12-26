@@ -1,5 +1,8 @@
-package net.incongru.berkano.bookmarks;
+package net.incongru.berkano.bookmarks.reader;
 
+import net.incongru.berkano.bookmarks.Bookmark;
+import net.incongru.berkano.bookmarks.BookmarksTree;
+import net.incongru.berkano.bookmarks.DefaultBookmark;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -46,6 +49,7 @@ public class XmlBookmarksTreeReader implements BookmarksTreeReader {
             int id = Integer.parseInt(node.getAttribute("id"));
             String href = node.getAttribute("href");
             String name = node.getAttribute("name");
+            String highlight = node.getAttribute("highlight");
             String desc = node.getTextContent();
             if (desc != null) {
                 desc = desc.trim();
@@ -53,7 +57,7 @@ public class XmlBookmarksTreeReader implements BookmarksTreeReader {
             if (desc != null && desc.trim().length() == 0) {
                 desc = null;
             }
-            Bookmark bookmark = new DefaultBookmark(id, href, name, desc);
+            Bookmark bookmark = new DefaultBookmark(id, href, name, desc, highlight);
             tree.add(bookmark, parent);
             addChildren(node, tree, bookmark);
         }

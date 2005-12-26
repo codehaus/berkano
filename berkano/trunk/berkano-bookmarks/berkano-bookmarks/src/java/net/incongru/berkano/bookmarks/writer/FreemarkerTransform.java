@@ -1,7 +1,9 @@
-package net.incongru.berkano.bookmarks;
+package net.incongru.berkano.bookmarks.writer;
 
 import freemarker.template.TemplateModelException;
 import freemarker.template.TemplateTransformModel;
+import net.incongru.berkano.bookmarks.BookmarksTree;
+import net.incongru.berkano.bookmarks.MenuTranslator;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -13,6 +15,12 @@ import java.util.Map;
  * @version $Revision: 1.1 $
  */
 public class FreemarkerTransform implements TemplateTransformModel {
+    private final MenuTranslator translator;
+
+    public FreemarkerTransform(MenuTranslator translator) {
+        this.translator = translator;
+    }
+
     public Writer getWriter(Writer out, Map args) throws TemplateModelException, IOException {
         if (args == null || args.size() < 1 || args.size() > 3) {
             throw new TemplateModelException("supported args: bookmarks(mandatory), indent-start(optional) and indent-end(optional)");
@@ -24,17 +32,19 @@ public class FreemarkerTransform implements TemplateTransformModel {
         String indentStart = (String) args.get("indent-start");
         String indentEnd = (String) args.get("indent-end");
         //todo have a maxLevel arg
-        return new FreemarkerBookmarksTreeWriter(bookmarks, indentStart, indentEnd, out);
+        return new FreemarkerBookmarksTreeWriter(translator, bookmarks, indentStart, indentEnd, out);
     }
 
     private static class FreemarkerBookmarksTreeWriter extends Writer {
+        private final MenuTranslator translator;
         private BookmarksTree bookmarks;
         private String indentStart;
         private String indentEnd;
         private Writer out;
         private StringBuffer buff;
 
-        public FreemarkerBookmarksTreeWriter(BookmarksTree bookmarks, String indentStart, String indentEnd, Writer out) {
+        public FreemarkerBookmarksTreeWriter(MenuTranslator translator, BookmarksTree bookmarks, String indentStart, String indentEnd, Writer out) {
+            this.translator = translator;
             this.bookmarks = bookmarks;
             this.indentStart = indentStart;
             this.indentEnd = indentEnd;
@@ -49,7 +59,7 @@ public class FreemarkerTransform implements TemplateTransformModel {
         public void flush() throws IOException {
             // todo : stuff the tree in here using the buff as the template
             //out.write(buff.toString());
-            HtmlListBookmarksWriter bookmarksWriter = new HtmlListBookmarksWriter();
+            HtmlListBookmarksWriter bookmarksWriter = new HtmlListBookmarksWriter(translator);
             bookmarksWriter.write(bookmarks, out);
             out.flush();
         }

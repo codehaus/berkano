@@ -1,6 +1,7 @@
 package net.incongru.berkano.bookmarks;
 
 import freemarker.template.TemplateModelException;
+import net.incongru.berkano.bookmarks.writer.FreemarkerTransform;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 public class FreemarkerTransformTest extends AbstractBookmarksTestCase {
     public void testStuffJustWorks() throws TemplateModelException, IOException {
         StringWriter out = new StringWriter();
-        FreemarkerTransform freemarkerTransform = new FreemarkerTransform();
+        FreemarkerTransform freemarkerTransform = new FreemarkerTransform(new NullMenuTranslator());
         HashMap args = new HashMap();
         args.put("bookmarks", setupSimpleTree());
         Writer transform = freemarkerTransform.getWriter(out, args);
@@ -40,7 +41,7 @@ public class FreemarkerTransformTest extends AbstractBookmarksTestCase {
 
     public void testShouldThrowTemplateModelExceptionWhenInvalidArgumentsCount() throws TemplateModelException, IOException {
         StringWriter out = new StringWriter();
-        FreemarkerTransform freemarkerTransform = new FreemarkerTransform();
+        FreemarkerTransform freemarkerTransform = new FreemarkerTransform(new NullMenuTranslator());
         HashMap args = new HashMap();
         try {
             freemarkerTransform.getWriter(out, args);
@@ -69,7 +70,7 @@ public class FreemarkerTransformTest extends AbstractBookmarksTestCase {
     }
 
     public void testShouldThrowTemplateModelExceptionWhenNoBookmarksArgument() throws IOException {
-        FreemarkerTransform freemarkerTransform = new FreemarkerTransform();
+        FreemarkerTransform freemarkerTransform = new FreemarkerTransform(new NullMenuTranslator());
         HashMap args = new HashMap();
         args.put("blah", "blah");
         try {

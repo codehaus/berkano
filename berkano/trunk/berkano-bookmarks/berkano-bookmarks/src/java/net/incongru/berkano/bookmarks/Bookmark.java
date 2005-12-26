@@ -35,4 +35,11 @@ public interface Bookmark extends Serializable {
 
     public String getDescription();
 
+    /**
+     * An expression which will be evaluated at runtime by an implementation of
+     * {@link net.incongru.berkano.bookmarks.Highlighter} against the current url
+     * or path, to check if we need to highlight this bookmark.
+     */
+    public String getHighlightMatchingExpression();
+
 }

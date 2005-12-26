@@ -1,5 +1,8 @@
-package net.incongru.berkano.bookmarks;
+package net.incongru.berkano.bookmarks.writer;
 
+import net.incongru.berkano.bookmarks.Bookmark;
+import net.incongru.berkano.bookmarks.BookmarksTree;
+import net.incongru.berkano.bookmarks.MenuTranslator;
 import net.incongru.berkano.tree.SimpleTreeWriter;
 import net.incongru.berkano.tree.TreeWriter;
 
@@ -7,16 +10,19 @@ import java.io.IOException;
 import java.io.Writer;
 
 /**
- * This class is not threadsafe at all !!
+ * This class is not threadsafe : indentation might be corrupted if
+ * we have multiple concurrent calls on the same instance.
  *
  * @author greg
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.3 $
  */
 public class HtmlListBookmarksWriter extends SimpleBookmarksWriter {
+    private final MenuTranslator translator;
     private int lastIndentLevel;
 
-    public HtmlListBookmarksWriter() {
+    public HtmlListBookmarksWriter(MenuTranslator translator) {
+        this.translator = translator;
     }
 
     public void write(BookmarksTree bookmarksTree, Writer out) throws IOException {
@@ -35,9 +41,9 @@ public class HtmlListBookmarksWriter extends SimpleBookmarksWriter {
         out.write("<a href=\"");
         out.write(bookmark.getLink());
         out.write("\" title=\"");
-        out.write(desc != null ? desc : name);
+        out.write(translator.translate(desc != null ? desc : name));
         out.write("\">");
-        out.write(name);
+        out.write(translator.translate(name));
         out.write("</a>");
         out.write("</li>");
     }

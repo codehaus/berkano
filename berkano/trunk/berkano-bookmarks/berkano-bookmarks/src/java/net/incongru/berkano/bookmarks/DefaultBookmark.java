@@ -13,12 +13,14 @@ public class DefaultBookmark implements Bookmark {
     private String url;
     private String name;
     private String description;
+    private String highlightMatchingExpression;
 
-    public DefaultBookmark(int id, String url, String name, String description) {
+    public DefaultBookmark(int id, String url, String name, String description, String highlightMatchingExpression) {
         this.id = id;
         this.url = url;
         this.name = name;
         this.description = description;
+        this.highlightMatchingExpression = highlightMatchingExpression;
     }
 
     public int getId() {
@@ -35,6 +37,10 @@ public class DefaultBookmark implements Bookmark {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getHighlightMatchingExpression() {
+        return highlightMatchingExpression;
     }
 
 }
