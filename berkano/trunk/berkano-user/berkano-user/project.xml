@@ -3,7 +3,7 @@
 <project>
     <extend>../../project.xml</extend>
     <artifactId>berkano-user</artifactId>
-    <currentVersion>${berkanoVersion}</currentVersion>
+    <currentVersion>SNAPSHOT</currentVersion>
     <name>Berkano User</name>
     <description>Berkano User defines a simple API for managing users in berkano applications.</description>
     <shortDescription>Berkano User</shortDescription>
@@ -12,12 +12,12 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-bookmarks</artifactId>
-            <version>${berkanoVersion}</version>
+            <version>SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-util</artifactId>
-            <version>${berkanoVersion}</version>
+            <version>SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>berkano</groupId>

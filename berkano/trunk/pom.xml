@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -65,6 +66,16 @@
                 <checksumPolicy>warn</checksumPolicy>
             </snapshots>
         </repository>
+        <repository>
+            <id>codehaus-legacy</id>
+            <name>codehaus-legacy</name>
+            <layout>legacy</layout>
+            <url>http://dist.codehaus.org</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
     </repositories>
     <build>
         <extensions>
@@ -118,12 +129,12 @@
         <module>berkano-tools/beandisplaytag</module>
         <module>berkano-tools/kiss-taglib</module>
 
-        <!--<module>berkano-user/berkano-user</module>-->
-        <!--<module>berkano-user/berkano-user-mgt-webwork</module>-->
-        <!--<module>berkano-user/berkano-seraph</module>-->
-        <!--<module>berkano-user/berkano-seraph-taglib</module>-->
+        <module>berkano-bookmarks/berkano-bookmarks</module>
 
-        <!--<module>berkano-bookmarks/berkano-bookmarks</module>-->
+        <module>berkano-user/berkano-user</module>
+        <module>berkano-user/berkano-user-mgt-webwork</module>
+        <module>berkano-user/berkano-seraph</module>
+        <module>berkano-user/berkano-seraph-taglib</module>
     </modules>
 
     <reporting>

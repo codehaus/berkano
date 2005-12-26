@@ -1,29 +1,34 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-
-<project>
-    <extend>../../project-taglib.xml</extend>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>berkano-taglib-parent</artifactId>
+        <groupId>berkano</groupId>
+        <version>SNAPSHOT</version>
+    </parent>
     <artifactId>berkano-seraph-taglib</artifactId>
-    <currentVersion>SNAPSHOT</currentVersion>
     <name>Jsp tags for berkano-seraph library</name>
+    <version>SNAPSHOT</version>
     <description></description>
-    <shortDescription>Jsp tags for berkano-seraph library</shortDescription>
-
     <dependencies>
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>seraph</artifactId>
-            <version>0.7.7-berkano-SNAPSHOT</version>
+            <version>0.7.15-berkano-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-seraph</artifactId>
             <version>SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
-        <!-- tests only -->
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-taglib-unit</artifactId>
             <version>SNAPSHOT</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

@@ -82,7 +82,7 @@ public class UserBookmarksAccessor extends ActionSupport {
         int i = 0;
         while (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
-            Bookmark b = new DefaultBookmark(i, (String) entry.getValue(), (String) entry.getKey(), null);
+            Bookmark b = new DefaultBookmark(i, (String) entry.getValue(), (String) entry.getKey(), null, null);
             tree.add(b, null);
             i++;
         }
