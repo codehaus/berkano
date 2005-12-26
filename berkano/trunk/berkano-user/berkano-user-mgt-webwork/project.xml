@@ -3,7 +3,7 @@
 <project>
     <extend>../../project.xml</extend>
     <artifactId>berkano-user-mgt-webwork</artifactId>
-    <currentVersion>${berkanoVersion}</currentVersion>
+    <currentVersion>SNAPSHOT</currentVersion>
     <name>Berkano User Management for Webwork2</name>
     <description>A couple of simple actions and views for berkano-user/osuser with webwork2</description>
     <shortDescription>Berkano User Management for Webwork2</shortDescription>
@@ -12,7 +12,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-user</artifactId>
-            <version>${berkanoVersion}</version>
+            <version>SNAPSHOT</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -24,13 +24,13 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-seraph</artifactId>
-            <version>${berkanoVersion}</version>
+            <version>SNAPSHOT</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-bookmarks</artifactId>
-            <version>${berkanoVersion}</version>
+            <version>SNAPSHOT</version>
             <type>jar</type>
         </dependency>
         <dependency>
