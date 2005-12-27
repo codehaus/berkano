@@ -195,5 +195,15 @@ public class HibernatedTaskMan implements TaskMan {
         public TaskEvent getEvent() {
             return event;
         }
+
+        // generated toString
+        public String toString() {
+            final StringBuilder sb = new StringBuilder();
+            sb.append("TaskContextImpl");
+            sb.append("{event=").append(event);
+            sb.append(",task=").append(task);
+            sb.append('}');
+            return sb.toString();
+        }
     }
 }

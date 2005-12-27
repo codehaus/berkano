@@ -133,4 +133,21 @@ public class TaskInstanceImpl implements TaskInstance {
         result = 29 * result + (log != null ? log.hashCode() : 0);
         return result;
     }
+
+    // generated toString
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("TaskInstanceImpl");
+        sb.append("{taskDef=").append(taskDef);
+        sb.append(",id=").append(id);
+        sb.append(",name=").append(name);
+        sb.append(",description=").append(description);
+        sb.append(",assignee=").append(assignee);
+        sb.append(",dueDate=").append(dueDate);
+        sb.append(",lastReminder=").append(lastReminder);
+        sb.append(",variables=").append(variables);
+        sb.append(",log=").append(log);
+        sb.append('}');
+        return sb.toString();
+    }
 }
