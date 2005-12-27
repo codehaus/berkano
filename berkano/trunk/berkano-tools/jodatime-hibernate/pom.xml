@@ -7,9 +7,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jodatime-hibernate</artifactId>
-    <name>Joda-Time / Hibernate UserType implementations</name>
+    <name>Berkano Joda-Time/Hibernate</name>
     <version>SNAPSHOT</version>
-    <description></description>
+    <description>Joda-Time/Hibernate UserType implementations</description>
 
     <build>
         <testResources>

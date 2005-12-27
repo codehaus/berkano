@@ -36,7 +36,7 @@
         </dependency>
     </dependencies>
     <scm>
-        <connection>scm:svn:https://svn.codehaus.org/berkano/berkano/trunk/berkano-tools/puzzles/</connection>
+        <connection>scm:svn:svn://svn.berkano.codehaus.org/berkano/scm/berkano/trunk/berkano-tools/puzzles/</connection>
     </scm>
     <ciManagement>
         <system>Continuum</system>

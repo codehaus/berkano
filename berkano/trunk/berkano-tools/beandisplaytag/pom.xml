@@ -6,9 +6,9 @@
         <version>SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>bean-displaytag</artifactId>
+    <artifactId>beandisplaytag</artifactId>
     <packaging>jar</packaging>
-    <name>Bean display tag library</name>
+    <name>BeanDisplayTag</name>
     <description>The bean display tag library is based on an idea we've had while using displaytag(www.displaytag.org),
         which is basically proviving the same usage model as display tag but to help display one single instance of a
         bean instance of a collection, vertically instead of horizontally.</description>

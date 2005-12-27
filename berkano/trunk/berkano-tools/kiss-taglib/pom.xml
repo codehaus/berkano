@@ -8,9 +8,8 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>berkano-kisstags</artifactId>
     <packaging>jar</packaging>
-    <name>Simple tags tag library</name>
-    <description>The Simple tags tag library is a collection of very small tags,
-        with a very focused/limited usage.</description>
+    <name>Berkano Kiss Tags</name>
+    <description>The KISS tag library is a collection of very simple JSP tags, with a very focused/limited usage.</description>
 
     <dependencies>
         <dependency>
