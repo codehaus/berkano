@@ -29,7 +29,8 @@
         <url></url>
     </organization>
     <scm>
-        <connection>scm:svn:https://svn.codehaus.org/berkano/berkano/trunk/</connection>
+        <!--<connection>scm:svn:http://svn.berkano.codehaus.org/berkano/trunk/</connection>-->
+        <connection>scm:svn:http://svn.codehaus.org/berkano/scm/berkano/trunk/</connection>
     </scm>
     <ciManagement>
         <system>Continuum</system>
