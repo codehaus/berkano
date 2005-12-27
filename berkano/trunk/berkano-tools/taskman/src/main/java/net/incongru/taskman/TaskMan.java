@@ -42,6 +42,7 @@ public interface TaskMan {
      * id, name and description. Any of these 3 parameters can be null, in which case
      * they get a default value. (a generated id, null and null, respectively)
      */
+    //TODO : use taskDefName instead of taskDefId, and retrieve it using findLatestTaskDef()
     TaskInstance newTaskInstance(Long taskDefId, String taskId, String taskName, String taskDesc);
 
     void assign(TaskInstance task, Assignee assignee);
