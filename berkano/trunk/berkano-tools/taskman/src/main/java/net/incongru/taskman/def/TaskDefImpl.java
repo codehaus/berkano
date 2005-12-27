@@ -31,6 +31,49 @@ public class TaskDefImpl implements TaskDef {
         return eventActionMap.get(event);
     }
 
+    public boolean isSameAs(TaskDef other) {
+        if (!(other instanceof TaskDefImpl)) {
+            return false;
+        }
+        return isSameAs((TaskDefImpl) other);
+    }
+
+    private boolean isSameAs(TaskDefImpl other) {
+        if (description != null ? !description.equals(other.getDescription()) : other.getDescription() != null)
+            return false;
+        if (dueDateTimeout != null ? !dueDateTimeout.equals(other.getDueDateTimeout()) : other.getDueDateTimeout() != null)
+            return false;
+        if (duePeriod != null ? !duePeriod.equals(other.getDuePeriod()) : other.getDuePeriod() != null)
+            return false;
+        if (eventActionMap != null ? !eventActionMap.equals(other.getEventActionMap()) : other.getEventActionMap() != null)
+            return false;
+        if (name != null ? !name.equals(other.getName()) : other.getName() != null)
+            return false;
+        if (reminderPeriod != null ? !reminderPeriod.equals(other.getReminderPeriod()) : other.getReminderPeriod() != null)
+            return false;
+
+        return true;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        final TaskDefImpl taskDef = (TaskDefImpl) o;
+
+        if (!isSameAs(taskDef)) {
+            return false;
+        }
+        if (deploymentDateTime != null ? !deploymentDateTime.equals(taskDef.deploymentDateTime) : taskDef.deploymentDateTime != null)
+            return false;
+        if (id != null ? !id.equals(taskDef.id) : taskDef.id != null)
+            return false;
+        if (versionId != null ? !versionId.equals(taskDef.versionId) : taskDef.versionId != null)
+            return false;
+
+        return true;
+    }
+
     // generated getters and setters
     public Long getId() {
         return id;
@@ -104,33 +147,11 @@ public class TaskDefImpl implements TaskDef {
         this.eventActionMap = eventActionMap;
     }
 
-    // generated equals
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        final TaskDefImpl taskDef = (TaskDefImpl) o;
-
-        if (deploymentDateTime != null ? !deploymentDateTime.equals(taskDef.deploymentDateTime) : taskDef.deploymentDateTime != null)
-            return false;
-        if (description != null ? !description.equals(taskDef.description) : taskDef.description != null) return false;
-        if (dueDateTimeout != null ? !dueDateTimeout.equals(taskDef.dueDateTimeout) : taskDef.dueDateTimeout != null)
-            return false;
-        if (duePeriod != null ? !duePeriod.equals(taskDef.duePeriod) : taskDef.duePeriod != null) return false;
-        if (eventActionMap != null ? !eventActionMap.equals(taskDef.eventActionMap) : taskDef.eventActionMap != null)
-            return false;
-        if (id != null ? !id.equals(taskDef.id) : taskDef.id != null) return false;
-        if (name != null ? !name.equals(taskDef.name) : taskDef.name != null) return false;
-        if (reminderPeriod != null ? !reminderPeriod.equals(taskDef.reminderPeriod) : taskDef.reminderPeriod != null)
-            return false;
-
-        return true;
-    }
-
     // generated hashCode
     public int hashCode() {
         int result;
         result = (id != null ? id.hashCode() : 0);
+        result = 29 * result + (versionId != null ? versionId.hashCode() : 0);
         result = 29 * result + (name != null ? name.hashCode() : 0);
         result = 29 * result + (description != null ? description.hashCode() : 0);
         result = 29 * result + (deploymentDateTime != null ? deploymentDateTime.hashCode() : 0);

@@ -11,6 +11,7 @@ import net.incongru.taskman.TaskLogImpl;
 import net.incongru.taskman.TaskMan;
 import net.incongru.taskman.def.TaskDef;
 import net.incongru.taskman.def.TaskDefImpl;
+import net.incongru.taskman.def.TaskDefParser;
 import net.incongru.taskman.id.IdGenerator;
 import net.incongru.taskman.id.NullIdGenerator;
 import org.hibernate.Criteria;
@@ -44,17 +45,18 @@ public class HibernatedTaskMan implements TaskMan {
         this.idGenerator = idGenerator;
     }
 
-    public TaskDef deployTaskDef(final TaskDef taskDef) {
+    public TaskDef deployTaskDef(final TaskDefParser taskDefParser, boolean forceEvenIfEquals) {
+        final TaskDef taskDef = taskDefParser.loadTaskDesk();
         assert taskDef instanceof TaskDefImpl;
         assert taskDef.getId() == null;
         assert taskDef.getVersionId() == null;
         assert taskDef.getDeploymentDateTime() == null;
 
-        return deployTaskDefImpl((TaskDefImpl) taskDef);
-    }
-
-    private TaskDef deployTaskDefImpl(final TaskDefImpl taskDef) {
         final TaskDef latestTaskDef = findLatestTaskDef(taskDef.getName());
+        if (!forceEvenIfEquals && taskDef.isSameAs(latestTaskDef)) {
+            return latestTaskDef;
+        }
+
         Long newVersion = DEFAULT_VERSION_ID;
         if (latestTaskDef != null) {
             newVersion = Long.valueOf(latestTaskDef.getVersionId().longValue() + 1);

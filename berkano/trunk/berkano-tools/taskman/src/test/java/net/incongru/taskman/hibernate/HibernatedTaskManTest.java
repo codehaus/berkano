@@ -8,6 +8,7 @@ import net.incongru.taskman.TaskEvent;
 import net.incongru.taskman.TaskInstance;
 import net.incongru.taskman.TaskInstanceImpl;
 import net.incongru.taskman.TaskLog;
+import net.incongru.taskman.TaskMan;
 import net.incongru.taskman.def.TaskDef;
 import net.incongru.taskman.def.TaskDefImpl;
 import net.incongru.taskman.id.IdGenerator;
@@ -26,7 +27,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         Mock session = mock(Session.class);
         session.expects(once()).method("load").with(eq(TaskInstance.class), eq("foo")).will(returnValue(getDummyTaskInstance(getDummyTaskDef())));
 
-        final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), null);
+        final TaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), null);
         taskMan.getTaskById("foo");
     }
 
@@ -40,7 +41,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         actionMan.expects(once()).method("getTaskAction").with(eq(task), eq(TaskEvent.cancelled)).will(returnValue(null));
 
         assertEquals(0, task.getLog().size());
-        final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy());
+        final TaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy());
 
         taskMan.cancel(task);
 
@@ -63,7 +64,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         actionMan.expects(once()).method("getTaskAction").with(eq(task), eq(TaskEvent.started)).will(returnValue(action.proxy()));
         action.expects(once()).method("execute").with(isA(TaskContext.class));
         assertEquals(0, task.getLog().size());
-        final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy());
+        final TaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy());
         taskMan.start(task);
 
         assertEquals(1, task.getLog().size());
@@ -95,7 +96,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         // can't expect eq(task) as a parameter, because creationDate will differ
         actionMan.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.instanciated)).will(returnValue(null));
 
-        final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy(), (IdGenerator) idGen.proxy());
+        final TaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy(), (IdGenerator) idGen.proxy());
         final TaskInstance taskInstance = taskMan.newTaskInstance(Long.valueOf(3560), "myId", "some specific task name", "some specific desc");
         assertEquals("myId", taskInstance.getId());
         assertEquals("some specific task name", taskInstance.getName());
@@ -124,7 +125,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         // can't expect eq(task) as a parameter, because creationDate will differ
         actionMan.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.instanciated)).will(returnValue(null));
 
-        final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy(), (IdGenerator) idGen.proxy());
+        final TaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy(), (IdGenerator) idGen.proxy());
         final TaskInstance taskInstance = taskMan.newTaskInstance(Long.valueOf(3560), null, "some specific task name", "some specific desc");
         assertEquals("generatedID", taskInstance.getId());
         assertEquals("some specific task name", taskInstance.getName());
@@ -141,7 +142,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         idGen.expects(never());
         actionMan.expects(never());
 
-        final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy(), (IdGenerator) idGen.proxy());
+        final TaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy(), (IdGenerator) idGen.proxy());
 
         try {
             taskMan.newTaskInstance(Long.valueOf(123), null, "some specific task name", "some specific desc");
@@ -156,7 +157,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         Mock crit = mock(Criteria.class);
         session.expects(once()).method("createCriteria").with(eq(TaskInstance.class)).will(returnValue(crit.proxy()));
 
-        final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), null);
+        final TaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), null);
 
         try {
             taskMan.findRemainingTasks();

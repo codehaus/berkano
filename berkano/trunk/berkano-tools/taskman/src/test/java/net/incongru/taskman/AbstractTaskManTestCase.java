@@ -2,6 +2,7 @@ package net.incongru.taskman;
 
 import net.incongru.taskman.def.TaskDef;
 import net.incongru.taskman.def.TaskDefImpl;
+import net.incongru.taskman.def.TaskDefParser;
 import net.incongru.taskman.testmodel.FirstTaskAction;
 import net.incongru.taskman.testmodel.SecondTaskAction;
 import org.jmock.MockObjectTestCase;
@@ -42,5 +43,17 @@ public abstract class AbstractTaskManTestCase extends MockObjectTestCase {
         map.put(TaskEvent.cancelled, SecondTaskAction.class);
         taskDefImpl.setEventActionMap(map);
         return taskDefImpl;
+    }
+
+    protected TaskDefParser getDummyTaskDefParser() {
+        final TaskDef taskDef = getDummyTaskDef();
+        assertNull(taskDef.getId());
+        assertNull(taskDef.getVersionId());
+        assertNull(taskDef.getDeploymentDateTime());
+        return new TaskDefParser() {
+            public TaskDef loadTaskDesk() {
+                return taskDef;
+            }
+        };
     }
 }

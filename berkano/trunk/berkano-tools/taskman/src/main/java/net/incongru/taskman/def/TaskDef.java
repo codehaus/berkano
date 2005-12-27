@@ -21,7 +21,13 @@ public interface TaskDef extends Serializable {
 
     Long getVersionId();
 
+    // TODO : having this on the interface is *a bit* unsafe - doing it now for the sake of easyness with TaskMan.deployTaskDef's implementation
+    void setVersionId(Long versionId);
+
     DateTime getDeploymentDateTime();
+
+    // TODO : having this on the interface is *a bit* unsafe - doing it now for the sake of easyness with TaskMan.deployTaskDef's implementation
+    void setDeploymentDateTime(DateTime dateTime);
 
     /**
      * A generic name for this task definition, thus shared by all instances of
@@ -48,4 +54,10 @@ public interface TaskDef extends Serializable {
     Period getDueDateTimeout();
 
     Class<? extends TaskAction> getEventActionClass(TaskEvent event);
+
+    /**
+     * Returns true if all attributes are equals to the given TaskDef,
+     * except for id, versionId and deploymentDateTime.
+     */
+    boolean isSameAs(TaskDef other);
 }

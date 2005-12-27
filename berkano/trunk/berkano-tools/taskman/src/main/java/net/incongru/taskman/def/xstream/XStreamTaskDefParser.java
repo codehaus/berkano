@@ -1,6 +1,10 @@
-package net.incongru.taskman.def;
+package net.incongru.taskman.def.xstream;
 
 import com.thoughtworks.xstream.XStream;
+import net.incongru.taskman.TaskEvent;
+import net.incongru.taskman.def.TaskDef;
+import net.incongru.taskman.def.TaskDefImpl;
+import net.incongru.taskman.def.TaskDefParser;
 import net.incongru.util.io.SmartStreamProcessor;
 import net.incongru.util.io.StreamProcessor;
 
@@ -40,7 +44,9 @@ public class XStreamTaskDefParser implements TaskDefParser {
 
     private XStream getXStream() {
         final XStream xStream = new XStream();
+        xStream.registerConverter(new PeriodConverter());
         xStream.alias("TaskDef", TaskDefImpl.class);
+        xStream.alias("TaskEvent", TaskEvent.class);
         return xStream;
     }
 }

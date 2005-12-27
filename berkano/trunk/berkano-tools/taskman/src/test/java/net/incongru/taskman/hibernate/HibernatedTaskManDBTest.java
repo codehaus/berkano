@@ -4,8 +4,10 @@ import junit.framework.TestCase;
 import net.incongru.taskman.AbstractTaskManTestCase;
 import net.incongru.taskman.TaskAction;
 import net.incongru.taskman.TaskEvent;
+import net.incongru.taskman.TaskMan;
 import net.incongru.taskman.def.TaskDef;
 import net.incongru.taskman.def.TaskDefImpl;
+import net.incongru.taskman.def.TaskDefParser;
 import net.incongru.taskman.testmodel.FirstTaskAction;
 import net.incongru.taskman.testmodel.FourthTaskAction;
 import net.incongru.taskman.testmodel.SecondTaskAction;
@@ -111,15 +113,12 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
     }
 
     public void testTaskDefDeploymentSetsIdFirstVersionIdAndDeployedDateTime() throws SQLException, IOException {
-        final HibernatedTaskMan taskMan = new HibernatedTaskMan(session, null);
+        final TaskMan taskMan = new HibernatedTaskMan(session, null);
 
-        final TaskDef taskDef = getDummyTaskDef();
-        assertNull(taskDef.getId());
-        assertNull(taskDef.getVersionId());
-        assertNull(taskDef.getDeploymentDateTime());
+        final TaskDefParser taskDefParser = getDummyTaskDefParser();
 
         final DateTime before = new DateTime();
-        final TaskDef deployedTaskDef = taskMan.deployTaskDef(taskDef);
+        final TaskDef deployedTaskDef = taskMan.deployTaskDef(taskDefParser, false);
         final DateTime after = new DateTime();
         session.flush();
         session.close();
@@ -139,21 +138,25 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         assertTrue(before.isBefore(deployedTaskDef.getDeploymentDateTime()));
         assertTrue(after.isAfter(deployedTaskDef.getDeploymentDateTime()));
 
-
         printSqlQueryResults("SELECT * FROM taskdef");
         printSqlQueryResults("SELECT * FROM taskdef_actions");
     }
 
     public void testTaskDefDeploymentIncreasesVersionNumberWithSameTaskDefName() throws SQLException, IOException {
-        final HibernatedTaskMan taskMan = new HibernatedTaskMan(session, null);
+        final TaskMan taskMan = new HibernatedTaskMan(session, null);
 
-        final TaskDef firstTaskDef = taskMan.deployTaskDef(getDummyTaskDef());
-        final TaskDef secondTaskDef = taskMan.deployTaskDef(getDummyTaskDef());
-        final TaskDef taskDef3 = getDummyTaskDef();
-        ((TaskDefImpl) taskDef3).setDescription("new desc"); // don't do this as a user :o
-        ((TaskDefImpl) taskDef3).getEventActionMap().put(TaskEvent.started, ThirdTaskAction.class); // don't do this as a user :o
-        ((TaskDefImpl) taskDef3).getEventActionMap().put(TaskEvent.stopped, FourthTaskAction.class); // don't do this as a user :o
-        final TaskDef thirdTaskDef = taskMan.deployTaskDef(taskDef3);
+        final TaskDef firstTaskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
+        final TaskDef secondTaskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), true);
+        final TaskDefParser taskDefParser3 = new TaskDefParser() {
+            public TaskDef loadTaskDesk() {
+                final TaskDef taskDef3 = getDummyTaskDef();
+                ((TaskDefImpl) taskDef3).setDescription("new desc"); // don't do this as a user :o
+                ((TaskDefImpl) taskDef3).getEventActionMap().put(TaskEvent.started, ThirdTaskAction.class); // don't do this as a user :o
+                ((TaskDefImpl) taskDef3).getEventActionMap().put(TaskEvent.stopped, FourthTaskAction.class); // don't do this as a user :o
+                return taskDef3;
+            }
+        };
+        final TaskDef thirdTaskDef = taskMan.deployTaskDef(taskDefParser3, false);
         session.flush();
         session.close();
 
@@ -164,12 +167,39 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         assertEquals(Long.valueOf(3), thirdTaskDef.getVersionId());
     }
 
+    public void testDoesNotDeployIfTaskDefIdentical() {
+        final TaskMan taskMan = new HibernatedTaskMan(session, null);
+
+        final TaskDef firstTaskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
+        final TaskDef secondTaskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
+        session.flush();
+        session.close();
+
+        assertEquals(firstTaskDef, secondTaskDef);
+    }
+
+    public void testDeploysIfTaskDefIdenticalAndForce() {
+        final TaskMan taskMan = new HibernatedTaskMan(session, null);
+
+        final TaskDef firstTaskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
+        final TaskDef secondTaskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), true);
+        session.flush();
+        session.close();
+
+        assertFalse(firstTaskDef.equals(secondTaskDef));
+        assertTrue(firstTaskDef.isSameAs(secondTaskDef));
+
+        assertTrue(firstTaskDef.getVersionId().longValue() < secondTaskDef.getVersionId().longValue());
+        assertEquals(Long.valueOf(1), firstTaskDef.getVersionId());
+        assertEquals(Long.valueOf(2), secondTaskDef.getVersionId());
+    }
+
     // TODO :
 //    public void testFindRemaingTasksWithActualData() {
 //        Mock actionMan = mock(TaskActionManager.class);
 //        actionMan.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.instanciated)).will(returnValue(null));
 //
-//        final HibernatedTaskMan taskMan = new HibernatedTaskMan(session, (TaskActionManager) actionMan.proxy());
+//        final TaskMan taskMan = new HibernatedTaskMan(session, (TaskActionManager) actionMan.proxy());
 //
 //        final TaskDef deployedTaskDef = taskMan.deployTaskDef(getDummyTaskDef());
 //        taskMan.newTaskInstance(deployedTaskDef.getId(), null, null, null);
@@ -179,6 +209,7 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
     private void printSqlQueryResults(final String sql) throws SQLException, IOException {
         final Session session = sessionFactory.openSession();
         final Connection conn = session.connection();
+        assertFalse("conn.isClosed()", conn.isClosed());
         final Statement stmt = conn.createStatement();
         final ResultSet rs = stmt.executeQuery(sql);
         final ResultSetMetaData metaData = rs.getMetaData();

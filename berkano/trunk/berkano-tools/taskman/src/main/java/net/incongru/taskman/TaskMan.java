@@ -1,6 +1,7 @@
 package net.incongru.taskman;
 
 import net.incongru.taskman.def.TaskDef;
+import net.incongru.taskman.def.TaskDefParser;
 
 import java.util.List;
 
@@ -13,8 +14,15 @@ import java.util.List;
  * @version $Revision: $ 
  */
 public interface TaskMan {
-    // TODO : maybe avoid the user manipulation of the incomplete TaskDef: pass a parser instead ?
-    TaskDef deployTaskDef(TaskDef taskDef);
+
+    /**
+     * Since a deployed TaskDef is by nature incomplete (doesn't have an id, versionId, nor deploymentDate),
+     * we here pass a TaskDefParser instance, which will somehow load our TaskDef definition
+     * (from an xml file for instance), and pass it on for actual deployment.
+     * @param forceEvenIfSame if false, the TaskDef will not be deployed if it is same as the latest deployed TaskDef with that name
+     * @see TaskDef#isSameAs(net.incongru.taskman.def.TaskDef)
+     */
+    TaskDef deployTaskDef(final TaskDefParser taskDefParser, boolean forceEvenIfSame);
 
     TaskInstance getTaskById(String taskId);
 

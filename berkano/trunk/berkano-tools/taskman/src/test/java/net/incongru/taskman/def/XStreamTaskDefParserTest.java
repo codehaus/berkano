@@ -1,8 +1,8 @@
 package net.incongru.taskman.def;
 
 import net.incongru.taskman.AbstractTaskManTestCase;
+import net.incongru.taskman.def.xstream.XStreamTaskDefParser;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -23,6 +23,6 @@ public class XStreamTaskDefParserTest extends AbstractTaskManTestCase {
 
         assertEquals(taskDefImpl, taskDef);
 
-        assertTrue(new File("/tmp/foo.bar").delete());
+        //assertTrue(new File("/tmp/foo.bar").delete());
     }
 }
