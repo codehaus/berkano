@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+    <extend>../../project.xml</extend>
+    <artifactId>berkano-acegi</artifactId>
+    <currentVersion>${berkanoVersion}</currentVersion>
+    <name>Berkano Acegi Tools</name>
+    <description>Berkano specific classes for Acegi Security.</description>
+    <shortDescription>Berkano Acegi Tools</shortDescription>
+
+    <dependencies>
+        <dependency>
+            <groupId>berkano</groupId>
+            <artifactId>berkano-user</artifactId>
+            <version>${berkanoVersion}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>acegisecurity</groupId>
+            <artifactId>acegi-security</artifactId>
+            <version>0.9.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>springframework</groupId>
+            <artifactId>spring</artifactId>
+            <version>1.2.6</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>picocontainer</groupId>
+            <artifactId>picocontainer</artifactId>
+            <version>1.2-RC-1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>servletapi</groupId>
+            <artifactId>servletapi</artifactId>
+            <version>2.4</version>
+            <type>jar</type>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+</project>
