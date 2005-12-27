@@ -88,7 +88,10 @@ public class HibernatedTaskMan implements TaskMan {
     }
 
     public TaskInstance newTaskInstance(final Long taskDefId, final String taskId, final String taskName, final String taskDesc) {
-        final TaskDef taskDef = (TaskDef) session.load(TaskDefImpl.class, taskDefId);
+        final TaskDef taskDef = (TaskDef) session.get(TaskDefImpl.class, taskDefId);
+        if (taskDef == null) {
+            throw new IllegalStateException("TaskDef with id " + taskDefId + " does not exist.");
+        }
         final TaskInstanceImpl task = new TaskInstanceImpl();
         if (taskId == null) {
             task.setId(idGenerator.generate());
@@ -125,7 +128,7 @@ public class HibernatedTaskMan implements TaskMan {
     }
 
     // TODO
-    public void addVariable(String name, Object value) {
+    public void addTaskVariable(TaskInstance task, String name, Object value) {
         // TODO : either user should modify the variables Map and call some save() method,
         // or the TaskInstance should be passed here AND ideally the getVariables should return an immutable map instance
         throw new IllegalStateException("not implemented yet");

@@ -85,7 +85,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         task.setDescription("some specific desc");
         task.setTaskDef(getDummyTaskDef());
 
-        session.expects(once()).method("load").with(eq(TaskDefImpl.class), eq(Long.valueOf(3560))).will(returnValue(getDummyTaskDef()));
+        session.expects(once()).method("get").with(eq(TaskDefImpl.class), eq(Long.valueOf(3560))).will(returnValue(getDummyTaskDef()));
 
         idGen.expects(never());
 
@@ -114,7 +114,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         task.setDescription("some specific desc");
         task.setTaskDef(getDummyTaskDef());
 
-        session.expects(once()).method("load").with(eq(TaskDefImpl.class), eq(Long.valueOf(3560))).will(returnValue(getDummyTaskDef()));
+        session.expects(once()).method("get").with(eq(TaskDefImpl.class), eq(Long.valueOf(3560))).will(returnValue(getDummyTaskDef()));
 
         idGen.expects(once()).method("generate").withNoArguments().will(returnValue("generatedID"));
 
@@ -130,6 +130,25 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         assertEquals("some specific task name", taskInstance.getName());
         assertEquals("some specific desc", taskInstance.getDescription());
         assertEquals(getDummyTaskDef(), taskInstance.getTaskDef());
+    }
+
+    public void testNewTaskInstanceWithUnknownTaskDefThrowsIllegalStateException() {
+        Mock session = mock(Session.class);
+        Mock actionMan = mock(TaskActionManager.class);
+        Mock idGen = mock(IdGenerator.class);
+
+        session.expects(once()).method("get").with(eq(TaskDefImpl.class), eq(Long.valueOf(123))).will(returnValue(null));
+        idGen.expects(never());
+        actionMan.expects(never());
+
+        final HibernatedTaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy(), (IdGenerator) idGen.proxy());
+
+        try {
+            taskMan.newTaskInstance(Long.valueOf(123), null, "some specific task name", "some specific desc");
+            fail("Should have thrown an IllegalStateException");
+        } catch (IllegalStateException e) {
+            assertEquals("TaskDef with id 123 does not exist.", e.getMessage());
+        }
     }
 
     public void testFindRemainingTasksIsNotImplementedYet() {

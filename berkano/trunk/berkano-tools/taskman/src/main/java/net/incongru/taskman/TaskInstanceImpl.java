@@ -4,6 +4,7 @@ import net.incongru.taskman.def.TaskDef;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,7 +84,7 @@ public class TaskInstanceImpl implements TaskInstance {
     }
 
     public Map<String, Object> getVariables() {
-        return variables;
+        return Collections.unmodifiableMap(variables);
     }
 
     public void setVariables(Map<String, Object> variables) {

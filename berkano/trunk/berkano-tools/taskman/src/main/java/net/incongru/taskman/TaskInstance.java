@@ -30,6 +30,10 @@ public interface TaskInstance extends Serializable {
 
     DateTime getLastReminder(); // ? is this the right place to store this ?
 
+    /**
+     * Returns an unmodifiable map, to ensure that variables are only added through a TaskMan instance,
+     * thus ensuring event propagation.
+     */
     Map<String, Object> getVariables();
 
     List<TaskLog> getLog();
