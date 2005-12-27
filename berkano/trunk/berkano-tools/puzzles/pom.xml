@@ -35,9 +35,9 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <!--<scm>-->
-        <!--<connection>scm:svn:https://svn.codehaus.org/berkano/berkano/trunk/berkano-tools/puzzles/</connection>-->
-    <!--</scm>-->
+    <scm>
+        <connection>scm:svn:https://svn.codehaus.org/berkano/berkano/trunk/berkano-tools/puzzles/</connection>
+    </scm>
     <ciManagement>
         <system>Continuum</system>
         <url>http://ci.codehaus.org:8001/continuum/</url>
