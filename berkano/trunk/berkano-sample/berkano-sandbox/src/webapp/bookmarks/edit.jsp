@@ -2,7 +2,7 @@
                  net.incongru.berkano.bookmarks.BookmarksTree,
                  net.incongru.berkano.bookmarks.BookmarksTreeWriter,
                  net.incongru.berkano.bookmarks.HtmlListBookmarksWriter,
-                 net.incongru.berkano.bookmarks.ExternalBookmark,
+                 net.incongru.berkano.bookmarks.DefaultBookmark,
                  net.incongru.berkano.bookmarks.Bookmark"%>
 <%@ taglib uri="webwork" prefix="ww" %>
 

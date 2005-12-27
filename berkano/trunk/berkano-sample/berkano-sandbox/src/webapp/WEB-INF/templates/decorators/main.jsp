@@ -19,11 +19,11 @@
     }
     if (bookmarks == null) {
         bookmarks = new BookmarksTree();
-        bookmarks.add(new ExternalBookmark(1, "http://www.google.com", "Google", "Google, search engine"), null);
-        Bookmark bands = new ExternalBookmark(2, "http://www.allmusic.com", "All music", "All music");
+        bookmarks.add(new DefaultBookmark(1, "http://www.google.com", "Google", "Google, search engine"), null);
+        Bookmark bands = new DefaultBookmark(2, "http://www.allmusic.com", "All music", "All music");
         bookmarks.add(bands, null);
-        bookmarks.add(new ExternalBookmark(3, "http://www.flexalyndo.net", "Flexa Lyndo", "Flexa Lyndo"), bands);
-        bookmarks.add(new ExternalBookmark(4, "http://www.elliottsmith.net", "Elliott Smith", "Elliott Smith"), bands);
+        bookmarks.add(new DefaultBookmark(3, "http://www.flexalyndo.net", "Flexa Lyndo", "Flexa Lyndo"), bands);
+        bookmarks.add(new DefaultBookmark(4, "http://www.elliottsmith.net", "Elliott Smith", "Elliott Smith"), bands);
     }
 */
     /*
