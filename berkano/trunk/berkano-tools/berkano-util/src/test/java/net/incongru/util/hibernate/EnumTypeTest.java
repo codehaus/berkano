@@ -9,6 +9,7 @@ import org.hibernate.Session;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -56,10 +57,43 @@ public class EnumTypeTest extends AbstractHibernateTest {
         assertTrue(rs.next());
         assertEquals("basic", rs.getString("name"));
         String sauceStr = rs.getString("sauce");
-        assertEquals(sauceStr, "net.incongru.util.hibernate.testmodel.Sauce/mayonnaise");
+        assertEquals("net.incongru.util.hibernate.testmodel.Sauce/mayonnaise", sauceStr);
         String vegStr = rs.getString("vegetable");
-        assertEquals(vegStr, "net.incongru.util.hibernate.testmodel.BasicVegetable/salad");
+        assertEquals("net.incongru.util.hibernate.testmodel.BasicVegetable/salad", vegStr);
         assertFalse(rs.next());
         s.close();
+    }
+
+    public void testNullsCanBeStoredAndRetrieved() throws SQLException {
+        Session s = sessionFactory.openSession();
+        Sandwich sandwich = new Sandwich();
+        sandwich.setName("basic");
+        sandwich.setSauce(null);
+        s.save(sandwich);
+        s.close();
+
+        Session s2 = sessionFactory.openSession();
+        final Query q = s2.createQuery("from p in class Sandwich");
+        List resList = q.list();
+        assertEquals(1, resList.size());
+        Sandwich res = (Sandwich) resList.get(0);
+        assertEquals("basic", res.getName());
+        assertEquals(null, res.getSauce());
+        s2.close();
+
+        // test on jdbc
+        Session s3 = sessionFactory.openSession();
+        Connection conn = s2.connection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM sandwich");
+        assertTrue(rs.next());
+        assertEquals("basic", rs.getString("name"));
+        String sauceStr = rs.getString("sauce");
+        assertEquals(null, sauceStr);
+        String vegStr = rs.getString("vegetable");
+        assertEquals(null, vegStr);
+        assertFalse(rs.next());
+        s3.close();
+
     }
 }
