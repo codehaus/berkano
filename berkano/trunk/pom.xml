@@ -107,6 +107,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
+		<version>2.1.1</version>
                 <configuration>
                     <fork>true</fork>
                 </configuration>
@@ -123,6 +124,20 @@
             </dependency>
         </dependencies>
     <!--</dependencyManagement>-->
+<pluginRepositories>
+  <pluginRepository>
+    <id>snapshots</id>
+    <url>http://snapshots.maven.codehaus.org/maven2</url>
+    <!-- The releases element here is due to an issue in Maven 2.0 that will be fixed in future releases.
+         This should be able to be disabled altogether. -->
+    <releases>
+      <updatePolicy>daily</updatePolicy>
+    </releases>
+    <snapshots>
+      <updatePolicy>daily</updatePolicy>
+    </snapshots>
+  </pluginRepository>
+</pluginRepositories>
 
     <modules>
         <module>berkano-tools/pom-taglib</module>
