@@ -12,6 +12,8 @@ import net.incongru.taskman.testmodel.FirstTaskAction;
 import net.incongru.taskman.testmodel.FourthTaskAction;
 import net.incongru.taskman.testmodel.SecondTaskAction;
 import net.incongru.taskman.testmodel.ThirdTaskAction;
+import org.apache.commons.io.FileUtils;
+import org.apache.derby.impl.jdbc.EmbedSQLException;
 import org.apache.derby.jdbc.EmbeddedDriver;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -43,7 +45,7 @@ import java.util.Properties;
  */
 public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
     private static final String DERBY_REL_PATH = "target/derby/";
-    private static final String DB_URL = "jdbc:derby:db-test";
+    private static final String DB_URL = "jdbc:derby:directory:HibernatedTaskManDBTest";
 
     private SessionFactory sessionFactory;
     private Session session;
@@ -55,8 +57,9 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         final String derbyPath = trashDerbyFiles();
         final Properties p = System.getProperties();
         p.put("derby.system.home", derbyPath);
-        DriverManager.registerDriver(new EmbeddedDriver());
-        DriverManager.getConnection(DB_URL + ";create=true");
+        new EmbeddedDriver();
+        final Connection c = DriverManager.getConnection(DB_URL + ";create=true");
+        c.close();
 
         // setup hibernate:
         Configuration cfg = new Configuration();
@@ -79,9 +82,12 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         conn.close();
         assertTrue("tableNames.contains(\"taskdef\")", tableNames.contains("taskdef"));
         assertTrue("tableNames.contains(\"taskdef_actions\")", tableNames.contains("taskdef_actions"));
+        assertTrue("tableNames.contains(\"taskinstance\")", tableNames.contains("taskinstance"));
+        assertTrue("tableNames.contains(\"taskinstance_variables\")", tableNames.contains("taskinstance_variables"));
+        assertTrue("tableNames.contains(\"taskinstance_log\")", tableNames.contains("taskinstance_log"));
         // this is derby-specific :
         assertTrue("tableNames.contains(\"hibernate_unique_key\")", tableNames.contains("hibernate_unique_key"));
-        assertEquals(3, tableNames.size());
+        assertEquals(6, tableNames.size());
 
         // setup hibernate sessionFactory and session:
         sessionFactory = cfg.buildSessionFactory();
@@ -97,14 +103,22 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
 
         printSqlQueryResults("SELECT * FROM taskdef");
         printSqlQueryResults("SELECT * FROM taskdef_actions");
+        printSqlQueryResults("SELECT * FROM taskinstance");
+        printSqlQueryResults("SELECT * FROM taskinstance_log");
+        printSqlQueryResults("SELECT * FROM taskinstance_variables");
 
-        //DriverManager.getConnection(DB_URL + ";shutdown=true");
+        try {
+            DriverManager.getConnection("jdbc:derby:;shutdown=true");
+        } catch (EmbedSQLException e) {
+            assertEquals("Derby system shutdown.", e.getMessage());
+        }
+
         trashDerbyFiles();
     }
 
     private String trashDerbyFiles() throws IOException {
         File derbyDir = new File(DERBY_REL_PATH);
-        org.apache.commons.io.FileUtils.deleteDirectory(derbyDir);
+        FileUtils.deleteDirectory(derbyDir);
         return derbyDir.getAbsolutePath();
     }
 
@@ -137,9 +151,6 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
 
         assertTrue(before.isBefore(deployedTaskDef.getDeploymentDateTime()));
         assertTrue(after.isAfter(deployedTaskDef.getDeploymentDateTime()));
-
-        printSqlQueryResults("SELECT * FROM taskdef");
-        printSqlQueryResults("SELECT * FROM taskdef_actions");
     }
 
     public void testTaskDefDeploymentIncreasesVersionNumberWithSameTaskDefName() throws SQLException, IOException {
@@ -172,6 +183,7 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
 
         final TaskDef firstTaskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
         final TaskDef secondTaskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
+
         session.flush();
         session.close();
 
@@ -214,6 +226,7 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         final ResultSet rs = stmt.executeQuery(sql);
         final ResultSetMetaData metaData = rs.getMetaData();
         final Formatter out = new Formatter();
+        out.out().append(sql).append(" : \n");
         for (int c = 1; c <= metaData.getColumnCount(); c++) {
             out.format(" %1$-10s |", metaData.getColumnName(c));
         }

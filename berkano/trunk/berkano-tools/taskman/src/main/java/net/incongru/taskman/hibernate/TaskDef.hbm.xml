@@ -21,7 +21,5 @@
             <index column="event" type="net.incongru.util.hibernate.EnumType"/>
             <element column="action_class" type="class"/>
         </map>
-
     </class>
-
 </hibernate-mapping>
