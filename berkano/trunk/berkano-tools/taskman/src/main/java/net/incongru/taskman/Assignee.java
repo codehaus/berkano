@@ -8,4 +8,10 @@ package net.incongru.taskman;
  * @version $Revision: $ 
  */
 public interface Assignee {
+    public enum Type {
+        user,group,role
+    }
+
+    String getName();
+    Type getType();
 }

@@ -2,8 +2,14 @@ package net.incongru.taskman.hibernate;
 
 import junit.framework.TestCase;
 import net.incongru.taskman.AbstractTaskManTestCase;
+import net.incongru.taskman.Assignee;
+import net.incongru.taskman.AssigneeImpl;
 import net.incongru.taskman.TaskAction;
+import net.incongru.taskman.TaskActionManager;
+import net.incongru.taskman.TaskContext;
 import net.incongru.taskman.TaskEvent;
+import net.incongru.taskman.TaskInstance;
+import net.incongru.taskman.TaskLog;
 import net.incongru.taskman.TaskMan;
 import net.incongru.taskman.def.TaskDef;
 import net.incongru.taskman.def.TaskDefImpl;
@@ -20,6 +26,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.dialect.DerbyDialect;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.jmock.Mock;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 
@@ -32,6 +39,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +52,7 @@ import java.util.Properties;
  * @version $Revision: $
  */
 public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
+    private static final boolean SHOW_SQL = false;
     private static final String DERBY_REL_PATH = "target/derby/";
     private static final String DB_URL = "jdbc:derby:directory:HibernatedTaskManDBTest";
 
@@ -66,13 +75,13 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         cfg.setProperty("hibernate.dialect", DerbyDialect.class.getName());
         cfg.setProperty("hibernate.connection.driver_class", EmbeddedDriver.class.getName());
         cfg.setProperty("hibernate.connection.url", DB_URL);
-        cfg.setProperty("hibernate.show_sql", "true");
+        cfg.setProperty("hibernate.show_sql", Boolean.toString(SHOW_SQL));
         for (String file : getHbmFiles()) {
             cfg.addResource(file, TestCase.class.getClassLoader());
         }
 
         // create and verify the db schema:
-        new SchemaExport(cfg).create(true, true);
+        new SchemaExport(cfg).create(SHOW_SQL, true);
         final Connection conn = DriverManager.getConnection(DB_URL);
         final ResultSet tables = conn.getMetaData().getTables(null, null, "%", new String[]{"TABLE"});
         List<String> tableNames = new ArrayList<String>();
@@ -206,6 +215,120 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         assertEquals(Long.valueOf(2), secondTaskDef.getVersionId());
     }
 
+    public void testNewInstanceLogsAndDispatches() {
+        final Mock taskAction = mock(TaskAction.class);
+        final Mock taskActionManager = mock(TaskActionManager.class);
+
+        taskActionManager.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.instanciated)).will(returnValue(taskAction.proxy()));
+        //taskAction.expects(once()).method("execute").with(eq("expectedTaskContext")).isVoid();
+        taskAction.expects(once()).method("execute").with(isA(TaskContext.class)).isVoid();
+        final TaskMan taskMan = new HibernatedTaskMan(session, (TaskActionManager) taskActionManager.proxy());
+        DateTime beforeDeploy = new DateTime();
+        final TaskDef taskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
+        DateTime beforeInstance = new DateTime();
+        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getId(), null, null, null);
+        DateTime afterInstance = new DateTime();
+        session.flush();
+        session.close();
+
+        assertEquals(taskDef, taskInstance.getTaskDef());
+        assertEquals(null, taskInstance.getName());
+        assertEquals(null, taskInstance.getDescription());
+        assertEquals(Collections.EMPTY_MAP, taskInstance.getVariables());
+        assertEquals(1, taskInstance.getLog().size());
+        assertEquals(TaskEvent.instanciated, taskInstance.getLog().get(0).getTaskEvent());
+        final DateTime eventDateTime = taskInstance.getLog().get(0).getDateTime();
+        assertTrue(eventDateTime.isAfter(beforeInstance));
+        assertTrue(eventDateTime.isBefore(afterInstance));
+        assertEquals(null, taskInstance.getLog().get(0).getOldValue());
+        assertEquals(null, taskInstance.getLog().get(0).getNewValue());
+
+    }
+
+    public void testEventsAreLoggedAndDispatched() {
+        final Mock taskAction = mock(TaskAction.class);
+        final Mock taskActionManager = mock(TaskActionManager.class);
+
+        taskActionManager.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.instanciated)).will(returnValue(taskAction.proxy()));
+        taskActionManager.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.started)).will(returnValue(taskAction.proxy()));
+        taskActionManager.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.assigned)).will(returnValue(taskAction.proxy()));
+        taskActionManager.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.stopped)).will(returnValue(taskAction.proxy()));
+        taskActionManager.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.cancelled)).will(returnValue(taskAction.proxy()));
+        //taskActionManager.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.reminded)).will(returnValue(taskAction.proxy()));
+        //taskActionManager.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.commented)).will(returnValue(taskAction.proxy()));
+
+        // TODO : be more specific, ie expect a certain event in the TaskContext, etc...
+        //taskAction.expects(once()).method("execute").with(eq("expectedTaskContext")).isVoid();
+        taskAction.expects(once()).method("execute").with(isA(TaskContext.class)).isVoid();
+        taskAction.expects(once()).method("execute").with(isA(TaskContext.class)).isVoid();
+        taskAction.expects(once()).method("execute").with(isA(TaskContext.class)).isVoid();
+        taskAction.expects(once()).method("execute").with(isA(TaskContext.class)).isVoid();
+        taskAction.expects(once()).method("execute").with(isA(TaskContext.class)).isVoid();
+        //taskAction.expects(once()).method("execute").with(isA(TaskContext.class)).isVoid();
+        //taskAction.expects(once()).method("execute").with(isA(TaskContext.class)).isVoid();
+
+        final TaskMan taskMan = new HibernatedTaskMan(session, (TaskActionManager) taskActionManager.proxy());
+        final TaskDef taskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
+        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getId(), null, null, null);
+        taskMan.assign(taskInstance, null);
+        taskMan.start(taskInstance);
+        taskMan.stop(taskInstance);
+        taskMan.cancel(taskInstance);
+        String storedTaskInstanceID = taskInstance.getId();
+        session.flush();
+        // session.close();
+        // TODO : somehow if we use a different Session, a NPE happens in org.hibernate.tuple.AbstractEntityTuplizer.createProxy
+        final HibernatedTaskMan tm2 = new HibernatedTaskMan(session, null);
+        final TaskInstance ti = tm2.getTaskById(storedTaskInstanceID);
+        assertEquals(taskDef, ti.getTaskDef());
+        assertEquals(null, ti.getName());
+        assertEquals(null, ti.getDescription());
+        assertEquals(Collections.EMPTY_MAP, ti.getVariables());
+        assertEquals(5, ti.getLog().size());
+        assertEquals(TaskEvent.instanciated, ti.getLog().get(0).getTaskEvent());
+        assertEquals(TaskEvent.assigned, ti.getLog().get(1).getTaskEvent());
+        //assertEquals(TaskEvent.commented, ti.getLog().get(2).getTaskEvent());
+        assertEquals(TaskEvent.started, ti.getLog().get(2).getTaskEvent());
+        //assertEquals(TaskEvent.reminded, ti.getLog().get(4).getTaskEvent());
+        assertEquals(TaskEvent.stopped, ti.getLog().get(3).getTaskEvent());
+        assertEquals(TaskEvent.cancelled, ti.getLog().get(4).getTaskEvent());
+        for (TaskLog taskLog : ti.getLog()) {
+            assertEquals(null, taskLog.getOldValue());
+            assertEquals(null, taskLog.getNewValue());
+        }
+    }
+
+    public void testSuccessiveAssignmentsAreLogged() {
+        final Mock taskActionManager = mock(TaskActionManager.class);
+
+        taskActionManager.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.instanciated)).will(returnValue(null));
+        taskActionManager.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.assigned)).will(returnValue(null));
+        taskActionManager.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.assigned)).will(returnValue(null));
+
+        final TaskMan taskMan = new HibernatedTaskMan(session, (TaskActionManager) taskActionManager.proxy());
+        final TaskDef taskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
+        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getId(), null, null, null);
+        taskMan.assign(taskInstance, new AssigneeImpl(Assignee.Type.user, "greg"));
+        taskMan.assign(taskInstance, new AssigneeImpl(Assignee.Type.group, "dev"));
+        String storedTaskInstanceID = taskInstance.getId();
+        session.flush();
+        // session.close();
+        // TODO : somehow if we use a different Session, a NPE happens in org.hibernate.tuple.AbstractEntityTuplizer.createProxy
+        final HibernatedTaskMan tm2 = new HibernatedTaskMan(session, null);
+        final TaskInstance ti = tm2.getTaskById(storedTaskInstanceID);
+        assertEquals(Collections.EMPTY_MAP, ti.getVariables());
+        assertEquals(3, ti.getLog().size());
+        assertEquals(TaskEvent.instanciated, ti.getLog().get(0).getTaskEvent());
+        final TaskLog log1 = ti.getLog().get(1);
+        assertEquals(TaskEvent.assigned, log1.getTaskEvent());
+        assertEquals(null, log1.getOldValue());
+        assertEquals("user:greg", log1.getNewValue());
+        final TaskLog log2 = ti.getLog().get(2);
+        assertEquals(TaskEvent.assigned, log2.getTaskEvent());
+        assertEquals("user:greg", log2.getOldValue());
+        assertEquals("group:dev", log2.getNewValue());
+    }
+
     // TODO :
 //    public void testFindRemaingTasksWithActualData() {
 //        Mock actionMan = mock(TaskActionManager.class);
@@ -219,6 +342,9 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
 //    }
 
     private void printSqlQueryResults(final String sql) throws SQLException, IOException {
+        if (!SHOW_SQL) {
+            return;
+        }
         final Session session = sessionFactory.openSession();
         final Connection conn = session.connection();
         assertFalse("conn.isClosed()", conn.isClosed());

@@ -10,12 +10,21 @@ import org.joda.time.DateTime;
  * @version $Revision: $ 
  */
 public class TaskLogImpl implements TaskLog {
+    private long id;
     private DateTime dateTime;
     private TaskEvent taskEvent;
     private String oldValue;
     private String newValue;
 
-    // generated getters and setters   
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    // generated getters and setters
     public DateTime getDateTime() {
         return dateTime;
     }

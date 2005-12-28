@@ -25,7 +25,7 @@ import org.jmock.Mock;
 public class HibernatedTaskManTest extends AbstractTaskManTestCase {
     public void testGetTaskInstancebyIdJustWorks() {
         Mock session = mock(Session.class);
-        session.expects(once()).method("load").with(eq(TaskInstance.class), eq("foo")).will(returnValue(getDummyTaskInstance(getDummyTaskDef())));
+        session.expects(once()).method("load").with(eq(TaskInstanceImpl.class), eq("foo")).will(returnValue(getDummyTaskInstance(getDummyTaskDef())));
 
         final TaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), null);
         taskMan.getTaskById("foo");
@@ -37,7 +37,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         Mock actionMan = mock(TaskActionManager.class);
 
         final TaskInstance task = getDummyTaskInstance((TaskDef) taskDef.proxy());
-        session.expects(once()).method("merge").with(eq(task));
+        session.expects(once()).method("save").with(eq(task));
         actionMan.expects(once()).method("getTaskAction").with(eq(task), eq(TaskEvent.cancelled)).will(returnValue(null));
 
         assertEquals(0, task.getLog().size());
@@ -60,7 +60,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         Mock action = mock(TaskAction.class);
 
         final TaskInstance task = getDummyTaskInstance((TaskDef) taskDef.proxy());
-        session.expects(once()).method("merge").with(eq(task));
+        session.expects(once()).method("save").with(eq(task));
         actionMan.expects(once()).method("getTaskAction").with(eq(task), eq(TaskEvent.started)).will(returnValue(action.proxy()));
         action.expects(once()).method("execute").with(isA(TaskContext.class));
         assertEquals(0, task.getLog().size());

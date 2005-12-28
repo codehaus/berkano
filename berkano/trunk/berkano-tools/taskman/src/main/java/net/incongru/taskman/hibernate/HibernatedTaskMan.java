@@ -76,7 +76,7 @@ public class HibernatedTaskMan implements TaskMan {
     }
 
     public TaskInstance getTaskById(String taskId) {
-        return (TaskInstance) session.load(TaskInstance.class, taskId);
+        return (TaskInstance) session.load(TaskInstanceImpl.class, taskId);
     }
 
     // TODO
@@ -110,23 +110,26 @@ public class HibernatedTaskMan implements TaskMan {
     }
 
     public void assign(TaskInstance task, Assignee newAssignee) {
-        logAndDispatchSimpleEvent(task, TaskEvent.assigned, task.getAssignee(), newAssignee);
-        session.merge(task);
+        assert task instanceof TaskInstanceImpl;
+        final Assignee previousAssignee = task.getAssignee();
+        ((TaskInstanceImpl)task).setAssignee(newAssignee);
+        logAndDispatchSimpleEvent(task, TaskEvent.assigned, previousAssignee, task.getAssignee());
+        session.save(task);
     }
 
     public void start(TaskInstance task) {
         logAndDispatchSimpleEvent(task, TaskEvent.started, null, null);
-        session.merge(task);
+        session.save(task);
     }
 
     public void cancel(TaskInstance task) {
         logAndDispatchSimpleEvent(task, TaskEvent.cancelled, null, null);
-        session.merge(task);
+        session.save(task);
     }
 
     public void stop(TaskInstance task) {
         logAndDispatchSimpleEvent(task, TaskEvent.stopped, null, null);
-        session.merge(task);
+        session.save(task);
     }
 
     // TODO
