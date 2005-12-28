@@ -105,6 +105,12 @@
                     <source>1.5</source>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <!--<dependencyManagement>-->
