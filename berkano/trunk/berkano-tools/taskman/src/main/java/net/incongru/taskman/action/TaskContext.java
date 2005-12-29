@@ -11,6 +11,8 @@ import net.incongru.taskman.TaskEvent;
  *
  * TODO : the lifecycle methods can't probably work as of now, since the session
  * in HibernatedTaskMan would be closed at the time of execution.
+ * TODO : actually the statement is probably false, since actions are currently
+ * executed synchronously.
  *
  * @author greg
  * @author $Author: $ (last edit)

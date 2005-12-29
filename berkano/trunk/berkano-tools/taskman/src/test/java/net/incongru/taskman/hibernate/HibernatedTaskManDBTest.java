@@ -361,12 +361,12 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         assertEquals(TaskEvent.instanciated, ti.getLog().get(0).getTaskEvent());
         final TaskLog log1 = ti.getLog().get(1);
         assertEquals(TaskEvent.variableAdded, log1.getTaskEvent());
-        assertEquals(null, log1.getOldValue());
-        assertEquals("abc/123", log1.getNewValue());
+        assertEquals("foo=null", log1.getOldValue());
+        assertEquals("foo=abc/123", log1.getNewValue());
         final TaskLog log2 = ti.getLog().get(2);
         assertEquals(TaskEvent.variableAdded, log2.getTaskEvent());
-        assertEquals("abc/123", log2.getOldValue());
-        assertEquals("xyz/789", log2.getNewValue());
+        assertEquals("foo=abc/123", log2.getOldValue());
+        assertEquals("foo=xyz/789", log2.getNewValue());
 
         // while we're there, let's check the variables map is unmodifiable
         try {

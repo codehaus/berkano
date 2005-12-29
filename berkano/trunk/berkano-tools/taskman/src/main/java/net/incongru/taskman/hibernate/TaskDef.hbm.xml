@@ -19,6 +19,7 @@
         <map name="eventActionMap" table="taskdef_actions" lazy="true">
             <key column="taskdef_id"/>
             <index column="event" type="net.incongru.util.hibernate.EnumType"/>
+            <!-- TODO : this can't be pf type class, because it can't be loaded if the class was removed -->
             <element column="action_class" type="class"/>
         </map>
     </class>

@@ -133,6 +133,7 @@ public class HibernatedTaskMan implements TaskMan {
     }
 
     // TODO : the dispatch should probably somehow need to know at least the variable name, and possibly its previous value
+    // TODO : the var. name could also be logged, thus avoiding values in the "oldvalue" column like "foo=null" when there was no value before
     public void addTaskVariable(TaskInstance task, String name, Object value) {
         assert task instanceof TaskInstanceImpl;
 
