@@ -6,7 +6,6 @@ import net.incongru.berkano.user.GroupImpl;
 import net.incongru.berkano.user.PropertiesAware;
 import net.incongru.berkano.user.UnknownUserException;
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Expression;
 
@@ -28,11 +27,7 @@ public class HibernatedGroupDAO extends AbstractHibernatedDAO implements GroupDA
     }
 
     public Group getGroupById(Long groupId) {
-        try {
-            return (Group) session.get(GroupImpl.class, groupId);
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        return (Group) session.get(GroupImpl.class, groupId);
     }
 
     public Group getGroupByName(String groupName) {
@@ -42,44 +37,27 @@ public class HibernatedGroupDAO extends AbstractHibernatedDAO implements GroupDA
     }
 
     public Group newGroup(String groupName) {
-        try {
-            GroupImpl g = new GroupImpl();
-            g.setGroupName(groupName);
-            session.save(g);
-            return g;
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        GroupImpl g = new GroupImpl();
+        g.setGroupName(groupName);
+        session.save(g);
+        return g;
     }
 
     public boolean removeGroup(Long groupId) {
-        try {
-            // todo : what is the difference between the get and load methods!?
-            //session.get(GroupImpl.class, groupId);
-            Object group = session.load(GroupImpl.class, groupId);
-            session.delete(group);
-            return true;
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        // todo : what is the difference between the get and load methods!?
+        //session.get(GroupImpl.class, groupId);
+        Object group = session.load(GroupImpl.class, groupId);
+        session.delete(group);
+        return true;
     }
 
     public List listAllGroups() {
-        try {
-            return session.createCriteria(GroupImpl.class).list();
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        return session.createCriteria(GroupImpl.class).list();
     }
 
     public void assignRoles(Long groupId, Set roles) {
-        try {
-            GroupImpl g = (GroupImpl) getGroupById(groupId);
-            g.setRoles(roles);
-            session.save(g);
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        GroupImpl g = (GroupImpl) getGroupById(groupId);
+        g.setRoles(roles);
+        session.save(g);
     }
-
 }

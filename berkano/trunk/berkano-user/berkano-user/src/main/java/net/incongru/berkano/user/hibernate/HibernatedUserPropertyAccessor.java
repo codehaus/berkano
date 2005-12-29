@@ -4,7 +4,6 @@ import net.incongru.berkano.user.GroupImpl;
 import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.UserImpl;
 import net.incongru.berkano.user.extensions.UserPropertyAccessor;
-import org.hibernate.HibernateException;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -32,13 +31,8 @@ public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
      * properties into account
      */
     public Object getUserOnlyValue(User u, String key) {
-        try {
-            //session.lock(u, LockMode.NONE);
-
-            return ((UserImpl) u).getProperty(key);
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        //session.lock(u, LockMode.NONE);
+        return ((UserImpl) u).getProperty(key);
     }
 
     /**
@@ -50,27 +44,23 @@ public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
      * own property if it is set.
      */
     public Object getFirstValue(User u, String key) {
-        try {
-            //session.lock(u, LockMode.NONE);
+        //session.lock(u, LockMode.NONE);
 
-            Object value = ((UserImpl) u).getProperty(key);
+        Object value = ((UserImpl) u).getProperty(key);
+        if (value != null) {
+            return value;
+        }
+
+        Iterator it = u.getGroups().iterator();
+        while (it.hasNext()) {
+            GroupImpl g = (GroupImpl) it.next();
+            value = g.getProperty(key);
             if (value != null) {
                 return value;
             }
-
-            Iterator it = u.getGroups().iterator();
-            while (it.hasNext()) {
-                GroupImpl g = (GroupImpl) it.next();
-                value = g.getProperty(key);
-                if (value != null) {
-                    return value;
-                }
-            }
-
-            return null;
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
         }
+
+        return null;
     }
 
     /**
@@ -85,18 +75,15 @@ public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
      * </ul>
      */
     public Object getSingleValue(User u, String key) {
-        try {
-            //session.lock(u, LockMode.NONE);
 
-            Object value = ((UserImpl) u).getProperty(key);
-            if (value != null) {
-                return value;
-            }
+        //session.lock(u, LockMode.NONE);
 
-            return getGroupSingleValue(u, key);
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
+        Object value = ((UserImpl) u).getProperty(key);
+        if (value != null) {
+            return value;
         }
+
+        return getGroupSingleValue(u, key);
     }
 
     /**
@@ -110,28 +97,24 @@ public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
      * </ul>
      */
     public Object getGroupSingleValue(User u, String key) {
-        try {
-            //session.lock(u, LockMode.NONE);
+        //session.lock(u, LockMode.NONE);
 
-            Object value = null;
-            int definedInGroupsCount = 0;
-            Iterator it = ((UserImpl) u).getGroups().iterator();
-            while (it.hasNext()) {
-                GroupImpl g = (GroupImpl) it.next();
-                Object groupValue = g.getProperty(key);
-                if (groupValue != null) {
-                    value = groupValue;
-                    definedInGroupsCount++;
-                }
+        Object value = null;
+        int definedInGroupsCount = 0;
+        Iterator it = ((UserImpl) u).getGroups().iterator();
+        while (it.hasNext()) {
+            GroupImpl g = (GroupImpl) it.next();
+            Object groupValue = g.getProperty(key);
+            if (groupValue != null) {
+                value = groupValue;
+                definedInGroupsCount++;
             }
-
-            if (definedInGroupsCount > 1) {
-                throw new IllegalStateException("Property " + key + " is defined in several groups of the user");
-            }
-            return value;
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
         }
+
+        if (definedInGroupsCount > 1) {
+            throw new IllegalStateException("Property " + key + " is defined in several groups of the user");
+        }
+        return value;
     }
 
     /**
@@ -140,18 +123,14 @@ public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
      * Returns a empty collection if the property is not found, will never return null.
      */
     public Collection getValues(User u, String key) {
-        try {
-            //session.lock(u, LockMode.NONE);
+        //session.lock(u, LockMode.NONE);
 
-            Collection values = getGroupValues(u, key);
-            Object v = ((UserImpl) u).getProperty(key);
-            if (v != null) {
-                values.add(v);
-            }
-            return values;
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
+        Collection values = getGroupValues(u, key);
+        Object v = ((UserImpl) u).getProperty(key);
+        if (v != null) {
+            values.add(v);
         }
+        return values;
     }
 
     /**
@@ -160,22 +139,18 @@ public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
      * Returns a empty collection if the property is not found, will never return null.
      */
     public Collection getGroupValues(User u, String key) {
-        try {
-            //session.lock(u, LockMode.NONE);
+        //session.lock(u, LockMode.NONE);
 
-            Collection values = new LinkedList();
-            Iterator it = ((UserImpl) u).getGroups().iterator();
-            while (it.hasNext()) {
-                GroupImpl g = (GroupImpl) it.next();
-                Object v = g.getProperty(key);
-                if (v != null) {
-                    values.add(v);
-                }
+        Collection values = new LinkedList();
+        Iterator it = ((UserImpl) u).getGroups().iterator();
+        while (it.hasNext()) {
+            GroupImpl g = (GroupImpl) it.next();
+            Object v = g.getProperty(key);
+            if (v != null) {
+                values.add(v);
             }
-            return values;
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
         }
+        return values;
     }
 
     /**
@@ -185,47 +160,43 @@ public class HibernatedUserPropertyAccessor implements UserPropertyAccessor {
      * is thrown for other types.
      */
     public Object aggregate(User u, String key) {
-        try {
-            //session.lock(u, LockMode.NONE);
+        //session.lock(u, LockMode.NONE);
 
-            Object result = null;
-            Collection values = getValues(u, key);
-            Iterator it = values.iterator();
-            while (it.hasNext()) {
-                Object o = it.next();
-                if (result == null) {
-                    if (o instanceof Collection) {
-                        result = new LinkedList((Collection) o);
-                    } else if (o instanceof Map) {
-                        result = new HashMap((Map) o);
-                        /** works but commented out - don't like the way this works
-                         } else if (o instanceof Object[]) {
-                         result = new Object[((Object[]) o).length];
-                         System.arraycopy(o, 0, result, 0, ((Object[]) o).length);
-                         */
-                    } else {
-                        throw new IllegalArgumentException("Unsupported property type : " + o.getClass().getName());
-                    }
+        Object result = null;
+        Collection values = getValues(u, key);
+        Iterator it = values.iterator();
+        while (it.hasNext()) {
+            Object o = it.next();
+            if (result == null) {
+                if (o instanceof Collection) {
+                    result = new LinkedList((Collection) o);
+                } else if (o instanceof Map) {
+                    result = new HashMap((Map) o);
+                    /** works but commented out - don't like the way this works
+                     } else if (o instanceof Object[]) {
+                     result = new Object[((Object[]) o).length];
+                     System.arraycopy(o, 0, result, 0, ((Object[]) o).length);
+                     */
                 } else {
-                    if (o instanceof Collection) {
-                        ((Collection) result).addAll((Collection) o);
-                    } else if (o instanceof Map) {
-                        ((Map) result).putAll((Map) o);
-                        /** works but commented out - don't like the way this works
-                         } else if (o instanceof Object[]) {
-                         Object[] temp = new Object[((Object[]) result).length + ((Object[]) o).length];
-                         System.arraycopy(result, 0, temp, 0, ((Object[]) result).length);
-                         System.arraycopy(o, 0, temp, ((Object[]) result).length, ((Object[]) o).length);
-                         result = temp;
-                         */
-                    } else {
-                        throw new IllegalArgumentException("Unsupported property type : " + o.getClass());
-                    }
+                    throw new IllegalArgumentException("Unsupported property type : " + o.getClass().getName());
+                }
+            } else {
+                if (o instanceof Collection) {
+                    ((Collection) result).addAll((Collection) o);
+                } else if (o instanceof Map) {
+                    ((Map) result).putAll((Map) o);
+                    /** works but commented out - don't like the way this works
+                     } else if (o instanceof Object[]) {
+                     Object[] temp = new Object[((Object[]) result).length + ((Object[]) o).length];
+                     System.arraycopy(result, 0, temp, 0, ((Object[]) result).length);
+                     System.arraycopy(o, 0, temp, ((Object[]) result).length, ((Object[]) o).length);
+                     result = temp;
+                     */
+                } else {
+                    throw new IllegalArgumentException("Unsupported property type : " + o.getClass());
                 }
             }
-            return result;
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
         }
+        return result;
     }
 }

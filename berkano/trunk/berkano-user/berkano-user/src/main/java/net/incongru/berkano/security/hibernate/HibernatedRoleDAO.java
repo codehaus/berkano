@@ -4,7 +4,6 @@ import net.incongru.berkano.app.Application;
 import net.incongru.berkano.security.Role;
 import net.incongru.berkano.security.RoleDAO;
 import net.incongru.berkano.security.RoleImpl;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import java.util.Collection;
@@ -28,18 +27,10 @@ public class HibernatedRoleDAO implements RoleDAO {
     }
 
     public Role getRole(String name) {
-        try {
-            return (Role) session.get(RoleImpl.class, name);
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        return (Role) session.get(RoleImpl.class, name);
     }
 
     public List listAllRoles() {
-        try {
-            return session.createCriteria(RoleImpl.class).list();
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        return session.createCriteria(RoleImpl.class).list();
     }
 }

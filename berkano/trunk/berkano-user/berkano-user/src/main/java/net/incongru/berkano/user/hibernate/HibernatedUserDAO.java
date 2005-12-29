@@ -8,7 +8,6 @@ import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.UserDAO;
 import net.incongru.berkano.user.UserImpl;
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.criterion.Expression;
@@ -33,26 +32,17 @@ public class HibernatedUserDAO extends AbstractHibernatedDAO implements UserDAO 
     }
 
     public void addProperty(User user, String propertyKey, Object value) throws UnknownUserException {
-        try {
-            session.lock(user, LockMode.NONE);
-            ((UserImpl) user).getProperties().put(propertyKey, value);
-            session.save(user);
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        session.lock(user, LockMode.NONE);
+        ((UserImpl) user).getProperties().put(propertyKey, value);
+        session.save(user);
     }
 
     public User getUserById(Long userId) throws UnknownUserException {
-        try {
-            User user = (User) session.get(UserImpl.class, userId);
-            if (user == null) {
-                throw new UnknownUserException(userId);
-            }
-            return user;
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
+        User user = (User) session.get(UserImpl.class, userId);
+        if (user == null) {
+            throw new UnknownUserException(userId);
         }
-
+        return user;
     }
 
     /**
@@ -67,96 +57,63 @@ public class HibernatedUserDAO extends AbstractHibernatedDAO implements UserDAO 
     }
 
     private User getUserByField(String fieldName, String value) {
-        try {
-            Criteria criteria = session.createCriteria(UserImpl.class);
-            criteria.add(Expression.eq(fieldName, value).ignoreCase());
-            return (User) criteria.uniqueResult();
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        Criteria criteria = session.createCriteria(UserImpl.class);
+        criteria.add(Expression.eq(fieldName, value).ignoreCase());
+        return (User) criteria.uniqueResult();
     }
 
     public boolean removeUser(Long userId) throws UnknownUserException {
-        try {
-            UserImpl user = (UserImpl) session.load(UserImpl.class, userId);
-            session.delete(user);
-            if (user == null) {
-                throw new UnknownUserException(userId);
-            }
-            return true;
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
+        UserImpl user = (UserImpl) session.load(UserImpl.class, userId);
+        session.delete(user);
+        if (user == null) {
+            throw new UnknownUserException(userId);
         }
+        return true;
     }
 
     public List listAllUsers() {
-        try {
-            return session.createCriteria(UserImpl.class).list();
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
-
+        return session.createCriteria(UserImpl.class).list();
     }
 
     public User newUser(String userName, String cleanPassword, String email, String fullName) {
-        try {
-            UserImpl newUser = new UserImpl();
-            newUser.setUserName(userName);
-            newUser.setPassword(passwordMatchingStrategy.encode(cleanPassword));
-            newUser.setEmail(email);
-            newUser.setFullName(fullName);
-            session.save(newUser);
-            return newUser;
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        UserImpl newUser = new UserImpl();
+        newUser.setUserName(userName);
+        newUser.setPassword(passwordMatchingStrategy.encode(cleanPassword));
+        newUser.setEmail(email);
+        newUser.setFullName(fullName);
+        session.save(newUser);
+        return newUser;
     }
 
     public User updateUser(Long userId, String userName, String email, String fullName) throws UnknownUserException {
-        try {
-            UserImpl user = (UserImpl) getUserById(userId);
-            user.setUserName(userName);
-            user.setFullName(fullName);
-            user.setEmail(email);
-            session.update(user);
-            return user;
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        UserImpl user = (UserImpl) getUserById(userId);
+        user.setUserName(userName);
+        user.setFullName(fullName);
+        user.setEmail(email);
+        session.update(user);
+        return user;
     }
 
     public void changePassword(Long userId, String newPassword) throws UnknownUserException {
-        try {
-            UserImpl user = (UserImpl) getUserById(userId);
-            user.setPassword(passwordMatchingStrategy.encode(newPassword));
-            session.update(user);
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        UserImpl user = (UserImpl) getUserById(userId);
+        user.setPassword(passwordMatchingStrategy.encode(newPassword));
+        session.update(user);
     }
 
     public void addToGroup(Long userId, Long groupId) throws UnknownUserException {
-        try {
-            GroupImpl group = (GroupImpl) session.get(GroupImpl.class, groupId);
-            UserImpl user = (UserImpl) getUserById(userId);
-            user.getGroups().add(group);
-            group.getUsers().add(user);
-            session.save(user);
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        GroupImpl group = (GroupImpl) session.get(GroupImpl.class, groupId);
+        UserImpl user = (UserImpl) getUserById(userId);
+        user.getGroups().add(group);
+        group.getUsers().add(user);
+        session.save(user);
     }
 
     public void removeFromGroup(Long userId, Long groupId) throws UnknownUserException {
-        try {
-            GroupImpl group = (GroupImpl) session.get(GroupImpl.class, groupId);
-            UserImpl user = (UserImpl) getUserById(userId);
-            user.getGroups().remove(group);
-            group.getUsers().remove(user);
-            session.save(user);
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        GroupImpl group = (GroupImpl) session.get(GroupImpl.class, groupId);
+        UserImpl user = (UserImpl) getUserById(userId);
+        user.getGroups().remove(group);
+        group.getUsers().remove(user);
+        session.save(user);
     }
 
 }

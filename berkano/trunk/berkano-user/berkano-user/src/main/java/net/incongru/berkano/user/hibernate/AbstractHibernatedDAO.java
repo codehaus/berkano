@@ -2,7 +2,6 @@ package net.incongru.berkano.user.hibernate;
 
 import net.incongru.berkano.user.PropertiesAware;
 import net.incongru.berkano.user.UnknownUserException;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
@@ -26,21 +25,13 @@ public abstract class AbstractHibernatedDAO {
     }
 
     public void addProperty(PropertiesAware o, String propertyKey, Object value) {
-        try {
-            o.getProperties().put(propertyKey, value);
-            session.save(o);
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        o.getProperties().put(propertyKey, value);
+        session.save(o);
     }
 
     public void removeProperty(Long id, String propertyKey) throws UnknownUserException {
-        try {
-            PropertiesAware o = getById(id);
-            o.getProperties().remove(propertyKey);
-            session.save(o);
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        }
+        PropertiesAware o = getById(id);
+        o.getProperties().remove(propertyKey);
+        session.save(o);
     }
 }
