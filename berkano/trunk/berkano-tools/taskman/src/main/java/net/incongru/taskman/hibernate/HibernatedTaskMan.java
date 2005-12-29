@@ -132,11 +132,14 @@ public class HibernatedTaskMan implements TaskMan {
         session.save(task);
     }
 
-    // TODO
+    // TODO : the dispatch should probably somehow need to know at least the variable name, and possibly its previous value
     public void addTaskVariable(TaskInstance task, String name, Object value) {
-        // TODO : either user should modify the variables Map and call some save() method,
-        // or the TaskInstance should be passed here AND ideally the getVariables should return an immutable map instance
-        throw new IllegalStateException("not implemented yet");
+        assert task instanceof TaskInstanceImpl;
+
+        TaskInstanceImpl taskImpl = ((TaskInstanceImpl) task);
+        final Object oldValue = taskImpl.getVariables().put(name, value);
+        logAndDispatchSimpleEvent(task, TaskEvent.variableAdded, oldValue, value);
+        session.save(task);
     }
 
     // TODO

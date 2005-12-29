@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -25,6 +26,14 @@ public class TaskInstanceImpl implements TaskInstance {
     private DateTime lastReminder;
     private Map<String, Object> variables = new HashMap<String, Object>();
     private List<TaskLog> log = new ArrayList<TaskLog>();
+
+    public Set<String> getVariableNames() {
+        return Collections.unmodifiableSet(getVariables().keySet());
+    }
+
+    public Object getVariable(String name) {
+        return getVariables().get(name);
+    }
 
     // generated getters and setters
     public TaskDef getTaskDef() {
@@ -84,7 +93,7 @@ public class TaskInstanceImpl implements TaskInstance {
     }
 
     public Map<String, Object> getVariables() {
-        return Collections.unmodifiableMap(variables);
+        return variables;
     }
 
     public void setVariables(Map<String, Object> variables) {

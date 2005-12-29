@@ -14,6 +14,7 @@ import net.incongru.taskman.TaskMan;
 import net.incongru.taskman.def.TaskDef;
 import net.incongru.taskman.def.TaskDefImpl;
 import net.incongru.taskman.def.TaskDefParser;
+import net.incongru.taskman.testmodel.Dummy;
 import net.incongru.taskman.testmodel.FirstTaskAction;
 import net.incongru.taskman.testmodel.FourthTaskAction;
 import net.incongru.taskman.testmodel.SecondTaskAction;
@@ -52,7 +53,7 @@ import java.util.Properties;
  * @version $Revision: $
  */
 public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
-    private static final boolean SHOW_SQL = false;
+    private static final boolean SHOW_SQL = true;
     private static final String DERBY_REL_PATH = "target/derby/";
     private static final String DB_URL = "jdbc:derby:directory:HibernatedTaskManDBTest";
 
@@ -234,7 +235,7 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         assertEquals(taskDef, taskInstance.getTaskDef());
         assertEquals(null, taskInstance.getName());
         assertEquals(null, taskInstance.getDescription());
-        assertEquals(Collections.EMPTY_MAP, taskInstance.getVariables());
+        assertEquals(Collections.EMPTY_SET, taskInstance.getVariableNames());
         assertEquals(1, taskInstance.getLog().size());
         assertEquals(TaskEvent.instanciated, taskInstance.getLog().get(0).getTaskEvent());
         final DateTime eventDateTime = taskInstance.getLog().get(0).getDateTime();
@@ -283,7 +284,7 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         assertEquals(taskDef, ti.getTaskDef());
         assertEquals(null, ti.getName());
         assertEquals(null, ti.getDescription());
-        assertEquals(Collections.EMPTY_MAP, ti.getVariables());
+        assertEquals(Collections.EMPTY_SET, ti.getVariableNames());
         assertEquals(5, ti.getLog().size());
         assertEquals(TaskEvent.instanciated, ti.getLog().get(0).getTaskEvent());
         assertEquals(TaskEvent.assigned, ti.getLog().get(1).getTaskEvent());
@@ -316,7 +317,7 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         // TODO : somehow if we use a different Session, a NPE happens in org.hibernate.tuple.AbstractEntityTuplizer.createProxy
         final HibernatedTaskMan tm2 = new HibernatedTaskMan(session, null);
         final TaskInstance ti = tm2.getTaskById(storedTaskInstanceID);
-        assertEquals(Collections.EMPTY_MAP, ti.getVariables());
+        assertEquals(Collections.EMPTY_SET, ti.getVariableNames());
         assertEquals(3, ti.getLog().size());
         assertEquals(TaskEvent.instanciated, ti.getLog().get(0).getTaskEvent());
         final TaskLog log1 = ti.getLog().get(1);
@@ -327,6 +328,53 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         assertEquals(TaskEvent.assigned, log2.getTaskEvent());
         assertEquals("user:greg", log2.getOldValue());
         assertEquals("group:dev", log2.getNewValue());
+    }
+
+    public void testAddVariablesShouldLogAndDispatchEvent() {
+        final Mock taskAction = mock(TaskAction.class);
+        final Mock taskActionManager = mock(TaskActionManager.class);
+
+        taskActionManager.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.instanciated)).will(returnValue(null));
+        taskActionManager.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.variableAdded)).will(returnValue(taskAction.proxy()));
+        taskActionManager.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.variableAdded)).will(returnValue(taskAction.proxy()));
+        // TODO : be more specific, ie expect a certain event in the TaskContext, etc...
+        taskAction.expects(once()).method("execute").with(isA(TaskContext.class)).isVoid();
+        taskAction.expects(once()).method("execute").with(isA(TaskContext.class)).isVoid();
+
+        final TaskMan taskMan = new HibernatedTaskMan(session, (TaskActionManager) taskActionManager.proxy());
+        final TaskDef taskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
+        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getName(), null, null, null);
+        taskMan.addTaskVariable(taskInstance, "foo", new Dummy("abc", 123));
+        taskMan.addTaskVariable(taskInstance, "foo", new Dummy("xyz", 789));
+        String storedTaskInstanceID = taskInstance.getId();
+        session.flush();
+        // session.close();
+        // TODO : somehow if we use a different Session, a NPE happens in org.hibernate.tuple.AbstractEntityTuplizer.createProxy
+        final HibernatedTaskMan tm2 = new HibernatedTaskMan(session, null);
+        final TaskInstance ti = tm2.getTaskById(storedTaskInstanceID);
+        assertEquals(1, ti.getVariableNames().size());
+        assertEquals("foo", ti.getVariableNames().iterator().next());
+        assertEquals(new Dummy("xyz", 789), ti.getVariable("foo"));
+
+//        assertEquals(1, ti.getLog().size());
+        assertEquals(3, ti.getLog().size());
+        assertEquals(TaskEvent.instanciated, ti.getLog().get(0).getTaskEvent());
+        final TaskLog log1 = ti.getLog().get(1);
+        assertEquals(TaskEvent.variableAdded, log1.getTaskEvent());
+        assertEquals(null, log1.getOldValue());
+        assertEquals("abc/123", log1.getNewValue());
+        final TaskLog log2 = ti.getLog().get(2);
+        assertEquals(TaskEvent.variableAdded, log2.getTaskEvent());
+        assertEquals("abc/123", log2.getOldValue());
+        assertEquals("xyz/789", log2.getNewValue());
+
+        // while we're there, let's check the variables map is unmodifiable
+        try {
+            ti.getVariableNames().add("fooled ya");
+            fail("should have failed here");
+        } catch (UnsupportedOperationException e) {
+            assertEquals(null, e.getMessage());
+        }
     }
 
     // TODO :
