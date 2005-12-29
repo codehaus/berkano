@@ -5,6 +5,7 @@ import net.incongru.taskman.def.TaskDefImpl;
 import net.incongru.taskman.def.TaskDefParser;
 import net.incongru.taskman.testmodel.FirstTaskAction;
 import net.incongru.taskman.testmodel.SecondTaskAction;
+import net.incongru.taskman.action.TaskAction;
 import org.jmock.MockObjectTestCase;
 import org.joda.time.DateTime;
 import org.joda.time.Period;

@@ -1,7 +1,7 @@
 package net.incongru.taskman.testmodel;
 
-import net.incongru.taskman.TaskAction;
-import net.incongru.taskman.TaskContext;
+import net.incongru.taskman.action.TaskAction;
+import net.incongru.taskman.action.TaskContext;
 
 /**
  *

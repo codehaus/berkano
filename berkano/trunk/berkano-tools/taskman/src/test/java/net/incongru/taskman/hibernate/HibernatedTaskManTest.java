@@ -1,9 +1,9 @@
 package net.incongru.taskman.hibernate;
 
 import net.incongru.taskman.AbstractTaskManTestCase;
-import net.incongru.taskman.TaskAction;
-import net.incongru.taskman.TaskActionManager;
-import net.incongru.taskman.TaskContext;
+import net.incongru.taskman.action.TaskAction;
+import net.incongru.taskman.action.TaskActionManager;
+import net.incongru.taskman.action.TaskContext;
 import net.incongru.taskman.TaskEvent;
 import net.incongru.taskman.TaskInstance;
 import net.incongru.taskman.TaskInstanceImpl;

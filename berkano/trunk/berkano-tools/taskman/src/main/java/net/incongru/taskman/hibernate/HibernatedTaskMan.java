@@ -1,14 +1,14 @@
 package net.incongru.taskman.hibernate;
 
 import net.incongru.taskman.Assignee;
-import net.incongru.taskman.TaskAction;
-import net.incongru.taskman.TaskActionManager;
-import net.incongru.taskman.TaskContext;
 import net.incongru.taskman.TaskEvent;
 import net.incongru.taskman.TaskInstance;
 import net.incongru.taskman.TaskInstanceImpl;
 import net.incongru.taskman.TaskLogImpl;
 import net.incongru.taskman.TaskMan;
+import net.incongru.taskman.action.TaskAction;
+import net.incongru.taskman.action.TaskActionManager;
+import net.incongru.taskman.action.TaskContext;
 import net.incongru.taskman.def.TaskDef;
 import net.incongru.taskman.def.TaskDefImpl;
 import net.incongru.taskman.def.TaskDefParser;
@@ -147,7 +147,6 @@ public class HibernatedTaskMan implements TaskMan {
         final Criteria criteria = session.createCriteria(TaskInstance.class);
 
         throw new IllegalStateException("not implemented yet");
-        //return null;
     }
 
     private void logAndDispatchSimpleEvent(final TaskInstance task, final TaskEvent event, final String oldValue, final String newValue) {
