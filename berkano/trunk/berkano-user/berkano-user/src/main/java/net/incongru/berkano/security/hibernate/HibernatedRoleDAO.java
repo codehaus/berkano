@@ -33,4 +33,10 @@ public class HibernatedRoleDAO implements RoleDAO {
     public List listAllRoles() {
         return session.createCriteria(RoleImpl.class).list();
     }
+
+    public Role newRole(String name) {
+        final RoleImpl role = new RoleImpl();
+        role.setName(name);
+        return (Role) session.merge(role);
+    }
 }

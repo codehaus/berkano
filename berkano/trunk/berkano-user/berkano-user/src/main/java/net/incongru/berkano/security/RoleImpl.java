@@ -33,4 +33,13 @@ public class RoleImpl implements Role {
         return (name != null ? name.hashCode() : 0);
     }
     */
+
+
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("RoleImpl");
+        sb.append("{name=").append(name);
+        sb.append('}');
+        return sb.toString();
+    }
 }

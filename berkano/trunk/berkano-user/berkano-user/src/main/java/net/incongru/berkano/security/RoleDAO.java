@@ -17,5 +17,8 @@ public interface RoleDAO {
     public Collection getRoles(Application app); // Collection<Role>
 
     public Role getRole(String name);
+
     public List listAllRoles();
+
+    public Role newRole(String name);
 }

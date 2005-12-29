@@ -84,4 +84,13 @@ public class GroupImpl implements Group, PropertiesAware {
     private void setProperties(Map properties) {
         this.properties = properties;
     }
+
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("GroupImpl");
+        sb.append("{groupId=").append(groupId);
+        sb.append(",groupName=").append(groupName);
+        sb.append('}');
+        return sb.toString();
+    }
 }
