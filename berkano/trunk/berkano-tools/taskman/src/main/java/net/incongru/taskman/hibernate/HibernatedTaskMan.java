@@ -112,8 +112,8 @@ public class HibernatedTaskMan implements TaskMan {
     public void assign(TaskInstance task, Assignee newAssignee) {
         assert task instanceof TaskInstanceImpl;
         final Assignee previousAssignee = task.getAssignee();
-        ((TaskInstanceImpl)task).setAssignee(newAssignee);
-        logAndDispatchSimpleEvent(task, TaskEvent.assigned, previousAssignee, task.getAssignee());
+        ((TaskInstanceImpl) task).setAssignee(newAssignee);
+        logAndDispatchSimpleEvent(task, TaskEvent.assigned, toString(previousAssignee), toString(task.getAssignee()));
         session.save(task);
     }
 
@@ -138,7 +138,7 @@ public class HibernatedTaskMan implements TaskMan {
 
         TaskInstanceImpl taskImpl = ((TaskInstanceImpl) task);
         final Object oldValue = taskImpl.getVariables().put(name, value);
-        logAndDispatchSimpleEvent(task, TaskEvent.variableAdded, oldValue, value);
+        logAndDispatchSimpleEvent(task, TaskEvent.variableAdded, name + "=" + toString(oldValue), name + "=" + toString(value));
         session.save(task);
     }
 
@@ -150,12 +150,12 @@ public class HibernatedTaskMan implements TaskMan {
         //return null;
     }
 
-    private void logAndDispatchSimpleEvent(final TaskInstance task, final TaskEvent event, final Object oldValue, final Object newValue) {
+    private void logAndDispatchSimpleEvent(final TaskInstance task, final TaskEvent event, final String oldValue, final String newValue) {
         final TaskLogImpl taskLog = new TaskLogImpl();
         taskLog.setDateTime(new DateTime());
         taskLog.setTaskEvent(event);
-        taskLog.setOldValue(toString(oldValue));
-        taskLog.setNewValue(toString(newValue));
+        taskLog.setOldValue(oldValue);
+        taskLog.setNewValue(newValue);
         task.getLog().add(taskLog);
 
         final TaskAction taskAction = actionManager.getTaskAction(task, event);
