@@ -53,7 +53,7 @@ import java.util.Properties;
  * @version $Revision: $
  */
 public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
-    private static final boolean SHOW_SQL = true;
+    private static final boolean SHOW_SQL = false;
     private static final String DERBY_REL_PATH = "target/derby/";
     private static final String DB_URL = "jdbc:derby:directory:HibernatedTaskManDBTest";
 
