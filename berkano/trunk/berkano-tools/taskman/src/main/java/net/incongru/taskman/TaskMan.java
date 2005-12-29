@@ -38,12 +38,12 @@ public interface TaskMan {
     List<TaskInstance> getTasksByAssignee(Assignee assignee);
 
     /**
-     * Creates a new instance of a given task definition, assigns it a specific
-     * id, name and description. Any of these 3 parameters can be null, in which case
-     * they get a default value. (a generated id, null and null, respectively)
+     * Creates a new instance of a given task definition (the last deployed TaskDef with
+     * the given name), assigns it a specific id, name and description.
+     * Any of these 3 parameters can be null, in which case they get a default value.
+     * (a generated id, null and null, respectively)
      */
-    //TODO : use taskDefName instead of taskDefId, and retrieve it using findLatestTaskDef()
-    TaskInstance newTaskInstance(Long taskDefId, String taskId, String taskName, String taskDesc);
+    TaskInstance newTaskInstance(String taskDefName, String taskId, String taskName, String taskDesc);
 
     void assign(TaskInstance task, Assignee assignee);
 

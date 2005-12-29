@@ -89,10 +89,10 @@ public class HibernatedTaskMan implements TaskMan {
         throw new IllegalStateException("not implemented yet");
     }
 
-    public TaskInstance newTaskInstance(final Long taskDefId, final String taskId, final String taskName, final String taskDesc) {
-        final TaskDef taskDef = (TaskDef) session.get(TaskDefImpl.class, taskDefId);
+    public TaskInstance newTaskInstance(final String taskDefName, final String taskId, final String taskName, final String taskDesc) {
+        final TaskDef taskDef = findLatestTaskDef(taskDefName);
         if (taskDef == null) {
-            throw new IllegalStateException("TaskDef with id " + taskDefId + " does not exist.");
+            throw new IllegalStateException("TaskDef with name " + taskDefName + " does not exist.");
         }
         final TaskInstanceImpl task = new TaskInstanceImpl();
         if (taskId == null) {

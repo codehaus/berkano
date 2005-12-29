@@ -226,7 +226,7 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         DateTime beforeDeploy = new DateTime();
         final TaskDef taskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
         DateTime beforeInstance = new DateTime();
-        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getId(), null, null, null);
+        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getName(), null, null, null);
         DateTime afterInstance = new DateTime();
         session.flush();
         session.close();
@@ -269,7 +269,7 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
 
         final TaskMan taskMan = new HibernatedTaskMan(session, (TaskActionManager) taskActionManager.proxy());
         final TaskDef taskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
-        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getId(), null, null, null);
+        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getName(), null, null, null);
         taskMan.assign(taskInstance, null);
         taskMan.start(taskInstance);
         taskMan.stop(taskInstance);
@@ -307,7 +307,7 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
 
         final TaskMan taskMan = new HibernatedTaskMan(session, (TaskActionManager) taskActionManager.proxy());
         final TaskDef taskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
-        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getId(), null, null, null);
+        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getName(), null, null, null);
         taskMan.assign(taskInstance, new AssigneeImpl(Assignee.Type.user, "greg"));
         taskMan.assign(taskInstance, new AssigneeImpl(Assignee.Type.group, "dev"));
         String storedTaskInstanceID = taskInstance.getId();
