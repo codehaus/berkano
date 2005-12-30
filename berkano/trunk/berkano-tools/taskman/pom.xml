@@ -38,9 +38,9 @@
         </dependency>
 
         <dependency>
-            <groupId>joda-time</groupId>
+            <groupId>berkano<!--joda-time--></groupId>
             <artifactId>joda-time-hibernate</artifactId>
-            <version>0.8-dev</version>
+            <version>0.8-SNAPSHOT<!-- -dev --></version>
             <scope>compile</scope>
         </dependency>
 
