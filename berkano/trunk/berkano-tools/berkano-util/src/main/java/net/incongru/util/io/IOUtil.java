@@ -15,11 +15,11 @@ public class IOUtil {
     /**
      * Loads properties from an InputStream, closes it and returns.
      */
-    public static Properties loadProperties(InputStream in) throws IOException {
+    public static Properties loadProperties(final InputStream in) throws IOException {
         final Properties props = new Properties();
-        new SmartStreamProcessor().processAndClose(in, new StreamProcessor() {
+        new SmartStreamProcessor<InputStream>().processAndClose(in, new StreamProcessor() {
             public void process(final Closeable stream) throws IOException {
-                props.load((InputStream) stream);
+                props.load(in);
             }
         });
         return props;
