@@ -1,6 +1,5 @@
 package net.incongru.util.io;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -17,8 +16,8 @@ public class IOUtil {
      */
     public static Properties loadProperties(final InputStream in) throws IOException {
         final Properties props = new Properties();
-        new SmartStreamProcessor<InputStream>().processAndClose(in, new StreamProcessor() {
-            public void process(final Closeable stream) throws IOException {
+        new CloseableCloser<InputStream>().processAndClose(in, new FlowProcessor<InputStream>() {
+            public void process(final InputStream stream) throws IOException {
                 props.load(in);
             }
         });

@@ -1,6 +1,5 @@
 package net.incongru.util.io;
 
-import java.io.Closeable;
 import java.io.IOException;
 
 /**
@@ -9,6 +8,6 @@ import java.io.IOException;
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */
-public interface StreamProcessor {
-    void process(final Closeable stream) throws IOException;
+public interface FlowProcessor<T> {
+    void process(final T flow) throws IOException;
 }
