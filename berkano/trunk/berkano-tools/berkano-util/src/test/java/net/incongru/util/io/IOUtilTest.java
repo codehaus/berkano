@@ -2,8 +2,6 @@ package net.incongru.util.io;
 
 import junit.framework.TestCase;
 
-import java.io.StringReader;
-import java.io.InputStreamReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -15,12 +13,14 @@ import java.util.Properties;
  * @version $Revision: $ 
  */
 public class IOUtilTest extends TestCase {
-    private static final String PROPS_STR = "foo=bar\nbaz=lol\n";
     public void testLoadProperties() throws IOException {
-        Properties expected = new Properties();
+        final Properties expected = new Properties();
         expected.setProperty("foo", "bar");
         expected.setProperty("baz", "lol");
-        final ByteArrayInputStream in = new ByteArrayInputStream(PROPS_STR.getBytes());
+
+        final String inStr = "foo=bar\nbaz=lol\n";
+        final ByteArrayInputStream in = new ByteArrayInputStream(inStr.getBytes());
+
         final Properties props = IOUtil.loadProperties(in);
         assertEquals(expected, props);
     }
