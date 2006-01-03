@@ -1,7 +1,7 @@
 package net.incongru.taskman.def;
 
-import net.incongru.taskman.action.TaskAction;
 import net.incongru.taskman.TaskEvent;
+import net.incongru.taskman.action.TaskAction;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 

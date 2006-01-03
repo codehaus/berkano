@@ -1,8 +1,7 @@
 package net.incongru.taskman.action;
 
-import net.incongru.taskman.action.TaskAction;
-import net.incongru.taskman.TaskInstance;
 import net.incongru.taskman.TaskEvent;
+import net.incongru.taskman.TaskInstance;
 
 /**
  *

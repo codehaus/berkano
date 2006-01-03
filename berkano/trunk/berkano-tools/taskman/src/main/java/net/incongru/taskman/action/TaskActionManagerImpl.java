@@ -1,9 +1,7 @@
 package net.incongru.taskman.action;
 
-import net.incongru.taskman.action.TaskAction;
-import net.incongru.taskman.action.TaskActionManager;
-import net.incongru.taskman.TaskInstance;
 import net.incongru.taskman.TaskEvent;
+import net.incongru.taskman.TaskInstance;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +25,7 @@ public class TaskActionManagerImpl implements TaskActionManager {
 
     public TaskAction getTaskAction(TaskInstance task, TaskEvent event) {
         final Class<? extends TaskAction> eventActionClass = task.getTaskDef().getEventActionClass(event);
+        // TODO : check for null? Allowing for null events in the taskdef could allow for a "generic" action to be executed ?
         return actionsMap.get(eventActionClass);
     }
 }

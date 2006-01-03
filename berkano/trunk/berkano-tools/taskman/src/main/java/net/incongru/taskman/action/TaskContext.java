@@ -1,8 +1,8 @@
 package net.incongru.taskman.action;
 
 import net.incongru.taskman.Assignee;
-import net.incongru.taskman.TaskInstance;
 import net.incongru.taskman.TaskEvent;
+import net.incongru.taskman.TaskInstance;
 
 /**
  * A simple object passed to TaskAction which exposes the event
