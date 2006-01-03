@@ -54,7 +54,7 @@ public interface TaskMan {
     void stop(TaskInstance task);
 
     /**
-     * @see TaskInstance#getVariables()
+     * @see TaskInstance#getVariableNames()
      */
     void addTaskVariable(TaskInstance task, String name, Object value);
 
