@@ -16,7 +16,7 @@ public class IOUtil {
      */
     public static Properties loadProperties(final InputStream in) throws IOException {
         final Properties props = new Properties();
-        new CloseableCloser<InputStream>().processAndClose(in, new FlowProcessor<InputStream>() {
+        new Closer<InputStream>().processAndClose(in, new IOProcessor<InputStream>() {
             public void process(final InputStream stream) throws IOException {
                 props.load(in);
             }

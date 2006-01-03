@@ -5,8 +5,8 @@ import net.incongru.taskman.TaskEvent;
 import net.incongru.taskman.def.TaskDef;
 import net.incongru.taskman.def.TaskDefImpl;
 import net.incongru.taskman.def.TaskDefParser;
-import net.incongru.util.io.FlowProcessor;
-import net.incongru.util.io.FlushableFlusher;
+import net.incongru.util.io.IOProcessor;
+import net.incongru.util.io.Flusher;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class XStreamTaskDefParser implements TaskDefParser {
 
     public void storeTaskDef(final TaskDef taskDef, String fullPathForOutput) throws IOException {
         final FileWriter out = new FileWriter(fullPathForOutput);
-        new FlushableFlusher<FileWriter>().processFlushAndClose(out, new FlowProcessor<FileWriter>() {
+        new Flusher<FileWriter>().processFlushAndClose(out, new IOProcessor<FileWriter>() {
             public void process(final FileWriter c) {
                 final XStream xStream = getXStream();
                 xStream.toXML(taskDef, out);

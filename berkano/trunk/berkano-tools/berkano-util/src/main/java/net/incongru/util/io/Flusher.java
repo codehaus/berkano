@@ -10,16 +10,16 @@ import java.io.IOException;
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */
-public class FlushableFlusher<T extends Closeable & Flushable> {
+public class Flusher<T extends Closeable & Flushable> {
 
-    public void processFlushAndClose(final T stream, final FlowProcessor<T> processor) throws IOException {
-        new CloseableCloser<T>().processAndClose(stream, new FlowProcessor<T>() {
+    public void processFlushAndClose(final T stream, final IOProcessor<T> processor) throws IOException {
+        new Closer<T>().processAndClose(stream, new IOProcessor<T>() {
             public void process(final T t) throws IOException {
                 processor.process(t);
                 try {
                     stream.flush();
                 } catch (IOException e) {
-                    throw new CloseableCloser.IONestedException("Could not flush: " + e.getMessage(), e);
+                    throw new Closer.IONestedException("Could not flush: " + e.getMessage(), e);
                 }
             }
         });

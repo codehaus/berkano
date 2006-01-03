@@ -7,7 +7,7 @@ import java.io.IOException;
  * A simple wrapper + closure to hide the ugliness of the try/catch/finally mess to close an InputStream.
  * Sample usage:
  * <code>
- * new CloseableCloser<InputStream>().processAndClose(in, new FlowProcessor<InputStream>() {
+ * new Closer<InputStream>().processAndClose(in, new IOProcessor<InputStream>() {
  *     public void process(InputStream in) {
  *         System.out.println("ah! ah! messing with my stream");
  *     }
@@ -20,8 +20,8 @@ import java.io.IOException;
  *
  * TODO : how about finding a decent name for this class ?
  */
-public class CloseableCloser<T extends Closeable> {
-    public void processAndClose(final T stream, final FlowProcessor<T> processor) throws IOException {
+public class Closer<T extends Closeable> {
+    public void processAndClose(final T stream, final IOProcessor<T> processor) throws IOException {
         IOException e = null;
         try {
             processor.process(stream);

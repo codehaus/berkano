@@ -8,6 +8,6 @@ import java.io.IOException;
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */
-public interface FlowProcessor<T> {
+public interface IOProcessor<T> {
     void process(final T flow) throws IOException;
 }
