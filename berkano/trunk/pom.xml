@@ -48,7 +48,7 @@
         <repository>
             <id>codehaus</id>
             <name>beaver.codehaus.org</name>
-            <url>scpexe://beaver.codehaus.org:/dist/</url>
+            <url>scp://beaver.codehaus.org:/dist/</url>
         </repository>
         <site>
             <id>codehaus</id>
