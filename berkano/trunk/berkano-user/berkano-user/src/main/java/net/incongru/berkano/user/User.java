@@ -6,9 +6,9 @@ import java.util.Set;
 /**
  * This interface defines the basic user functionalities and attributes.
  *
- * @todo : Maybe some are useless or superfluous(email, fullName, ...), we'll refine that later.
- * @todo : do we need preferences that are not application specific or shared between applications?
- * @todo : should we foresee sharing of preferences by grouped applications, or just "global" prefs?
+ * todo : Maybe some are useless or superfluous(email, fullName, ...), we'll refine that later.
+ * todo : do we need preferences that are not application specific or shared between applications?
+ * todo : should we foresee sharing of preferences by grouped applications, or just "global" prefs?
  *
  * @see UserDAO
  *
