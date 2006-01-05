@@ -127,14 +127,14 @@ public class HibernatedTaskMan implements TaskMan {
         session.save(task);
     }
 
+    // TODO : the dispatch should probably somehow need to know at least the variable name, and possibly its previous value
+    // TODO : the var. name could also be logged, thus avoiding values in the "oldvalue" column like "foo=null" when there was no value before
     public void stop(TaskInstance task) {
         logAndDispatchSimpleEvent(task, TaskEvent.stopped, null, null);
         session.save(task);
     }
 
-    // TODO : the dispatch should probably somehow need to know at least the variable name, and possibly its previous value
-    // TODO : the var. name could also be logged, thus avoiding values in the "oldvalue" column like "foo=null" when there was no value before
-    public void addTaskVariable(TaskInstance task, String name, Object value) {
+    public void addVariable(TaskInstance task, String name, Object value) {
         assert task instanceof TaskInstanceImpl;
 
         TaskInstanceImpl taskImpl = ((TaskInstanceImpl) task);
@@ -183,7 +183,7 @@ public class HibernatedTaskMan implements TaskMan {
         }
 
         public void addTaskVariable(String name, Object value) {
-            addTaskVariable(this.task, name, value);
+            addVariable(this.task, name, value);
         }
 
         public void startTask() {

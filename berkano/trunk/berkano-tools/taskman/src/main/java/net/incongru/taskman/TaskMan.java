@@ -56,7 +56,7 @@ public interface TaskMan {
     /**
      * @see TaskInstance#getVariableNames()
      */
-    void addTaskVariable(TaskInstance task, String name, Object value);
+    void addVariable(TaskInstance task, String name, Object value);
 
     /**
      * For scheduler: find tasks which are due and not finished.

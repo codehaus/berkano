@@ -344,8 +344,8 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         final TaskMan taskMan = new HibernatedTaskMan(session, (TaskActionManager) taskActionManager.proxy());
         final TaskDef taskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
         final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getName(), null, null, null);
-        taskMan.addTaskVariable(taskInstance, "foo", new Dummy("abc", 123));
-        taskMan.addTaskVariable(taskInstance, "foo", new Dummy("xyz", 789));
+        taskMan.addVariable(taskInstance, "foo", new Dummy("abc", 123));
+        taskMan.addVariable(taskInstance, "foo", new Dummy("xyz", 789));
         String storedTaskInstanceID = taskInstance.getId();
         session.flush();
         // session.close();
