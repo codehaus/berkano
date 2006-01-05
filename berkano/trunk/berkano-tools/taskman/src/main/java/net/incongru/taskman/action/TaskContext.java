@@ -21,6 +21,8 @@ import net.incongru.taskman.TaskInstance;
 public interface TaskContext {
     void assignTask(Assignee assignee);
 
+    void addTaskVariable(String name, Object value);
+
     void startTask();
 
     void stopTask();

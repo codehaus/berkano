@@ -182,6 +182,10 @@ public class HibernatedTaskMan implements TaskMan {
             assign(this.task, assignee);
         }
 
+        public void addTaskVariable(String name, Object value) {
+            addTaskVariable(this.task, name, value);
+        }
+
         public void startTask() {
             start(this.task);
         }
