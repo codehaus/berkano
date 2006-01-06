@@ -98,7 +98,7 @@
         </action>
     </package>
 
-    <package name="berkano-profile" extends="berkano-abstract" abstract="true">
+    <package name="berkano-preferences" extends="berkano-abstract" abstract="true">
         <action name="preferences" class="net.incongru.berkano.profile.PreferencesListAction">
             <result name="success" type="freemarker">/berkano/profile/preferences.ftl</result>
         </action>
@@ -106,7 +106,9 @@
             <result name="input" type="freemarker">/berkano/profile/preferences.ftl</result>
             <result name="success" type="chain">preferences</result>
         </action>
+    </package>
 
+    <package name="berkano-profile" extends="berkano-abstract" abstract="true">
         <action name="profile" class="net.incongru.berkano.usermgt.webwork.self.SelfUserViewAction">
             <result name="success" type="freemarker">/berkano/profile/self_user_edit.ftl</result>
         </action>
