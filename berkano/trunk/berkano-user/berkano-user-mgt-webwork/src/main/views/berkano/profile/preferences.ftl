@@ -1,7 +1,5 @@
-<#assign ww=JspTaglibs["/WEB-INF/lib/webwork-2.1.7.jar"] />
-
 <div id="berkano-preferences">
-  <h1><@ww.text name="'preferences.title'"/></h1>
+  <h1><@ww.text name="preferences.title"/></h1>
 
   <div id="berkano-preferences-apps">
     <ul>
@@ -51,9 +49,9 @@
     </#switch>
     </@ww.iterator>
 
-    <@ww.hidden name="'app'" value="app.name"/>
+    <@ww.hidden name="app" value="app.name"/>
     <div class="form-buttons">
-    <@ww.submit value="getText('preferences.form.submit')" />
+    <@ww.submit value="%{getText('preferences.form.submit')}" />
     </div>
     </fieldset>
     </form>
