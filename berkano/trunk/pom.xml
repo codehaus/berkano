@@ -145,7 +145,6 @@
         <module>berkano-tools/berkano-util</module>
         <module>berkano-tools/jodatime-hibernate</module>
         <module>berkano-tools/taskman</module>
-        <module>berkano-tools/puzzles</module>
 
         <module>berkano-tools/taglib-unit</module>
         <module>berkano-tools/beandisplaytag</module>
@@ -157,6 +156,8 @@
         <module>berkano-user/berkano-user-mgt-webwork</module>
         <module>berkano-user/berkano-seraph</module>
         <module>berkano-user/berkano-seraph-taglib</module>
+
+        <module>puzzles/puzzles-core</module>
     </modules>
 
     <reporting>
