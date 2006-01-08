@@ -48,13 +48,13 @@
         <repository>
             <id>codehaus</id>
             <name>beaver.codehaus.org</name>
-            <url>scp://beaver.codehaus.org:/dist/</url>
+            <url>sftp://beaver.codehaus.org:/dist/</url>
         </repository>
         <site>
             <id>codehaus</id>
             <name>codehaus</name>
             <!--<url>scp://http://berkano.codehaus.org//home/projects/berkano/public_html/maven</url>-->
-            <url>scp://beaver.codehaus.org/home/projects/berkano/public_html/maven</url>
+            <url>sftp://beaver.codehaus.org/home/projects/berkano/public_html/maven</url>
         </site>
     </distributionManagement>
     <repositories>
