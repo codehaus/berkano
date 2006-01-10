@@ -13,9 +13,9 @@ import net.incongru.berkano.user.UserDAO;
  * @version $Revision: 1.1 $
  */
 public class BerkanoSeraphUserPropertyHelper implements UserPropertyHelper {
-    private UserDAO userDAO;
-    private UserPropertyAccessor userPropertyAccessor;
-    private AuthenticationContext authenticationContext;
+    private final UserDAO userDAO;
+    private final UserPropertyAccessor userPropertyAccessor;
+    private final AuthenticationContext authenticationContext;
 
     public BerkanoSeraphUserPropertyHelper(UserPropertyAccessor userPropertyAccessor, UserDAO userDAO, AuthenticationContext authenticationContext) {
         this.userPropertyAccessor = userPropertyAccessor;

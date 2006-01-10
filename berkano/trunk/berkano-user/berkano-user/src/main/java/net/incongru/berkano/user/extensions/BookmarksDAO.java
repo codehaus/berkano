@@ -13,8 +13,8 @@ import net.incongru.berkano.user.UserDAO;
  * @version $Revision: 1.2 $
  */
 public class BookmarksDAO {
-    private UserDAO userDAO;
-    private UserPropertyAccessor userPropertyAccessor;
+    private final UserDAO userDAO;
+    private final UserPropertyAccessor userPropertyAccessor;
 
     public BookmarksDAO(UserDAO userDAO, UserPropertyAccessor userPropertyAccessor) {
         this.userDAO = userDAO;

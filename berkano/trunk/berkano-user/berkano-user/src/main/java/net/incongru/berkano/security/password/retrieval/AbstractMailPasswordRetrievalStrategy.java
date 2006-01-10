@@ -18,14 +18,15 @@ import java.util.Map;
  * @version $Revision: 1.2 $
  */
 public abstract class AbstractMailPasswordRetrievalStrategy implements PasswordRetrievalStrategy {
-    private Mailer mailer;
+    private final Mailer mailer;
 
     protected AbstractMailPasswordRetrievalStrategy(Mailer mailer) {
         this.mailer = mailer;
     }
 
     public void retrievePassword(User u) throws Exception {
-        Map map = prepare(u);
+        final Map map = new HashMap();
+        prepareMailContext(u, map);
         mailer.mail(u.getEmail(), u.getFullName(), getMailSubject(), getTemplateName(), map);
     }
 
@@ -33,10 +34,8 @@ public abstract class AbstractMailPasswordRetrievalStrategy implements PasswordR
      * Use this method to change any setting of the user if needed and
      * add items in the map passed to the template engine.
      */
-    protected Map prepare(User u) {
-        Map map = new HashMap();
-        map.put("user", u);
-        return map;
+    protected void prepareMailContext(User u, Map context) {
+        context.put("user", u);
     }
 
     protected abstract String getMailSubject();

@@ -20,7 +20,7 @@ import java.util.List;
  * @version $Revision: 1.15 $
  */
 public class HibernatedUserDAO extends AbstractHibernatedDAO implements UserDAO {
-    private PasswordMatchingStrategy passwordMatchingStrategy;
+    private final PasswordMatchingStrategy passwordMatchingStrategy;
 
     public HibernatedUserDAO(Session session, PasswordMatchingStrategy passwordMatchingStrategy) {
         super(session);

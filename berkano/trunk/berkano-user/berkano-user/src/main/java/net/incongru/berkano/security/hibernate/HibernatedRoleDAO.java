@@ -16,7 +16,7 @@ import java.util.List;
  * @version $Revision: 1.2 $
  */
 public class HibernatedRoleDAO implements RoleDAO {
-    private Session session;
+    private final Session session;
 
     public HibernatedRoleDAO(Session session) {
         this.session = session;

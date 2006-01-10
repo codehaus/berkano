@@ -11,7 +11,7 @@ import org.hibernate.Session;
  * @version $Revision: 1.2 $
  */
 public abstract class AbstractHibernatedDAO {
-    protected Session session;
+    protected final Session session;
 
     public AbstractHibernatedDAO(Session session) {
         this.session = session;

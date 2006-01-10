@@ -14,8 +14,8 @@ import java.util.Map;
  * @version $Revision: 1.2 $
  */
 public class MailNewPasswordRetrievalStrategy extends AbstractMailPasswordRetrievalStrategy {
-    private UserDAO userDAO;
-    private PasswordGenerator passwordGenerator;
+    private final UserDAO userDAO;
+    private final PasswordGenerator passwordGenerator;
 
     public MailNewPasswordRetrievalStrategy(UserDAO userDAO, PasswordGenerator passwordGenerator, Mailer mailer) {
         super(mailer);
@@ -23,12 +23,11 @@ public class MailNewPasswordRetrievalStrategy extends AbstractMailPasswordRetrie
         this.passwordGenerator = passwordGenerator;
     }
 
-    protected Map prepare(User u) {
-        Map m = super.prepare(u);
+    protected void prepareMailContext(User u, Map context) {
+        super.prepareMailContext(u, context);
         String newPassword = passwordGenerator.generate();
-        m.put("newPassword", newPassword);
+        context.put("newPassword", newPassword);
         userDAO.changePassword(u.getUserId(), newPassword);
-        return m;
     }
 
     protected String getMailSubject() {
