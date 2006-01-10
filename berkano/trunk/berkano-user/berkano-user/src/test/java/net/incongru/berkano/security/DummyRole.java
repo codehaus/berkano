@@ -22,6 +22,7 @@ public class DummyRole implements Role {
     private String name;
 
 //    private DummyRole(DummyPermission... permissions) {
+
     private DummyRole(String name, DummyPermission permissions) {
         this.allowedPermissions = new DummyPermission[]{permissions};
         this.name = name;

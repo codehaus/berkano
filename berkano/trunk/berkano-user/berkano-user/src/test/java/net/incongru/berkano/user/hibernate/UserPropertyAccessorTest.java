@@ -1,10 +1,8 @@
 package net.incongru.berkano.user.hibernate;
 
 import net.incongru.berkano.user.GroupImpl;
-import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.UserImpl;
 import net.incongru.berkano.user.extensions.UserPropertyAccessor;
-import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
