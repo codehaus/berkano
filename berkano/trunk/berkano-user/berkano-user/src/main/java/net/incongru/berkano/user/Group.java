@@ -8,9 +8,9 @@ import java.util.Set;
  * of persisting the group's data.
  *
  *
- * @author     gjoseph
- * @author     $Author: gj $ (last edit)
- * @version    $Revision: 1.9 $
+ * @author gjoseph
+ * @author $Author: gj $ (last edit)
+ * @version $Revision: 1.9 $
  */
 public interface Group {
     public Long getGroupId();

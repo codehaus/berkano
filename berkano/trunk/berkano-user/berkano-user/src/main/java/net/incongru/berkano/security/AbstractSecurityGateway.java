@@ -15,6 +15,7 @@ import java.util.Set;
 public abstract class AbstractSecurityGateway implements SecurityGateway {
 
 //    public boolean hasPermission(User user, Permission permission) {
+
     public boolean hasPermission(User user, String permission) {
         //Set<Group> groups = user.getGroups();
         //Iterator<Group> groupsIt = groups.iterator();

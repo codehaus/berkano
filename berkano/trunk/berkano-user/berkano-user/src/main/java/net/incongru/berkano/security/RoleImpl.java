@@ -17,7 +17,7 @@ public class RoleImpl implements Role {
         this.name = name;
     }
 
- /* todo : check if it is correct to implement this with hibernate??
+    /* todo : check if it is correct to implement this with hibernate??
  public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof RoleImpl)) return false;

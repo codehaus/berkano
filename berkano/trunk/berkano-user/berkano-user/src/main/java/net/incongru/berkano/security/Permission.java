@@ -36,6 +36,7 @@ public class Permission {
 //    }
 
 //    public String getName();
+
     public String getName() {
         return name;
     }
@@ -45,6 +46,7 @@ public class Permission {
     }
 
 //    public PermissionType getType();
+
     public PermissionType getType() {
         return type;
     }

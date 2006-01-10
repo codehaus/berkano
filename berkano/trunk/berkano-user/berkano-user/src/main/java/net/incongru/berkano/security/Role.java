@@ -19,7 +19,7 @@ import java.io.Serializable;
 public interface Role extends Serializable {
     public String getName();
 //    public Permission[] getAllowedPermissions();
-   // public String[] getAllowedPermissions();
+    // public String[] getAllowedPermissions();
 }
 
 //public class Role {

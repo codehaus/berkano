@@ -20,6 +20,7 @@ public interface RoleSet {
 //        this.roles = roles;
 //    }
 //
+
     public Role[] getRoles();
 //    public Collection getRoles() { // Collection<Role>
 //        return roles;
