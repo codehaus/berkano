@@ -64,10 +64,10 @@ public class HibernatedUserDAO extends AbstractHibernatedDAO implements UserDAO 
 
     public boolean removeUser(Long userId) throws UnknownUserException {
         UserImpl user = (UserImpl) session.load(UserImpl.class, userId);
-        session.delete(user);
         if (user == null) {
             throw new UnknownUserException(userId);
         }
+        session.delete(user);
         return true;
     }
 
