@@ -24,14 +24,14 @@ public class BerkanoSeraphUserPropertyHelper implements UserPropertyHelper {
     }
 
     public void store(String key, Object value) {
-        User user = getUser();
+        final User user = getUser();
         if (user != null) {
             userDAO.addProperty(user, key, value);
         }
     }
 
     public Object getUserOnlyValue(String key) {
-        User user = getUser();
+        final User user = getUser();
         if (user == null) {
             return null;
         }
@@ -39,7 +39,7 @@ public class BerkanoSeraphUserPropertyHelper implements UserPropertyHelper {
     }
 
     public Object getSingleValue(String key) {
-        User user = getUser();
+        final User user = getUser();
         if (user == null) {
             return null;
         }
