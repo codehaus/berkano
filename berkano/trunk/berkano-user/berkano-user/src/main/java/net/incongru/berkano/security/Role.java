@@ -9,8 +9,6 @@ import java.io.Serializable;
  *
  * <strong>You must implement equals and hashcode!!</strong>
  *
- * @see RoleSet
- *
  * @author greg
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.5 $

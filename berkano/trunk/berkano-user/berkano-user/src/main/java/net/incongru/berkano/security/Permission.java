@@ -15,27 +15,10 @@ package net.incongru.berkano.security;
  * @deprecated currently unused - staying there for now just as a reminder
  */
 public class Permission {
-//    private long id;
     private String name;
-    private PermissionType type;
 
-    public Permission(String name, PermissionType type) {
-        this.name = name;
-        this.type = type;
+    public Permission() {
     }
-
-//    public Permission() {
-//    }
-//
-//    public long getId() {
-//        return id;
-//    }
-//
-//    protected void setId(long id) {
-//        this.id = id;
-//    }
-
-//    public String getName();
 
     public String getName() {
         return name;
@@ -43,15 +26,5 @@ public class Permission {
 
     protected void setName(String name) {
         this.name = name;
-    }
-
-//    public PermissionType getType();
-
-    public PermissionType getType() {
-        return type;
-    }
-
-    protected void setType(PermissionType type) {
-        this.type = type;
     }
 }

@@ -21,9 +21,6 @@ public interface SecurityGateway {
     /**
      * Mimics the JAAS authentication, with Callback and CallbackHandler. Here, the authenticator class should be
      * constructed with a ServletRequest, for example)
-     *
-     * @param authenticator
-     * @return
      */
     public boolean authenticate(Authenticator authenticator);
 

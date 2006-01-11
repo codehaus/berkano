@@ -1,6 +1,6 @@
 package net.incongru.berkano.usermgt;
 
-import net.incongru.berkano.security.AbstractRole;
+import net.incongru.berkano.security.Role;
 
 /**
  * @author greg
@@ -9,7 +9,7 @@ import net.incongru.berkano.security.AbstractRole;
  *
  * @deprecated currently unused - staying there for now just as a reminder
  */
-public class UserMgtRole extends AbstractRole {
+public class UserMgtRole implements Role {
     public String getName() {
         return "user_manager";
     }

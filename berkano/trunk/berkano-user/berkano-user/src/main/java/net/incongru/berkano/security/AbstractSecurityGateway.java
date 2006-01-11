@@ -11,6 +11,8 @@ import java.util.Set;
  * @author greg
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
+ *
+ * @deprecated
  */
 public abstract class AbstractSecurityGateway implements SecurityGateway {
 
