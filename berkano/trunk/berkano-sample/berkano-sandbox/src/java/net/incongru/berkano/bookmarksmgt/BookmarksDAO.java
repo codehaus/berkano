@@ -1,8 +1,9 @@
-package net.incongru.berkano.user.extensions;
+package net.incongru.berkano.bookmarksmgt;
 
 import net.incongru.berkano.bookmarks.BookmarksTree;
 import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.UserDAO;
+import net.incongru.berkano.user.extensions.UserPropertyAccessor;
 
 /**
  * Defines a strategy for serializing bookmarks.

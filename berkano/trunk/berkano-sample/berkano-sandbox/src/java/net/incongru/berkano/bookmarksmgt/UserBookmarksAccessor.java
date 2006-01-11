@@ -7,7 +7,6 @@ import net.incongru.berkano.bookmarks.Bookmark;
 import net.incongru.berkano.bookmarks.BookmarksTree;
 import net.incongru.berkano.bookmarks.DefaultBookmark;
 import net.incongru.berkano.user.User;
-import net.incongru.berkano.user.extensions.BookmarksDAO;
 
 import java.io.IOException;
 import java.io.InputStream;

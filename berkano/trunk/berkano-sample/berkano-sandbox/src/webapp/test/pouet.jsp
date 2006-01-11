@@ -1,6 +1,8 @@
 <%@ page import="net.incongru.berkano.bookmarks.BookmarksTree,
                  net.incongru.berkano.bookmarks.BookmarksTreeWriter,
-                 net.incongru.berkano.bookmarks.HtmlListBookmarksWriter"%>
+                 net.incongru.berkano.bookmarks.writer.HtmlListBookmarksWriter"%>
+<%@ page import="net.incongru.berkano.bookmarks.model.BookmarksTree"%>
+<%@ page import="net.incongru.berkano.bookmarks.writer.BookmarksTreeWriter"%>
 <%@taglib uri="webwork" prefix="ww" %>
 <pre>
 ---------------------------------------

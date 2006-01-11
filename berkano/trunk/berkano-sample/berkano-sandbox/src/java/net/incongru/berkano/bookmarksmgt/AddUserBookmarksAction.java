@@ -7,7 +7,6 @@ import net.incongru.berkano.bookmarks.ExternalBookmark;
 import net.incongru.berkano.user.UserDAO;
 import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.UnknownUserException;
-import net.incongru.berkano.user.extensions.BookmarksDAO;
 
 /**
  * @author greg
