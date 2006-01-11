@@ -11,6 +11,8 @@
 
         <many-to-one name="taskDef" class="net.incongru.taskman.def.TaskDefImpl" cascade="none"/>
 
+        <property name="reporter"/>
+
         <component name="assignee" class="net.incongru.taskman.AssigneeImpl">
             <property name="name" column="assignee_name"/>
             <property name="type" column="assignee_type" type="net.incongru.util.hibernate.EnumType"/>
@@ -24,6 +26,8 @@
             <index column="name" type="string"/>
             <element column="value" type="net.incongru.util.hibernate.XStreamType"/>
         </map>
+
+        <property name="status" type="net.incongru.util.hibernate.EnumType"/>
 
         <list name="log" table="taskinstance_log" lazy="true">
             <key column="taskinstance_id"/>

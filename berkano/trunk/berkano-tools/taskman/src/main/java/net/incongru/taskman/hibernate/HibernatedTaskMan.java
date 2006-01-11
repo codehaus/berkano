@@ -16,10 +16,12 @@ import net.incongru.taskman.id.IdGenerator;
 import net.incongru.taskman.id.NullIdGenerator;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Order;
 import org.joda.time.DateTime;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,6 +31,7 @@ import java.util.List;
  * @version $Revision: $ 
  */
 public class HibernatedTaskMan implements TaskMan {
+    private static final Criterion PENDING_TASK_STATUS = Expression.not(Expression.in("status", Arrays.asList(TaskEvent.cancelled, TaskEvent.stopped)));
     private static final Long DEFAULT_VERSION_ID = new Long(1L);
 
     private final Session session;
@@ -79,17 +82,29 @@ public class HibernatedTaskMan implements TaskMan {
         return (TaskInstance) session.load(TaskInstanceImpl.class, taskId);
     }
 
-    // TODO
-    public List<TaskInstance> getTasksByActorId(String actorId) {
-        throw new IllegalStateException("not implemented yet");
+
+    public List<TaskInstance> getPendingTasksByReporterId(String actorId) {
+        final Criteria criteria = session.createCriteria(TaskInstanceImpl.class);
+        criteria.add(Expression.eq("reporter", actorId));
+        criteria.add(PENDING_TASK_STATUS);
+        //criteria.addOrder(Order.asc(""))// TODO
+        return criteria.list();
     }
 
-    // TODO
-    public List<TaskInstance> getTasksByAssignee(Assignee assignee) {
-        throw new IllegalStateException("not implemented yet");
+    public List<TaskInstance> getPendingTasksByAssignee(Assignee assignee) {
+        final Criteria criteria = session.createCriteria(TaskInstanceImpl.class);
+        criteria.add(Expression.eq("assignee", assignee));
+        criteria.add(PENDING_TASK_STATUS);
+        //criteria.addOrder(Order.asc(""))// TODO
+        return criteria.list();
+
+//        Query q = session.createQuery("select t from TaskInstanceImpl t where maxElement(t.log.taskEvent) = :event");
+//        q.setParameter("event", TaskEvent.started);
+//        return q.list();
+
     }
 
-    public TaskInstance newTaskInstance(final String taskDefName, final String taskId, final String taskName, final String taskDesc) {
+    public TaskInstance newTaskInstance(final String taskDefName, final String reporterId, final String taskId, final String taskName, final String taskDesc) {
         final TaskDef taskDef = findLatestTaskDef(taskDefName);
         if (taskDef == null) {
             throw new IllegalStateException("TaskDef with name " + taskDefName + " does not exist.");
@@ -103,6 +118,7 @@ public class HibernatedTaskMan implements TaskMan {
         task.setName(taskName);
         task.setDescription(taskDesc);
         task.setTaskDef(taskDef);
+        task.setReporter(reporterId);
 
         logAndDispatchSimpleEvent(task, TaskEvent.instanciated, null, null);
         session.save(task);
@@ -114,16 +130,19 @@ public class HibernatedTaskMan implements TaskMan {
         final Assignee previousAssignee = task.getAssignee();
         ((TaskInstanceImpl) task).setAssignee(newAssignee);
         logAndDispatchSimpleEvent(task, TaskEvent.assigned, toString(previousAssignee), toString(task.getAssignee()));
+        ((TaskInstanceImpl) task).setStatus(TaskEvent.assigned);
         session.save(task);
     }
 
     public void start(TaskInstance task) {
         logAndDispatchSimpleEvent(task, TaskEvent.started, null, null);
+        ((TaskInstanceImpl) task).setStatus(TaskEvent.started);
         session.save(task);
     }
 
     public void cancel(TaskInstance task) {
         logAndDispatchSimpleEvent(task, TaskEvent.cancelled, null, null);
+        ((TaskInstanceImpl) task).setStatus(TaskEvent.cancelled);
         session.save(task);
     }
 
@@ -131,6 +150,7 @@ public class HibernatedTaskMan implements TaskMan {
     // TODO : the var. name could also be logged, thus avoiding values in the "oldvalue" column like "foo=null" when there was no value before
     public void stop(TaskInstance task) {
         logAndDispatchSimpleEvent(task, TaskEvent.stopped, null, null);
+        ((TaskInstanceImpl) task).setStatus(TaskEvent.stopped);
         session.save(task);
     }
 

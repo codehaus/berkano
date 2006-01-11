@@ -24,6 +24,8 @@ public interface TaskInstance extends Serializable {
 
     String getDescription();
 
+    String getReporter();
+
     Assignee getAssignee();
 
     DateTime getDueDate(); // ? this is slightly redundant with TaskDef's duePeriod + log's creationDate ...

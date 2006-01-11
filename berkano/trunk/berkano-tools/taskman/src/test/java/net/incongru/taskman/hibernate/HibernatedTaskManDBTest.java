@@ -227,12 +227,13 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         DateTime beforeDeploy = new DateTime();
         final TaskDef taskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
         DateTime beforeInstance = new DateTime();
-        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getName(), null, null, null);
+        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
         DateTime afterInstance = new DateTime();
         session.flush();
         session.close();
 
         assertEquals(taskDef, taskInstance.getTaskDef());
+        assertEquals("reporterId", taskInstance.getReporter());
         assertEquals(null, taskInstance.getName());
         assertEquals(null, taskInstance.getDescription());
         assertEquals(Collections.EMPTY_SET, taskInstance.getVariableNames());
@@ -270,7 +271,7 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
 
         final TaskMan taskMan = new HibernatedTaskMan(session, (TaskActionManager) taskActionManager.proxy());
         final TaskDef taskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
-        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getName(), null, null, null);
+        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
         taskMan.assign(taskInstance, null);
         taskMan.start(taskInstance);
         taskMan.stop(taskInstance);
@@ -308,7 +309,7 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
 
         final TaskMan taskMan = new HibernatedTaskMan(session, (TaskActionManager) taskActionManager.proxy());
         final TaskDef taskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
-        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getName(), null, null, null);
+        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
         taskMan.assign(taskInstance, new AssigneeImpl(Assignee.Type.user, "greg"));
         taskMan.assign(taskInstance, new AssigneeImpl(Assignee.Type.group, "dev"));
         String storedTaskInstanceID = taskInstance.getId();
@@ -343,7 +344,7 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
 
         final TaskMan taskMan = new HibernatedTaskMan(session, (TaskActionManager) taskActionManager.proxy());
         final TaskDef taskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
-        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getName(), null, null, null);
+        final TaskInstance taskInstance = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
         taskMan.addVariable(taskInstance, "foo", new Dummy("abc", 123));
         taskMan.addVariable(taskInstance, "foo", new Dummy("xyz", 789));
         String storedTaskInstanceID = taskInstance.getId();
@@ -375,6 +376,80 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         } catch (UnsupportedOperationException e) {
             assertEquals(null, e.getMessage());
         }
+    }
+
+    public void testFindPendingByAssigneeOnlyFindsInstancesWhichAreNotStoppedNorCancelled() {
+        final Mock taskActionManager = mock(TaskActionManager.class);
+
+        taskActionManager.expects(atLeastOnce()).method("getTaskAction").withAnyArguments().will(returnValue(null));
+
+        final TaskMan taskMan = new HibernatedTaskMan(session, (TaskActionManager) taskActionManager.proxy());
+        final TaskDef taskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
+        final TaskInstance ti1 = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
+        final TaskInstance ti2 = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
+        final TaskInstance ti3 = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
+        final TaskInstance ti4 = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
+        final TaskInstance ti5 = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
+        final TaskInstance ti6 = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
+        final AssigneeImpl greg = new AssigneeImpl(Assignee.Type.user, "greg");
+        taskMan.assign(ti1, greg);
+        taskMan.assign(ti2, greg);
+        taskMan.assign(ti3, greg);
+        taskMan.assign(ti4, greg);
+        taskMan.assign(ti5, greg);
+        taskMan.assign(ti6, new AssigneeImpl(Assignee.Type.user, "fred"));
+        taskMan.start(ti1);
+        taskMan.start(ti5);
+        taskMan.stop(ti2);
+        taskMan.cancel(ti3);
+        taskMan.addVariable(ti1, "foo", new Dummy("xyz", 789));
+        taskMan.addVariable(ti4, "foo", new Dummy("xyz", 789));
+        session.flush();
+        // session.close();
+        // TODO : somehow if we use a different Session, a NPE happens in org.hibernate.tuple.AbstractEntityTuplizer.createProxy
+        final HibernatedTaskMan tm2 = new HibernatedTaskMan(session, null);
+        final List<TaskInstance> pendingTasksByAssignee = tm2.getPendingTasksByAssignee(greg);
+        assertEquals(3, pendingTasksByAssignee.size());
+        assertTrue(pendingTasksByAssignee.contains(ti1));
+        assertTrue(pendingTasksByAssignee.contains(ti4));
+        assertTrue(pendingTasksByAssignee.contains(ti5));
+    }
+
+    public void testFindPendingByReporterOnlyFindsInstancesWhichAreNotStoppedNorCancelled() {
+        final Mock taskActionManager = mock(TaskActionManager.class);
+
+        taskActionManager.expects(atLeastOnce()).method("getTaskAction").withAnyArguments().will(returnValue(null));
+
+        final TaskMan taskMan = new HibernatedTaskMan(session, (TaskActionManager) taskActionManager.proxy());
+        final TaskDef taskDef = taskMan.deployTaskDef(getDummyTaskDefParser(), false);
+        final TaskInstance ti1 = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
+        final TaskInstance ti2 = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
+        final TaskInstance ti3 = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
+        final TaskInstance ti4 = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
+        final TaskInstance ti5 = taskMan.newTaskInstance(taskDef.getName(), "reporterIdX", null, null, null);
+        final TaskInstance ti6 = taskMan.newTaskInstance(taskDef.getName(), "reporterId", null, null, null);
+        final AssigneeImpl greg = new AssigneeImpl(Assignee.Type.user, "greg");
+        taskMan.assign(ti1, greg);
+        taskMan.assign(ti2, greg);
+        taskMan.assign(ti3, greg);
+        taskMan.assign(ti4, greg);
+        taskMan.assign(ti6, new AssigneeImpl(Assignee.Type.user, "fred"));
+        taskMan.start(ti1);
+        taskMan.start(ti5);
+        taskMan.start(ti6);
+        taskMan.stop(ti2);
+        taskMan.cancel(ti3);
+        taskMan.addVariable(ti1, "foo", new Dummy("xyz", 789));
+        taskMan.addVariable(ti4, "foo", new Dummy("xyz", 789));
+        session.flush();
+        // session.close();
+        // TODO : somehow if we use a different Session, a NPE happens in org.hibernate.tuple.AbstractEntityTuplizer.createProxy
+        final HibernatedTaskMan tm2 = new HibernatedTaskMan(session, null);
+        final List<TaskInstance> pendingTasksByAssignee = tm2.getPendingTasksByReporterId("reporterId");
+        assertEquals(3, pendingTasksByAssignee.size());
+        assertTrue(pendingTasksByAssignee.contains(ti1));
+        assertTrue(pendingTasksByAssignee.contains(ti4));
+        assertTrue(pendingTasksByAssignee.contains(ti6));
     }
 
     // TODO :

@@ -29,21 +29,21 @@ public interface TaskMan {
     /**
      * Retrieve the tasks assigned to this specific actor.
      */
-    List<TaskInstance> getTasksByActorId(String actorId);
+    List<TaskInstance> getPendingTasksByReporterId(String actorId);
 
     /**
      * Retrieve the tasks assigned to an assignee (or a group/pool of actors TODO ?), so that
      * a specific actor can see what tasks he could do if he's bored.
      */
-    List<TaskInstance> getTasksByAssignee(Assignee assignee);
+    List<TaskInstance> getPendingTasksByAssignee(Assignee assignee);
 
     /**
      * Creates a new instance of a given task definition (the last deployed TaskDef with
-     * the given name), assigns it a specific id, name and description.
-     * Any of these 3 parameters can be null, in which case they get a default value.
+     * the given name), reported by the given userid, assigns it a specific id, name and description.
+     * Any of these last 3 parameters can be null, in which case they get a default value.
      * (a generated id, null and null, respectively)
      */
-    TaskInstance newTaskInstance(String taskDefName, String taskId, String taskName, String taskDesc);
+    TaskInstance newTaskInstance(String taskDefName, String reporterId, String taskId, String taskName, String taskDesc);
 
     void assign(TaskInstance task, Assignee assignee);
 

@@ -96,7 +96,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         actionMan.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.instanciated)).will(returnValue(null));
 
         final TaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy(), (IdGenerator) idGen.proxy());
-        final TaskInstance taskInstance = taskMan.newTaskInstance("myTaskDef", "myId", "some specific task name", "some specific desc");
+        final TaskInstance taskInstance = taskMan.newTaskInstance("myTaskDef", "reporterId", "myId", "some specific task name", "some specific desc");
         assertEquals("myId", taskInstance.getId());
         assertEquals("some specific task name", taskInstance.getName());
         assertEquals("some specific desc", taskInstance.getDescription());
@@ -123,7 +123,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         actionMan.expects(once()).method("getTaskAction").with(isA(TaskInstance.class), eq(TaskEvent.instanciated)).will(returnValue(null));
 
         final TaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy(), (IdGenerator) idGen.proxy());
-        final TaskInstance taskInstance = taskMan.newTaskInstance("myTaskDef", null, "some specific task name", "some specific desc");
+        final TaskInstance taskInstance = taskMan.newTaskInstance("myTaskDef", "reporterId", null, "some specific task name", "some specific desc");
         assertEquals("generatedID", taskInstance.getId());
         assertEquals("some specific task name", taskInstance.getName());
         assertEquals("some specific desc", taskInstance.getDescription());
@@ -142,7 +142,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         final TaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy(), (IdGenerator) idGen.proxy());
 
         try {
-            taskMan.newTaskInstance("myTaskDef", null, "some specific task name", "some specific desc");
+            taskMan.newTaskInstance("myTaskDef", "reporterId", null, "some specific task name", "some specific desc");
             fail("Should have thrown an IllegalStateException");
         } catch (IllegalStateException e) {
             assertEquals("TaskDef with name myTaskDef does not exist.", e.getMessage());

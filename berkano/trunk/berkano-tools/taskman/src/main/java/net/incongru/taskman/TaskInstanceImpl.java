@@ -21,10 +21,12 @@ public class TaskInstanceImpl implements TaskInstance {
     private String id;
     private String name;
     private String description;
+    private String reporter;
     private Assignee assignee;
     private DateTime dueDate;
     private DateTime lastReminder;
     private Map<String, Object> variables = new HashMap<String, Object>();
+    private TaskEvent status; // TODO : expose in interface ?
     private List<TaskLog> log = new ArrayList<TaskLog>();
 
     public Set<String> getVariableNames() {
@@ -68,6 +70,14 @@ public class TaskInstanceImpl implements TaskInstance {
         this.description = description;
     }
 
+    public String getReporter() {
+        return reporter;
+    }
+
+    public void setReporter(String reporter) {
+        this.reporter = reporter;
+    }
+
     public Assignee getAssignee() {
         return assignee;
     }
@@ -100,6 +110,14 @@ public class TaskInstanceImpl implements TaskInstance {
         this.variables = variables;
     }
 
+    public TaskEvent getStatus() {
+        return status;
+    }
+
+    public void setStatus(TaskEvent status) {
+        this.status = status;
+    }
+
     public List<TaskLog> getLog() {
         return log;
     }
@@ -122,6 +140,8 @@ public class TaskInstanceImpl implements TaskInstance {
         if (lastReminder != null ? !lastReminder.equals(that.lastReminder) : that.lastReminder != null) return false;
         if (log != null ? !log.equals(that.log) : that.log != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (reporter != null ? !reporter.equals(that.reporter) : that.reporter != null) return false;
+        if (status != that.status) return false;
         if (taskDef != null ? !taskDef.equals(that.taskDef) : that.taskDef != null) return false;
         if (variables != null ? !variables.equals(that.variables) : that.variables != null) return false;
 
@@ -135,10 +155,12 @@ public class TaskInstanceImpl implements TaskInstance {
         result = 29 * result + (id != null ? id.hashCode() : 0);
         result = 29 * result + (name != null ? name.hashCode() : 0);
         result = 29 * result + (description != null ? description.hashCode() : 0);
+        result = 29 * result + (reporter != null ? reporter.hashCode() : 0);
         result = 29 * result + (assignee != null ? assignee.hashCode() : 0);
         result = 29 * result + (dueDate != null ? dueDate.hashCode() : 0);
         result = 29 * result + (lastReminder != null ? lastReminder.hashCode() : 0);
         result = 29 * result + (variables != null ? variables.hashCode() : 0);
+        result = 29 * result + (status != null ? status.hashCode() : 0);
         result = 29 * result + (log != null ? log.hashCode() : 0);
         return result;
     }
@@ -151,10 +173,12 @@ public class TaskInstanceImpl implements TaskInstance {
         sb.append(",id=").append(id);
         sb.append(",name=").append(name);
         sb.append(",description=").append(description);
+        sb.append(",reporter=").append(reporter);
         sb.append(",assignee=").append(assignee);
         sb.append(",dueDate=").append(dueDate);
         sb.append(",lastReminder=").append(lastReminder);
         sb.append(",variables=").append(variables);
+        sb.append(",status=").append(status);
         sb.append(",log=").append(log);
         sb.append('}');
         return sb.toString();

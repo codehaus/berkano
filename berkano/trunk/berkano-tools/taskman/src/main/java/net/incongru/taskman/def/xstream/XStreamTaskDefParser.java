@@ -5,8 +5,8 @@ import net.incongru.taskman.TaskEvent;
 import net.incongru.taskman.def.TaskDef;
 import net.incongru.taskman.def.TaskDefImpl;
 import net.incongru.taskman.def.TaskDefParser;
-import net.incongru.util.io.IOProcessor;
 import net.incongru.util.io.Flusher;
+import net.incongru.util.io.IOProcessor;
 
 import java.io.FileWriter;
 import java.io.IOException;
