@@ -3,8 +3,7 @@ package net.incongru.berkano.security.password;
 import net.incongru.berkano.user.User;
 
 /**
- * Is this any useful?
- * ... maybe we should try to reuse jaas stuff more...
+ * Matches and encodes passwords.
  *
  * @author greg
  * @author $Author: gj $ (last edit)
