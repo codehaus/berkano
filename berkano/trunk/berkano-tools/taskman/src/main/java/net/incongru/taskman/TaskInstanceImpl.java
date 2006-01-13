@@ -26,7 +26,7 @@ public class TaskInstanceImpl implements TaskInstance {
     private DateTime dueDate;
     private DateTime lastReminder;
     private Map<String, Object> variables = new HashMap<String, Object>();
-    private TaskEvent status; // TODO : expose in interface ?
+    private TaskEvent status;
     private List<TaskLog> log = new ArrayList<TaskLog>();
 
     public Set<String> getVariableNames() {

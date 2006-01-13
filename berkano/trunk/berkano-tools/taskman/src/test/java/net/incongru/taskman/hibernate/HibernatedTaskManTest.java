@@ -50,6 +50,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         assertEquals(1, task.getLog().size());
         final TaskLog taskLog = task.getLog().get(0);
         //assertEquals(taskLog.getDateTime());
+        assertEquals(TaskEvent.cancelled, task.getStatus());
         assertEquals(TaskEvent.cancelled, taskLog.getTaskEvent());
         assertEquals(null, taskLog.getOldValue());
         assertEquals(null, taskLog.getNewValue());
@@ -72,6 +73,7 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         assertEquals(1, task.getLog().size());
         final TaskLog taskLog = task.getLog().get(0);
         //assertEquals(taskLog.getDateTime());
+        assertEquals(TaskEvent.started, task.getStatus());
         assertEquals(TaskEvent.started, taskLog.getTaskEvent());
         assertEquals(null, taskLog.getOldValue());
         assertEquals(null, taskLog.getNewValue());
@@ -100,9 +102,9 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         assertEquals("myId", taskInstance.getId());
         assertEquals("some specific task name", taskInstance.getName());
         assertEquals("some specific desc", taskInstance.getDescription());
+        assertEquals(TaskEvent.instanciated, taskInstance.getStatus());
         assertEquals(getDummyTaskDef(), taskInstance.getTaskDef());
     }
-
 
     public void testNewTaskInstanceGeneratesAnIdIfNonePassed() {
         Mock session = mock(Session.class);
@@ -127,7 +129,51 @@ public class HibernatedTaskManTest extends AbstractTaskManTestCase {
         assertEquals("generatedID", taskInstance.getId());
         assertEquals("some specific task name", taskInstance.getName());
         assertEquals("some specific desc", taskInstance.getDescription());
+        assertEquals(TaskEvent.instanciated, taskInstance.getStatus());
         assertEquals(getDummyTaskDef(), taskInstance.getTaskDef());
+    }
+
+    public void testAddingVariablesDoesNotChangeStatus() {
+       Mock session = mock(Session.class);
+        Mock taskDef = mock(TaskDef.class);
+        Mock actionMan = mock(TaskActionManager.class);
+
+        final TaskInstance task = getDummyTaskInstance((TaskDef) taskDef.proxy());
+        session.expects(atLeastOnce()).method("save").with(eq(task));
+        actionMan.expects(atLeastOnce()).method("getTaskAction").with(eq(task), isA(TaskEvent.class)).will(returnValue(null));
+        assertEquals(0, task.getLog().size());
+        final TaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy());
+        taskMan.start(task);
+        taskMan.addVariable(task, "foo", "bar");
+
+        assertEquals(TaskEvent.started, task.getStatus());
+
+        taskMan.cancel(task);
+        assertEquals(TaskEvent.cancelled, task.getStatus());
+        taskMan.addVariable(task, "plop", "fapzoiehf");
+        assertEquals(TaskEvent.cancelled, task.getStatus());
+
+        assertEquals(4, task.getLog().size());
+    }
+
+    public void testAddingVariablesReplacesPreviousValues() {
+        Mock session = mock(Session.class);
+        Mock taskDef = mock(TaskDef.class);
+        Mock actionMan = mock(TaskActionManager.class);
+
+        final TaskInstance task = getDummyTaskInstance((TaskDef) taskDef.proxy());
+        session.expects(atLeastOnce()).method("save").with(eq(task));
+        actionMan.expects(atLeastOnce()).method("getTaskAction").with(eq(task), isA(TaskEvent.class)).will(returnValue(null));
+        assertEquals(0, task.getLog().size());
+        final TaskMan taskMan = new HibernatedTaskMan((Session) session.proxy(), (TaskActionManager) actionMan.proxy());
+        taskMan.start(task);
+        taskMan.addVariable(task, "foo", "bar");
+        assertEquals("bar", task.getVariable("foo"));
+        taskMan.addVariable(task, "foo", "baz");
+        assertEquals("baz", task.getVariable("foo"));
+        assertEquals(1, task.getVariableNames().size());
+        assertEquals("foo", task.getVariableNames().iterator().next());
+        assertEquals(3, task.getLog().size());
     }
 
     public void testNewTaskInstanceWithUnknownTaskDefThrowsIllegalStateException() {

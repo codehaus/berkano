@@ -121,6 +121,7 @@ public class HibernatedTaskMan implements TaskMan {
         task.setReporter(reporterId);
 
         logAndDispatchSimpleEvent(task, TaskEvent.instanciated, null, null);
+        task.setStatus(TaskEvent.instanciated);
         session.save(task);
         return task;
     }

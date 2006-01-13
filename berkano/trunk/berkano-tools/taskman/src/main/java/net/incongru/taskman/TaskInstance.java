@@ -40,5 +40,7 @@ public interface TaskInstance extends Serializable {
 
     Object getVariable(String name);
 
+    TaskEvent getStatus();
+
     List<TaskLog> getLog();
 }
