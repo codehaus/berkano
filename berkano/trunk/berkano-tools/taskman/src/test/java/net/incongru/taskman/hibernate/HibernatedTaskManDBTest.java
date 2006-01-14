@@ -117,6 +117,8 @@ public class HibernatedTaskManDBTest extends AbstractTaskManTestCase {
         printSqlQueryResults("SELECT * FROM taskinstance_log");
         printSqlQueryResults("SELECT * FROM taskinstance_variables");
 
+        sessionFactory.close();
+
         try {
             DriverManager.getConnection("jdbc:derby:;shutdown=true");
         } catch (EmbedSQLException e) {

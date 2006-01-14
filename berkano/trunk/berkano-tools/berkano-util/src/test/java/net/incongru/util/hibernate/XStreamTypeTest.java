@@ -25,8 +25,6 @@ public class XStreamTypeTest extends AbstractHibernateTest {
     }
 
     public void testWithLinkedHashSet() throws Exception {
-        Session s = sessionFactory.openSession();
-
         DummyBean dummy = new DummyBean();
         Set<String> complexObject = new LinkedHashSet<String>();
         complexObject.add("abc");
@@ -36,41 +34,52 @@ public class XStreamTypeTest extends AbstractHibernateTest {
         dummy.setComplexObject(complexObject);
         dummy.setName("test");
 
-        s.save(dummy);
-        s.close();
+        Session s = sessionFactory.openSession();
+        try {
+            s.save(dummy);
+            s.flush();
+        } finally {
+            s.close();
+        }
 
         s = sessionFactory.openSession();
-        List resList = s.createQuery("from pouet in class DummyBean").list();
-        assertEquals(1, resList.size());
-        DummyBean res = (DummyBean) resList.get(0);
-        assertEquals("test", res.getName());
-        Object obj = res.getComplexObject();
-        assertEquals(LinkedHashSet.class, obj.getClass());
-        LinkedHashSet set = (LinkedHashSet) obj;
-        Iterator it = set.iterator();
-        assertTrue(it.hasNext());
-        assertEquals("abc", it.next());
-        assertTrue(it.hasNext());
-        assertEquals("def", it.next());
-        assertTrue(it.hasNext());
-        assertEquals("ghi", it.next());
-        assertTrue(it.hasNext());
-        assertEquals("jkl", it.next());
-        assertFalse(it.hasNext());
-        s.close();
+        try {
+            List resList = s.createQuery("from pouet in class DummyBean").list();
+            assertEquals(1, resList.size());
+            DummyBean res = (DummyBean) resList.get(0);
+            assertEquals("test", res.getName());
+            Object obj = res.getComplexObject();
+            assertEquals(LinkedHashSet.class, obj.getClass());
+            LinkedHashSet set = (LinkedHashSet) obj;
+            Iterator it = set.iterator();
+            assertTrue(it.hasNext());
+            assertEquals("abc", it.next());
+            assertTrue(it.hasNext());
+            assertEquals("def", it.next());
+            assertTrue(it.hasNext());
+            assertEquals("ghi", it.next());
+            assertTrue(it.hasNext());
+            assertEquals("jkl", it.next());
+            assertFalse(it.hasNext());
+        } finally {
+            s.close();
+        }
 
         // test on jdbc
-        s = sessionFactory.openSession();
-        Connection conn = s.connection();
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM dummy");
-        assertTrue(rs.next());
-        assertEquals("test", rs.getString("name"));
-        String xml = rs.getString("complex_object");
-        XStream xStream = new XStream();
-        Object o = xStream.fromXML(xml);
-        assertEquals(complexObject, o);
-        assertFalse(rs.next());
-        s.close();
+        try {
+            s = sessionFactory.openSession();
+            Connection conn = s.connection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM dummy");
+            assertTrue(rs.next());
+            assertEquals("test", rs.getString("name"));
+            String xml = rs.getString("complex_object");
+            XStream xStream = new XStream();
+            Object o = xStream.fromXML(xml);
+            assertEquals(complexObject, o);
+            assertFalse(rs.next());
+        } finally {
+            s.close();
+        }
     }
 }

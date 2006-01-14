@@ -38,9 +38,9 @@
         </dependency>
 
         <dependency>
-            <groupId>berkano<!--joda-time--></groupId>
+            <groupId>joda-time</groupId>
             <artifactId>joda-time-hibernate</artifactId>
-            <version>0.8-SNAPSHOT<!-- -dev --></version>
+            <version>0.8</version>
             <scope>compile</scope>
         </dependency>
 
@@ -78,12 +78,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>jmock</groupId>
-            <artifactId>jmock</artifactId>
-            <version>1.0.1</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
