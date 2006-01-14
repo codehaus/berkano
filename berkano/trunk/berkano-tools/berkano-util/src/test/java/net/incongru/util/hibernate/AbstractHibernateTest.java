@@ -23,7 +23,7 @@ import java.util.Properties;
  * @version $Revision: 1.3 $
  */
 public abstract class AbstractHibernateTest extends TestCase {
-    private static final boolean SHOW_SQL = true;
+    private static final boolean SHOW_SQL = false;
     private static final String DERBY_REL_PATH = "target/derby/";
     private static final String DB_URL = "jdbc:derby:directory:Test";
     protected SessionFactory sessionFactory;
