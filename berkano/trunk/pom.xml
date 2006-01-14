@@ -16,7 +16,7 @@
         <developer>
             <id>gjoseph</id>
             <name>Gregory Joseph</name>
-            <email>gjoseph AT codehaus.org</email>
+            <email>gjoseph AT codehaus DOT org</email>
             <roles>
                 <role>Project admin</role>
                 <role>Developer</role>
@@ -29,7 +29,6 @@
         <url></url>
     </organization>
     <scm>
-        <!--<connection>scm:svn:http://svn.berkano.codehaus.org/berkano/trunk/</connection>-->
         <connection>scm:svn:svn://svn.berkano.codehaus.org/berkano/scm/berkano/trunk/</connection>
     </scm>
     <ciManagement>
@@ -53,7 +52,6 @@
         <site>
             <id>codehaus</id>
             <name>codehaus</name>
-            <!--<url>scp://http://berkano.codehaus.org//home/projects/berkano/public_html/maven</url>-->
             <url>sftp://beaver.codehaus.org/home/projects/berkano/public_html/maven</url>
         </site>
     </distributionManagement>
@@ -68,6 +66,7 @@
                 <checksumPolicy>warn</checksumPolicy>
             </snapshots>
         </repository>
+        <!--
         <repository>
             <id>codehaus-legacy</id>
             <name>codehaus-legacy</name>
@@ -78,26 +77,9 @@
                 <checksumPolicy>warn</checksumPolicy>
             </snapshots>
         </repository>
+        -->
     </repositories>
     <build>
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh-external</artifactId>
-                <version>1.0-alpha-5</version>
-            </extension>
-        </extensions>
-        <!--<testResources>-->
-        <!--<testResource>-->
-        <!--<directory>${basedir}/src/test</directory>-->
-        <!--<includes>-->
-        <!--<include>**/*.properties</include>-->
-        <!--<include>**/*.xml</include>-->
-        <!--<include>**/*.vm</include>-->
-        <!--<include>**/*.ftm</include>-->
-        <!--</includes>-->
-        <!--</testResource>-->
-        <!--</testResources>-->
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -115,16 +97,15 @@
             </plugin>
         </plugins>
     </build>
-    <!--<dependencyManagement>-->
-        <dependencies>
-            <dependency>
-                <groupId>jmock</groupId>
-                <artifactId>jmock</artifactId>
-                <version>1.0.1</version>
-                <scope>tests</scope>
-            </dependency>
-        </dependencies>
-    <!--</dependencyManagement>-->
+
+    <dependencies>
+        <dependency>
+            <groupId>jmock</groupId>
+            <artifactId>jmock</artifactId>
+            <version>1.0.1</version>
+            <scope>tests</scope>
+        </dependency>
+    </dependencies>
 
     <pluginRepositories>
         <pluginRepository>
@@ -136,6 +117,16 @@
             <snapshots>
                 <updatePolicy>daily</updatePolicy>
             </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>Maven Snapshots</id>
+            <url>http://snapshots.maven.codehaus.org/maven2/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
         </pluginRepository>
     </pluginRepositories>
 
@@ -165,6 +156,44 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>surefire-report-maven-plugin</artifactId>
+                <version>2.0-beta-2-SNAPSHOT</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clover-plugin</artifactId>
+                <configuration>
+                    <jdk>1.5</jdk>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jdepend-maven-plugin</artifactId>
+                <version>2.0-beta-1-SNAPSHOT</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jxr-maven-plugin</artifactId>
+                <version>2.0-beta-2-SNAPSHOT</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>changes-maven-plugin</artifactId>
+                <version>2.0-beta-2-SNAPSHOT</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>jira-report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
