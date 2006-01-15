@@ -1,5 +1,5 @@
 <%@ page import="net.incongru.beantag.SomeObject"%>
-<%@ taglib prefix="b" uri="../../../../../../target/xdoclet/META-INF/taglib.tld"%>
+<%@ taglib prefix="b" uri="../../../../../../target/classes/META-INF/taglib.tld"%>
 <%
 SomeObject someObject = new SomeObject("Some Value", "Other Value", 123);
 %>

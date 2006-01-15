@@ -1,4 +1,4 @@
-<%@ taglib prefix="s" uri="../../../../../../../target/xdoclet/META-INF/taglib.tld"%>
+<%@ taglib prefix="s" uri="../../../../../../../target/classes/META-INF/taglib.tld"%>
 <%
   application.setAttribute("test", new String("test@application"));
   session.setAttribute("test", new String("test@session"));

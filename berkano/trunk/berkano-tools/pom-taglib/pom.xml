@@ -10,14 +10,6 @@
     <name>Berkano Parent Taglib POM</name>
     <packaging>pom</packaging>
     <build>
-        <resources>
-            <resource>
-                <directory>target/xdoclet</directory>
-                <includes>
-                    <include>**/*.tld</include>
-                </includes>
-            </resource>
-        </resources>
         <testResources>
             <testResource>
                 <directory>src/test/java</directory>
@@ -49,7 +41,6 @@
                                 <plugin>org.xdoclet.plugin.web.TaglibPlugin</plugin>
                                 <params>
                                     <jspversion>2.0</jspversion>
-                                    <destdir>${basedir}/target/xdoclet/META-INF</destdir>
                                 </params>
                             </config>
                         </configs>
@@ -58,7 +49,7 @@
                         <dependency>
                             <groupId>xdoclet-plugins</groupId>
                             <artifactId>xdoclet-plugin-web</artifactId>
-                            <version>1.0.3</version>
+                            <version>1.0.4-SNAPSHOT</version>
                         </dependency>
                         <dependency>
                             <groupId>javax.servlet</groupId>

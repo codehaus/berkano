@@ -1,5 +1,5 @@
 <%@ page import="net.incongru.beantag.SomeOtherObject"%>
-<%@ taglib prefix="b" uri="../../../../../../target/xdoclet/META-INF/taglib.tld"%>
+<%@ taglib prefix="b" uri="../../../../../../target/classes/META-INF/taglib.tld"%>
 <%
 SomeOtherObject someObject = new SomeOtherObject();
 pageContext.setAttribute("test.obj", someObject);

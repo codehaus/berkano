@@ -1,6 +1,6 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="java.util.HashMap"%>
-<%@ taglib prefix="b" uri="../../../../../../target/xdoclet/META-INF/taglib.tld"%>
+<%@ taglib prefix="b" uri="../../../../../../target/classes/META-INF/taglib.tld"%>
 <%
     Map map = new HashMap();
     map.put("someProperty", "Some Value");
