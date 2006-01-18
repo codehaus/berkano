@@ -246,7 +246,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>seraph</artifactId>
-            <version>0.7.7-berkano-SNAPSHOT</version>
+            <version>0.7.17-berkano-SNAPSHOT</version>
             <type>jar</type>
             <properties>
                 <war.bundle>true</war.bundle>

@@ -41,7 +41,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>seraph</artifactId>
-            <version>0.7.15-berkano-SNAPSHOT</version>
+            <version>0.7.17-berkano-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
