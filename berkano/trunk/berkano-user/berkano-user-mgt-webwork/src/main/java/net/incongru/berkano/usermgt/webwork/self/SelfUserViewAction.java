@@ -10,7 +10,7 @@ import net.incongru.berkano.usermgt.webwork.AbstractUserViewAction;
  * @version $Revision: $
  */
 public class SelfUserViewAction extends AbstractUserViewAction {
-    private AuthenticationContext authenticationContext;
+    private final AuthenticationContext authenticationContext;
 
     public SelfUserViewAction(AuthenticationContext authenticationContext) {
         this.authenticationContext = authenticationContext;
