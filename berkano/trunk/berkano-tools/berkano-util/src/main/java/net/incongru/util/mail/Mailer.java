@@ -1,5 +1,6 @@
 package net.incongru.util.mail;
 
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -9,5 +10,5 @@ import java.util.Map;
  * @version $Revision: 1.2 $
  */
 public interface Mailer {
-    void mail(String toEmail, String toName, String subject, String templateName, Map values) throws Exception;
+    void mail(String toEmail, String toName, String subject, String templateName, Map values, Locale locale);
 }
