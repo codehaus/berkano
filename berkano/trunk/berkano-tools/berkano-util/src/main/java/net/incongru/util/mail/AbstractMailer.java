@@ -21,7 +21,6 @@ import java.util.Locale;
  * If all this would fail, the given template name would also be tried
  * without any suffix, and used as a plain text template.
  *
- * TODO : manage encoding
  * TODO : handle i18n of templates
  *
  * @author gjoseph
@@ -84,6 +83,7 @@ public abstract class AbstractMailer implements Mailer {
         int extIdx = templateName.lastIndexOf('.');
         String basename, extension;
         if (extIdx < 0) {
+            // TODO : should not have .vm has a default extension
             extension = ".vm";
             basename = templateName;
         } else {

@@ -1,12 +1,12 @@
 package net.incongru.util.mail;
 
 import junit.framework.TestCase;
+import net.incongru.util.TestSupport;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
 import org.apache.velocity.app.VelocityEngine;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -30,12 +30,12 @@ public class VelocityMailerTest extends TestCase {
         assertTrue(mailer.email instanceof HtmlEmail);
         HtmlEmail htmlEmail = (HtmlEmail) mailer.email;
 
-        assertFieldEquals(htmlEmail, "text",
+        TestSupport.assertFieldEquals(htmlEmail, "text",
                 "Hi Greg,\n\n" +
                         "Your password is secret.\n\n" +
                         "Cheers,\n\n" +
                         "Your beloved BOFH.\n");
-        assertFieldEquals(htmlEmail, "html", "<html>\n" +
+        TestSupport.assertFieldEquals(htmlEmail, "html", "<html>\n" +
                 "<body>\n" +
                 "<p>Hi Greg,</p>\n" +
                 "<p>Your password is secret.</p>\n" +
@@ -55,17 +55,7 @@ public class VelocityMailerTest extends TestCase {
         assertTrue(mailer.email instanceof SimpleEmail);
         SimpleEmail email = (SimpleEmail) mailer.email;
 
-        assertFieldEquals(email, Email.class, "content", "This message only exists in plain text.\n");
-    }
-
-    private static void assertFieldEquals(Object o, String fieldName, Object expectedValue) throws NoSuchFieldException, IllegalAccessException {
-        assertFieldEquals(o, o.getClass(), fieldName, expectedValue);
-    }
-
-    private static void assertFieldEquals(Object o, Class clazz, String fieldName, Object expectedValue) throws NoSuchFieldException, IllegalAccessException {
-        Field f = clazz.getDeclaredField(fieldName);
-        f.setAccessible(true);
-        assertEquals(expectedValue, f.get(o));
+        TestSupport.assertFieldEquals(email, Email.class, "content", "This message only exists in plain text.\n");
     }
 
     private FakeMailer configureMailer() throws Exception {

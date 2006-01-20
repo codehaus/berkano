@@ -15,11 +15,14 @@ import java.util.Map;
  * * question is what default we should use? Locale.getDefault or a configured one?
  * * should we get default resource or be strict and fail ?
  *
+ * TODO : manage encoding
+ *
  * @author greg
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.5 $
  */
 public class VelocityMailer extends AbstractMailer {
+    private static final String ENCODING = "ISO-8859-15";
     private final VelocityEngine velocityEngine;
 
     public VelocityMailer(VelocityEngine velocityEngine, MailI18nHelper i18nHelper, MailConfig config) {
@@ -50,7 +53,7 @@ public class VelocityMailer extends AbstractMailer {
         public String renderTemplate(String templateName) {
             try {
                 StringWriter buffer = new StringWriter();
-                velocityEngine.mergeTemplate(templateName, "ISO-8859-15", ctx, buffer);
+                velocityEngine.mergeTemplate(templateName, ENCODING, ctx, buffer);
                 return buffer.getBuffer().toString();
             } catch (Exception e) {
                 throw new RuntimeException(e);
