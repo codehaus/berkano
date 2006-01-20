@@ -47,7 +47,10 @@ public class FreemarkerMailer extends AbstractMailer {
         public String renderTemplate(String templateName) {
             try {
                 StringWriter buffer = new StringWriter();
-                final Template template = safeGetTemplate(templateName, locale, ENCODING);
+                final Template template = getTemplate(templateName, locale, ENCODING);
+                if (template == null) {
+                    throw new IllegalArgumentException("Template " + templateName + " not found");
+                }
                 template.process(model, buffer);
                 return buffer.getBuffer().toString();
             } catch (TemplateException e) {
@@ -58,11 +61,11 @@ public class FreemarkerMailer extends AbstractMailer {
         }
 
         public boolean templateExists(String templateName) {
-            return safeGetTemplate(templateName, locale, ENCODING) != null;
+            return getTemplate(templateName, locale, ENCODING) != null;
         }
 
         // yuck !
-        private Template safeGetTemplate(String templateName, Locale locale, String encoding) {
+        private Template getTemplate(String templateName, Locale locale, String encoding) {
             try {
                 return freemarkerCfg.getTemplate(templateName, locale, encoding);
             } catch (FileNotFoundException e) {
