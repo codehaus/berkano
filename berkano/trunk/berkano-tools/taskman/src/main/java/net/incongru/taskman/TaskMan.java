@@ -27,16 +27,27 @@ public interface TaskMan {
     TaskInstance getTaskById(String taskId);
 
     /**
-     * Retrieve the tasks assigned to this specific actor.
+     * Retrieves the tasks assigned to this specific actor.
+     */
+    List<TaskInstance> getTasksByReporterId(String actorId);
+    
+    /**
+     * Retrieves the pending tasks assigned to this specific actor.
      */
     List<TaskInstance> getPendingTasksByReporterId(String actorId);
 
     /**
-     * Retrieve the tasks assigned to an assignee (or a group/pool of actors TODO ?), so that
-     * a specific actor can see what tasks he could do if he's bored.
+     * Retrieves all the tasks assigned to an assignee (or a group/pool of actors TODO ?).
+     */
+    List<TaskInstance> getTasksByAssignee(Assignee assignee);
+
+    /**
+     * Retrieves the <strong>pending</strong> tasks assigned to an assignee
+     * (or a group/pool of actors TODO ?), so that a specific actor can see
+     * what tasks he could do if he's bored.
      */
     List<TaskInstance> getPendingTasksByAssignee(Assignee assignee);
-
+    
     /**
      * Creates a new instance of a given task definition (the last deployed TaskDef with
      * the given name), reported by the given userid, assigns it a specific id, name and description.

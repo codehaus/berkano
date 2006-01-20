@@ -83,6 +83,13 @@ public class HibernatedTaskMan implements TaskMan {
     }
 
 
+    public List<TaskInstance> getTasksByReporterId(String actorId) {
+        final Criteria criteria = session.createCriteria(TaskInstanceImpl.class);
+        criteria.add(Expression.eq("reporter", actorId));
+        //criteria.addOrder(Order.asc(""))// TODO
+        return criteria.list();
+    }
+    
     public List<TaskInstance> getPendingTasksByReporterId(String actorId) {
         final Criteria criteria = session.createCriteria(TaskInstanceImpl.class);
         criteria.add(Expression.eq("reporter", actorId));
@@ -91,6 +98,13 @@ public class HibernatedTaskMan implements TaskMan {
         return criteria.list();
     }
 
+    public List<TaskInstance> getTasksByAssignee(Assignee assignee) {
+        final Criteria criteria = session.createCriteria(TaskInstanceImpl.class);
+        criteria.add(Expression.eq("assignee", assignee));
+        //criteria.addOrder(Order.asc(""))// TODO
+        return criteria.list();
+    }
+    
     public List<TaskInstance> getPendingTasksByAssignee(Assignee assignee) {
         final Criteria criteria = session.createCriteria(TaskInstanceImpl.class);
         criteria.add(Expression.eq("assignee", assignee));
