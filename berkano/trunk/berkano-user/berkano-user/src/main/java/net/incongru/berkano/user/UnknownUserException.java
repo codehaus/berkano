@@ -6,7 +6,7 @@ package net.incongru.berkano.user;
  * @version $Revision: 1.6 $
  */
 public class UnknownUserException extends RuntimeException {
-    private Long userId;
+    private final Long userId;
 
     public UnknownUserException(Long userId) {
         super("unknown userId: " + userId);

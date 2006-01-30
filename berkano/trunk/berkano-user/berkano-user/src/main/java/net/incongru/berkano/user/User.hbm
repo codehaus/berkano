@@ -7,9 +7,9 @@
             <generator class="native">
             </generator>
         </id>
-        <property name="password" length="255" column="password" not-null="true">
+        <property name="userName" length="32" column="user_name" not-null="true" unique="true">
         </property>
-        <property name="userName" length="32" column="user_name" not-null="true">
+        <property name="password" length="255" column="password" not-null="true">
         </property>
         <property name="email" length="128" column="email">
         </property>

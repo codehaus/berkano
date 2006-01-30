@@ -7,6 +7,7 @@ import net.incongru.berkano.user.UnknownUserException;
 import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.UserDAO;
 import net.incongru.berkano.user.UserImpl;
+import net.incongru.berkano.user.DuplicateUserException;
 import org.hibernate.Criteria;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
@@ -76,6 +77,12 @@ public class HibernatedUserDAO extends AbstractHibernatedDAO implements UserDAO 
     }
 
     public User newUser(String userName, String cleanPassword, String email, String fullName) {
+        // first make sure the user doesn't exist already
+        final User existingUser = getUserByName(userName);
+        if (existingUser != null) {
+            throw new DuplicateUserException(userName);
+        }
+
         UserImpl newUser = new UserImpl();
         newUser.setUserName(userName);
         newUser.setPassword(passwordMatchingStrategy.encode(cleanPassword));

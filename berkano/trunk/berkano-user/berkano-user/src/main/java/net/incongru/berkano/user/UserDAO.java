@@ -32,6 +32,9 @@ public interface UserDAO {
 
     void removeProperty(Long userId, String propertyKey) throws UnknownUserException;
 
+    /**
+     * @throws DuplicateUserException if a user with the same userName already exists
+     */
     User newUser(String userName, String password, String email, String fullName);
 
     User updateUser(Long userId, String userName, String email, String fullName) throws UnknownUserException;
