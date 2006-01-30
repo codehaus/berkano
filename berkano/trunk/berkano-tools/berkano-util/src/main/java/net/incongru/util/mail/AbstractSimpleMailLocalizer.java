@@ -12,11 +12,11 @@ import java.util.ResourceBundle;
  * @author $Author: $ (last edit)
  * @version $Revision: $
  */
-public class SimpleMailI18nHelper implements MailI18nHelper {
+public abstract class AbstractSimpleMailLocalizer implements MailLocalizer {
     private final Map<Locale, ResourceBundle> bundles = new HashMap<Locale, ResourceBundle>();
     private final String bundleName;
 
-    public SimpleMailI18nHelper(String bundleName) {
+    public AbstractSimpleMailLocalizer(String bundleName) {
         this.bundleName = bundleName;
     }
 

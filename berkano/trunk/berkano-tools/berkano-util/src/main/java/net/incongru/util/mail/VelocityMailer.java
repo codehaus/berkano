@@ -25,15 +25,15 @@ public class VelocityMailer extends AbstractMailer {
     private static final String ENCODING = "ISO-8859-15";
     private final VelocityEngine velocityEngine;
 
-    public VelocityMailer(VelocityEngine velocityEngine, MailI18nHelper i18nHelper, MailConfig config) {
-        super(i18nHelper, config);
+    public VelocityMailer(VelocityEngine velocityEngine, MailLocalizer localizer, MailConfig config) {
+        super(localizer, config);
         this.velocityEngine = velocityEngine;
     }
 
-    public void mail(String toEmail, String toName, String subject, String templateName, Map values, Locale locale) {
+    public void mail(String toEmail, String toName, String subject, String templateName, Map values) {
         final Context ctx = new VelocityContext(values);
         final VelocityTemplateEngine engine = new VelocityTemplateEngine(velocityEngine, ctx);
-
+        final Locale locale = localizer.resolveLocale();
         renderAndSendMail(engine, toEmail, toName, subject, templateName, locale);
     }
 

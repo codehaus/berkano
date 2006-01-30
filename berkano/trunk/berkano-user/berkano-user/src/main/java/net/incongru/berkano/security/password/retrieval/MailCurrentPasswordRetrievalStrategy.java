@@ -20,7 +20,7 @@ public class MailCurrentPasswordRetrievalStrategy extends AbstractMailPasswordRe
     }
 
     protected String getMailSubject() {
-        return "Lost password";
+        return "LostPassword";
     }
 
     protected String getTemplateName() {

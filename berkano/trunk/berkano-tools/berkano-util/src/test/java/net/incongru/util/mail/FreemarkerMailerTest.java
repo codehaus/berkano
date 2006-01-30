@@ -33,30 +33,46 @@ public class FreemarkerMailerTest extends MockObjectTestCase {
     }
 
     public void testCanProcessTemplates() throws Exception {
-        final FakeMailer mailer = new FakeMailer(MailI18nHelper.NULL, (MailConfig) mailCfg.proxy(), freemarkerCfg);
-        mailer.mail("test@test.com", "Unit Test", "Testing", "test.ftl", Collections.singletonMap("user", "Unit Test"), Locale.PRC);
+        final FakeMailer mailer = new FakeMailer(new DummyMailLocalizer(Locale.PRC), (MailConfig) mailCfg.proxy(), freemarkerCfg);
+        mailer.mail("test@test.com", "Unit Test", "Testing", "test.ftl", Collections.singletonMap("user", "Unit Test"));
         assertNotNull(mailer.email);
         TestSupport.assertFieldEquals(mailer.email, "html", "Unit Test, this is the test-html.ftl template");
         TestSupport.assertFieldEquals(mailer.email, "text", "Unit Test, this is the test-text.ftl template");
     }
 
     public void testFreemarkerIsASmartAssAndCanFindLocalizedTemplates() throws Exception {
-        final FakeMailer mailer = new FakeMailer(MailI18nHelper.NULL, (MailConfig) mailCfg.proxy(), freemarkerCfg);
-        mailer.mail("test@test.com", "Unit Test", "Testing", "test.ftl", Collections.singletonMap("user", "Unit Test"), new Locale("es", "AR"));
+        final FakeMailer mailer = new FakeMailer(new DummyMailLocalizer(new Locale("es", "AR")), (MailConfig) mailCfg.proxy(), freemarkerCfg);
+        mailer.mail("test@test.com", "Unit Test", "Testing", "test.ftl", Collections.singletonMap("user", "Unit Test"));
         assertNotNull(mailer.email);
         TestSupport.assertFieldEquals(mailer.email, "html", "Unit Test, this is the test-html.ftl template");
         TestSupport.assertFieldEquals(mailer.email, "text", "Unit Test, eso es la test-text.ftl templata");
     }
 
-    private static class FakeMailer extends FreemarkerMailer {
+    private static final class FakeMailer extends FreemarkerMailer {
         private Email email;
 
-        public FakeMailer(MailI18nHelper i18nHelper, MailConfig config, Configuration freemarkerCfg) {
-            super(i18nHelper, config, freemarkerCfg);
+        public FakeMailer(MailLocalizer localizer, MailConfig config, Configuration freemarkerCfg) {
+            super(localizer, config, freemarkerCfg);
         }
 
         protected void sendMail(Email email, String toEmail, String toName, String subject) {
             this.email = email;
         }
     }
+
+    private static final class DummyMailLocalizer implements MailLocalizer {
+        private final Locale locale;
+
+        public DummyMailLocalizer(Locale locale) {
+            this.locale = locale;
+        }
+
+        public Locale resolveLocale() {
+                return locale;
+            }
+
+            public String getSubject(String subjectKey, Locale locale) {
+                return subjectKey;
+            }
+        }
 }

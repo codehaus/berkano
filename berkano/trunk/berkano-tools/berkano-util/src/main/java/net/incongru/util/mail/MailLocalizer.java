@@ -10,12 +10,18 @@ import java.util.Locale;
  * @author $Author: $ (last edit)
  * @version $Revision: $
  */
-public interface MailI18nHelper {
-    public static final MailI18nHelper NULL = new NullI18NHelper();
+public interface MailLocalizer {
+    public static final MailLocalizer NULL = new NullI18NHelper();
 
-    public String getSubject(String subjectKey, Locale locale);
+    Locale resolveLocale();
 
-    public final static class NullI18NHelper implements MailI18nHelper {
+    String getSubject(String subjectKey, Locale locale);
+
+    public final static class NullI18NHelper implements MailLocalizer {
+        public Locale resolveLocale() {
+            return Locale.getDefault();
+        }
+
         public String getSubject(String subjectKey, Locale locale) {
             return subjectKey;
         }

@@ -30,25 +30,26 @@ public class MailerTest extends MockObjectTestCase {
         engineProxy = (AbstractMailer.TemplateEngine) engine.proxy();
         mailConfig = mock(MailConfig.class);
 
-        mailer = new AbstractMailer(MailI18nHelper.NULL, (MailConfig) mailConfig.proxy()) {
-            public void mail(String toEmail, String toName, String subject, String templateName, Map values, Locale locale) {
-                renderAndSendMail(engineProxy, toEmail, toName, subject, templateName, locale);
+        mailer = new AbstractMailer(MailLocalizer.NULL, (MailConfig) mailConfig.proxy()) {
+            public void mail(String toEmail, String toName, String subject, String templateName, Map values) {
+                renderAndSendMail(engineProxy, toEmail, toName, subject, templateName, Locale.ENGLISH);
             }
         };
     }
 
     public void testSubjectIsTranslated() throws MessagingException {
-        Mock i18nHelper = mock(MailI18nHelper.class);
-        FakeMailer fakeMailer = new FakeMailer((MailI18nHelper) i18nHelper.proxy(), (MailConfig) mailConfig.proxy());
+        Mock localizer = mock(MailLocalizer.class);
+        FakeMailer fakeMailer = new FakeMailer((MailLocalizer) localizer.proxy(), (MailConfig) mailConfig.proxy());
         mailConfig.stubs();
         engine.expects(once()).method("templateExists").with(eq("tmpl-text.vm")).will(returnValue(true));
         engine.expects(once()).method("templateExists").with(eq("tmpl-html.vm")).will(returnValue(true));
         engine.expects(once()).method("renderTemplate").with(eq("tmpl-text.vm")).will(returnValue("blabla"));
         engine.expects(once()).method("renderTemplate").with(eq("tmpl-html.vm")).will(returnValue("blabla"));
 
-        i18nHelper.expects(once()).method("getSubject").with(eq("subject"), eq(Locale.FRANCE)).will(returnValue("*subject*"));
+        localizer.expects(once()).method("resolveLocale").withNoArguments().will(returnValue(Locale.FRANCE));
+        localizer.expects(once()).method("getSubject").with(eq("subject"), eq(Locale.FRANCE)).will(returnValue("*subject*"));
 
-        fakeMailer.mail("to@kiala.com", "to", "subject", "tmpl", Collections.EMPTY_MAP, Locale.FRANCE);
+        fakeMailer.mail("to@kiala.com", "to", "subject", "tmpl", Collections.EMPTY_MAP);
         assertNotNull(fakeMailer.emailToSend);
         assertNotNull(fakeMailer.subjectToSend);
         assertEquals("*subject*", fakeMailer.subjectToSend);
@@ -161,12 +162,12 @@ public class MailerTest extends MockObjectTestCase {
         private Email emailToSend;
         private String subjectToSend;
 
-        public FakeMailer(MailI18nHelper i18nHelper, MailConfig mailConfig) {
-            super(i18nHelper, mailConfig);
+        public FakeMailer(MailLocalizer localizer, MailConfig mailConfig) {
+            super(localizer, mailConfig);
         }
 
-        public void mail(String toEmail, String toName, String subject, String templateName, Map values, Locale locale) {
-            renderAndSendMail(engineProxy, toEmail, toName, subject, templateName, locale);
+        public void mail(String toEmail, String toName, String subject, String templateName, Map values) {
+            renderAndSendMail(engineProxy, toEmail, toName, subject, templateName, localizer.resolveLocale());
         }
 
         protected void sendMail(Email email, String toEmail, String toName, String subject) throws EmailException {

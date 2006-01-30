@@ -30,16 +30,16 @@ import java.util.Locale;
 public abstract class AbstractMailer implements Mailer {
     private static final String PLAINTEXT_SUFFIX = "-text";
     private static final String HTML_SUFFIX = "-html";
+    protected final MailLocalizer localizer;
     private final MailConfig config;
-    private final MailI18nHelper i18nHelper;
 
-    protected AbstractMailer(MailI18nHelper i18nHelper, MailConfig config) {
-        this.i18nHelper = i18nHelper;
+    protected AbstractMailer(MailLocalizer localizer, MailConfig config) {
+        this.localizer = localizer;
         this.config = config;
     }
 
     protected void renderAndSendMail(TemplateEngine engine, String toEmail, String toName, String subject, String templateName, Locale locale) {
-        final String translatedSubject = i18nHelper.getSubject(subject, locale);
+        final String translatedSubject = localizer.getSubject(subject, locale);
 
         final String plainTextTemplateName = getPlainTextTemplateName(engine, templateName);
         final String htmlTemplateName = getHtmlTemplateName(engine, templateName);

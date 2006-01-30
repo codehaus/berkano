@@ -31,7 +31,7 @@ public class MailNewPasswordRetrievalStrategy extends AbstractMailPasswordRetrie
     }
 
     protected String getMailSubject() {
-        return "New password";
+        return "NewPassword";
     }
 
     protected String getTemplateName() {

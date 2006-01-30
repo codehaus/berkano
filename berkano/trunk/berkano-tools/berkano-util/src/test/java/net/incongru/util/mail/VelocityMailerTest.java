@@ -25,7 +25,7 @@ public class VelocityMailerTest extends TestCase {
         Map ctx = new HashMap();
         ctx.put("name", "Greg");
         ctx.put("password", "secret");
-        mailer.mail("to@to.to", null, null, "net/incongru/util/mail/test", ctx, null);
+        mailer.mail("to@to.to", null, null, "net/incongru/util/mail/test", ctx);
 
         assertTrue(mailer.email instanceof HtmlEmail);
         HtmlEmail htmlEmail = (HtmlEmail) mailer.email;
@@ -50,7 +50,7 @@ public class VelocityMailerTest extends TestCase {
         Map ctx = new HashMap();
         ctx.put("foo", "message");
         ctx.put("bar", "plain text");
-        mailer.mail("to@to.to", null, null, "net/incongru/util/mail/textonly", ctx, null);
+        mailer.mail("to@to.to", null, null, "net/incongru/util/mail/textonly", ctx);
 
         assertTrue(mailer.email instanceof SimpleEmail);
         SimpleEmail email = (SimpleEmail) mailer.email;
@@ -75,7 +75,7 @@ public class VelocityMailerTest extends TestCase {
         private Email email;
 
         public FakeMailer(VelocityEngine velocity, MailConfig config) {
-            super(velocity, MailI18nHelper.NULL, config);
+            super(velocity, MailLocalizer.NULL, config);
         }
 
         protected void sendMail(Email email, String toEmail, String toName, String subject) {

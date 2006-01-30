@@ -6,13 +6,10 @@ import net.incongru.util.mail.Mailer;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Locale;
 
 /**
  * An abstract strategy that sends a mail to the user's
  * registered email address.
- *
- * TODO : set subject (i18n)
  *
  * @author greg
  * @author $Author: gj $ (last edit)
@@ -28,8 +25,7 @@ public abstract class AbstractMailPasswordRetrievalStrategy implements PasswordR
     public void retrievePassword(User u) throws Exception {
         final Map map = new HashMap();
         prepareMailContext(u, map);
-        // TODO pass Locale
-        mailer.mail(u.getEmail(), u.getFullName(), getMailSubject(), getTemplateName(), map, Locale.getDefault());
+        mailer.mail(u.getEmail(), u.getFullName(), getMailSubject(), getTemplateName(), map);
     }
 
     /**

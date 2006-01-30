@@ -1,15 +1,15 @@
 package net.incongru.util.mail;
 
 import freemarker.template.Configuration;
-import freemarker.template.Template;
 import freemarker.template.SimpleHash;
+import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.Locale;
 import java.util.Map;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.io.StringWriter;
 
 /**
  *
@@ -23,13 +23,14 @@ public class FreemarkerMailer extends AbstractMailer {
     private static final String ENCODING = "ISO-8859-15";
     private final Configuration freemarkerCfg;
 
-    public FreemarkerMailer(MailI18nHelper i18nHelper, MailConfig config, Configuration freemarkerCfg) {
-        super(i18nHelper, config);
+    public FreemarkerMailer(MailLocalizer localizer, MailConfig config, Configuration freemarkerCfg) {
+        super(localizer, config);
         this.freemarkerCfg = freemarkerCfg;
     }
 
-    public void mail(String toEmail, String toName, String subject, String templateName, Map values, Locale locale) {
+    public void mail(String toEmail, String toName, String subject, String templateName, Map values) {
         final SimpleHash model = new SimpleHash(values);
+        final Locale locale = localizer.resolveLocale();
         final FreemarkerTemplateEngine engine = new FreemarkerTemplateEngine(freemarkerCfg, locale, model);
         renderAndSendMail(engine, toEmail, toName, subject, templateName, locale);
     }
@@ -38,6 +39,7 @@ public class FreemarkerMailer extends AbstractMailer {
         private final Configuration freemarkerCfg;
         private final Locale locale;
         private final SimpleHash model;
+
         public FreemarkerTemplateEngine(Configuration freemarkerCfg, Locale locale, SimpleHash model) {
             this.freemarkerCfg = freemarkerCfg;
             this.locale = locale;

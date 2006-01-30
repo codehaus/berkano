@@ -11,7 +11,6 @@ import org.jmock.core.Constraint;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Locale;
 
 /**
  *
@@ -37,7 +36,7 @@ public class MailNewPasswordRetrievalStrategyTest extends MockObjectTestCase {
 
         passGen.expects(once()).method("generate").withNoArguments().will(returnValue("new pass"));
         userDao.expects(once()).method("changePassword").with(eq(new Long(37)), eq("new pass")).isVoid();
-        mail.expects(once()).method("mail").with(new Constraint[]{eq("mymail@user.com"), eq("My Full Self"), eq("New password"), eq("berkano/lostpw/mail/new_password"), eq(expectedCtx), eq(Locale.getDefault())}).isVoid();
+        mail.expects(once()).method("mail").with(new Constraint[]{eq("mymail@user.com"), eq("My Full Self"), eq("NewPassword"), eq("berkano/lostpw/mail/new_password"), eq(expectedCtx)}).isVoid();
 
         final PasswordRetrievalStrategy pwdRetrievalStrategy = new MailNewPasswordRetrievalStrategy((UserDAO) userDao.proxy(), (PasswordGenerator) passGen.proxy(), (Mailer) mail.proxy());
         pwdRetrievalStrategy.retrievePassword(user);
