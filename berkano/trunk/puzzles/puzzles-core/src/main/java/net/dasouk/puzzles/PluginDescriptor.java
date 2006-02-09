@@ -31,6 +31,10 @@ public class PluginDescriptor implements Serializable {
     private final String mainClass;
 
     public PluginDescriptor(String name, String family, String author, String url, Map<Locale, String> descriptions, String defaultDescription, String version, Collection<String> publicResources, Collection<String> jars, String mainClass) {
+        if (name == null || name.trim().equals(""))
+            throw new IllegalArgumentException("the property name of the plugin descriptor cannot be empty");
+        if (family == null || family.trim().equals(""))
+            throw new IllegalArgumentException("the property family of the plugin descriptor cannot be empty");
         this.name = name;
         this.family = family;
         this.author = author;
@@ -38,8 +42,16 @@ public class PluginDescriptor implements Serializable {
         this.descriptions = descriptions;
         this.defaultDescription = defaultDescription;
         this.version = version;
-        this.publicResources = Collections.unmodifiableCollection(publicResources);
-        this.jars = Collections.unmodifiableCollection(jars);
+        if (publicResources != null) {
+            this.publicResources = Collections.unmodifiableCollection(publicResources);
+        } else {
+            this.publicResources = new HashSet<String>();
+        }
+        if (jars != null) {
+            this.jars = Collections.unmodifiableCollection(jars);
+        } else {
+            this.jars = new HashSet<String>();
+        }
         this.mainClass = mainClass;
     }
 
@@ -68,7 +80,7 @@ public class PluginDescriptor implements Serializable {
     }
 
     public String getDescription(Locale locale) {
-        if (descriptions==null) return defaultDescription;
+        if (descriptions == null) return defaultDescription;
         String description = descriptions.get(locale);
         if (description == null) {
             return defaultDescription;
@@ -93,11 +105,34 @@ public class PluginDescriptor implements Serializable {
         return publicResources.contains(resourceName);
     }
 
-    public Set<Locale> getAvailableLocales(){
-        if (descriptions==null) {
+    public Set<Locale> getAvailableLocales() {
+        if (descriptions == null) {
             return new HashSet<Locale>();//would returning null be better ?
-        }else{
+        } else {
             return descriptions.keySet();
         }
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        final PluginDescriptor that = (PluginDescriptor) o;
+
+        if (author != null ? !author.equals(that.author) : that.author != null) return false;
+        if (!family.equals(that.family)) return false;
+        if (mainClass != null ? !mainClass.equals(that.mainClass) : that.mainClass != null) return false;
+        if (!name.equals(that.name)) return false;
+        if (url != null ? !url.equals(that.url) : that.url != null) return false;
+        if (version != null ? !version.equals(that.version) : that.version != null) return false;
+
+        return true;
+    }
+
+    public int hashCode() {
+        int result;
+        result = name.hashCode();
+        result = 29 * result + family.hashCode();
+        return result;
     }
 }

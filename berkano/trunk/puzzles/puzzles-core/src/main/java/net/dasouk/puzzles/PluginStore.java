@@ -24,26 +24,26 @@ public interface PluginStore extends Serializable {
      *
      * @param pluginUrl the URL to download the plugin
      * @return the URL of the plugin inside the store
-     * @throws StoreException thrown if anything related to the downloading
-     *                        or the storing of the plugin goes wrong
+     * @throws PluginStoreException thrown if anything related to the downloading
+     *                              or the storing of the plugin goes wrong
      */
-    public URL store(URL pluginUrl) throws StoreException;
+    public URL store(URL pluginUrl) throws PluginStoreException;
 
     /**
      * removes a plugin from the store
      *
      * @param pluginUrl the URL of the plugin inside the store
-     * @throws StoreException if the removal encounters problems
+     * @throws PluginStoreException if the removal encounters problems
      */
-    public void remove(URL pluginUrl) throws StoreException;
+    public void remove(URL pluginUrl) throws PluginStoreException;
 
     /**
      * List the urls of the installed plugins. the returned URLs are the
      * urls of the plugins inside the store.
      *
      * @return a list of the URLs of the installed plugins.
-     * @throws StoreException
+     * @throws PluginStoreException
      */
-    public List<URL> getPluginsInStore() throws StoreException;
+    public List<URL> getPluginsInStore() throws PluginStoreException;
 
 }

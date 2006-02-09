@@ -6,13 +6,16 @@ import java.net.URL;
 /**
  * extracts an embedded dependency and store it in a temporary file.
  * this file can then be loaded by a classic URLClassLoader.
+ *
  * @todo instead of creating temporary files, it may be better to create
  * a new protocol handler to manipulate jars embedded in another jar
  */
 public class TempJarExtractor implements Serializable {
-    private int bufferSize = 4096;
+    private final static int DEFAULT_BUFFER_SIZE = 4096;
+    private int bufferSize;
 
     public TempJarExtractor() {
+        this(DEFAULT_BUFFER_SIZE);
     }
 
     public TempJarExtractor(int bufferSize) {
@@ -31,7 +34,7 @@ public class TempJarExtractor implements Serializable {
                 outputStream.write(buffer, 0, read);
             }
             return tempFile.toURL();
-        } finally{
+        } finally {
             outputStream.flush();
             outputStream.close();
             inputStream.close();

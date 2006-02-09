@@ -3,16 +3,16 @@ package net.dasouk.puzzles.loaders;
 import net.dasouk.puzzles.*;
 import net.dasouk.puzzles.util.TempJarExtractor;
 
-import java.net.*;
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.io.IOException;
 
 /**
  *
  */
-public class NoArgConstructorLoader<PluginClass> implements PluginLoader<PluginClass> {
+public class NoArgConstructorLoader implements PluginLoader {
     private PluginDescriptorBuilder pluginDescriptorBuilder;
     private PackageReader packageReader;
     private TempJarExtractor jarExtractor;
@@ -24,12 +24,12 @@ public class NoArgConstructorLoader<PluginClass> implements PluginLoader<PluginC
         jarExtractor = new TempJarExtractor();
     }
 
-    public PackagedPlugin<PluginClass> load(URL pluginPackageUrl) throws PluginException {
+    public PackagedPlugin load(URL pluginPackageUrl) throws PluginException {
         PluginDescriptor descriptor = pluginDescriptorBuilder.buildDescriptor(packageReader.getPluginDescriptor(pluginPackageUrl));
         String mainClassName = descriptor.getMainClass();
         if (mainClassName == null) {
             //no class, the plugin is only made of resources
-            return new PackagedPlugin<PluginClass>(descriptor, null);
+            return new PackagedPlugin(descriptor, null);
         } else {
             Collection<String> jars = descriptor.getJars();
             //retrieve jars' URLs
@@ -44,16 +44,16 @@ public class NoArgConstructorLoader<PluginClass> implements PluginLoader<PluginC
                 //retrieve class
                 Class mainClass = classLoader.loadClass(mainClassName);
                 //instanciate
-                PluginClass pluginInstance = (PluginClass) mainClass.newInstance();
-                return new PackagedPlugin<PluginClass>(descriptor, pluginInstance);
+                Object pluginInstance = mainClass.newInstance();
+                return new PackagedPlugin(descriptor, pluginInstance);
             } catch (ClassNotFoundException e) {
-                throw new PluginInstanciationException(e, pluginPackageUrl);
+                throw new PluginInstanciationException(e.getMessage(), e, pluginPackageUrl);
             } catch (IllegalAccessException e) {
-                throw new PluginInstanciationException(e, pluginPackageUrl);
+                throw new PluginInstanciationException(e.getMessage(), e, pluginPackageUrl);
             } catch (InstantiationException e) {
-                throw new PluginInstanciationException(e, pluginPackageUrl);
+                throw new PluginInstanciationException(e.getMessage(), e, pluginPackageUrl);
             } catch (IOException e) {
-                throw new PluginInstanciationException(e, pluginPackageUrl);
+                throw new PluginInstanciationException(e.getMessage(), e, pluginPackageUrl);
             }
         }
     }
@@ -62,13 +62,10 @@ public class NoArgConstructorLoader<PluginClass> implements PluginLoader<PluginC
         URL[] urlsArray = new URL[urls.size()];
         int i = 0;
         for (URL url : urls) {
-            URL tmpUrl = jarExtractor.extractJarToTempFile(url);
-            urlsArray[i] = tmpUrl;
+            urlsArray[i] = jarExtractor.extractJarToTempFile(url);
             i++;
         }
-
-        ClassLoader classLoader = URLClassLoader.newInstance(urlsArray,this.getClass().getClassLoader());
-        return classLoader;
+        return URLClassLoader.newInstance(urlsArray, this.getClass().getClassLoader());
     }
 
     public URL getResource(URL pluginUrl, String resourceName) throws ResourceNotFoundException {

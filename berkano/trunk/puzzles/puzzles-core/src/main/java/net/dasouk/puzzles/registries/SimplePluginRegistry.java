@@ -1,6 +1,8 @@
 package net.dasouk.puzzles.registries;
 
 import net.dasouk.puzzles.*;
+import net.dasouk.puzzles.util.HashTwoLevelMap;
+import net.dasouk.puzzles.util.TwoLevelMap;
 
 import java.net.URL;
 import java.util.*;
@@ -12,150 +14,197 @@ import java.util.*;
  *
  * @todo refine documentation
  */
-public class SimplePluginRegistry<PluginClass> implements PluginRegistry<PluginClass> {
+public class SimplePluginRegistry implements PluginRegistry {
     private PluginStore pluginStore;
-    private PluginLoader<PluginClass> pluginLoader;
-    private Map<String, PackagedPlugin<PluginClass>> plugins;
-    private Map<String, URL> pluginsUrl;
-    private Set<PluginListener<PluginClass>> listeners;
-    private Class enforceClass = null;
+    private PluginLoader pluginLoader;
+    private TwoLevelMap<String, String, PackagedPlugin> plugins;
+    private TwoLevelMap<String, String, URL> pluginsUrl;
+    private Map<String, Set<PluginListener>> listeners;
+    private PluginStateManager pluginStateManager;
 
-    public SimplePluginRegistry(PluginStore pluginStore, PluginLoader<PluginClass> pluginLoader) {
-        this(pluginStore,  pluginLoader, null);
-    }
-
-    public SimplePluginRegistry(PluginStore pluginStore, PluginLoader<PluginClass> pluginLoader, Class enforceClass) {
-        this.plugins = new HashMap<String, PackagedPlugin<PluginClass>>();
-        this.pluginsUrl = new HashMap<String, URL>();
-        this.listeners = new HashSet<PluginListener<PluginClass>>();
+    public SimplePluginRegistry(PluginStore pluginStore, PluginLoader pluginLoader, PluginStateManager pluginStateManager) {
+        this.plugins = new HashTwoLevelMap<String, String, PackagedPlugin>();
+        this.pluginsUrl = new HashTwoLevelMap<String, String, URL>();
+        this.listeners = new HashMap<String, Set<PluginListener>>();
+        this.pluginStateManager = pluginStateManager;
         this.pluginStore = pluginStore;
         this.pluginLoader = pluginLoader;
-        this.enforceClass = enforceClass;
     }
 
-    public Set<PackagedPlugin<PluginClass>> getInstalledPlugins() {
-        return new HashSet<PackagedPlugin<PluginClass>>(plugins.values());
+    public Set<String> getFamilies() {
+        return plugins.firstLevelSet();
     }
 
-    public PluginDescriptor getPluginDescriptor(String name) throws PluginNotFoundException {
-        PackagedPlugin<PluginClass> packagedPlugin = getPackagedPlugin(name);
+    public Set<PackagedPlugin> getInstalledPlugins(String family) {
+        return plugins.valuesSet(family);
+    }
+
+    public PluginDescriptor getPluginDescriptor(String family, String name) throws PluginNotFoundException {
+        PackagedPlugin packagedPlugin = getPackagedPlugin(family, name);
         return packagedPlugin.getPluginDescriptor();
     }
 
-    public PluginClass getPluginInstance(String name) throws PluginNotFoundException {
-        PackagedPlugin<PluginClass> packagedPlugin = getPackagedPlugin(name);
+    public Object getPluginInstance(String family, String name) throws PluginNotFoundException {
+        PackagedPlugin packagedPlugin = getPackagedPlugin(family, name);
         return packagedPlugin.getPlugin();
     }
 
-    private PackagedPlugin<PluginClass> getPackagedPlugin(String name) throws PluginNotFoundException {
-        PackagedPlugin<PluginClass> packagedPlugin = plugins.get(name);
+    private PackagedPlugin getPackagedPlugin(String family, String name) throws PluginNotFoundException {
+        PackagedPlugin packagedPlugin = plugins.get(family, name);
         if (packagedPlugin == null) {
-            throw new PluginNotFoundException(name);
+            throw new PluginNotFoundException("the plugin could not be found in the registry", null, family, name);
         }
         return packagedPlugin;
     }
 
-    public PackagedPlugin<PluginClass> installPlugin(URL pluginUrl) throws PluginException, StoreException {
+    public PackagedPlugin installPlugin(URL pluginUrl, boolean deploy) throws PluginException, PluginStoreException, PluginNotFoundException, PluginStatePersistenceException {
         //store plugin
         URL inStoreUrl = pluginStore.store(pluginUrl);
-        return load(inStoreUrl);
+        final PackagedPlugin packagedPlugin = load(inStoreUrl);
+        if (deploy) {
+            deployPlugin(packagedPlugin.getPluginDescriptor());
+        }
+        return packagedPlugin;
     }
 
-    private PackagedPlugin<PluginClass> load(URL inStoreUrl) throws StoreException, PluginException {
-        //load plugin
-        try {
-            PackagedPlugin<PluginClass> packagedPlugin = pluginLoader.load(inStoreUrl);
-            if (enforceClass != null) {
-                PluginClass pluginInstance = packagedPlugin.getPlugin();
-                if (!enforceClass.isAssignableFrom(pluginInstance.getClass())){
-                    throw new PluginInstanciationException("Wrong plugin class: plugin must be a "+enforceClass.getCanonicalName(),inStoreUrl);
-                }
-            }
-            String name = packagedPlugin.getPluginDescriptor().getName();
-            //check if no plugin in the registry has the same name
-            if(plugins.keySet().contains(name)){
-                throw new PluginDescriptorException("there is already an installed plugin with the same name",null);
-            }
-            plugins.put(name, packagedPlugin);
-            pluginsUrl.put(name, inStoreUrl);
+    private void deployPlugin(PluginDescriptor pluginDescriptor) throws PluginNotFoundException, PluginStatePersistenceException {
+        deployPlugin(pluginDescriptor.getFamily(), pluginDescriptor.getName());
+    }
 
-            //notify listeners
-            fireInstalledPlugin(packagedPlugin);
-            return packagedPlugin;
-        } catch (PluginException e) {
-            pluginStore.remove(inStoreUrl);
-            throw e;//rethrow the exception after cleaning the store
+    public void deployPlugin(String family, String pluginName) throws PluginNotFoundException, PluginStatePersistenceException {
+        checkPlugin(family, pluginName);
+        if (!pluginStateManager.isDeployed(family, pluginName)) {
+            deployPluginNoCheck(family, pluginName);
         }
     }
 
-    public void uninstallPlugin(String name) throws PluginNotFoundException, StoreException {
-        //uninstall stuff
-        PackagedPlugin<PluginClass> packagedPlugin = getPackagedPlugin(name);
-        URL url = pluginsUrl.get(name);
-        pluginStore.remove(url);
-        plugins.remove(name);
-        pluginsUrl.remove(name);
-
-        //notifyListeners
-        fireUninstalledPlugin(packagedPlugin);
+    private void checkPlugin(String family, String pluginName) throws PluginNotFoundException {
+        if (!plugins.contains(family, pluginName)) {
+            throw new PluginNotFoundException("the plugin could not be found in the registry", null, family, pluginName);
+        }
     }
 
-    public URL getPluginResource(String name, String resourceName) throws PluginNotFoundException, ResourceNotFoundException {
-        PluginDescriptor pluginDescriptor = getPluginDescriptor(name);
+    /**
+     * deploys a plugin without checking whether it is already deployed or not
+     */
+    private void deployPluginNoCheck(String family, String pluginName) {
+        pluginStateManager.setPluginState(family, pluginName, PluginState.DEPLOYED);
+        fireDeployedPlugin(family, getPackagedPlugin(family, pluginName));
+    }
+
+    /**
+     * undeploys the plugin and notifies listener. If the plugin does not exist, does nothing
+     */
+    public void undeployPlugin(String family, String pluginName) throws PluginNotFoundException, PluginStatePersistenceException {
+        if (pluginStateManager.isDeployed(family, pluginName)) {
+            pluginStateManager.setPluginState(family, pluginName, PluginState.UNDEPLOYED);
+            fireUndeployedPlugin(family, getPackagedPlugin(family, pluginName));
+        }
+    }
+
+    public PluginState getPluginState(String family, String pluginName) throws PluginNotFoundException {
+        return pluginStateManager.getPluginState(family, pluginName);
+    }
+
+    private PackagedPlugin load(URL inStoreUrl) throws PluginStoreException, PluginException {
+        //load plugin
+        PackagedPlugin packagedPlugin = pluginLoader.load(inStoreUrl);
+        String name = packagedPlugin.getPluginDescriptor().getName();
+        String family = packagedPlugin.getPluginDescriptor().getFamily();
+        //check if no plugin in the registry has the same name
+        if (plugins.contains(family, name)) {
+            pluginStore.remove(inStoreUrl);
+            throw new PluginDescriptorException("there is already an installed plugin with the same name and family", null);
+        }
+        plugins.put(family, name, packagedPlugin);
+        pluginsUrl.put(family, name, inStoreUrl);
+
+        return packagedPlugin;
+    }
+
+    public void uninstallPlugin(String family, String name) throws PluginNotFoundException, PluginStoreException, PluginStatePersistenceException {
+        //first undeploy
+        undeployPlugin(family, name);
+
+        //uninstall stuff
+        PackagedPlugin packagedPlugin = getPackagedPlugin(family, name);
+        URL url = getPluginUrl(family, name);
+        pluginStateManager.removePluginState(family, name);
+        pluginStore.remove(url);
+        plugins.remove(family, name);
+        pluginsUrl.remove(family, name);
+    }
+
+    public URL getPluginResource(String family, String name, String resourceName) throws PluginNotFoundException, ResourceNotFoundException {
+        PluginDescriptor pluginDescriptor = getPluginDescriptor(family, name);
+        URL pluginUrl = getPluginUrl(family, name);
         if (pluginDescriptor.isPublicResource(resourceName)) {
-            URL pluginUrl = pluginsUrl.get(name);
             return pluginLoader.getResource(pluginUrl, resourceName);
         } else {
-            throw new PluginNotFoundException(name);
+            throw new ResourceNotFoundException("the resource could not be found or is not declared as public", pluginUrl, family, name, resourceName);
         }
     }
 
-    public void startUp() throws StoreException {
+    private URL getPluginUrl(String family, String name) throws PluginNotFoundException {
+        URL pluginUrl = pluginsUrl.get(family, name);
+        if (pluginUrl == null) {
+            throw new PluginNotFoundException("the plugin could not be found in the registry", null, family, name);
+        }
+        return pluginUrl;
+    }
+
+    public Map<URL, PluginException> startUp() throws PluginStoreException {
         //load all the plugins of the store
+        Map<URL, PluginException> exceptions = new HashMap<URL, PluginException>();
         List<URL> pluginsInStore = pluginStore.getPluginsInStore();
         for (URL pluginUrl : pluginsInStore) {
             try {
-                load(pluginUrl);
+                final PackagedPlugin packagedPlugin = load(pluginUrl);
+                PluginDescriptor descriptor = packagedPlugin.getPluginDescriptor();
+                if (pluginStateManager.isDeployed(descriptor.getFamily(), descriptor.getName())) {
+                    //the plugin was deployed before, so deploy it now on startup
+                    deployPluginNoCheck(descriptor.getFamily(), descriptor.getName());
+                }
             } catch (PluginException e) {
-                pluginStore.remove(pluginUrl); //maybe too extreme :petrus75:
+                exceptions.put(pluginUrl, e);
             }
         }
+        return exceptions;
     }
 
-    public PluginStore getPluginStore() {
-        return pluginStore;
+    public boolean addPluginListener(PluginListener pluginListener, String family) {
+        Set<PluginListener> pluginListeners = listeners.get(family);
+        if (pluginListeners == null) {
+            pluginListeners = new HashSet<PluginListener>();
+            listeners.put(family, pluginListeners);
+        }
+        return pluginListeners.add(pluginListener);
     }
 
-    public void setPluginStore(PluginStore pluginStore) {
-        this.pluginStore = pluginStore;
-    }
-
-    public PluginLoader<PluginClass> getPluginLoader() {
-        return pluginLoader;
-    }
-
-    public void setPluginLoader(PluginLoader<PluginClass> pluginLoader) {
-        this.pluginLoader = pluginLoader;
-    }
-
-    public boolean addPluginListener(PluginListener<PluginClass> pluginListener) {
-        return listeners.add(pluginListener);
-    }
-
-    public boolean removePluginListener(PluginListener<PluginClass> pluginListener) {
-        return listeners.remove(pluginListener);
+    public boolean removePluginListener(PluginListener pluginListener, String family) {
+        Set<PluginListener> pluginListeners = listeners.get(family);
+        if (pluginListeners == null) {
+            return false;
+        }
+        return pluginListeners.remove(pluginListener);
     }
 
     //listeners stuff
-    private void fireUninstalledPlugin(PackagedPlugin<PluginClass> packagedPlugin) {
-        for (PluginListener<PluginClass> listener : listeners) {
-            listener.uninstalledPlugin(packagedPlugin);
+    private void fireUndeployedPlugin(String family, PackagedPlugin packagedPlugin) {
+        Set<PluginListener> pluginListeners = listeners.get(family);
+        if (pluginListeners == null) return;
+
+        for (PluginListener listener : pluginListeners) {
+            listener.undeployedPlugin(packagedPlugin);
         }
     }
 
-    private void fireInstalledPlugin(PackagedPlugin<PluginClass> packagedPlugin) {
-        for (PluginListener<PluginClass> listener : listeners) {
-            listener.installedPlugin(packagedPlugin);
+    private void fireDeployedPlugin(String family, PackagedPlugin packagedPlugin) {
+        Set<PluginListener> pluginListeners = listeners.get(family);
+        if (pluginListeners == null) return;
+
+        for (PluginListener listener : pluginListeners) {
+            listener.deployedPlugin(packagedPlugin);
         }
     }
 }

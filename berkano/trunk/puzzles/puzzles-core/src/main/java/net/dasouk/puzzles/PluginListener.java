@@ -6,14 +6,14 @@ package net.dasouk.puzzles;
  * @author souk
  * @version 0.1
  */
-public interface PluginListener<PluginClass> {
+public interface PluginListener {
     /**
-     * called whenever a plugin is successfully installed in the registry
+     * called whenever a plugin is successfully deployed in the registry
      */
-    public void installedPlugin(PackagedPlugin<PluginClass> plugin);
+    public void deployedPlugin(PackagedPlugin plugin);
 
     /**
-     * called whenever a plugin is successfully uninstalled and removed from the registry
+     * called whenever a plugin is successfully undeployed
      */
-    public void uninstalledPlugin(PackagedPlugin<PluginClass> plugin);
+    public void undeployedPlugin(PackagedPlugin plugin);
 }

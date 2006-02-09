@@ -2,6 +2,7 @@ package net.dasouk.puzzles;
 
 import java.io.Serializable;
 import java.net.URL;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -18,36 +19,45 @@ import java.util.Set;
  * @version 0.1
  * @see PackagedPlugin, PluginDescriptor, PluginListener
  */
-public interface PluginRegistry<PluginClass> extends Serializable {
+public interface PluginRegistry extends Serializable {
+
+    /**
+     * Retrieves a set of all the plugin families in the registry
+     *
+     * @return an empty Set if no plugin is installed (no plugin installed => no family).
+     */
+    public Set<String> getFamilies();
+
     /**
      * Retrieves all the installed plugins the registry manages.
      *
      * @return an empty Set if no plugin is installed.
      */
-    public Set<PackagedPlugin<PluginClass>> getInstalledPlugins();
+    public Set<PackagedPlugin> getInstalledPlugins(String family);
 
     /**
-     * Retrieves the PluginDescriptor of a plugin specified by its name
+     * Retrieves the PluginDescriptor of a plugin specified by its name and its family
      *
      * @throws PluginNotFoundException if no plugin with the specified pluginName could be found
      */
-    public PluginDescriptor getPluginDescriptor(String pluginName) throws PluginNotFoundException;
+    public PluginDescriptor getPluginDescriptor(String family, String pluginName) throws PluginNotFoundException;
 
     /**
-     * Retrieves the actual plugin instance from the plugin name
+     * Retrieves the actual plugin instance from the plugin name and its family
      *
      * @throws PluginNotFoundException if no plugin with the specified pluginName could be found
      */
-    public PluginClass getPluginInstance(String pluginName) throws PluginNotFoundException;
+    public Object getPluginInstance(String family, String pluginName) throws PluginNotFoundException;
 
     /**
      * Installs a plugin inside the registry, stores it in the {@link PluginStore}, and builds it.
-     * Once the {@link PluginDescriptor} has been built and the plugin instanciated, the {@link PluginListener
+     * Once the {@link PluginDescriptor} has been built and the plugin instanciated and deployed, the {@link PluginListener
      * PluginListeners} are then notified, and the method finally returns both the descriptor and the plugin instance
      * in the form of a {@link PackagedPlugin}.
      *
      * @param pluginUrl the URL where the {@link PluginStore} will retrieve the plugin from.
-     * @throws StoreException               thrown if anything related to the {@link PluginStore} goes wrong.
+     * @param deploy    if true, the plugin will also be deployed, otherwise it'll just be installed but will remain undeployed
+     * @throws PluginStoreException         thrown if anything related to the {@link PluginStore} goes wrong.
      *                                      In that case the plugin is automatically removed from the store (if ever the retrieval was successful)
      * @throws PluginDescriptorException    thrown whenever an exception related to the {@link PluginDescriptor} happens.
      *                                      This includes:
@@ -57,31 +67,49 @@ public interface PluginRegistry<PluginClass> extends Serializable {
      *                                      <li>The descriptor was found and parsed but the information it contained was incomplete</li>
      *                                      </ul>
      * @throws PluginInstanciationException thrown whenever an exception related to the plugin's instanciation by the
-     *                                      {@link PluginBuilder} happens.
+     *                                      {@link PluginLoader} happens.
      *                                      This includes:
      *                                      <ul>
      *                                      <li>Classpath errors and missing libraries</li>
      *                                      <li>Any error regarding the "blue prints" of the plugin (that is the instructions on how to actually
      *                                      instantiate the plugin)</li>
      *                                      </ul>
-     * @see PluginListener#installedPlugin PluginListener.installedPlugin(PackagedPlugin<PluginClass>)
-     * @see PluginBuilder
+     * @see PluginListener#deployedPlugin PluginListener.deployedPlugin(PackagedPlugin)
+     * @see PluginLoader
      * @see PluginDescriptor
      */
-    public PackagedPlugin<PluginClass> installPlugin(URL pluginUrl)
-            throws StoreException, PluginException;
+    public PackagedPlugin installPlugin(URL pluginUrl, boolean deploy)
+            throws PluginStoreException, PluginException, PluginNotFoundException, PluginStatePersistenceException;
+
+    /**
+     * todo
+     */
+    public void deployPlugin(String family, String pluginName) throws PluginNotFoundException, PluginStatePersistenceException;
+
+    /**
+     * todo
+     */
+    public void undeployPlugin(String family, String pluginName) throws PluginNotFoundException, PluginStatePersistenceException;
+
+
+    /**
+     * todo
+     */
+    public PluginState getPluginState(String family, String pluginName) throws PluginNotFoundException;
+
 
     /**
      * Uninstalls a plugin from the registry. This operation includes the removal of the plugin from the
-     * {@link PluginStore} and the notification of all the {@link PluginListener}.
+     * {@link PluginStore} and the notification of all the {@link PluginListener} that the plugin was undeployed
+     * if it was previously deployed.
      *
      * @throws PluginNotFoundException if no plugin with the specified pluginName could be found
-     * @throws StoreException          thrown if anything related to the {@link PluginStore} goes wrong. In that case, it can be
+     * @throws PluginStoreException    thrown if anything related to the {@link PluginStore} goes wrong. In that case, it can be
      *                                 expected that the stored plugin (in the packaged or exploded form) remains in the store and will be loaded next
      *                                 time the registry starts up, unless removed later inbetween.
-     * @see PluginListener#uninstalledPlugin PluginListener.uninstalledPlugin(PackagedPlugin<PluginClass>)
+     * @see PluginListener#undeployedPlugin PluginListener.undeployedPlugin(PackagedPlugin)
      */
-    public void uninstallPlugin(String pluginName) throws PluginNotFoundException, StoreException;
+    public void uninstallPlugin(String family, String pluginName) throws PluginNotFoundException, PluginStoreException, PluginStatePersistenceException;
 
     /**
      * Used to access plugins' resources. A resource is any file that comes packaged with the plugin
@@ -95,20 +123,20 @@ public interface PluginRegistry<PluginClass> extends Serializable {
      * @throws PluginNotFoundException   if no plugin with the specified pluginName could be found
      * @throws ResourceNotFoundException if no (public) resource with that name was found.
      */
-    public URL getPluginResource(String pluginName, String resourceName) throws PluginNotFoundException, ResourceNotFoundException;
+    public URL getPluginResource(String family, String pluginName, String resourceName) throws PluginNotFoundException, ResourceNotFoundException;
 
     /**
      * Starts up the registry. This method enables a registry to initiate itself. The initialization of the registry
      * mainly consists of loading the plugins already installed in the underlying {@link PluginStore}, and notifying
      * the {@link PluginListener PluginListeners} of the installation of those aforementioned plugins.
      *
-     * @throws StoreException thrown if anything related to the {@link PluginStore} goes wrong.
+     * @throws PluginStoreException thrown if anything related to the {@link PluginStore} goes wrong.
      */
-    public void startUp() throws StoreException;
+    public Map<URL, PluginException> startUp() throws PluginStoreException;
 
-    public boolean addPluginListener(PluginListener<PluginClass> pluginListener);
+    public boolean addPluginListener(PluginListener pluginListener, String family);
 
-    public boolean removePluginListener(PluginListener<PluginClass> pluginListener);
+    public boolean removePluginListener(PluginListener pluginListener, String family);
 
 
 }

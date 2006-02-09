@@ -11,31 +11,30 @@ import java.net.URL;
  * @see PackageReader
  */
 public class ResourceNotFoundException extends PluginException {
+    private String pluginFamily;
     private String pluginName;
     private String resourceName;
 
-    public ResourceNotFoundException(URL url, String pluginName, String resourceName) {
-        super(url);
-        this.pluginName = pluginName;
-        this.resourceName = resourceName;
-    }
 
-    public ResourceNotFoundException(String message, URL url, String pluginName, String resourceName) {
-        super(message, url);
-        this.pluginName = pluginName;
-        this.resourceName = resourceName;
-    }
-
-    public ResourceNotFoundException(String message, Throwable cause, URL url, String pluginName, String resourceName) {
+    public ResourceNotFoundException(String message, Throwable cause, URL url, String pluginFamily, String pluginName, String resourceName) {
         super(message, cause, url);
+        this.pluginFamily = pluginFamily;
         this.pluginName = pluginName;
         this.resourceName = resourceName;
     }
 
-    public ResourceNotFoundException(Throwable cause, URL url, String pluginName, String resourceName) {
-        super(cause, url);
-        this.pluginName = pluginName;
-        this.resourceName = resourceName;
+    public ResourceNotFoundException(String message, URL url, String pluginFamily, String pluginName, String resourceName) {
+        this(message, null, url, pluginFamily, pluginName, resourceName);
+    }
+
+    public ResourceNotFoundException(String message, Throwable cause, URL url, String resourceName) {
+        this(message, cause, url, null, null, resourceName);
+
+    }
+
+
+    public String getPluginFamily() {
+        return pluginFamily;
     }
 
     public String getPluginName() {

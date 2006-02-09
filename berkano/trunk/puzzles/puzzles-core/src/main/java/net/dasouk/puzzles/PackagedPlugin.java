@@ -8,11 +8,11 @@ import java.io.Serializable;
  * @author souk
  * @version 0.1
  */
-public class PackagedPlugin<PluginClass> implements Serializable {
+public class PackagedPlugin implements Serializable {
     private PluginDescriptor pluginDescriptor;
-    private PluginClass plugin;
+    private Object plugin;
 
-    public PackagedPlugin(PluginDescriptor pluginDescriptor, PluginClass plugin) {
+    public PackagedPlugin(PluginDescriptor pluginDescriptor, Object plugin) {
         this.pluginDescriptor = pluginDescriptor;
         this.plugin = plugin;
     }
@@ -21,7 +21,21 @@ public class PackagedPlugin<PluginClass> implements Serializable {
         return pluginDescriptor;
     }
 
-    public PluginClass getPlugin() {
+    public Object getPlugin() {
         return plugin;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        final PackagedPlugin that = (PackagedPlugin) o;
+
+        return !(pluginDescriptor != null ? !pluginDescriptor.equals(that.pluginDescriptor) : that.pluginDescriptor != null);
+
+    }
+
+    public int hashCode() {
+        return (pluginDescriptor != null ? pluginDescriptor.hashCode() : 0);
     }
 }

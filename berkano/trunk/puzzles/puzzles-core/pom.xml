@@ -4,7 +4,7 @@
     <groupId>berkano</groupId>
     <artifactId>puzzles</artifactId>
     <packaging>jar</packaging>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.2-SNAPSHOT</version>
     <name>Puzzles</name>
     <url>http://dasouk.free.fr/puzzles/</url>
 
@@ -33,6 +33,36 @@
             <artifactId>jmock</artifactId>
             <version>1.0.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <version>2.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>clover</groupId>
+            <artifactId>clover</artifactId>
+            <version>1.3.9</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.0.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>xpp3</groupId>
+            <artifactId>xpp3</artifactId>
+            <version>1.1.3.3</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>berkano</groupId>
+            <artifactId>berkano-util</artifactId>
+            <version>SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
     <scm>

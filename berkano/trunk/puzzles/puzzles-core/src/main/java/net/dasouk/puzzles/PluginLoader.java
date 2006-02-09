@@ -11,14 +11,14 @@ import java.net.URL;
  * @author souk
  * @version 0.1
  */
-public interface PluginLoader<PluginClass> {
+public interface PluginLoader {
     /**
      * Produces a PackagedPlugin containing both the PluginDescriptor and the plugin instance
      * from the URL of the plugin's package's URL inside a PluginStore.
      *
      * @throws PluginException if any exception related to the PluginDescriptor or plugin instanciation goes wrong
      */
-    public PackagedPlugin<PluginClass> load(URL pluginPackageUrl) throws PluginException;
+    public PackagedPlugin load(URL pluginPackageUrl) throws PluginException;
 
     /**
      * @param pluginUrl

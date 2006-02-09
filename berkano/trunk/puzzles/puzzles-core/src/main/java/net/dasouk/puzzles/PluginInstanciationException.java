@@ -10,10 +10,7 @@ import java.net.URL;
  * @author souk
  * @version 0.1
  */
-public class PluginInstanciationException extends PluginException {
-    public PluginInstanciationException(URL url) {
-        super(url);
-    }
+public class PluginInstanciationException extends PluginLoadingException {
 
     public PluginInstanciationException(String message, URL url) {
         super(message, url);
@@ -21,9 +18,5 @@ public class PluginInstanciationException extends PluginException {
 
     public PluginInstanciationException(String message, Throwable cause, URL url) {
         super(message, cause, url);
-    }
-
-    public PluginInstanciationException(Throwable cause, URL url) {
-        super(cause, url);
     }
 }

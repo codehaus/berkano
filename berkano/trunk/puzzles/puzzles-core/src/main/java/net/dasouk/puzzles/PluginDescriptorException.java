@@ -9,11 +9,7 @@ import java.net.URL;
  * @author souk
  * @version 0.1
  */
-public class PluginDescriptorException extends PluginException {
-
-    public PluginDescriptorException(URL url) {
-        super(url);
-    }
+public class PluginDescriptorException extends PluginLoadingException {
 
     public PluginDescriptorException(String message, URL url) {
         super(message, url);
@@ -21,9 +17,5 @@ public class PluginDescriptorException extends PluginException {
 
     public PluginDescriptorException(String message, Throwable cause, URL url) {
         super(message, cause, url);
-    }
-
-    public PluginDescriptorException(Throwable cause, URL url) {
-        super(cause, url);
     }
 }

@@ -1,6 +1,6 @@
 package net.dasouk.puzzles.stores;
 
-import net.dasouk.puzzles.StoreException;
+import net.dasouk.puzzles.PluginStoreException;
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
 
@@ -33,7 +33,7 @@ public class SimpleFileSystemStoreTest extends MockObjectTestCase {
         try {
             sfss.store(new URL("http://fake.url/fakeName.jar"));
             fail("no plugin was found at the given url, but the store didn't throw any exception");
-        } catch (StoreException e) {
+        } catch (PluginStoreException e) {
             assertTrue("the store threw an exception because there was no plugin at the specified URL", true);
         }
     }
@@ -50,11 +50,12 @@ public class SimpleFileSystemStoreTest extends MockObjectTestCase {
             String[] filesInStore = storeFolder.list();
             assertEquals(1, filesInStore.length);
             assertEquals(filesInStore[0], "logo.gif");
-        } catch (StoreException e) {
+        } catch (PluginStoreException e) {
             fail("The store could not save the file located at the specified URL, although the file exists");
         }
     }
 
+    //TODO Make test methods shorter !!!!!!!!!!!!!! :fou: :fou:
     public void testStorageOfRealPluginWithExistingFilename() throws MalformedURLException {
         Mock mockRenamer = mock(FileRenamer.class);
         SimpleFileSystemStore sfss = new SimpleFileSystemStore(storeFolder, (FileRenamer) mockRenamer.proxy());
@@ -93,12 +94,12 @@ public class SimpleFileSystemStoreTest extends MockObjectTestCase {
             assertTrue(filesInStore[0].equals("logo-1.gif") || filesInStore[1].equals("logo-1.gif") || filesInStore[2].equals("logo-1.gif"));
             assertTrue(filesInStore[0].equals("logo-2.gif") || filesInStore[1].equals("logo-2.gif") || filesInStore[2].equals("logo-2.gif"));
 
-        } catch (StoreException e) {
+        } catch (PluginStoreException e) {
             fail("The store could not save the file located at the specified URL, although the file exists");
         }
     }
 
-    public void testStorageshouldFailWithNoRenamerAndAnExistingFilename() throws MalformedURLException, StoreException {
+    public void testStorageshouldFailWithNoRenamerAndAnExistingFilename() throws MalformedURLException, PluginStoreException {
         SimpleFileSystemStore sfss = new SimpleFileSystemStore(storeFolder);
         URL url = sfss.store(new URL("http://www.google.fr/intl/fr_fr/images/logo.gif"));
         File f = new File(sfss.getFolder(), "logo.gif");
@@ -112,8 +113,41 @@ public class SimpleFileSystemStoreTest extends MockObjectTestCase {
         //re-store same plugin
         try {
             sfss.store(new URL("http://www.google.fr/intl/fr_fr/images/logo.gif"));
-        } catch (StoreException e) {
-            assertEquals("Could not store plugin: a file with the same name already exists in the store", e.getMessage());
+        } catch (PluginStoreException e) {
+            assertEquals("Could not store plugin: a file with the same name (logo.gif) already exists in the store", e.getMessage());
         }
+    }
+
+    public void testInvalidArgument() {
+        try {
+            SimpleFileSystemStore sfss = new SimpleFileSystemStore(new File("inexistantFile"));
+            fail("should have thrown an exception");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Failed as expected", true);
+        }
+    }
+
+    public void testGetPluginsInStoreWithAFolderInTheStore() throws PluginStoreException, MalformedURLException {
+        File folder = new File(storeFolder, "aFolder");
+        final boolean b = folder.mkdir();
+        assertTrue(b);
+        SimpleFileSystemStore sfss = new SimpleFileSystemStore(storeFolder);
+        URL url = sfss.store(new URL("http://www.google.fr/intl/fr_fr/images/logo.gif"));
+        final List<URL> pluginsInStore = sfss.getPluginsInStore();
+        assertEquals(1, pluginsInStore.size());
+        assertTrue(pluginsInStore.contains(url));
+        folder.delete();
+
+    }
+
+    public void testRemove() throws PluginStoreException, MalformedURLException {
+        SimpleFileSystemStore sfss = new SimpleFileSystemStore(storeFolder);
+        URL url = sfss.store(new URL("http://www.google.fr/intl/fr_fr/images/logo.gif"));
+        List<URL> pluginsInStore = sfss.getPluginsInStore();
+        assertEquals(1, pluginsInStore.size());
+        assertTrue(pluginsInStore.contains(url));
+        sfss.remove(url);
+        pluginsInStore = sfss.getPluginsInStore();
+        assertEquals(0, pluginsInStore.size());
     }
 }

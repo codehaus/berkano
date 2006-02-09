@@ -3,7 +3,6 @@
 - add better renaming strategies to the SimpleFileSystemStore
 - add a Store that auto-installs plugins droped in it
 - check how plugins are unloaded (are all references to itself and to its classloader removed??)
-- add documentation to SimplePluginRegistry on how to enforce a Class for plugins (generics are so far only syntaxic sugar)
 - Factory for simple out-of-the-box-ready-to-use PluginRegistry
 - simple 2 minutes tutorial
 - sample stand-alone application
