@@ -87,18 +87,6 @@ public class SimpleFileSystemStore implements PluginStore {
         return folder;
     }
 
-    public void setFolder(File folder) {
-        this.folder = folder;
-    }
-
-    public FileRenamer getFileRenamer() {
-        return fileRenamer;
-    }
-
-    public void setFileRenamer(FileRenamer fileRenamer) {
-        this.fileRenamer = fileRenamer;
-    }
-
     /**
      * This silly FileRenamer just throws an exception when called, i.e.
      * it does not allow the store overwrite an existing file, but does
