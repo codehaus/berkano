@@ -18,6 +18,7 @@ public class SimplePluginRegistryTest extends TestCase {
     private PluginLoader mockLoader;
     private PluginStateManager mockStateManager;
     private PluginListener mockListener;
+    private PluginListener mockListener2;
 
     @Override
     protected void setUp() throws Exception {
@@ -26,6 +27,7 @@ public class SimplePluginRegistryTest extends TestCase {
         mockLoader = createMock(PluginLoader.class);
         mockStateManager = createMock(PluginStateManager.class);
         mockListener = createMock(PluginListener.class);
+        mockListener2 = createMock(PluginListener.class);
     }
 
     public void testStartUpWithNoPluginInStore() {
@@ -47,7 +49,7 @@ public class SimplePluginRegistryTest extends TestCase {
         final PackagedPlugin packagedPlugin2 = new PackagedPlugin(new PluginDescriptor("name2", "family2", null, null, null, null, null, null, null, null), plugin2);
         expect(mockLoader.load(url2)).andReturn(packagedPlugin2);
         expect(mockStateManager.isDeployed("family1", "name1")).andReturn(true);//plugin1 was deployed
-        mockStateManager.setPluginState("family1", "name1", PluginState.DEPLOYED);
+//        mockStateManager.setPluginState("family1", "name1", PluginState.DEPLOYED);
         expect(mockStateManager.isDeployed("family2", "name2")).andReturn(false);//plugin2 was not deployed
         mockListener.deployedPlugin(packagedPlugin1);
         replay(mockStore);
@@ -56,6 +58,11 @@ public class SimplePluginRegistryTest extends TestCase {
         replay(mockListener);
         registry = new SimplePluginRegistry(mockStore, mockLoader, mockStateManager);
         registry.addPluginListener(mockListener, "family1");
+        registry.addPluginListener(mockListener2, "family1");
+        boolean removed = registry.removePluginListener(mockListener2, "family2");//wrong family cannot be removed
+        assertFalse(removed);
+        removed = registry.removePluginListener(mockListener2, "family1");//should be removed
+        assertTrue(removed);
         final Map<URL, PluginException> exceptions = registry.startUp();
         assertEquals(0, exceptions.size());
         Object pluginInstance = registry.getPluginInstance("family1", "name1");
@@ -162,7 +169,14 @@ public class SimplePluginRegistryTest extends TestCase {
         }
 
 
-        registry.undeployPlugin("family", "name"); //does nothing
+            String family = "family";
+            String pluginName = "name";
+        try {
+            registry.undeployPlugin(family, pluginName); //does nothing
+        } catch (PluginNotFoundException e) {
+            assertEquals(family,e.getPluginFamily());
+            assertEquals(pluginName,e.getPluginName());
+        }
     }
 
     public void testAccessPluginResourcesAfterSuccessfullDeployment() throws MalformedURLException {
@@ -198,5 +212,38 @@ public class SimplePluginRegistryTest extends TestCase {
         registry.installPlugin(url1, true);
         registry.addPluginListener(mockListener, "family1");
         registry.deployPlugin("family1", "name1");
+    }
+
+    public void testPluginInstanceAccess() throws MalformedURLException {
+        URL url1 = new URL("http://www.google.fr");
+        expect(mockStore.store(url1)).andReturn(url1);
+        PluginDescriptor pluginDescriptor = new PluginDescriptor("name1", "family1", null, null, null, null, null, null, null, null);
+        String pluginInstance = "ThePluginAsString_1";
+        final PackagedPlugin packagedPlugin1 = new PackagedPlugin(pluginDescriptor, pluginInstance);
+        expect(mockLoader.load(url1)).andReturn(packagedPlugin1);
+        expect(mockStateManager.isDeployed("family1", "name1")).andReturn(false);
+        mockStateManager.setPluginState("family1", "name1", PluginState.DEPLOYED);
+        replay(mockStore);
+        replay(mockLoader);
+        replay(mockStateManager);
+        registry = new SimplePluginRegistry(mockStore, mockLoader, mockStateManager);
+        registry.installPlugin(url1, true);
+
+        assertEquals(pluginInstance, registry.getPluginInstance("family1", "name1"));
+
+    }
+
+    public void testDeployNonExistingPlugin() {
+        registry = new SimplePluginRegistry(mockStore, mockLoader, mockStateManager);
+        String family = "family";
+        String pluginName = "name";
+        try {
+            registry.deployPlugin(family, pluginName);
+            fail("there is no such plugin");
+        } catch (PluginNotFoundException e) {
+            assertEquals(family,e.getPluginFamily());
+            assertEquals(pluginName,e.getPluginName());
+        }
+
     }
 }
