@@ -74,7 +74,8 @@ public class SimplePluginRegistry implements PluginRegistry {
     public void deployPlugin(String family, String pluginName) throws PluginNotFoundException, PluginStatePersistenceException {
         checkPlugin(family, pluginName);
         if (!pluginStateManager.isDeployed(family, pluginName)) {
-            deployPluginNoCheck(family, pluginName);
+            pluginStateManager.setPluginState(family, pluginName, PluginState.DEPLOYED);
+            fireDeployedPlugin(family, getPackagedPlugin(family, pluginName));
         }
     }
 
@@ -84,18 +85,12 @@ public class SimplePluginRegistry implements PluginRegistry {
         }
     }
 
-    /**
-     * deploys a plugin without checking whether it is already deployed or not
-     */
-    private void deployPluginNoCheck(String family, String pluginName) {
-        pluginStateManager.setPluginState(family, pluginName, PluginState.DEPLOYED);
-        fireDeployedPlugin(family, getPackagedPlugin(family, pluginName));
-    }
 
     /**
      * undeploys the plugin and notifies listener. If the plugin does not exist, does nothing
      */
     public void undeployPlugin(String family, String pluginName) throws PluginNotFoundException, PluginStatePersistenceException {
+        checkPlugin(family, pluginName);
         if (pluginStateManager.isDeployed(family, pluginName)) {
             pluginStateManager.setPluginState(family, pluginName, PluginState.UNDEPLOYED);
             fireUndeployedPlugin(family, getPackagedPlugin(family, pluginName));
@@ -127,7 +122,6 @@ public class SimplePluginRegistry implements PluginRegistry {
         undeployPlugin(family, name);
 
         //uninstall stuff
-        PackagedPlugin packagedPlugin = getPackagedPlugin(family, name);
         URL url = getPluginUrl(family, name);
         pluginStateManager.removePluginState(family, name);
         pluginStore.remove(url);
@@ -162,8 +156,7 @@ public class SimplePluginRegistry implements PluginRegistry {
                 final PackagedPlugin packagedPlugin = load(pluginUrl);
                 PluginDescriptor descriptor = packagedPlugin.getPluginDescriptor();
                 if (pluginStateManager.isDeployed(descriptor.getFamily(), descriptor.getName())) {
-                    //the plugin was deployed before, so deploy it now on startup
-                    deployPluginNoCheck(descriptor.getFamily(), descriptor.getName());
+                    fireDeployedPlugin(descriptor.getFamily(), packagedPlugin);
                 }
             } catch (PluginException e) {
                 exceptions.put(pluginUrl, e);
