@@ -5,7 +5,7 @@
     <parent>
         <artifactId>berkano-taglib-parent</artifactId>
         <groupId>berkano</groupId>
-        <version>SNAPSHOT</version>
+        <version>20060221b</version>
     </parent>
     <artifactId>berkano-seraph-taglib</artifactId>
     <name>Berkano Seraph Taglib</name>
@@ -47,13 +47,13 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-seraph</artifactId>
-            <version>SNAPSHOT</version>
+            <version>20060221b</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-taglib-unit</artifactId>
-            <version>SNAPSHOT</version>
+            <version>20060221b</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

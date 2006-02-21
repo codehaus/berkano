@@ -3,7 +3,7 @@
     <parent>
         <artifactId>berkano-taglib-parent</artifactId>
         <groupId>berkano</groupId>
-        <version>SNAPSHOT</version>
+        <version>20060221b</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>beandisplaytag</artifactId>
@@ -42,7 +42,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-taglib-unit</artifactId>
-            <version>SNAPSHOT</version>
+            <version>20060221b</version>
             <scope>test</scope>
         </dependency>
         <dependency>

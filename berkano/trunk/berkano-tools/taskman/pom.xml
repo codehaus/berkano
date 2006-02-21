@@ -4,7 +4,7 @@
     <parent>
         <artifactId>berkano-parent</artifactId>
         <groupId>berkano</groupId>
-        <version>SNAPSHOT</version>
+        <version>20060221b</version>
     </parent>
 
     <artifactId>taskman</artifactId>
@@ -26,7 +26,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-util</artifactId>
-            <version>SNAPSHOT</version>
+            <version>20060221b</version>
             <scope>compile</scope>
         </dependency>
 
@@ -47,7 +47,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>jodatime-hibernate</artifactId>
-            <version>SNAPSHOT</version>
+            <version>20060221b</version>
             <scope>compile</scope>
         </dependency>
 

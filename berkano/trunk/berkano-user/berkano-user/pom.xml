@@ -5,10 +5,10 @@
     <parent>
         <artifactId>berkano-parent</artifactId>
         <groupId>berkano</groupId>
-        <version>SNAPSHOT</version>
+        <version>20060221b</version>
     </parent>
     <artifactId>berkano-user</artifactId>
-    <version>SNAPSHOT</version>
+    <version>20060221b</version>
     <name>Berkano User</name>
     <description>Berkano User defines a simple API for managing users in berkano applications.</description>
     <build>
@@ -25,13 +25,13 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-bookmarks</artifactId>
-            <version>SNAPSHOT</version>
+            <version>20060221b</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-util</artifactId>
-            <version>SNAPSHOT</version>
+            <version>20060221b</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

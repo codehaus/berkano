@@ -5,17 +5,17 @@
     <parent>
         <artifactId>berkano-parent</artifactId>
         <groupId>berkano</groupId>
-        <version>SNAPSHOT</version>
+        <version>20060221b</version>
     </parent>
     <artifactId>berkano-seraph</artifactId>
     <name>Berkano Seraph Tools</name>
-    <version>SNAPSHOT</version>
+    <version>20060221b</version>
     <description>Berkano specific classes for Atlassian's Seraph.</description>
     <dependencies>
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-user</artifactId>
-            <version>SNAPSHOT</version>
+            <version>20060221b</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

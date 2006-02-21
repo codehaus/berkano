@@ -6,7 +6,7 @@
     <groupId>berkano</groupId>
     <artifactId>berkano-parent</artifactId>
     <name>Berkano Parent POM</name>
-    <version>SNAPSHOT</version>
+    <version>20060221b</version>
     <url>http://berkano.codehaus.org</url>
     <inceptionYear>2004</inceptionYear>
     <organization>

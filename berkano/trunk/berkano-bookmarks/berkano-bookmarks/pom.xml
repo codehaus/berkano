@@ -5,7 +5,7 @@
     <parent>
         <artifactId>berkano-parent</artifactId>
         <groupId>berkano</groupId>
-        <version>SNAPSHOT</version>
+        <version>20060221b</version>
     </parent>
     <artifactId>berkano-bookmarks</artifactId>
     <name>Berkano Bookmarks</name>

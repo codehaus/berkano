@@ -6,10 +6,10 @@
     <parent>
         <artifactId>berkano-parent</artifactId>
         <groupId>berkano</groupId>
-        <version>SNAPSHOT</version>
+        <version>20060221b</version>
     </parent>
     <artifactId>berkano-user-mgt-webwork</artifactId>
-    <version>SNAPSHOT</version>
+    <version>20060221b</version>
     <name>Berkano User Management for Webwork2</name>
     <description>A couple of simple actions and views for berkano-user/osuser with webwork2</description>
     <build>
@@ -54,7 +54,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-user</artifactId>
-            <version>SNAPSHOT</version>
+            <version>20060221b</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -66,13 +66,13 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-seraph</artifactId>
-            <version>SNAPSHOT</version>
+            <version>20060221b</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-bookmarks</artifactId>
-            <version>SNAPSHOT</version>
+            <version>20060221b</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
