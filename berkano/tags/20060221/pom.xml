@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <groupId>berkano</groupId>
+    <artifactId>berkano-parent</artifactId>
+    <name>Berkano Parent POM</name>
+    <version>20060221</version>
+    <url>http://berkano.codehaus.org</url>
+    <inceptionYear>2004</inceptionYear>
+    <organization>
+        <name></name>
+        <url></url>
+    </organization>
+    <developers>
+        <developer>
+            <id>gjoseph</id>
+            <name>Gregory Joseph</name>
+            <email>gjoseph AT codehaus DOT org</email>
+            <roles>
+                <role>Project admin</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>0</timezone>
+        </developer>
+    </developers>
+    <issueManagement>
+        <url>http://jira.codehaus.org/browse/BERKANO</url>
+    </issueManagement>
+    <scm>
+        <connection>scm:svn:svn://svn.berkano.codehaus.org/berkano/scm/berkano/trunk/</connection>
+    </scm>
+    <ciManagement>
+        <system>Continuum</system>
+        <url>http://ci.codehaus.org:8001/continuum/</url>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <configuration>
+                    <address>scm@berkano.codehaus.org</address>
+                </configuration>
+            </notifier>
+        </notifiers>
+    </ciManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>codehaus</id>
+            <name>beaver.codehaus.org</name>
+            <url>sftp://beaver.codehaus.org:/dist/</url>
+        </repository>
+        <site>
+            <id>codehaus</id>
+            <name>codehaus</name>
+            <url>sftp://beaver.codehaus.org/home/projects/berkano/public_html/maven</url>
+        </site>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>codehaus</id>
+            <name>codehaus</name>
+            <url>http://dist.codehaus.org</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>codehaus-legacy</id>
+            <name>codehaus-legacy</name>
+            <layout>legacy</layout>
+            <url>http://dist.codehaus.org</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>codehaus-plugin</id>
+            <url>http://dist.codehaus.org/</url>
+            <releases>
+                <updatePolicy>daily</updatePolicy>
+            </releases>
+            <snapshots>
+                <updatePolicy>daily</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>Maven Snapshots</id>
+            <url>http://snapshots.maven.codehaus.org/maven2/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <target>1.5</target>
+                    <source>1.5</source>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.1.2</version>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>jmock</groupId>
+            <artifactId>jmock</artifactId>
+            <version>1.0.1</version>
+            <scope>tests</scope>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <module>berkano-tools/pom-taglib</module>
+
+        <module>berkano-tools/berkano-util</module>
+        <module>berkano-tools/jodatime-hibernate</module>
+        <module>berkano-tools/taskman</module>
+
+        <module>berkano-tools/taglib-unit</module>
+        <module>berkano-tools/beandisplaytag</module>
+        <module>berkano-tools/kiss-taglib</module>
+
+        <module>berkano-bookmarks/berkano-bookmarks</module>
+
+        <module>berkano-user/berkano-user</module>
+        <module>berkano-user/berkano-user-mgt-webwork</module>
+        <module>berkano-user/berkano-seraph</module>
+        <module>berkano-user/berkano-seraph-taglib</module>
+
+        <module>puzzles/puzzles-core</module>
+    </modules>
+
+    <reporting>
+        <plugins>
+<!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+ -->
+           <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>surefire-report-maven-plugin</artifactId>
+                <version>2.0-beta-2-SNAPSHOT</version>
+            </plugin>
+            <!--plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clover-plugin</artifactId>
+                <configuration>
+                    <jdk>1.5</jdk>
+                </configuration>
+            </plugin-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jdepend-maven-plugin</artifactId>
+                <version>2.0-beta-1-SNAPSHOT</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jxr-maven-plugin</artifactId>
+                <version>2.0-beta-2-SNAPSHOT</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>changes-maven-plugin</artifactId>
+                <version>2.0-beta-2-SNAPSHOT</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>jira-report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </reporting>
+
+</project>
