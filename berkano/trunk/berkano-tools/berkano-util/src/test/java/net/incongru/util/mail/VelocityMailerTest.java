@@ -5,6 +5,7 @@ import net.incongru.util.TestSupport;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
+import org.apache.commons.mail.EmailException;
 import org.apache.velocity.app.VelocityEngine;
 
 import java.util.HashMap;
@@ -61,6 +62,8 @@ public class VelocityMailerTest extends TestCase {
     private FakeMailer configureMailer() throws Exception {
         Properties p = new Properties();
         p.setProperty("mail.host", "localhost");
+        p.setProperty("from.email", "test@localhost");
+        p.setProperty("from.name", "From Test");
         MailConfig config = new PropertiesMailConfig(p);
         Properties velocityConfig = new Properties();
         velocityConfig.setProperty("resource.loader", "classpath");
@@ -78,7 +81,7 @@ public class VelocityMailerTest extends TestCase {
             super(velocity, MailLocalizer.NULL, config);
         }
 
-        protected void sendMail(Email email, String toEmail, String toName, String subject) {
+        protected void sendMail(Email email) throws EmailException {
             this.email = email;
         }
     }

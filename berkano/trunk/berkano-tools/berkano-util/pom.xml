@@ -6,6 +6,7 @@
         <groupId>berkano</groupId>
         <version>20060221b</version>
     </parent>
+    <version>20060426</version>
     <artifactId>berkano-util</artifactId>
     <name>Berkano Utilities</name>
     <description>A bunch of utilities of various purposes. Please see docs for details.</description>

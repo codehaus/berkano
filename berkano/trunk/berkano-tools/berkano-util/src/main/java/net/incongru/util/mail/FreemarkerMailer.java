@@ -28,11 +28,11 @@ public class FreemarkerMailer extends AbstractMailer {
         this.freemarkerCfg = freemarkerCfg;
     }
 
-    public void mail(String toEmail, String toName, String subject, String templateName, Map values) {
+    public void mail(String toEmail, String toName, String subject, String templateName, Map values, String replyTo) {
         final SimpleHash model = new SimpleHash(values);
         final Locale locale = localizer.resolveLocale();
         final FreemarkerTemplateEngine engine = new FreemarkerTemplateEngine(freemarkerCfg, locale, model);
-        renderAndSendMail(engine, toEmail, toName, subject, templateName, locale);
+        renderAndSendMail(engine, toEmail, toName, subject, templateName, locale, replyTo);
     }
 
     private static final class FreemarkerTemplateEngine implements TemplateEngine {

@@ -6,6 +6,7 @@ import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
 
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * An abstract Mailer based on commons-email. Implementations should
@@ -38,7 +39,11 @@ public abstract class AbstractMailer implements Mailer {
         this.config = config;
     }
 
-    protected void renderAndSendMail(TemplateEngine engine, String toEmail, String toName, String subject, String templateName, Locale locale) {
+    public void mail(String toEmail, String toName, String subject, String templateName, Map values) {
+        mail(toEmail, toName, subject, templateName, values, null);
+    }
+
+    protected void renderAndSendMail(TemplateEngine engine, String toEmail, String toName, String subject, String templateName, Locale locale, String replyTo) {
         final String translatedSubject = localizer.getSubject(subject, locale);
 
         final String plainTextTemplateName = getPlainTextTemplateName(engine, templateName);
@@ -47,27 +52,30 @@ public abstract class AbstractMailer implements Mailer {
         final String plainText = engine.renderTemplate(plainTextTemplateName);
 
         try {
+            final Email email;
             if (htmlTemplateName != null) {
-                HtmlEmail email = new HtmlEmail();
+                email = new HtmlEmail();
                 final String html = engine.renderTemplate(htmlTemplateName);
-                email.setHtmlMsg(html);
-                email.setTextMsg(plainText);
-                sendMail(email, toEmail, toName, translatedSubject);
+                ((HtmlEmail)email).setHtmlMsg(html);
+                ((HtmlEmail)email).setTextMsg(plainText);
             } else {
-                SimpleEmail email = new SimpleEmail();
+                email = new SimpleEmail();
                 email.setMsg(plainText);
-                sendMail(email, toEmail, toName, translatedSubject);
             }
+            email.setHostName(config.getMailHost());
+            email.setFrom(config.getFromEmail(), config.getFromName());
+            email.addTo(toEmail, toName);
+            email.setSubject(translatedSubject);
+            if (replyTo != null) {
+                email.addReplyTo(replyTo);
+            }
+            sendMail(email);
         } catch (EmailException e) {
             throw new RuntimeException(e);
         }
     }
 
-    protected void sendMail(Email email, String toEmail, String toName, String subject) throws EmailException {
-        email.setHostName(config.getMailHost());
-        email.setFrom(config.getFromEmail(), config.getFromName());
-        email.addTo(toEmail, toName);
-        email.setSubject(subject);
+    protected void sendMail(Email email) throws EmailException {
         email.send();
     }
 

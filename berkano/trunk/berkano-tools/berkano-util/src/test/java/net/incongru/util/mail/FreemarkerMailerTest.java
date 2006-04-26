@@ -23,6 +23,10 @@ public class FreemarkerMailerTest extends MockObjectTestCase {
     protected void setUp() throws Exception {
         super.setUp();
         mailCfg = mock(MailConfig.class);
+        mailCfg.expects(once()).method("getMailHost").withNoArguments().will(returnValue("localhost"));
+        mailCfg.expects(once()).method("getFromName").withNoArguments().will(returnValue("test"));
+        mailCfg.expects(once()).method("getFromEmail").withNoArguments().will(returnValue("test@localhost"));
+
         freemarkerCfg = new Configuration();
         final StringTemplateLoader loader = new StringTemplateLoader();
         loader.putTemplate("test.ftl", "${user}, this is the test.ftl template");
@@ -55,7 +59,7 @@ public class FreemarkerMailerTest extends MockObjectTestCase {
             super(localizer, config, freemarkerCfg);
         }
 
-        protected void sendMail(Email email, String toEmail, String toName, String subject) {
+        protected void sendMail(Email email) {
             this.email = email;
         }
     }
@@ -68,11 +72,11 @@ public class FreemarkerMailerTest extends MockObjectTestCase {
         }
 
         public Locale resolveLocale() {
-                return locale;
-            }
-
-            public String getSubject(String subjectKey, Locale locale) {
-                return subjectKey;
-            }
+            return locale;
         }
+
+        public String getSubject(String subjectKey, Locale locale) {
+            return subjectKey;
+        }
+    }
 }

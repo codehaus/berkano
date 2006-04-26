@@ -6,6 +6,8 @@ import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
 
 import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
@@ -31,8 +33,8 @@ public class MailerTest extends MockObjectTestCase {
         mailConfig = mock(MailConfig.class);
 
         mailer = new AbstractMailer(MailLocalizer.NULL, (MailConfig) mailConfig.proxy()) {
-            public void mail(String toEmail, String toName, String subject, String templateName, Map values) {
-                renderAndSendMail(engineProxy, toEmail, toName, subject, templateName, Locale.ENGLISH);
+            public void mail(String toEmail, String toName, String subject, String templateName, Map values, String replyTo) {
+                renderAndSendMail(engineProxy, toEmail, toName, subject, templateName, Locale.ENGLISH, replyTo);
             }
         };
     }
@@ -40,7 +42,11 @@ public class MailerTest extends MockObjectTestCase {
     public void testSubjectIsTranslated() throws MessagingException {
         Mock localizer = mock(MailLocalizer.class);
         FakeMailer fakeMailer = new FakeMailer((MailLocalizer) localizer.proxy(), (MailConfig) mailConfig.proxy());
-        mailConfig.stubs();
+
+        mailConfig.expects(once()).method("getMailHost").withNoArguments().will(returnValue("localhost"));
+        mailConfig.expects(once()).method("getFromName").withNoArguments().will(returnValue("test"));
+        mailConfig.expects(once()).method("getFromEmail").withNoArguments().will(returnValue("test@localhost"));
+
         engine.expects(once()).method("templateExists").with(eq("tmpl-text.vm")).will(returnValue(true));
         engine.expects(once()).method("templateExists").with(eq("tmpl-html.vm")).will(returnValue(true));
         engine.expects(once()).method("renderTemplate").with(eq("tmpl-text.vm")).will(returnValue("blabla"));
@@ -51,8 +57,8 @@ public class MailerTest extends MockObjectTestCase {
 
         fakeMailer.mail("to@kiala.com", "to", "subject", "tmpl", Collections.EMPTY_MAP);
         assertNotNull(fakeMailer.emailToSend);
-        assertNotNull(fakeMailer.subjectToSend);
-        assertEquals("*subject*", fakeMailer.subjectToSend);
+        assertNotNull(fakeMailer.emailToSend.getSubject());
+        assertEquals("*subject*", fakeMailer.emailToSend.getSubject());
     }
 
     // tests for template naming
@@ -158,21 +164,64 @@ public class MailerTest extends MockObjectTestCase {
         assertEquals("tmpl-html.vm", res);
     }
 
+    public void testReplyToShouldDefaultToFromIfNotSpecified() throws MessagingException, EmailException {
+        engine.expects(once()).method("templateExists").with(eq("test-tmpl-html.vm")).will(returnValue(false));
+        engine.expects(once()).method("templateExists").with(eq("test-tmpl-html")).will(returnValue(false));
+        engine.expects(once()).method("templateExists").with(eq("test-tmpl-text.vm")).will(returnValue(true));
+        engine.expects(once()).method("renderTemplate").with(eq("test-tmpl-text.vm")).will(returnValue("plop"));
+
+        mailConfig.expects(once()).method("getMailHost").withNoArguments().will(returnValue("localhost"));
+        mailConfig.expects(once()).method("getFromName").withNoArguments().will(returnValue("test"));
+        mailConfig.expects(once()).method("getFromEmail").withNoArguments().will(returnValue("test@localhost"));
+
+        Mock localizer = mock(MailLocalizer.class);
+        localizer.stubs();
+
+        FakeMailer fakeMailer = new FakeMailer((MailLocalizer) localizer.proxy(), (MailConfig) mailConfig.proxy());
+
+        fakeMailer.mail("to@toto.too", "toto", "yo!", "test-tmpl", Collections.EMPTY_MAP);
+        ((FakeMailer) fakeMailer).emailToSend.buildMimeMessage();
+        MimeMessage mail = ((FakeMailer) fakeMailer).emailToSend.getMimeMessage();
+        assertEquals(1, mail.getReplyTo().length);
+        assertEquals("test@localhost", ((InternetAddress) mail.getReplyTo()[0]).getAddress());
+        assertEquals("test", ((InternetAddress) mail.getReplyTo()[0]).getPersonal());
+    }
+
+    public void testReplyToShouldBeAddedIfSpecified() throws MessagingException, EmailException {
+        engine.expects(once()).method("templateExists").with(eq("test-tmpl-html.vm")).will(returnValue(false));
+        engine.expects(once()).method("templateExists").with(eq("test-tmpl-html")).will(returnValue(false));
+        engine.expects(once()).method("templateExists").with(eq("test-tmpl-text.vm")).will(returnValue(true));
+        engine.expects(once()).method("renderTemplate").with(eq("test-tmpl-text.vm")).will(returnValue("plop"));
+
+        mailConfig.expects(once()).method("getMailHost").withNoArguments().will(returnValue("localhost"));
+        mailConfig.expects(once()).method("getFromName").withNoArguments().will(returnValue("test"));
+        mailConfig.expects(once()).method("getFromEmail").withNoArguments().will(returnValue("test@localhost"));
+
+        Mock localizer = mock(MailLocalizer.class);
+        localizer.stubs();
+
+        FakeMailer fakeMailer = new FakeMailer((MailLocalizer) localizer.proxy(), (MailConfig) mailConfig.proxy());
+        fakeMailer.mail("to@toto.too", "toto", "yo!", "test-tmpl", Collections.EMPTY_MAP, "reply@toto.too");
+        ((FakeMailer) fakeMailer).emailToSend.buildMimeMessage();
+        MimeMessage mail = ((FakeMailer) fakeMailer).emailToSend.getMimeMessage();
+        assertEquals(1, mail.getReplyTo().length);
+        assertEquals("reply@toto.too", ((InternetAddress) mail.getReplyTo()[0]).getAddress());
+        assertEquals("reply@toto.too", ((InternetAddress) mail.getReplyTo()[0]).getPersonal());
+    }
+
     private class FakeMailer extends AbstractMailer {
         private Email emailToSend;
-        private String subjectToSend;
 
         public FakeMailer(MailLocalizer localizer, MailConfig mailConfig) {
             super(localizer, mailConfig);
         }
 
-        public void mail(String toEmail, String toName, String subject, String templateName, Map values) {
-            renderAndSendMail(engineProxy, toEmail, toName, subject, templateName, localizer.resolveLocale());
+        public void mail(String toEmail, String toName, String subject, String templateName, Map values, String replyTo) {
+            renderAndSendMail(engineProxy, toEmail, toName, subject, templateName, localizer.resolveLocale(), replyTo);
         }
 
-        protected void sendMail(Email email, String toEmail, String toName, String subject) throws EmailException {
+        protected void sendMail(Email email) throws EmailException {
             this.emailToSend = email;
-            this.subjectToSend = subject;
         }
     }
 }

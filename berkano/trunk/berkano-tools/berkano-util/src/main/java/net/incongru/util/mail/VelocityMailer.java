@@ -30,11 +30,11 @@ public class VelocityMailer extends AbstractMailer {
         this.velocityEngine = velocityEngine;
     }
 
-    public void mail(String toEmail, String toName, String subject, String templateName, Map values) {
+    public void mail(String toEmail, String toName, String subject, String templateName, Map values, String replyTo) {
         final Context ctx = new VelocityContext(values);
         final VelocityTemplateEngine engine = new VelocityTemplateEngine(velocityEngine, ctx);
         final Locale locale = localizer.resolveLocale();
-        renderAndSendMail(engine, toEmail, toName, subject, templateName, locale);
+        renderAndSendMail(engine, toEmail, toName, subject, templateName, locale, replyTo);
     }
 
     private static final class VelocityTemplateEngine implements TemplateEngine {

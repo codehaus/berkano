@@ -9,5 +9,7 @@ import java.util.Map;
  * @version $Revision: 1.2 $
  */
 public interface Mailer {
+    void mail(String toEmail, String toName, String subject, String templateName, Map values, String replyTo);
+
     void mail(String toEmail, String toName, String subject, String templateName, Map values);
 }
