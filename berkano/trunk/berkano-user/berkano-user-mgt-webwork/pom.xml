@@ -9,7 +9,7 @@
         <version>20060221b</version>
     </parent>
     <artifactId>berkano-user-mgt-webwork</artifactId>
-    <version>20060426</version>
+    <version>SNAPSHOT</version>
     <name>Berkano User Management for Webwork2</name>
     <description>A couple of simple actions and views for berkano-user/osuser with webwork2</description>
     <build>
