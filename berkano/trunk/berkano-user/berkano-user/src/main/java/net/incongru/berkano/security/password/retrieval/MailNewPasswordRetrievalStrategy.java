@@ -3,9 +3,9 @@ package net.incongru.berkano.security.password.retrieval;
 import net.incongru.berkano.security.password.PasswordGenerator;
 import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.UserDAO;
+import net.incongru.util.mail.MailBean;
 import net.incongru.util.mail.Mailer;
 
-import java.util.Map;
 
 /**
  *
@@ -23,10 +23,10 @@ public class MailNewPasswordRetrievalStrategy extends AbstractMailPasswordRetrie
         this.passwordGenerator = passwordGenerator;
     }
 
-    protected void prepareMailContext(User u, Map context) {
-        super.prepareMailContext(u, context);
-        String newPassword = passwordGenerator.generate();
-        context.put("newPassword", newPassword);
+    protected void prepareMailContext(User u, MailBean mail) {
+        super.prepareMailContext(u, mail);
+        final String newPassword = passwordGenerator.generate();
+        mail.getValues().put("newPassword", newPassword);
         userDAO.changePassword(u.getUserId(), newPassword);
     }
 

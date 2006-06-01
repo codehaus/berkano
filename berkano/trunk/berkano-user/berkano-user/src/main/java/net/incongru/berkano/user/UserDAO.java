@@ -39,6 +39,8 @@ public interface UserDAO {
 
     User updateUser(Long userId, String userName, String email, String fullName) throws UnknownUserException;
 
+    void updateUser(User user);
+
     void changePassword(Long userId, String newPassword) throws UnknownUserException;
 
     void addToGroup(Long userId, Long groupId) throws UnknownUserException;

@@ -3,6 +3,7 @@ package net.incongru.berkano.security.password.retrieval;
 import net.incongru.berkano.security.password.PasswordRetrievalStrategy;
 import net.incongru.berkano.user.User;
 import net.incongru.util.mail.Mailer;
+import net.incongru.util.mail.MailBean;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,16 +25,17 @@ public abstract class AbstractMailPasswordRetrievalStrategy implements PasswordR
 
     public void retrievePassword(User u) throws Exception {
         final Map map = new HashMap();
-        prepareMailContext(u, map);
-        mailer.mail(u.getEmail(), u.getFullName(), getMailSubject(), getTemplateName(), map);
+        final MailBean mail = new MailBean(u.getEmail(), u.getFullName(), getMailSubject(), getTemplateName(), map);
+        prepareMailContext(u, mail);
+        mailer.mail(mail);
     }
 
     /**
      * Use this method to change any setting of the user if needed and
      * add items in the map passed to the template engine.
      */
-    protected void prepareMailContext(User u, Map context) {
-        context.put("user", u);
+    protected void prepareMailContext(User u, MailBean mail) {
+        mail.getValues().put("user", u);
     }
 
     protected abstract String getMailSubject();
