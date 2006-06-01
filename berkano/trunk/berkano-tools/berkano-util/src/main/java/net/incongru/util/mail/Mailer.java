@@ -1,7 +1,5 @@
 package net.incongru.util.mail;
 
-import java.util.Map;
-
 /**
  *
  * @author greg
@@ -9,7 +7,5 @@ import java.util.Map;
  * @version $Revision: 1.2 $
  */
 public interface Mailer {
-    void mail(String toEmail, String toName, String subject, String templateName, Map values, String replyTo);
-
-    void mail(String toEmail, String toName, String subject, String templateName, Map values);
+    void mail(MailBean mail);
 }

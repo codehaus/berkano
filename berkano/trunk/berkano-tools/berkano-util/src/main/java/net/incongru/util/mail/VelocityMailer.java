@@ -5,8 +5,6 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
 
 import java.io.StringWriter;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * This simple tool allows sending emails whose content is taken from velocity templates.
@@ -30,11 +28,10 @@ public class VelocityMailer extends AbstractMailer {
         this.velocityEngine = velocityEngine;
     }
 
-    public void mail(String toEmail, String toName, String subject, String templateName, Map values, String replyTo) {
-        final Context ctx = new VelocityContext(values);
+    public void mail(MailBean mail) {
+        final Context ctx = new VelocityContext(mail.getValues());
         final VelocityTemplateEngine engine = new VelocityTemplateEngine(velocityEngine, ctx);
-        final Locale locale = localizer.resolveLocale();
-        renderAndSendMail(engine, toEmail, toName, subject, templateName, locale, replyTo);
+        renderAndSendMail(engine, mail);
     }
 
     private static final class VelocityTemplateEngine implements TemplateEngine {

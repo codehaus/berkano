@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  *
@@ -28,11 +27,11 @@ public class FreemarkerMailer extends AbstractMailer {
         this.freemarkerCfg = freemarkerCfg;
     }
 
-    public void mail(String toEmail, String toName, String subject, String templateName, Map values, String replyTo) {
-        final SimpleHash model = new SimpleHash(values);
-        final Locale locale = localizer.resolveLocale();
+    public void mail(MailBean mail) {
+        final SimpleHash model = new SimpleHash(mail.getValues());
+        final Locale locale = getLocale(mail);
         final FreemarkerTemplateEngine engine = new FreemarkerTemplateEngine(freemarkerCfg, locale, model);
-        renderAndSendMail(engine, toEmail, toName, subject, templateName, locale, replyTo);
+        renderAndSendMail(engine, mail);
     }
 
     private static final class FreemarkerTemplateEngine implements TemplateEngine {

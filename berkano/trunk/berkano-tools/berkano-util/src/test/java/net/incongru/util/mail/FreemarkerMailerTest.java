@@ -38,7 +38,7 @@ public class FreemarkerMailerTest extends MockObjectTestCase {
 
     public void testCanProcessTemplates() throws Exception {
         final FakeMailer mailer = new FakeMailer(new DummyMailLocalizer(Locale.PRC), (MailConfig) mailCfg.proxy(), freemarkerCfg);
-        mailer.mail("test@test.com", "Unit Test", "Testing", "test.ftl", Collections.singletonMap("user", "Unit Test"));
+        mailer.mail(new MailBean("test@test.com", "Unit Test", "Testing", "test.ftl", Collections.singletonMap("user", "Unit Test")));
         assertNotNull(mailer.email);
         TestSupport.assertFieldEquals(mailer.email, "html", "Unit Test, this is the test-html.ftl template");
         TestSupport.assertFieldEquals(mailer.email, "text", "Unit Test, this is the test-text.ftl template");
@@ -46,7 +46,7 @@ public class FreemarkerMailerTest extends MockObjectTestCase {
 
     public void testFreemarkerIsASmartAssAndCanFindLocalizedTemplates() throws Exception {
         final FakeMailer mailer = new FakeMailer(new DummyMailLocalizer(new Locale("es", "AR")), (MailConfig) mailCfg.proxy(), freemarkerCfg);
-        mailer.mail("test@test.com", "Unit Test", "Testing", "test.ftl", Collections.singletonMap("user", "Unit Test"));
+        mailer.mail(new MailBean("test@test.com", "Unit Test", "Testing", "test.ftl", Collections.singletonMap("user", "Unit Test")));
         assertNotNull(mailer.email);
         TestSupport.assertFieldEquals(mailer.email, "html", "Unit Test, this is the test-html.ftl template");
         TestSupport.assertFieldEquals(mailer.email, "text", "Unit Test, eso es la test-text.ftl templata");

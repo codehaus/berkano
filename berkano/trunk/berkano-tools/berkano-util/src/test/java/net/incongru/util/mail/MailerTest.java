@@ -10,7 +10,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Collections;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * Actually tests the AbstractMailer class, but since I'm a lazy ass, I called this
@@ -33,10 +32,42 @@ public class MailerTest extends MockObjectTestCase {
         mailConfig = mock(MailConfig.class);
 
         mailer = new AbstractMailer(MailLocalizer.NULL, (MailConfig) mailConfig.proxy()) {
-            public void mail(String toEmail, String toName, String subject, String templateName, Map values, String replyTo) {
-                renderAndSendMail(engineProxy, toEmail, toName, subject, templateName, Locale.ENGLISH, replyTo);
+            public void mail(MailBean mail) {
+                renderAndSendMail(engineProxy, mail);
             }
         };
+    }
+
+    public void testFromShouldComeFromConfigIfNotSpecified() {
+        mailConfig.expects(once()).method("getMailHost").withNoArguments().will(returnValue("localhost"));
+        mailConfig.expects(once()).method("getFromName").withNoArguments().will(returnValue("configfrom"));
+        mailConfig.expects(once()).method("getFromEmail").withNoArguments().will(returnValue("configfrom@localhost"));
+
+        engine.expects(once()).method("templateExists").with(eq("tmpl-text.vm")).will(returnValue(true));
+        engine.expects(once()).method("templateExists").with(eq("tmpl-html.vm")).will(returnValue(true));
+        engine.expects(once()).method("renderTemplate").with(eq("tmpl-text.vm")).will(returnValue("blabla"));
+        engine.expects(once()).method("renderTemplate").with(eq("tmpl-html.vm")).will(returnValue("blabla"));
+
+        FakeMailer fakeMailer = new FakeMailer(MailLocalizer.NULL, (MailConfig) mailConfig.proxy());
+        fakeMailer.mail(new MailBean("foo@bar.com", "test", "test", "tmpl", Collections.EMPTY_MAP, "reply@bar.com"));
+        Email emailToSend = fakeMailer.emailToSend;
+        assertEquals("configfrom", emailToSend.getFromAddress().getPersonal());
+        assertEquals("configfrom@localhost", emailToSend.getFromAddress().getAddress());
+    }
+
+    public void testFromShouldNotComeFromConfigIfSpecified() {
+        mailConfig.expects(once()).method("getMailHost").withNoArguments().will(returnValue("localhost"));
+
+        engine.expects(once()).method("templateExists").with(eq("tmpl-text.vm")).will(returnValue(true));
+        engine.expects(once()).method("templateExists").with(eq("tmpl-html.vm")).will(returnValue(true));
+        engine.expects(once()).method("renderTemplate").with(eq("tmpl-text.vm")).will(returnValue("blabla"));
+        engine.expects(once()).method("renderTemplate").with(eq("tmpl-html.vm")).will(returnValue("blabla"));
+
+        FakeMailer fakeMailer = new FakeMailer(MailLocalizer.NULL, (MailConfig) mailConfig.proxy());
+        fakeMailer.mail(new MailBean("foo@bar.com", "test", "test", "tmpl", Collections.EMPTY_MAP, "reply@bar.com", "customfrom@localhost", "customfrom"));
+        Email emailToSend = fakeMailer.emailToSend;
+        assertEquals("customfrom", emailToSend.getFromAddress().getPersonal());
+        assertEquals("customfrom@localhost", emailToSend.getFromAddress().getAddress());
     }
 
     public void testSubjectIsTranslated() throws MessagingException {
@@ -55,7 +86,7 @@ public class MailerTest extends MockObjectTestCase {
         localizer.expects(once()).method("resolveLocale").withNoArguments().will(returnValue(Locale.FRANCE));
         localizer.expects(once()).method("getSubject").with(eq("subject"), eq(Locale.FRANCE)).will(returnValue("*subject*"));
 
-        fakeMailer.mail("to@kiala.com", "to", "subject", "tmpl", Collections.EMPTY_MAP);
+        fakeMailer.mail(new MailBean("to@kiala.com", "to", "subject", "tmpl", Collections.EMPTY_MAP));
         assertNotNull(fakeMailer.emailToSend);
         assertNotNull(fakeMailer.emailToSend.getSubject());
         assertEquals("*subject*", fakeMailer.emailToSend.getSubject());
@@ -179,7 +210,7 @@ public class MailerTest extends MockObjectTestCase {
 
         FakeMailer fakeMailer = new FakeMailer((MailLocalizer) localizer.proxy(), (MailConfig) mailConfig.proxy());
 
-        fakeMailer.mail("to@toto.too", "toto", "yo!", "test-tmpl", Collections.EMPTY_MAP);
+        fakeMailer.mail(new MailBean("to@toto.too", "toto", "yo!", "test-tmpl", Collections.EMPTY_MAP));
         ((FakeMailer) fakeMailer).emailToSend.buildMimeMessage();
         MimeMessage mail = ((FakeMailer) fakeMailer).emailToSend.getMimeMessage();
         assertEquals(1, mail.getReplyTo().length);
@@ -201,7 +232,7 @@ public class MailerTest extends MockObjectTestCase {
         localizer.stubs();
 
         FakeMailer fakeMailer = new FakeMailer((MailLocalizer) localizer.proxy(), (MailConfig) mailConfig.proxy());
-        fakeMailer.mail("to@toto.too", "toto", "yo!", "test-tmpl", Collections.EMPTY_MAP, "reply@toto.too");
+        fakeMailer.mail(new MailBean("to@toto.too", "toto", "yo!", "test-tmpl", Collections.EMPTY_MAP, "reply@toto.too"));
         ((FakeMailer) fakeMailer).emailToSend.buildMimeMessage();
         MimeMessage mail = ((FakeMailer) fakeMailer).emailToSend.getMimeMessage();
         assertEquals(1, mail.getReplyTo().length);
@@ -216,8 +247,8 @@ public class MailerTest extends MockObjectTestCase {
             super(localizer, mailConfig);
         }
 
-        public void mail(String toEmail, String toName, String subject, String templateName, Map values, String replyTo) {
-            renderAndSendMail(engineProxy, toEmail, toName, subject, templateName, localizer.resolveLocale(), replyTo);
+        public void mail(MailBean mail) {
+            renderAndSendMail(engineProxy, mail);
         }
 
         protected void sendMail(Email email) throws EmailException {
