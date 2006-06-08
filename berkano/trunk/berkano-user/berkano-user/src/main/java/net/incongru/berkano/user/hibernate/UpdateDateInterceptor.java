@@ -10,6 +10,9 @@ import java.util.Date;
 /**
  * Maintains the creationDate and updateDate fields of UserImpl
  *
+ * TODO : this might be better as an EventListener? Not sure there's a real difference in "betterness",
+ * but the interfaces of listeners are simpler/cleaner.
+ *
  * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $
