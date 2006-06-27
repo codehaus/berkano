@@ -1,2 +1,0 @@
-this is another dummy file, testing subversion stuff
-modified and moved
