@@ -3,13 +3,13 @@
     <parent>
         <artifactId>berkano-taglib-parent</artifactId>
         <groupId>berkano</groupId>
-        <version>20060221b</version>
+        <version>SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>berkano-taglib-unit</artifactId>
     <packaging>jar</packaging>
     <name>Berkano Taglib Unit</name>
-    <version>20060221b</version>
+    <version>SNAPSHOT</version>
     <description>A small test framework for taglibs.</description>
 
     <dependencies>

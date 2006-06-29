@@ -23,7 +23,7 @@ class WebWorkI18nHelper {
             Object o = it.next();
             if (o instanceof TextProvider) {
                 TextProvider tp = (TextProvider) o;
-                result = tp.getText(key, null, null);
+                result = tp.getText(key);
                 break;
             }
         }

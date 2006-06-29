@@ -4,7 +4,7 @@
     <groupId>berkano</groupId>
     <artifactId>puzzles</artifactId>
     <packaging>jar</packaging>
-    <version>0.2-SNAPSHOT</version>
+    <version>SNAPSHOT</version>
     <name>Puzzles</name>
     <url>http://dasouk.free.fr/puzzles/</url>
 
@@ -61,7 +61,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-util</artifactId>
-            <version>20060221b</version>
+            <version>SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -83,14 +83,14 @@
     <distributionManagement>
         <repository>
             <id>codehaus</id>
-            <name>beaver.codehaus.org</name>
-            <url>scpexe://beaver.codehaus.org:/dist/</url>
+            <name>codehaus.org</name>
+            <url>dav:https://dav.codehaus.org:/dist/</url>
         </repository>
-        <site>
-            <id>codehaus</id>
-            <name>codehaus</name>
-            <url>scp://beaver.codehaus.org/home/projects/berkano/public_html/puzzles</url>
-        </site>
+        <!--<site>-->
+            <!--<id>codehaus</id>-->
+            <!--<name>codehaus</name>-->
+            <!--<url>scp://beaver.codehaus.org/home/projects/berkano/public_html/puzzles</url>-->
+        <!--</site>-->
     </distributionManagement>
     <reporting>
         <plugins>

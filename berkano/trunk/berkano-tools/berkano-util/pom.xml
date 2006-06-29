@@ -4,9 +4,9 @@
     <parent>
         <artifactId>berkano-parent</artifactId>
         <groupId>berkano</groupId>
-        <version>20060221b</version>
+        <version>SNAPSHOT</version>
     </parent>
-    <version>20060526</version>
+    <version>SNAPSHOT</version>
     <artifactId>berkano-util</artifactId>
     <name>Berkano Utilities</name>
     <description>A bunch of utilities of various purposes. Please see docs for details.</description>

@@ -46,29 +46,18 @@
 
     <distributionManagement>
         <repository>
-            <id>codehaus</id>
-            <name>beaver.codehaus.org</name>
-            <url>sftp://beaver.codehaus.org:/dist/</url>
+            <id>codehaus-dav-dist</id>
+            <name>codehaus.org</name>
+            <url>dav:https://dav.codehaus.org:/dist/</url>
         </repository>
-        <site>
-            <id>codehaus</id>
-            <name>codehaus</name>
-            <url>sftp://beaver.codehaus.org/home/projects/berkano/public_html/maven</url>
-        </site>
+        <!--<site>-->
+            <!--<id>codehaus</id>-->
+            <!--<name>codehaus</name>-->
+            <!--<url>sftp://beaver.codehaus.org/home/projects/berkano/public_html/maven</url>-->
+        <!--</site>-->
     </distributionManagement>
 
     <repositories>
-        <repository>
-            <id>codehaus</id>
-            <name>codehaus</name>
-            <url>http://dist.codehaus.org</url>
-            <layout>default</layout>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </snapshots>
-        </repository>
         <repository>
             <id>codehaus-legacy</id>
             <name>codehaus-legacy</name>
@@ -80,9 +69,40 @@
                 <checksumPolicy>warn</checksumPolicy>
             </snapshots>
         </repository>
+        <repository>
+            <id>codehaus</id>
+            <name>codehaus</name>
+            <url>http://dist.codehaus.org</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+        <!-- webdav wagon is here -->
+        <repository>
+            <id>apache-snapshots</id>
+            <url>http://people.apache.org/maven-snapshot-repository</url>
+            <!--<snapshots>-->
+                <!--<enabled>true</enabled>-->
+                <!--<updatePolicy>always</updatePolicy>-->
+            <!--</snapshots>-->
+        </repository>
     </repositories>
 
     <pluginRepositories>
+        <pluginRepository>
+            <id>codehaus-plugin-legacy</id>
+            <url>http://dist.codehaus.org/</url>
+            <layout>legacy</layout>
+            <releases>
+                <updatePolicy>daily</updatePolicy>
+            </releases>
+            <snapshots>
+                <updatePolicy>daily</updatePolicy>
+            </snapshots>
+        </pluginRepository>
         <pluginRepository>
             <id>codehaus-plugin</id>
             <url>http://dist.codehaus.org/</url>
@@ -122,6 +142,13 @@
                 </configuration>
             </plugin>
         </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav</artifactId>
+                <version>1.0-beta-1-SNAPSHOT</version>
+            </extension>
+        </extensions>
     </build>
 
     <dependencies>
@@ -138,20 +165,20 @@
 
         <module>berkano-tools/berkano-util</module>
         <module>berkano-tools/jodatime-hibernate</module>
-        <module>berkano-tools/taskman</module>
+        <!--<module>berkano-tools/taskman</module>-->
 
         <module>berkano-tools/taglib-unit</module>
         <module>berkano-tools/beandisplaytag</module>
         <module>berkano-tools/kiss-taglib</module>
 
-        <module>berkano-bookmarks/berkano-bookmarks</module>
+        <!--<module>berkano-bookmarks/berkano-bookmarks</module>-->
 
         <module>berkano-user/berkano-user</module>
         <module>berkano-user/berkano-user-mgt-webwork</module>
         <module>berkano-user/berkano-seraph</module>
         <module>berkano-user/berkano-seraph-taglib</module>
 
-        <module>puzzles/puzzles-core</module>
+        <!--<module>puzzles/puzzles-core</module>-->
     </modules>
 
     <reporting>

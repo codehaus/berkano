@@ -5,34 +5,21 @@
     <parent>
         <artifactId>berkano-taglib-parent</artifactId>
         <groupId>berkano</groupId>
-        <version>20060221b</version>
+        <version>SNAPSHOT</version>
     </parent>
     <artifactId>berkano-seraph-taglib</artifactId>
     <name>Berkano Seraph Taglib</name>
     <description></description>
+
+    <properties>
+        <taglibURI>http://incongru.net/seraphtaglib</taglibURI>
+    </properties>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>xdoclet</groupId>
                 <artifactId>maven2-xdoclet2-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>xdoclet-plugins</groupId>
-                        <artifactId>xdoclet-plugin-web</artifactId>
-                        <version>1.0.4-SNAPSHOT</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>javax.servlet</groupId>
-                        <artifactId>servlet-api</artifactId>
-                        <version>2.4</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>javax.servlet</groupId>
-                        <artifactId>jsp-api</artifactId>
-                        <version>2.0</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
@@ -47,13 +34,13 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-seraph</artifactId>
-            <version>20060221b</version>
+            <version>SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-taglib-unit</artifactId>
-            <version>20060221b</version>
+            <version>SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

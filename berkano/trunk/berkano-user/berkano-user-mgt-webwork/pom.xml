@@ -6,7 +6,7 @@
     <parent>
         <artifactId>berkano-parent</artifactId>
         <groupId>berkano</groupId>
-        <version>20060221b</version>
+        <version>SNAPSHOT</version>
     </parent>
     <artifactId>berkano-user-mgt-webwork</artifactId>
     <version>SNAPSHOT</version>
@@ -54,7 +54,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-user</artifactId>
-            <version>20060221b</version>
+            <version>SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -66,13 +66,13 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-seraph</artifactId>
-            <version>20060221b</version>
+            <version>SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-bookmarks</artifactId>
-            <version>20060221b</version>
+            <version>SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

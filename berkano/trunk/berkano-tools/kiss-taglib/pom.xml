@@ -3,7 +3,7 @@
     <parent>
         <artifactId>berkano-taglib-parent</artifactId>
         <groupId>berkano</groupId>
-        <version>20060221b</version>
+        <version>SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>berkano-kisstags</artifactId>
@@ -11,11 +11,15 @@
     <name>Berkano Kiss Tags</name>
     <description>The KISS tag library is a collection of very simple JSP tags, with a very focused/limited usage.</description>
 
+    <properties>
+        <taglibURI>http://incongru.net/kisstaglib</taglibURI>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-taglib-unit</artifactId>
-            <version>20060221b</version>
+            <version>SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -24,27 +28,6 @@
             <plugin>
                 <groupId>xdoclet</groupId>
                 <artifactId>maven2-xdoclet2-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>xdoclet</groupId>
-                <artifactId>maven2-xdoclet2-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>xdoclet-plugins</groupId>
-                        <artifactId>xdoclet-plugin-web</artifactId>
-                        <version>1.0.4-SNAPSHOT</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>javax.servlet</groupId>
-                        <artifactId>servlet-api</artifactId>
-                        <version>2.4</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>javax.servlet</groupId>
-                        <artifactId>jsp-api</artifactId>
-                        <version>2.0</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>

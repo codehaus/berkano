@@ -59,7 +59,6 @@ public class XStreamType implements UserType {
         // from a comment on http://www.hibernate.org/76.html :
         StringReader r = new StringReader(xml);
         st.setCharacterStream(index, r, xml.length());
-
     }
 
     protected XStream getXStream() {
