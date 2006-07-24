@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <parent>
-        <artifactId>berkano-parent</artifactId>
-        <groupId>berkano</groupId>
-        <version>SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.incongru.berkano</groupId>
+        <artifactId>berkano-parent</artifactId>
+        <version>1-SNAPSHOT</version>
+    </parent>
     <artifactId>jodatime-hibernate</artifactId>
-    <name>Berkano Joda-Time/Hibernate</name>
     <version>SNAPSHOT</version>
+    <name>Berkano Joda-Time/Hibernate</name>
     <description>Joda-Time/Hibernate UserType implementations</description>
 
     <build>
@@ -27,19 +27,16 @@
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <version>1.2</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate</artifactId>
-            <version>3.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
-            <version>1.7.3.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

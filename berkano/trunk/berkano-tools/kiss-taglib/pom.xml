@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <parent>
-        <artifactId>berkano-taglib-parent</artifactId>
-        <groupId>berkano</groupId>
-        <version>SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.incongru.berkano</groupId>
+        <artifactId>berkano-taglib-parent</artifactId>
+        <version>1-SNAPSHOT</version>
+    </parent>
     <artifactId>berkano-kisstags</artifactId>
-    <packaging>jar</packaging>
+    <version>SNAPSHOT</version>
     <name>Berkano Kiss Tags</name>
     <description>The KISS tag library is a collection of very simple JSP tags, with a very focused/limited usage.</description>
 
@@ -17,9 +17,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>berkano</groupId>
+            <groupId>net.incongru.berkano</groupId>
             <artifactId>berkano-taglib-unit</artifactId>
-            <version>SNAPSHOT</version>
+            <version>${pom.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

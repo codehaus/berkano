@@ -1,14 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <parent>
-        <artifactId>berkano-parent</artifactId>
-        <groupId>berkano</groupId>
-        <version>SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>berkano-taglib-parent</artifactId>
-    <name>Berkano Parent Taglib POM</name>
+    <parent>
+        <groupId>net.incongru.berkano</groupId>
+        <artifactId>berkano-parent</artifactId>
+        <version>1-SNAPSHOT</version>
+    </parent>
     <packaging>pom</packaging>
+    <artifactId>berkano-taglib-parent</artifactId>
+    <version>1-SNAPSHOT</version>
+    <name>Berkano Parent Taglib POM</name>
+    <description></description>
 
     <pluginRepositories>
         <!-- needed for the jelly snapshots -->
@@ -16,6 +18,18 @@
             <id>apache-legacy</id>
             <url>http://cvs.apache.org/repository</url>
             <layout>legacy</layout>
+        </pluginRepository>
+        <!-- needed for the xdoclet2 plugin until it is deployed to a proper m2 repo -->
+        <pluginRepository>
+            <id>codehaus-plugin-legacy</id>
+            <url>http://dist.codehaus.org/</url>
+            <layout>legacy</layout>
+            <releases>
+                <updatePolicy>daily</updatePolicy>
+            </releases>
+            <snapshots>
+                <updatePolicy>daily</updatePolicy>
+            </snapshots>
         </pluginRepository>
     </pluginRepositories>
 
@@ -98,7 +112,6 @@
         <dependency>
             <groupId>httpunit</groupId>
             <artifactId>httpunit</artifactId>
-            <version>1.6</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -122,25 +135,21 @@
         <dependency>
             <groupId>commons-el</groupId>
             <artifactId>commons-el</artifactId>
-            <version>1.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
-            <version>1.0.4</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
-            <version>2.4</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jsp-api</artifactId>
-            <version>2.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

@@ -3,11 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
+        <groupId>net.incongru.berkano</groupId>
         <artifactId>berkano-taglib-parent</artifactId>
-        <groupId>berkano</groupId>
-        <version>SNAPSHOT</version>
+        <version>1-SNAPSHOT</version>
     </parent>
     <artifactId>berkano-seraph-taglib</artifactId>
+    <version>SNAPSHOT</version>
     <name>Berkano Seraph Taglib</name>
     <description></description>
 
@@ -26,21 +27,20 @@
 
     <dependencies>
         <dependency>
-            <groupId>berkano</groupId>
+            <groupId>seraph</groupId>
             <artifactId>seraph</artifactId>
-            <version>0.7.17-berkano-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>berkano</groupId>
+            <groupId>net.incongru.berkano</groupId>
             <artifactId>berkano-seraph</artifactId>
-            <version>SNAPSHOT</version>
+            <version>${pom.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>berkano</groupId>
+            <groupId>net.incongru.berkano</groupId>
             <artifactId>berkano-taglib-unit</artifactId>
-            <version>SNAPSHOT</version>
+            <version>${pom.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

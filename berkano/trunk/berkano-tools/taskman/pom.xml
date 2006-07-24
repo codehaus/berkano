@@ -2,14 +2,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
+        <groupId>net.incongru.berkano</groupId>
         <artifactId>berkano-parent</artifactId>
-        <groupId>berkano</groupId>
-        <version>SNAPSHOT</version>
+        <version>1-SNAPSHOT</version>
     </parent>
-
     <artifactId>taskman</artifactId>
+    <version>SNAPSHOT</version>
     <name>Berkano Simple Task Manager</name>
-    <packaging>jar</packaging>
+    <description></description>
 
     <build>
         <resources>
@@ -24,64 +24,57 @@
 
     <dependencies>
         <dependency>
-            <groupId>berkano</groupId>
+            <groupId>net.incongru.berkano</groupId>
             <artifactId>berkano-util</artifactId>
-            <version>SNAPSHOT</version>
+            <version>${pom.version}</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <version>1.2</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time-hibernate</artifactId>
-            <version>0.8</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
-            <groupId>berkano</groupId>
+            <groupId>net.incongru.berkano</groupId>
             <artifactId>jodatime-hibernate</artifactId>
-            <version>SNAPSHOT</version>
+            <version>${pom.version}</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate</artifactId>
-            <version>3.1</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>xstream</groupId>
             <artifactId>xstream</artifactId>
-            <version>1.1.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>xpp3</groupId>
             <artifactId>xpp3</artifactId>
-            <version>1.1.3.3</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
-            <version>10.1.1.0</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>1.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
