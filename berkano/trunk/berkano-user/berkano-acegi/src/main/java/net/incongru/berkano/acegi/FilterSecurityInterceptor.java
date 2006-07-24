@@ -1,10 +1,10 @@
 package net.incongru.berkano.acegi;
 
-import net.sf.acegisecurity.AccessDecisionManager;
-import net.sf.acegisecurity.AuthenticationManager;
-import net.sf.acegisecurity.intercept.web.FilterInvocationDefinitionSource;
-import org.springframework.context.ApplicationEventPublisher;
+import org.acegisecurity.AccessDecisionManager;
+import org.acegisecurity.AuthenticationManager;
+import org.acegisecurity.intercept.web.FilterInvocationDefinitionSource;
 import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ApplicationEventPublisher;
 
 /**
  * A simple wrapper around Acegi's FilterSecurityInterceptor which
@@ -14,7 +14,7 @@ import org.springframework.context.ApplicationEvent;
  * @author $Author: $ (last edit)
  * @version $Revision: $
  */
-public class FilterSecurityInterceptor extends net.sf.acegisecurity.intercept.web.FilterSecurityInterceptor {
+public class FilterSecurityInterceptor extends org.acegisecurity.intercept.web.FilterSecurityInterceptor {
     public FilterSecurityInterceptor(AuthenticationManager authenticationManager, AccessDecisionManager accessDecisionManager, FilterInvocationDefinitionSource filterInvocationDefinitionSource) {
         setObjectDefinitionSource(filterInvocationDefinitionSource);
         setAccessDecisionManager(accessDecisionManager);
@@ -26,20 +26,18 @@ public class FilterSecurityInterceptor extends net.sf.acegisecurity.intercept.we
         });
     }
 
-
-
 // objectDefinitionSource (
 //                CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
 //                \A/parcel/.*\Z=ROLE_ADMIN
 
 //
 //      authenticationManager -> DaoAuthenticationProvider
-//                                    --> authenticationDao(net.sf.acegisecurity.providers.dao.memory.InMemoryDaoImpl)
+//                                    --> authenticationDao(org.acegisecurity.providers.dao.memory.InMemoryDaoImpl)
 //                                        --> userMap("admin=password,ROLE_ADMIN")
 //
-//      accessDecisionManager(net.sf.acegisecurity.vote.UnanimousBased)
+//      accessDecisionManager(org.acegisecurity.vote.UnanimousBased)
 //                            -> allowIfAllAbstainDecisions(false)
-//                               + decisionVoters[roleVoter (net.sf.acegisecurity.vote.RoleVoter)]
+//                               + decisionVoters[roleVoter (org.acegisecurity.vote.RoleVoter)]
 
 
 }
