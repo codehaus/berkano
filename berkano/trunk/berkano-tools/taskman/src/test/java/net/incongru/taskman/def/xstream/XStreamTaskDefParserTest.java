@@ -1,7 +1,7 @@
-package net.incongru.taskman.def;
+package net.incongru.taskman.def.xstream;
 
 import net.incongru.taskman.AbstractTaskManTestCase;
-import net.incongru.taskman.def.xstream.XStreamTaskDefParser;
+import net.incongru.taskman.def.TaskDef;
 
 import java.io.FileInputStream;
 import java.io.IOException;
