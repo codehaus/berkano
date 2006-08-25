@@ -16,7 +16,7 @@
     <@ww.iterator value="app.preferencesInfo">
     <#switch preferenceWidget.name>
     <#case 'dropdown'>
-      <@ww.select name="%{keyName}" id="pref-${keyName}" list="allowedValues" listKey="key" listValue="getText(value)" label="%{getText(keyName)}"/>
+      <@ww.select name="${keyName}" id="pref-${keyName}" list="allowedValues" listKey="key" listValue="getText(value)" label="%{getText(keyName)}"/>
       <br />
       <#break>
     <#case 'combobox'>
@@ -24,14 +24,14 @@
       <br />
       <#break>
     <#case 'radios'>
-      <@ww.radio name="%{keyName}" id="pref-${keyName}" list="allowedValues" listKey="key" listValue="getText(value)" label="%{getText(keyName)}"/>
+      <@ww.radio name="${keyName}" id="pref-${keyName}" list="allowedValues" listKey="key" listValue="getText(value)" label="%{getText(keyName)}"/>
       <br />
       <#break>
     <#case 'radios-and-text'>
       <div class="radios-and-text">
-      <@ww.radio name="%{${keyName}predefined}" id="pref-${keyName}-predefined" value="%{${keyName}}" list="allowedValues" listKey="key" listValue="getText(value)" label="%{getText(keyName)}" onclick="${keyName}.readOnly=true;${keyName}.value=this.value"/>
+      <@ww.radio name="${keyName}predefined" id="pref-${keyName}-predefined" value="${keyName}" list="allowedValues" listKey="key" listValue="getText(value)" label="%{getText(keyName)}" onclick="${keyName}.readOnly=true;${keyName}.value=this.value"/>
       <input type="radio" name="${keyName}predefined" value="" id="pref-${keyName}-custom" onclick="${keyName}.readOnly=false"/>
-      <@ww.textfield name="%{keyName}" id="pref-${keyName}" value="%{${keyName}}"/>
+      <@ww.textfield name="${keyName}" id="pref-${keyName}" value="%{${keyName}}"/>
       </div>
       <br />
       <#break>
@@ -40,7 +40,7 @@
       <br />
       <#break>
     <#case 'text'>
-      <@ww.textfield name="%{keyName}" id="pref-${keyName}" label="%{getText(keyName)}" value="%{${keyName}}"/>
+      <@ww.textfield name="${keyName}" id="pref-${keyName}" label="%{getText(keyName)}" value="%{${keyName}}"/>
       <br />
       <#break>
     <#default>
