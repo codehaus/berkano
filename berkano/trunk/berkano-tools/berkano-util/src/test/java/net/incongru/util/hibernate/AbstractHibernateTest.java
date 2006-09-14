@@ -45,6 +45,10 @@ public abstract class AbstractHibernateTest extends TestCase {
         cfg.setProperty("hibernate.connection.driver_class", EmbeddedDriver.class.getName());
         cfg.setProperty("hibernate.connection.url", DB_URL);
         cfg.setProperty("hibernate.show_sql", Boolean.toString(SHOW_SQL));
+        cfg.setProperty("hibernate.cache.provider_class", "org.hibernate.cache.NoCacheProvider");
+        cfg.setProperty("hibernate.cache.use_second_level_cache", "false");
+        cfg.setProperty("hibernate.cache.use_query_cache", "false");
+
         for (String file : getHbmFiles()) {
             cfg.addResource(file, TestCase.class.getClassLoader());
         }

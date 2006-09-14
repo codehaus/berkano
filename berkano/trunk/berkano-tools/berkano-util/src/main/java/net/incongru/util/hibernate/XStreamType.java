@@ -47,17 +47,24 @@ public class XStreamType implements UserType {
         //Clob clob = rs.getClob(names[0]);
         //Reader reader = clob.getCharacterStream();
         // from a comment on http://www.hibernate.org/76.html :Clob clob = rs.getClob(names[0]);
-        Reader reader = rs.getCharacterStream(names[0]);
-        XStream xStream = getXStream();
+        final Reader reader = rs.getCharacterStream(names[0]);
+        if (reader == null) {
+            return null;
+        }
+        final XStream xStream = getXStream();
         return xStream.fromXML(reader);
     }
 
     public void nullSafeSet(PreparedStatement st, Object value, int index) throws HibernateException, SQLException {
-        XStream xStream = getXStream();
-        String xml = xStream.toXML(value);
+        if (value == null) {
+            st.setNull(index, Types.CLOB);
+            return;
+        }
+        final XStream xStream = getXStream();
+        final String xml = xStream.toXML(value);
 //        st.setClob(index, Hibernate.createClob(xml)); // seems to fail with mysql
         // from a comment on http://www.hibernate.org/76.html :
-        StringReader r = new StringReader(xml);
+        final StringReader r = new StringReader(xml);
         st.setCharacterStream(index, r, xml.length());
     }
 

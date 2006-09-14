@@ -82,4 +82,60 @@ public class XStreamTypeTest extends AbstractHibernateTest {
             s.close();
         }
     }
+
+    public void testWithNull() throws Exception {
+        // first insert a dummy row with an actual NULL value (otherwise we might insert one with hibernate that's actually <null/>, i.e transformed by xstream)
+        Session s = sessionFactory.openSession();
+        Connection conn = s.connection();
+        Statement stmt = conn.createStatement();
+        int res = stmt.executeUpdate("INSERT INTO dummy (ID, NAME) VALUES (10001, 'no_complex')");
+        assertEquals(1, res);
+        conn.close();
+        s.close();
+
+        DummyBean dummy = new DummyBean();
+        dummy.setComplexObject(null);
+        dummy.setName("test");
+
+        s = sessionFactory.openSession();
+        try {
+            s.save(dummy);
+            s.flush();
+        } finally {
+            s.close();
+        }
+
+        s = sessionFactory.openSession();
+        try {
+            List resList = s.createQuery("from pouet in class DummyBean order by name").list();
+            assertEquals(2, resList.size());
+            DummyBean res1 = (DummyBean) resList.get(0);
+            assertEquals("no_complex", res1.getName());
+            assertEquals(null, res1.getComplexObject());
+            DummyBean res2 = (DummyBean) resList.get(1);
+            assertEquals("test", res2.getName());
+            assertEquals(null, res2.getComplexObject());
+        } finally {
+            s.close();
+        }
+
+        // test on jdbc
+        try {
+            s = sessionFactory.openSession();
+            conn = s.connection();
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM dummy ORDER BY name");
+            assertTrue(rs.next());
+            assertEquals("no_complex", rs.getString("name"));
+            String xml = rs.getString("complex_object");
+            assertEquals(null, xml);
+            assertTrue(rs.next());
+            assertEquals("test", rs.getString("name"));
+            xml = rs.getString("complex_object");
+            assertEquals(null, xml);
+            assertFalse(rs.next());
+        } finally {
+            s.close();
+        }
+    }
 }
