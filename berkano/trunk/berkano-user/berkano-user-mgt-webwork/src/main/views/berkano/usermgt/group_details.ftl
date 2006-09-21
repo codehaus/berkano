@@ -13,7 +13,7 @@
 <h2><@ww.text name="groupdetails.roles.title"/></h2>
 <form action="group.roles.action" method="post">
   <fieldset id="berkano-roles">
-  <@ww.hidden name="groupId" value="group.groupId"/>
+  <@ww.hidden name="groupId" value="%{group.groupId}"/>
   <@ww.checkboxlist label="%{getText('groupdetails.roles.label')}" name="roleNames" id="roleNames" value="group.roles.{name}" list="allRoles" listKey="name" listValue="name" /><br />
   <@ww.submit value="%{getText('groupdetails.roles.submit')}" />
   </fieldset>
@@ -40,7 +40,7 @@
 <h2><@ww.text name="groupdetails.property.add"><@ww.param value="group.groupName"/></@ww.text></h2>
 <form action="group.addproperty.action" method="post">
 <fieldset>
-<@ww.hidden name="groupId" value="group.groupId"/>
+<@ww.hidden name="groupId" value="%{group.groupId}"/>
 <p><@ww.text name="groupdetails.property.add.hint"/></p>
 <@ww.textfield label="%{getText('groupdetails.property.add.name')}" name="propertyKey" id="propertyKey" /><br />
 <@ww.textfield label="%{getText('groupdetails.property.add.value')}" name="newPropertyValue" id="newPropertyValue" /><br />
