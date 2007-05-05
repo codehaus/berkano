@@ -1,0 +1,23 @@
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN"
+"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+<validators>
+    <!--
+    <field name="password">
+        <field-validator type="requiredstring"><message>password is mandatory</message></field-validator>
+    </field>
+    <field name="passwordConfirm">
+        <field-validator type="requiredstring"><message>passwordConfirm is mandatory</message></field-validator>
+    </field>
+    -->
+    <field name="email">
+        <field-validator type="requiredstring"><message>email is mandatory</message></field-validator>
+        <field-validator type="email"><message>email is not valid</message></field-validator>
+    </field>
+    <field name="fullName">
+        <field-validator type="requiredstring"><message>fullName is mandatory</message></field-validator>
+    </field>
+    <validator type="expression">
+        <param name="expression">password == passwordConfirm</param>
+        <message>Passwords don't match</message>
+    </validator>
+</validators>

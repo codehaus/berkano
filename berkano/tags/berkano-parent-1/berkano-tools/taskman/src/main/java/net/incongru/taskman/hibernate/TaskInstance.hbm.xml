@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="net.incongru.taskman.TaskInstanceImpl" table="taskinstance">
+        <id name="id" type="string" column="id">
+            <generator class="uuid"/>
+        </id>
+        <property name="name"/>
+        <property name="description"/>
+
+        <many-to-one name="taskDef" class="net.incongru.taskman.def.TaskDefImpl" cascade="none"/>
+
+        <property name="reporter"/>
+
+        <component name="assignee" class="net.incongru.taskman.AssigneeImpl">
+            <property name="name" column="assignee_name"/>
+            <property name="type" column="assignee_type" type="net.incongru.util.hibernate.EnumType"/>
+        </component>
+
+        <property name="dueDate" type="org.joda.time.contrib.hibernate.PersistentDateTime"/>
+        <property name="lastReminder" type="org.joda.time.contrib.hibernate.PersistentDateTime"/>
+
+        <map name="variables" table="taskinstance_variables" lazy="true">
+            <key column="taskinstance_id"/>
+            <index column="name" type="string"/>
+            <element column="value" type="net.incongru.util.hibernate.XStreamType"/>
+        </map>
+
+        <property name="status" type="net.incongru.util.hibernate.EnumType"/>
+
+        <list name="log" table="taskinstance_log" lazy="true">
+            <key column="taskinstance_id"/>
+            <index column="id"/>
+            <composite-element class="net.incongru.taskman.TaskLogImpl">
+                <property name="dateTime" type="org.joda.time.contrib.hibernate.PersistentDateTime"/>
+                <property name="taskEvent" type="net.incongru.util.hibernate.EnumType"/>
+                <property name="oldValue"/>
+                <property name="newValue"/>
+            </composite-element>
+        </list>
+    </class>
+</hibernate-mapping>

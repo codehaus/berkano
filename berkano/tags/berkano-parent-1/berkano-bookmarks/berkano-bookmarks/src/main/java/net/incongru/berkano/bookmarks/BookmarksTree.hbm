@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+Mapping file for the Category class of CaveatEmptor.
+
+Categories are versioned and we make some use of the
+DirectSetAccessor for immutable properties and properties
+that are covered with convenience methods that protect
+entity relationships (setChildren() vs. addChildren()).
+
+Interesting is the bidirectional one-to-many association
+that references parent and child categories. This is a
+real parent/child association, with full cascading
+enabled.
+
+There can never be two categories with the same name at
+the same "level", that is, they can't have the same parent
+category. This is protected with a unique constraint.
+
+@author Christian Bauer <christian@hibernate.org>
+-->
+<hibernate-mapping package="net.incongru.berkano.bookmarks" default-access="field">
+
+    <class name="TreeNode" table="TREE_NODE" lazy="true">
+        <id name="id" type="long" column="NODE_ID" unsaved-value="null" access="field">
+            <generator class="native"/>
+        </id>
+
+        <many-to-one name="parent" class="TreeNode" access="property" cascade="save-update, persist, merge" foreign-key="FK1_CATEGORY_PARENT_ID">
+            <column name="PARENT_NODE_ID" not-null="false" unique-key="UNIQUE_NAME_AT_LEVEL"/>
+        </many-to-one>
+        <set name="children" access="property" cascade="all" inverse="true">
+            <!--
+            collection-type="org.hibernate.ce.auction.persistence.NestedPersistentSetType" >
+            -->
+            <key column="PARENT_NODE_ID"/>
+            <one-to-many class="TreeNode"/>
+        </set>
+
+        <component name="bookmark" class="Bookmark" update="false">
+            <parent name="node"/>
+            <property name="id" column="BOOKMARK_ID"/>
+            <property name="link" column="BOOKMARK_HREF"/>
+            <property name="name" type="string">
+                <column name="BOOKMARK_NAME" not-null="true" length="255" unique-key="UNIQUE_NAME_AT_LEVEL"/>
+            </property>
+            <property name="description" column="BOOKMARK_DESC"/>
+        </component>
+
+    </class>
+
+</hibernate-mapping>
