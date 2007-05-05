@@ -4,7 +4,7 @@
     <parent>
         <groupId>net.incongru.berkano</groupId>
         <artifactId>berkano-parent</artifactId>
-        <version>1-SNAPSHOT</version>
+        <version>1</version>
     </parent>
     <artifactId>taskman</artifactId>
     <version>SNAPSHOT</version>
@@ -45,7 +45,7 @@
         <dependency>
             <groupId>net.incongru.berkano</groupId>
             <artifactId>jodatime-hibernate</artifactId>
-            <version>${pom.version}</version>
+            <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
 

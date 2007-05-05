@@ -3,7 +3,7 @@ package net.incongru.util.mail;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
 import org.jmock.Mock;
-import org.jmock.cglib.MockObjectTestCase;
+import org.jmock.MockObjectTestCase;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
