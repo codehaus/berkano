@@ -28,8 +28,8 @@
         <url>http://jira.codehaus.org/browse/BERKANO</url>
     </issueManagement>
     <scm>
-        <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/scm/berkano/trunk</connection>
-        <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/scm/berkano/trunk</developerConnection>
+        <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/berkano/trunk</connection>
+        <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/berkano/trunk</developerConnection>
     </scm>
     <ciManagement>
         <system>Continuum</system>
