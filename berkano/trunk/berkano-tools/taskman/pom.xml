@@ -6,7 +6,7 @@
         <version>1</version>
     </parent>
     <artifactId>taskman</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>Berkano Simple Task Manager</name>
     <description />
 
@@ -77,9 +77,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-  <scm>
-    <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/berkano/tags/taskman-1.0.0</connection>
-    <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/berkano/tags/taskman-1.0.0</developerConnection>
-  </scm>
 </project>
