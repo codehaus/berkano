@@ -424,7 +424,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>surefire-report-maven-plugin</artifactId>
-                <version>2.0-beta-2-SNAPSHOT</version>
+                <!--<version>2.0-beta-2-SNAPSHOT</version>-->
             </plugin>
             <!--plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -436,17 +436,17 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jdepend-maven-plugin</artifactId>
-                <version>2.0-beta-1-SNAPSHOT</version>
+                <!--<version>2.0-beta-1-SNAPSHOT</version>-->
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jxr-maven-plugin</artifactId>
-                <version>2.0-beta-2-SNAPSHOT</version>
+                <!--<version>2.0-beta-2-SNAPSHOT</version>-->
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>changes-maven-plugin</artifactId>
-                <version>2.0-beta-2-SNAPSHOT</version>
+                <!--<version>2.0-beta-2-SNAPSHOT</version>-->
                 <reportSets>
                     <reportSet>
                         <reports>
