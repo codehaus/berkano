@@ -3,7 +3,7 @@
     <packaging>pom</packaging>
     <groupId>net.incongru.berkano</groupId>
     <artifactId>berkano-parent</artifactId>
-    <version>1-SNAPSHOT</version>
+    <version>1</version>
 
     <name>Berkano Parent POM</name>
     <url>http://berkano.codehaus.org</url>
@@ -28,8 +28,8 @@
         <url>http://jira.codehaus.org/browse/BERKANO</url>
     </issueManagement>
     <scm>
-        <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/berkano/trunk</connection>
-        <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/berkano/trunk</developerConnection>
+        <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/berkano/tags/berkano-parent-1</connection>
+        <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/berkano/tags/berkano-parent-1</developerConnection>
     </scm>
     <ciManagement>
         <system>Continuum</system>
@@ -99,14 +99,14 @@
             <!--</snapshots>-->
         <!--</repository>-->
         <!-- webdav wagon is here -->
-        <!--<repository>-->
-            <!--<id>apache-snapshots</id>-->
-            <!--<url>http://people.apache.org/maven-snapshot-repository</url>-->
-            <!--<snapshots>-->
-                <!--<enabled>true</enabled>-->
-                <!--<updatePolicy>always</updatePolicy>-->
-            <!--</snapshots>-->
-        <!--</repository>-->
+        <repository>
+            <id>apache-snapshots</id>
+            <url>http://people.apache.org/maven-snapshot-repository</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
         <!-- needed for seraph -->
         <repository>
             <id>atlassian</id>
@@ -193,13 +193,13 @@
             </plugin>
 	    -->
         </plugins>
-        <!--<extensions>-->
-            <!--<extension>-->
-                <!--<groupId>org.apache.maven.wagon</groupId>-->
-                <!--<artifactId>wagon-webdav</artifactId>-->
-                <!--<version>1.0-beta-1</version>-->
-            <!--</extension>-->
-        <!--</extensions>-->
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav</artifactId>
+                <version>1.0-beta-1</version>
+            </extension>
+        </extensions>
     </build>
 
 
