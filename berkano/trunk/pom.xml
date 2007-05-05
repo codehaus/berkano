@@ -3,7 +3,7 @@
     <packaging>pom</packaging>
     <groupId>net.incongru.berkano</groupId>
     <artifactId>berkano-parent</artifactId>
-    <version>2-SNAPSHOT</version>
+    <version>1-SNAPSHOT</version>
 
     <name>Berkano Parent POM</name>
     <url>http://berkano.codehaus.org</url>
