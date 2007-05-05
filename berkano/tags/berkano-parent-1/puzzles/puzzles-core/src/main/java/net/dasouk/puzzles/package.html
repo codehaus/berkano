@@ -1,0 +1,53 @@
+<html>
+<body>
+<p>Main package for Puzzles. it contains:
+
+    <ul>
+        <li>the classes related to the Data Model of
+            the Plugin Management System (PluginDescriptor, PackagedPlugin)</li>
+        <li>the intefaces of all the components that are to interact to manage the plugins</li>
+        <li>the main Exception classes that are to be thrown by the components</li>
+    </ul>
+</p>
+
+<h3>Puzzles Terminology</h3>
+<dl>
+    <dt><strong>Package</strong></dt>
+    <dd>A package is a file containing everything the plugin needs. In most cases
+        the package will be a zip or jar file, containing images, css files, jar files, etc.</dd>
+    <dt><strong>PackageReader</strong></dt>
+    <dd>A PackageReader is an object that knows to read inside a package, and access the files it contains.
+        As long as you use plugins packaged as zip/jar files, you only need to use the
+        ZipPackageReader that comes bundled with Puzzles.</dd>
+    <dt><strong>PluginStore</strong></dt>
+    <dd>A PluginStore is a repository where the plugins' packages (zip/jar files mainly) will be saved.
+        Most commonly, the store will be a folder on the local file system.</dd>
+    <dt><strong>PluginDescriptor</strong></dt>
+    <dd>The PluginDescriptor is metainformation about the plugin. It contains information about the name of the plugin,
+        the author, a URL where more information can be found, but also specifies how to instanciate the plugin (in case
+        the plugin contains java code) and the public resources of the plugin. By "Public resources", we refer to any
+        file
+        in the package that are to be available outside of the plugin's scope: typically, you don't want the jar
+        libraries
+        to be available, so you won't declare them as public resource. But if your plugin contains images that you want
+        to
+        display in a web application, the image will have to be declared as a public resource.</dd>
+    <dt><strong>PluginDescriptorBuilder</strong></dt>
+    <dd>This is an object that is able to build a PluginDescriptor instance from a file. So far, Puzzles
+        only comes with a PluginDescriptorBuilder that builds descriptors from java's properties files.</dd>
+    <dt><strong>PluginLoader</strong></dt>
+    <dd>A PluginLoader has two roles: the first one is to be a front-end to the PackageReader and
+        PluginDescriptorBuilder, so that higher level objects don't have to deal with the Package/Descriptor stuff.
+        The second role is to load the jar dependencies of the plugin (if there are any) and to instanciate the Plugin
+        itself.</dd>
+    <dt><strong>PluginRegistry</strong></dt>
+    <dd>The PluginRegistry is what you'll deal with: it hides the Storing/Loading/Reading/etc. from you. It knows which
+        plugins are installed, it knows how to give you URLs to the plugins' resources, it can install new plugins,
+        uninstall previously installed plugins, etc., it notifies its listeners when plugins are installed or
+        uninstalled.</dd>
+    <dt><strong>PluginListener</strong></dt>
+    <dd>Any object that implements this interface and that is added to the registry's PluginListeners will be notified
+        when a plugin is installed/uninstalled.</dd>
+</dl>
+</body>
+</html>
