@@ -1,0 +1,6 @@
+<decorators>
+    <decorator name="main" page="/WEB-INF/templates/decorators/main.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+    <decorator name="debug" page="/WEB-INF/templates/decorators/debug.jsp"/>
+</decorators>
