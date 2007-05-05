@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>net.incongru.berkano</groupId>
@@ -7,9 +6,9 @@
         <version>1</version>
     </parent>
     <artifactId>taskman</artifactId>
-    <version>SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>Berkano Simple Task Manager</name>
-    <description></description>
+    <description />
 
     <build>
         <resources>
@@ -78,4 +77,9 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+  <scm>
+    <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/berkano/tags/taskman-1.0.0</connection>
+    <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/berkano/tags/taskman-1.0.0</developerConnection>
+  </scm>
 </project>
