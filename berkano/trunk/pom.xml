@@ -3,7 +3,7 @@
     <packaging>pom</packaging>
     <groupId>net.incongru.berkano</groupId>
     <artifactId>berkano-parent</artifactId>
-    <version>1</version>
+    <version>1-SNAPSHOT</version>
 
     <name>Berkano Parent POM</name>
     <url>http://berkano.codehaus.org</url>
@@ -28,8 +28,8 @@
         <url>http://jira.codehaus.org/browse/BERKANO</url>
     </issueManagement>
     <scm>
-        <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/scm/berkano/tags/berkano-parent-1</connection>
-        <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/scm/berkano/tags/berkano-parent-1</developerConnection>
+        <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/scm/berkano/trunk</connection>
+        <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/scm/berkano/trunk</developerConnection>
     </scm>
     <ciManagement>
         <system>Continuum</system>
