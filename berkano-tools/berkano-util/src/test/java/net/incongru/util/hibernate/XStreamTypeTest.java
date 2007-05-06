@@ -90,7 +90,6 @@ public class XStreamTypeTest extends AbstractHibernateTest {
         Statement stmt = conn.createStatement();
         int res = stmt.executeUpdate("INSERT INTO dummy (ID, NAME) VALUES (10001, 'no_complex')");
         assertEquals(1, res);
-        conn.commit();
         conn.close();
         s.close();
 

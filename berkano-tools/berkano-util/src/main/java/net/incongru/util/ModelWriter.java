@@ -14,7 +14,7 @@ import java.util.Map;
  * Sample usage:
  * <code>
  * public static void main(String[] args) throws IOException, NoSuchFieldException {
- *     final BeanDescriber modelWriter = new BeanDescriber("com.foo.bar");
+ *     final ModelWriter modelWriter = new ModelWriter("com.foo.bar");
  *     final PrintWriter out = new PrintWriter(System.out);
  *     modelWriter.start(SomeBean.class, out);
  *     out.flush();
@@ -26,10 +26,10 @@ import java.util.Map;
  * @author $Author: $ (last edit)
  * @version $Revision: $
  */
-public class BeanDescriber {
+public class ModelWriter {
     private final String domain;
 
-    public BeanDescriber(String domain) {
+    public ModelWriter(String domain) {
         this.domain = domain;
     }
 
