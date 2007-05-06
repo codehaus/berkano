@@ -1,13 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>berkano-taglib-parent</artifactId>
         <groupId>net.incongru.berkano</groupId>
-        <version>1-SNAPSHOT</version>
+        <version>2</version>
     </parent>
     <artifactId>beandisplaytag</artifactId>
-    <version>SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>BeanDisplayTag</name>
     <description>The bean display tag library is based on an idea we've had while using displaytag(www.displaytag.org),
         which is basically proviving the same usage model as display tag but to help display one single instance of a
@@ -29,7 +28,7 @@
         <dependency>
             <groupId>net.incongru.berkano</groupId>
             <artifactId>berkano-taglib-unit</artifactId>
-            <version>${pom.version}</version>
+            <version>1.0.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -64,4 +63,9 @@
         </dependency>
     </dependencies>
 
+
+  <scm>
+    <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/berkano/tags/beandisplaytag-1.0.0</connection>
+    <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/berkano/tags/beandisplaytag-1.0.0</developerConnection>
+  </scm>
 </project>
