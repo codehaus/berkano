@@ -6,7 +6,7 @@
         <version>2</version>
     </parent>
     <artifactId>beandisplaytag</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>BeanDisplayTag</name>
     <description>The bean display tag library is based on an idea we've had while using displaytag(www.displaytag.org),
         which is basically proviving the same usage model as display tag but to help display one single instance of a
@@ -62,10 +62,4 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
-
-  <scm>
-    <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/berkano/tags/beandisplaytag-1.0.0</connection>
-    <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/berkano/tags/beandisplaytag-1.0.0</developerConnection>
-  </scm>
 </project>
