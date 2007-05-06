@@ -6,7 +6,7 @@
         <version>1</version>
     </parent>
     <artifactId>berkano-taglib-unit</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0-SNAPSHOT</version>
     <name>Berkano Taglib Unit</name>
     <description>A small test framework for taglibs.</description>
 
@@ -22,9 +22,4 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
-  <scm>
-    <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/berkano/tags/berkano-taglib-unit-1.0.0</connection>
-    <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/berkano/tags/berkano-taglib-unit-1.0.0</developerConnection>
-  </scm>
 </project>
