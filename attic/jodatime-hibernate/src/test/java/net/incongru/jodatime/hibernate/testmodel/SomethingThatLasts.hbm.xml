@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.incongru.jodatime.hibernate.testmodel">
+    <class name="SomethingThatLasts" table="lasting">
+        <id name="id" type="long"/>
+        <property name="name" type="string"/>
+        <property name="theDuration" type="net.incongru.jodatime.hibernate.DurationType"/>
+    </class>
+</hibernate-mapping>

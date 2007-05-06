@@ -1,0 +1,107 @@
+<pouet>
+    <!--taglib>
+        <taglib-uri>webwork</taglib-uri>
+        <taglib-location>/WEB-INF/lib/webwork-2.0-beta.jar</taglib-location>
+    </taglib-->
+    <!--
+    <context-param>
+        <param-name>nanocontainer.groovy</param-name>
+        <param-value>/WEB-INF/nanocontainer.groovy</param-value>
+    </context-param>
+    -->
+
+<!--
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+-->
+<!--
+<filter>
+    <filter-name>Acegi Channel Processing Filter</filter-name>
+    <filter-class>net.sf.acegisecurity.util.FilterToBeanProxy</filter-class>
+    <init-param>
+        <param-name>targetClass</param-name>
+        <param-value>net.sf.acegisecurity.securechannel.ChannelProcessingFilter</param-value>
+    </init-param>
+</filter>
+
+<filter>
+    <filter-name>Acegi Authentication Processing Filter</filter-name>
+    <filter-class>net.sf.acegisecurity.util.FilterToBeanProxy</filter-class>
+    <init-param>
+        <param-name>targetClass</param-name>
+        <param-value>net.sf.acegisecurity.ui.webapp.AuthenticationProcessingFilter</param-value>
+    </init-param>
+</filter>
+
+<filter>
+    <filter-name>Acegi HTTP BASIC Authorization Filter</filter-name>
+    <filter-class>net.sf.acegisecurity.util.FilterToBeanProxy</filter-class>
+    <init-param>
+        <param-name>targetClass</param-name>
+        <param-value>net.sf.acegisecurity.ui.basicauth.BasicProcessingFilter</param-value>
+    </init-param>
+</filter>
+
+<filter>
+    <filter-name>Acegi Security System for Spring Auto Integration Filter</filter-name>
+    <filter-class>net.sf.acegisecurity.util.FilterToBeanProxy</filter-class>
+    <init-param>
+        <param-name>targetClass</param-name>
+        <param-value>net.sf.acegisecurity.ui.AutoIntegrationFilter</param-value>
+    </init-param>
+</filter>
+
+<filter>
+    <filter-name>Acegi HTTP Request Security Filter</filter-name>
+    <filter-class>net.sf.acegisecurity.util.FilterToBeanProxy</filter-class>
+    <init-param>
+        <param-name>targetClass</param-name>
+        <param-value>net.sf.acegisecurity.intercept.web.SecurityEnfonrcementFilter</param-value>
+    </init-param>
+</filter>
+-->
+
+
+<!-- Remove the comments from the following <filter-mapping> if you'd
+     like to ensure secure URLs are only available over HTTPS -->
+<!--
+<filter-mapping>
+  <filter-name>Acegi Channel Processing Filter</filter-name>
+  <url-pattern>/*</url-pattern>
+</filter-mapping>
+-->
+
+<!--
+<filter-mapping>
+    <filter-name>Acegi Authentication Processing Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+<filter-mapping>
+    <filter-name>Acegi HTTP BASIC Authorization Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+<filter-mapping>
+    <filter-name>Acegi Security System for Spring Auto Integration Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+<filter-mapping>
+    <filter-name>Acegi HTTP Request Security Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+-->
+
+<servlet>
+    <servlet-name>velocity</servlet-name>
+    <servlet-class>com.opensymphony.webwork.views.velocity.WebWorkVelocityServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+    <servlet-name>velocity</servlet-name>
+    <url-pattern>*.vm</url-pattern>
+</servlet-mapping>
+
+</pouet>
