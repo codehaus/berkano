@@ -5,7 +5,7 @@
     <parent>
         <groupId>net.incongru.berkano</groupId>
         <artifactId>berkano-parent</artifactId>
-        <version>1</version>
+        <version>1-SNAPSHOT</version>
     </parent>
     <artifactId>berkano-user</artifactId>
     <version>SNAPSHOT</version>
@@ -26,8 +26,14 @@
     <dependencies>
         <dependency>
             <groupId>net.incongru.berkano</groupId>
+            <artifactId>berkano-bookmarks</artifactId>
+            <version>${pom.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.incongru.berkano</groupId>
             <artifactId>berkano-util</artifactId>
-            <version>1.0.0</version>
+            <version>${pom.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
