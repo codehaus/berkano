@@ -5,7 +5,7 @@
     <parent>
         <groupId>net.incongru.berkano</groupId>
         <artifactId>berkano-parent</artifactId>
-        <version>1-SNAPSHOT</version>
+        <version>1</version>
     </parent>
     <artifactId>berkano-user-mgt-webwork</artifactId>
     <version>SNAPSHOT</version>
@@ -49,12 +49,6 @@
         <dependency>
             <groupId>net.incongru.berkano</groupId>
             <artifactId>berkano-seraph</artifactId>
-            <version>${pom.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.incongru.berkano</groupId>
-            <artifactId>berkano-bookmarks</artifactId>
             <version>${pom.version}</version>
             <scope>provided</scope>
         </dependency>
