@@ -7,7 +7,7 @@
         <version>2</version>
     </parent>
     <artifactId>berkano-seraph</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>Berkano Seraph Tools</name>
     <description>Berkano specific classes for Atlassian's Seraph.</description>
 
@@ -49,9 +49,4 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
-  <scm>
-    <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/tags/berkano-seraph-1.0.0</connection>
-    <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/tags/berkano-seraph-1.0.0</developerConnection>
-  </scm>
 </project>
