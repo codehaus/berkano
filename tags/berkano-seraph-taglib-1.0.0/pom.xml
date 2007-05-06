@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.incongru.berkano</groupId>
+        <artifactId>berkano-taglib-parent</artifactId>
+        <version>3</version>
+    </parent>
+    <artifactId>berkano-seraph-taglib</artifactId>
+    <version>1.0.0</version>
+    <name>Berkano Seraph Taglib</name>
+    <description />
+
+    <properties>
+        <taglibURI>http://incongru.net/seraphtaglib</taglibURI>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>xdoclet</groupId>
+                <artifactId>maven2-xdoclet2-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>seraph</groupId>
+            <artifactId>seraph</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.incongru.berkano</groupId>
+            <artifactId>berkano-seraph</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.incongru.berkano</groupId>
+            <artifactId>berkano-taglib-unit</artifactId>
+            <version>1.0.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+  <scm>
+    <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/tags/berkano-seraph-taglib-1.0.0</connection>
+    <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/tags/berkano-seraph-taglib-1.0.0</developerConnection>
+  </scm>
+</project>
