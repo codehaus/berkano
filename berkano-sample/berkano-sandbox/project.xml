@@ -2,7 +2,7 @@
 <project>
     <extend>../../project.xml</extend>
     <artifactId>berkano-sample</artifactId>
-    <currentVersion>SNAPSHOT</currentVersion>
+    <currentVersion>${berkanoVersion}</currentVersion>
     <name>Berkano sample app</name>
     <description></description>
     <shortDescription></shortDescription>
@@ -246,7 +246,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>seraph</artifactId>
-            <version>0.7.17-berkano-SNAPSHOT</version>
+            <version>0.7.7-berkano-SNAPSHOT</version>
             <type>jar</type>
             <properties>
                 <war.bundle>true</war.bundle>
@@ -282,7 +282,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-util</artifactId>
-            <version>20060221b</version>
+            <version>${berkanoVersion}</version>
             <type>jar</type>
             <properties>
                 <war.bundle>true</war.bundle>
@@ -291,7 +291,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-bookmarks</artifactId>
-            <version>20060221b</version>
+            <version>${berkanoVersion}</version>
             <type>jar</type>
             <properties>
                 <war.bundle>true</war.bundle>
@@ -300,7 +300,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-user</artifactId>
-            <version>20060221b</version>
+            <version>${berkanoVersion}</version>
             <type>jar</type>
             <properties>
                 <war.bundle>true</war.bundle>
@@ -309,7 +309,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-seraph</artifactId>
-            <version>20060221b</version>
+            <version>${berkanoVersion}</version>
             <type>jar</type>
             <properties>
                 <war.bundle>true</war.bundle>
@@ -318,7 +318,7 @@
         <dependency>
             <groupId>berkano</groupId>
             <artifactId>berkano-user-mgt-webwork</artifactId>
-            <version>20060221b</version>
+            <version>${berkanoVersion}</version>
             <type>jar</type>
             <properties>
                 <war.bundle>true</war.bundle>

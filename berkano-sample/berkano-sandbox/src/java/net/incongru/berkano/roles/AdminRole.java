@@ -1,13 +1,13 @@
 package net.incongru.berkano.roles;
 
-import net.incongru.berkano.security.Role;
+import net.incongru.berkano.security.AbstractRole;
 
 /**
  * @author greg
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
  */
-public class AdminRole implements Role {
+public class AdminRole extends AbstractRole {
     public String getName() {
         return "admin";
     }
