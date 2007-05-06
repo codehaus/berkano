@@ -31,7 +31,30 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
+    <repositories>
+        <repository>
+            <id>codehaus.org</id>
+            <name>codehaus</name>
+            <url>http://repository.codehaus.org</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>codehaus-legacy</id>
+            <name>codehaus-legacy</name>
+            <layout>legacy</layout>
+            <url>http://dist.codehaus.org</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
     <build>
         <testResources>
             <testResource>
@@ -57,17 +80,21 @@
                     <inherited>true</inherited>
                     <groupId>xdoclet</groupId>
                     <artifactId>maven2-xdoclet2-plugin</artifactId>
-                    <version>2.0.5-SNAPSHOT</version>
+                    <version>2.0.5</version>
                     <configuration>
-                        <configs>
-                            <config>
-                                <plugin>org.xdoclet.plugin.web.TaglibPlugin</plugin>
-                                <params>
-                                    <jspversion>2.0</jspversion>
-                                    <uri>${taglibURI}</uri>
-                                </params>
-                            </config>
-                        </configs>
+                      <configs>
+                        <config>
+                          <components>
+                            <component>
+                              <classname>org.xdoclet.plugin.web.TaglibPlugin</classname>
+                              <params>
+                                <jspversion>2.0</jspversion>
+                                <uri>${taglibURI}</uri>
+                              </params>
+                            </component>
+                          </components>
+                        </config>
+                      </configs>
                     </configuration>
                     <dependencies>
                         <dependency>
@@ -94,6 +121,11 @@
                             <groupId>commons-jelly</groupId>
                             <artifactId>commons-jelly-tags-xml</artifactId>
                             <version>20050823.222913</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>jaxen</groupId>
+                            <artifactId>jaxen</artifactId>
+                            <version>1.1.1</version>
                         </dependency>
                     </dependencies>
                     <executions>
