@@ -1,7 +1,7 @@
 package net.incongru.berkano.acegi;
 
-import org.acegisecurity.util.PortMapper;
-import org.acegisecurity.util.PortResolver;
+import net.sf.acegisecurity.util.PortMapper;
+import net.sf.acegisecurity.util.PortResolver;
 import org.picocontainer.Startable;
 
 /**
@@ -12,7 +12,7 @@ import org.picocontainer.Startable;
  * @author $Author: $ (last edit)
  * @version $Revision: $
  */
-public class AuthenticationProcessingFilterEntryPoint extends org.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint implements Startable {
+public class AuthenticationProcessingFilterEntryPoint extends net.sf.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint implements Startable {
     public AuthenticationProcessingFilterEntryPoint() {
         super();
     }
@@ -32,6 +32,7 @@ public class AuthenticationProcessingFilterEntryPoint extends org.acegisecurity.
         setLoginFormUrl(config.getLoginFormUrl());
         setForceHttps(config.isForceHttps());
     }
+
 
 
     public void start() {

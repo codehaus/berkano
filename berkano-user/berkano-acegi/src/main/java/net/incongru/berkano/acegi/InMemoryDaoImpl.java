@@ -1,6 +1,6 @@
 package net.incongru.berkano.acegi;
 
-import org.acegisecurity.userdetails.memory.UserMap;
+import net.sf.acegisecurity.providers.dao.memory.UserMap;
 
 /**
  * A simple wrapper around Acegi's InMemoryDaoImpl which
@@ -10,7 +10,7 @@ import org.acegisecurity.userdetails.memory.UserMap;
  * @author $Author: $ (last edit)
  * @version $Revision: $
  */
-public class InMemoryDaoImpl extends org.acegisecurity.userdetails.memory.InMemoryDaoImpl {
+public class InMemoryDaoImpl extends net.sf.acegisecurity.providers.dao.memory.InMemoryDaoImpl {
     public InMemoryDaoImpl(UserMap userMap) {
         setUserMap(userMap);
     }

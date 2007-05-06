@@ -23,10 +23,6 @@ public class FreemarkerMailerTest extends MockObjectTestCase {
     protected void setUp() throws Exception {
         super.setUp();
         mailCfg = mock(MailConfig.class);
-        mailCfg.expects(once()).method("getMailHost").withNoArguments().will(returnValue("localhost"));
-        mailCfg.expects(once()).method("getFromName").withNoArguments().will(returnValue("test"));
-        mailCfg.expects(once()).method("getFromEmail").withNoArguments().will(returnValue("test@localhost"));
-
         freemarkerCfg = new Configuration();
         final StringTemplateLoader loader = new StringTemplateLoader();
         loader.putTemplate("test.ftl", "${user}, this is the test.ftl template");
@@ -38,7 +34,7 @@ public class FreemarkerMailerTest extends MockObjectTestCase {
 
     public void testCanProcessTemplates() throws Exception {
         final FakeMailer mailer = new FakeMailer(new DummyMailLocalizer(Locale.PRC), (MailConfig) mailCfg.proxy(), freemarkerCfg);
-        mailer.mail(new MailBean("test@test.com", "Unit Test", "Testing", "test.ftl", Collections.singletonMap("user", "Unit Test")));
+        mailer.mail("test@test.com", "Unit Test", "Testing", "test.ftl", Collections.singletonMap("user", "Unit Test"));
         assertNotNull(mailer.email);
         TestSupport.assertFieldEquals(mailer.email, "html", "Unit Test, this is the test-html.ftl template");
         TestSupport.assertFieldEquals(mailer.email, "text", "Unit Test, this is the test-text.ftl template");
@@ -46,7 +42,7 @@ public class FreemarkerMailerTest extends MockObjectTestCase {
 
     public void testFreemarkerIsASmartAssAndCanFindLocalizedTemplates() throws Exception {
         final FakeMailer mailer = new FakeMailer(new DummyMailLocalizer(new Locale("es", "AR")), (MailConfig) mailCfg.proxy(), freemarkerCfg);
-        mailer.mail(new MailBean("test@test.com", "Unit Test", "Testing", "test.ftl", Collections.singletonMap("user", "Unit Test")));
+        mailer.mail("test@test.com", "Unit Test", "Testing", "test.ftl", Collections.singletonMap("user", "Unit Test"));
         assertNotNull(mailer.email);
         TestSupport.assertFieldEquals(mailer.email, "html", "Unit Test, this is the test-html.ftl template");
         TestSupport.assertFieldEquals(mailer.email, "text", "Unit Test, eso es la test-text.ftl templata");
@@ -59,7 +55,7 @@ public class FreemarkerMailerTest extends MockObjectTestCase {
             super(localizer, config, freemarkerCfg);
         }
 
-        protected void sendMail(Email email) {
+        protected void sendMail(Email email, String toEmail, String toName, String subject) {
             this.email = email;
         }
     }
@@ -72,11 +68,11 @@ public class FreemarkerMailerTest extends MockObjectTestCase {
         }
 
         public Locale resolveLocale() {
-            return locale;
-        }
+                return locale;
+            }
 
-        public String getSubject(String subjectKey, Locale locale) {
-            return subjectKey;
+            public String getSubject(String subjectKey, Locale locale) {
+                return subjectKey;
+            }
         }
-    }
 }

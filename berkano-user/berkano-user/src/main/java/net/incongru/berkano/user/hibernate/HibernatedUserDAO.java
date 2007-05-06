@@ -1,13 +1,13 @@
 package net.incongru.berkano.user.hibernate;
 
 import net.incongru.berkano.security.password.PasswordMatchingStrategy;
-import net.incongru.berkano.user.DuplicateUserException;
 import net.incongru.berkano.user.GroupImpl;
 import net.incongru.berkano.user.PropertiesAware;
 import net.incongru.berkano.user.UnknownUserException;
 import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.UserDAO;
 import net.incongru.berkano.user.UserImpl;
+import net.incongru.berkano.user.DuplicateUserException;
 import org.hibernate.Criteria;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
@@ -32,14 +32,6 @@ public class HibernatedUserDAO extends AbstractHibernatedDAO implements UserDAO 
         return (PropertiesAware) getUserById(id);
     }
 
-    protected Class getUserClass() {
-        return UserImpl.class;
-    }
-
-    protected UserImpl newInstance() {
-        return new UserImpl();
-    }
-
     public void addProperty(User user, String propertyKey, Object value) throws UnknownUserException {
         session.lock(user, LockMode.NONE);
         ((UserImpl) user).getProperties().put(propertyKey, value);
@@ -47,7 +39,7 @@ public class HibernatedUserDAO extends AbstractHibernatedDAO implements UserDAO 
     }
 
     public User getUserById(Long userId) throws UnknownUserException {
-        User user = (User) session.get(getUserClass(), userId);
+        User user = (User) session.get(UserImpl.class, userId);
         if (user == null) {
             throw new UnknownUserException(userId);
         }
@@ -66,13 +58,13 @@ public class HibernatedUserDAO extends AbstractHibernatedDAO implements UserDAO 
     }
 
     private User getUserByField(String fieldName, String value) {
-        Criteria criteria = session.createCriteria(getUserClass());
+        Criteria criteria = session.createCriteria(UserImpl.class);
         criteria.add(Expression.eq(fieldName, value).ignoreCase());
         return (User) criteria.uniqueResult();
     }
 
     public boolean removeUser(Long userId) throws UnknownUserException {
-        UserImpl user = (UserImpl) session.load(getUserClass(), userId);
+        UserImpl user = (UserImpl) session.load(UserImpl.class, userId);
         if (user == null) {
             throw new UnknownUserException(userId);
         }
@@ -81,7 +73,7 @@ public class HibernatedUserDAO extends AbstractHibernatedDAO implements UserDAO 
     }
 
     public List listAllUsers() {
-        return session.createCriteria(getUserClass()).list();
+        return session.createCriteria(UserImpl.class).list();
     }
 
     public User newUser(String userName, String cleanPassword, String email, String fullName) {
@@ -91,7 +83,7 @@ public class HibernatedUserDAO extends AbstractHibernatedDAO implements UserDAO 
             throw new DuplicateUserException(userName);
         }
 
-        UserImpl newUser = newInstance();
+        UserImpl newUser = new UserImpl();
         newUser.setUserName(userName);
         newUser.setPassword(passwordMatchingStrategy.encode(cleanPassword));
         newUser.setEmail(email);
@@ -107,10 +99,6 @@ public class HibernatedUserDAO extends AbstractHibernatedDAO implements UserDAO 
         user.setEmail(email);
         session.update(user);
         return user;
-    }
-
-    public void updateUser(User user) {
-        session.update(user);
     }
 
     public void changePassword(Long userId, String newPassword) throws UnknownUserException {

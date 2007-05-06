@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>net.incongru.berkano</groupId>
+    <groupId>berkano</groupId>
     <artifactId>puzzles</artifactId>
     <packaging>jar</packaging>
-    <version>SNAPSHOT</version>
+    <version>0.2-SNAPSHOT</version>
     <name>Puzzles</name>
     <url>http://dasouk.free.fr/puzzles/</url>
 
@@ -59,7 +59,7 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>net.incongru.berkano</groupId>
+            <groupId>berkano</groupId>
             <artifactId>berkano-util</artifactId>
             <version>SNAPSHOT</version>
             <scope>compile</scope>
@@ -83,14 +83,14 @@
     <distributionManagement>
         <repository>
             <id>codehaus</id>
-            <name>codehaus.org</name>
-            <url>dav:https://dav.codehaus.org:/dist/</url>
+            <name>beaver.codehaus.org</name>
+            <url>scpexe://beaver.codehaus.org:/dist/</url>
         </repository>
-        <!--<site>-->
-            <!--<id>codehaus</id>-->
-            <!--<name>codehaus</name>-->
-            <!--<url>scp://beaver.codehaus.org/home/projects/berkano/public_html/puzzles</url>-->
-        <!--</site>-->
+        <site>
+            <id>codehaus</id>
+            <name>codehaus</name>
+            <url>scp://beaver.codehaus.org/home/projects/berkano/public_html/puzzles</url>
+        </site>
     </distributionManagement>
     <reporting>
         <plugins>

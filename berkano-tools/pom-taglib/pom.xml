@@ -1,60 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <groupId>net.incongru.berkano</groupId>
         <artifactId>berkano-parent</artifactId>
-        <version>1</version>
+        <groupId>berkano</groupId>
+        <version>SNAPSHOT</version>
     </parent>
-    <packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>berkano-taglib-parent</artifactId>
-    <version>3-SNAPSHOT</version>
     <name>Berkano Parent Taglib POM</name>
-    <description />
-
-    <pluginRepositories>
-        <!-- needed for the jelly snapshots -->
-        <pluginRepository>
-            <id>apache-legacy</id>
-            <url>http://cvs.apache.org/repository</url>
-            <layout>legacy</layout>
-        </pluginRepository>
-        <!-- needed for the xdoclet2 plugin until it is deployed to a proper m2 repo -->
-        <pluginRepository>
-            <id>codehaus-plugin-legacy</id>
-            <url>http://dist.codehaus.org/</url>
-            <layout>legacy</layout>
-            <releases>
-                <updatePolicy>daily</updatePolicy>
-            </releases>
-            <snapshots>
-                <updatePolicy>daily</updatePolicy>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-    <repositories>
-        <repository>
-            <id>codehaus.org</id>
-            <name>codehaus</name>
-            <url>http://repository.codehaus.org</url>
-            <layout>default</layout>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>codehaus-legacy</id>
-            <name>codehaus-legacy</name>
-            <layout>legacy</layout>
-            <url>http://dist.codehaus.org</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </snapshots>
-        </repository>
-    </repositories>
+    <packaging>pom</packaging>
     <build>
         <testResources>
             <testResource>
@@ -80,21 +34,16 @@
                     <inherited>true</inherited>
                     <groupId>xdoclet</groupId>
                     <artifactId>maven2-xdoclet2-plugin</artifactId>
-                    <version>2.0.5</version>
+                    <version>2.0.5-SNAPSHOT</version>
                     <configuration>
-                      <configs>
-                        <config>
-                          <components>
-                            <component>
-                              <classname>org.xdoclet.plugin.web.TaglibPlugin</classname>
-                              <params>
-                                <jspversion>2.0</jspversion>
-                                <uri>${taglibURI}</uri>
-                              </params>
-                            </component>
-                          </components>
-                        </config>
-                      </configs>
+                        <configs>
+                            <config>
+                                <plugin>org.xdoclet.plugin.web.TaglibPlugin</plugin>
+                                <params>
+                                    <jspversion>2.0</jspversion>
+                                </params>
+                            </config>
+                        </configs>
                     </configuration>
                     <dependencies>
                         <dependency>
@@ -112,21 +61,6 @@
                             <artifactId>jsp-api</artifactId>
                             <version>2.0</version>
                         </dependency>
-                        <dependency>
-                            <groupId>commons-jelly</groupId>
-                            <artifactId>commons-jelly</artifactId>
-                            <version>20050813.225330</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>commons-jelly</groupId>
-                            <artifactId>commons-jelly-tags-xml</artifactId>
-                            <version>20050823.222913</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>jaxen</groupId>
-                            <artifactId>jaxen</artifactId>
-                            <version>1.1.1</version>
-                        </dependency>
                     </dependencies>
                     <executions>
                         <execution>
@@ -143,6 +77,7 @@
         <dependency>
             <groupId>httpunit</groupId>
             <artifactId>httpunit</artifactId>
+            <version>1.6</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -166,21 +101,25 @@
         <dependency>
             <groupId>commons-el</groupId>
             <artifactId>commons-el</artifactId>
+            <version>1.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
+            <version>1.0.4</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
+            <version>2.4</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jsp-api</artifactId>
+            <version>2.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

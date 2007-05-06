@@ -2,17 +2,19 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="net.incongru.berkano.user.UserImpl" table="`user`">
+    <class name="net.incongru.berkano.user.UserImpl" table="user">
         <id name="userId" type="java.lang.Long" column="user_id">
             <generator class="native">
             </generator>
         </id>
-        <property name="userName" length="255" column="user_name" not-null="true" unique="true"/>
-        <property name="password" length="255" column="password" not-null="true"/>
-        <property name="email" length="255" column="email"/>
-        <property name="fullName" length="255" column="full_name"/>
-        <property name="creationTimestamp" column="creation_timestamp" type="timestamp"/>
-        <property name="updateTimestamp" column="update_timestamp" type="timestamp"/>
+        <property name="userName" length="32" column="user_name" not-null="true" unique="true">
+        </property>
+        <property name="password" length="255" column="password" not-null="true">
+        </property>
+        <property name="email" length="128" column="email">
+        </property>
+        <property name="fullName" length="128" column="full_name">
+        </property>
 
         <set name="groups" table="user_group" lazy="false"><!-- lazy="true"--><!-- cascade="all" -->
             <key column="user_id"/>

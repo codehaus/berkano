@@ -1,7 +1,6 @@
 package net.incongru.berkano.user;
 
 import java.security.Principal;
-import java.util.Date;
 import java.util.Set;
 
 /**
@@ -52,8 +51,4 @@ public interface User extends Principal {
     public String getFullName();
 
     public String getEmail();
-
-    public Date getCreationTimestamp();
-
-    public Date getUpdateTimestamp();
 }

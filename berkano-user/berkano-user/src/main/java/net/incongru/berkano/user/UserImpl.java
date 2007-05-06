@@ -1,6 +1,5 @@
 package net.incongru.berkano.user;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -19,8 +18,6 @@ public class UserImpl implements User, PropertiesAware {
     private String password;
     private String email;
     private String fullName;
-    private Date creationTimestamp;
-    private Date updateTimestamp;
     private Set groups;
     private Map properties;
 
@@ -71,22 +68,6 @@ public class UserImpl implements User, PropertiesAware {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public Date getCreationTimestamp() {
-        return creationTimestamp;
-    }
-
-    public void setCreationTimestamp(Date creationTimestamp) {
-        this.creationTimestamp = creationTimestamp;
-    }
-
-    public Date getUpdateTimestamp() {
-        return updateTimestamp;
-    }
-
-    public void setUpdateTimestamp(Date updateTimestamp) {
-        this.updateTimestamp = updateTimestamp;
     }
 
     public Set getGroups() { // Set<Group>

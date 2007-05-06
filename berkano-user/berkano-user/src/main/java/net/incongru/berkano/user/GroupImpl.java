@@ -23,7 +23,6 @@ public class GroupImpl implements Group, PropertiesAware {
     public GroupImpl() {
         this.roles = new HashSet();
         this.properties = new HashMap();
-        this.users = new HashSet();
     }
 
     public Long getGroupId() {

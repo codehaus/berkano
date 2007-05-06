@@ -1,7 +1,6 @@
 package net.incongru.berkano.acegi;
 
-import org.acegisecurity.userdetails.UserDetailsService;
-
+import net.sf.acegisecurity.providers.dao.AuthenticationDao;
 
 /**
  * A simple wrapper around Acegi's DaoAuthenticationProvider which
@@ -11,8 +10,8 @@ import org.acegisecurity.userdetails.UserDetailsService;
  * @author $Author: $ (last edit)
  * @version $Revision: $
  */
-public class DaoAuthenticationProvider extends org.acegisecurity.providers.dao.DaoAuthenticationProvider {
-    public DaoAuthenticationProvider(UserDetailsService userDetailsService) {
-        setUserDetailsService(userDetailsService);
+public class DaoAuthenticationProvider extends net.sf.acegisecurity.providers.dao.DaoAuthenticationProvider {
+    public DaoAuthenticationProvider(AuthenticationDao authenticationDao) {
+        setAuthenticationDao(authenticationDao);
     }
 }

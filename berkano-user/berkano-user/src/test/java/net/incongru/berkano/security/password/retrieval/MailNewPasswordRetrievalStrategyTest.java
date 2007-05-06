@@ -5,9 +5,9 @@ import net.incongru.berkano.security.password.PasswordRetrievalStrategy;
 import net.incongru.berkano.user.UserDAO;
 import net.incongru.berkano.user.UserImpl;
 import net.incongru.util.mail.Mailer;
-import net.incongru.util.mail.MailBean;
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
+import org.jmock.core.Constraint;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,9 +36,7 @@ public class MailNewPasswordRetrievalStrategyTest extends MockObjectTestCase {
 
         passGen.expects(once()).method("generate").withNoArguments().will(returnValue("new pass"));
         userDao.expects(once()).method("changePassword").with(eq(new Long(37)), eq("new pass")).isVoid();
-        // new Constraint[]{eq("mymail@user.com"), eq("My Full Self"), eq("NewPassword"), eq("berkano/lostpw/mail/new_password"), eq(expectedCtx)}
-        MailBean mailBean = new MailBean("mymail@user.com", "My Full Self", "NewPassword", "berkano/lostpw/mail/new_password", expectedCtx);
-        mail.expects(once()).method("mail").with(eq(mailBean)).isVoid();
+        mail.expects(once()).method("mail").with(new Constraint[]{eq("mymail@user.com"), eq("My Full Self"), eq("NewPassword"), eq("berkano/lostpw/mail/new_password"), eq(expectedCtx)}).isVoid();
 
         final PasswordRetrievalStrategy pwdRetrievalStrategy = new MailNewPasswordRetrievalStrategy((UserDAO) userDao.proxy(), (PasswordGenerator) passGen.proxy(), (Mailer) mail.proxy());
         pwdRetrievalStrategy.retrievePassword(user);

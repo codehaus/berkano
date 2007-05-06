@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>berkano-taglib-parent</artifactId>
+        <groupId>berkano</groupId>
+        <version>SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>berkano-kisstags</artifactId>
+    <packaging>jar</packaging>
+    <name>Berkano Kiss Tags</name>
+    <description>The KISS tag library is a collection of very simple JSP tags, with a very focused/limited usage.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>berkano</groupId>
+            <artifactId>berkano-taglib-unit</artifactId>
+            <version>SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>xdoclet</groupId>
+                <artifactId>maven2-xdoclet2-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>xdoclet</groupId>
+                <artifactId>maven2-xdoclet2-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>xdoclet-plugins</groupId>
+                        <artifactId>xdoclet-plugin-web</artifactId>
+                        <version>1.0.4-SNAPSHOT</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>javax.servlet</groupId>
+                        <artifactId>servlet-api</artifactId>
+                        <version>2.4</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>javax.servlet</groupId>
+                        <artifactId>jsp-api</artifactId>
+                        <version>2.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>

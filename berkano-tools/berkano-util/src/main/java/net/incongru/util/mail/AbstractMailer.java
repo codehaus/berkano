@@ -31,54 +31,43 @@ public abstract class AbstractMailer implements Mailer {
     private static final String PLAINTEXT_SUFFIX = "-text";
     private static final String HTML_SUFFIX = "-html";
     protected final MailLocalizer localizer;
-    protected final MailConfig config;
+    private final MailConfig config;
 
     protected AbstractMailer(MailLocalizer localizer, MailConfig config) {
         this.localizer = localizer;
         this.config = config;
     }
 
-    protected void renderAndSendMail(TemplateEngine engine, MailBean mail) {
-        final Locale locale = getLocale(mail);
-        final String fromEmail = mail.getFromEmail() != null ? mail.getFromEmail() : config.getFromEmail();
-        final String fromName = mail.getFromName() != null ? mail.getFromName() : config.getFromName();
+    protected void renderAndSendMail(TemplateEngine engine, String toEmail, String toName, String subject, String templateName, Locale locale) {
+        final String translatedSubject = localizer.getSubject(subject, locale);
 
-        final String translatedSubject = localizer.getSubject(mail.getSubject(), locale);
-
-        final String plainTextTemplateName = getPlainTextTemplateName(engine, mail.getTemplateName());
-        final String htmlTemplateName = getHtmlTemplateName(engine, mail.getTemplateName());
+        final String plainTextTemplateName = getPlainTextTemplateName(engine, templateName);
+        final String htmlTemplateName = getHtmlTemplateName(engine, templateName);
 
         final String plainText = engine.renderTemplate(plainTextTemplateName);
 
         try {
-            final Email email;
             if (htmlTemplateName != null) {
-                email = new HtmlEmail();
+                HtmlEmail email = new HtmlEmail();
                 final String html = engine.renderTemplate(htmlTemplateName);
-                ((HtmlEmail) email).setHtmlMsg(html);
-                ((HtmlEmail) email).setTextMsg(plainText);
+                email.setHtmlMsg(html);
+                email.setTextMsg(plainText);
+                sendMail(email, toEmail, toName, translatedSubject);
             } else {
-                email = new SimpleEmail();
+                SimpleEmail email = new SimpleEmail();
                 email.setMsg(plainText);
+                sendMail(email, toEmail, toName, translatedSubject);
             }
-            email.setHostName(config.getMailHost());
-            email.setFrom(fromEmail, fromName);
-            email.addTo(mail.getToEmail(), mail.getToName());
-            email.setSubject(translatedSubject);
-            if (mail.getReplyToEmail() != null) {
-                email.addReplyTo(mail.getReplyToEmail());
-            }
-            sendMail(email);
         } catch (EmailException e) {
             throw new RuntimeException(e);
         }
     }
 
-    protected Locale getLocale(MailBean mail) {
-        return mail.getLocale() != null ? mail.getLocale() : localizer.resolveLocale();
-    }
-
-    protected void sendMail(Email email) throws EmailException {
+    protected void sendMail(Email email, String toEmail, String toName, String subject) throws EmailException {
+        email.setHostName(config.getMailHost());
+        email.setFrom(config.getFromEmail(), config.getFromName());
+        email.addTo(toEmail, toName);
+        email.setSubject(subject);
         email.send();
     }
 

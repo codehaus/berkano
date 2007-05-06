@@ -3,50 +3,55 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>net.incongru.berkano</groupId>
         <artifactId>berkano-parent</artifactId>
-        <version>1</version>
+        <groupId>berkano</groupId>
+        <version>SNAPSHOT</version>
     </parent>
     <artifactId>berkano-seraph</artifactId>
-    <version>SNAPSHOT</version>
     <name>Berkano Seraph Tools</name>
+    <version>SNAPSHOT</version>
     <description>Berkano specific classes for Atlassian's Seraph.</description>
-
     <dependencies>
         <dependency>
-            <groupId>net.incongru.berkano</groupId>
+            <groupId>berkano</groupId>
             <artifactId>berkano-user</artifactId>
-            <version>${pom.version}</version>
+            <version>SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>seraph</groupId>
+            <groupId>berkano</groupId>
             <artifactId>seraph</artifactId>
+            <version>0.7.17-berkano-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>opensymphony</groupId>
             <artifactId>webwork</artifactId>
+            <version>2.1.7</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>opensymphony</groupId>
             <artifactId>xwork</artifactId>
+            <version>1.0.5</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
+            <version>1.3</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
+            <version>2.4</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
+            <version>1.2.8</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
