@@ -7,7 +7,7 @@
     </parent>
     <packaging>pom</packaging>
     <artifactId>berkano-taglib-parent</artifactId>
-    <version>2-SNAPSHOT</version>
+    <version>2</version>
     <name>Berkano Parent Taglib POM</name>
     <description />
 
@@ -184,4 +184,9 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
+  <scm>
+    <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/berkano/tags/berkano-taglib-parent-2</connection>
+    <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/berkano/tags/berkano-taglib-parent-2</developerConnection>
+  </scm>
 </project>
