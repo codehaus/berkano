@@ -1,8 +1,0 @@
-<html>
-<body>
-<p>Hi $name,</p>
-<p>Your password is $password.</p>
-<p>Cheers,</p>
-<p>Your beloved BOFH.</p>
-</body>
-</html>
