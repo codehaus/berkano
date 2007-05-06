@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.incongru.berkano</groupId>
+        <artifactId>berkano-parent</artifactId>
+        <version>2</version>
+    </parent>
+    <artifactId>berkano-user-mgt-webwork</artifactId>
+    <version>1.0.0</version>
+    <name>Berkano User Management for Webwork2</name>
+    <description>A couple of simple actions and views for berkano-user/osuser with webwork2</description>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/views</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/i18n</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>seraph</groupId>
+            <artifactId>seraph</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.incongru.berkano</groupId>
+            <artifactId>berkano-user</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.incongru.berkano</groupId>
+            <artifactId>berkano-seraph</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>opensymphony</groupId>
+            <artifactId>webwork</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>opensymphony</groupId>
+            <artifactId>xwork</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+  <scm>
+    <connection>scm:svn:http://svn.berkano.codehaus.org/berkano/tags/berkano-user-mgt-webwork-1.0.0</connection>
+    <developerConnection>scm:svn:svn+ssh://svn.berkano.codehaus.org/berkano/tags/berkano-user-mgt-webwork-1.0.0</developerConnection>
+  </scm>
+</project>
