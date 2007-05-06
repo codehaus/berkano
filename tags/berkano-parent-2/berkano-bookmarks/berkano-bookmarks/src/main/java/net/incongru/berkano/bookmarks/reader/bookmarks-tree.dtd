@@ -1,0 +1,9 @@
+<!DOCTYPE bookmarks-tree [
+<!ELEMENT bookmark (bookmark)*>
+<!ATTLIST bookmark
+    href CDATA #REQUIRED
+    id CDATA #REQUIRED
+    name CDATA #REQUIRED
+    highlight CDATA>
+<!ELEMENT bookmarks-tree (bookmark)*>
+]>
