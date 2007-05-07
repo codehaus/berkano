@@ -12,9 +12,9 @@
         <property name="name"/>
         <property name="description"/>
 
-        <property name="duePeriod" type="net.incongru.jodatime.hibernate.PeriodType"/>
-        <property name="reminderPeriod" type="net.incongru.jodatime.hibernate.PeriodType"/>
-        <property name="dueDateTimeout" type="net.incongru.jodatime.hibernate.PeriodType"/>
+        <property name="duePeriod" type="org.joda.time.contrib.hibernate.PersistentPeriod"/>
+        <property name="reminderPeriod" type="org.joda.time.contrib.hibernate.PersistentPeriod"/>
+        <property name="dueDateTimeout" type="org.joda.time.contrib.hibernate.PersistentPeriod"/>
 
         <map name="eventActionMap" table="taskdef_actions" lazy="true">
             <key column="taskdef_id"/>
