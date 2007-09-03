@@ -54,9 +54,7 @@ public class BeanDescriber {
                     printFieldName(out, field);
                     describe(level + 1, out, propType);
                 }
-            } else
-            if (Collection.class.isAssignableFrom(propType) || Map.class.isAssignableFrom(propType))
-            {
+            } else if (Collection.class.isAssignableFrom(propType) || Map.class.isAssignableFrom(propType)) {
                 printFieldType("* ", level, out, propType);
                 printGenericParameterTypes(out, field);
                 printFieldName(out, field);
