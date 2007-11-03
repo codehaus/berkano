@@ -21,7 +21,7 @@ import java.sql.Types;
  *   <property name="pouet" column="pouet" type="net.incongru.util.hibernate.XStreamType"/>
  * </class>
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
  */

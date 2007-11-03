@@ -4,7 +4,7 @@ package net.incongru.util.mail;
  * A generic config object for mailing. Implementations should provide their
  * loading mechanisms (properties, ...).
  * 
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */

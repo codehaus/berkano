@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
  * This action allows to display a list of preferences..
  * Overrides xwork's ActionSupport methods for text i18n.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.3 $
  */

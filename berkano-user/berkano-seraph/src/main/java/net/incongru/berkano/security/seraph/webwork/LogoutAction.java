@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
  * (Indeed, the seraph logout servlet only does the actual logging out if the
  * logout config param is absolute, for sso.
  *  
- * @author Grégory Joseph
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.3 $
  */

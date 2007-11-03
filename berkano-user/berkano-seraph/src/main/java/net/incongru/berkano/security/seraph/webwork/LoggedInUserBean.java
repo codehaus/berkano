@@ -10,7 +10,7 @@ import net.incongru.berkano.user.User;
  * A simple bean to get the logged in user's name. Might be irrelevant, since
  * seraph wraps the request object and exposes the user in request.getUserPrincipal()
  * 
- * @author Grégory Joseph
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
  */

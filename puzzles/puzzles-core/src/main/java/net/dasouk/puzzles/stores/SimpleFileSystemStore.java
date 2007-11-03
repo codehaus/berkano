@@ -89,10 +89,10 @@ public class SimpleFileSystemStore implements PluginStore {
 
     /**
      * This silly FileRenamer just throws an exception when called, i.e.
-     * it does not allow the store overwrite an existing file, but does
+     * it does not allow the store to overwrite an existing file, but does
      * not provide another name for it either.
      *
-     * @author greg
+     * @author gjoseph
      * @author $Author: $ (last edit)
      * @version $Revision: $
      */

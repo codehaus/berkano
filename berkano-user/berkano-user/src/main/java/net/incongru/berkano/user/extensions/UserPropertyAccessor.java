@@ -7,7 +7,7 @@ import java.util.Collection;
 /**
  * The interface used to manipulate a user's properties.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.6 $
  */

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * TODO : shutdown
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */

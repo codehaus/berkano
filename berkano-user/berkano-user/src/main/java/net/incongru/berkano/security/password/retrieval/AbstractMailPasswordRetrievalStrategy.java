@@ -12,7 +12,7 @@ import java.util.Map;
  * An abstract strategy that sends a mail to the user's
  * registered email address.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
  */

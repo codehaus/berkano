@@ -20,7 +20,7 @@ import org.apache.commons.codec.binary.Base64;
  * @see com.atlassian.seraph.auth.Authenticator
  * @see com.atlassian.seraph.auth.DefaultAuthenticator
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.4 $
  */

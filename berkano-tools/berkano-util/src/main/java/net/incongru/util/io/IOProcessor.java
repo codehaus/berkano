@@ -4,7 +4,7 @@ import java.io.IOException;
 
 /**
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */

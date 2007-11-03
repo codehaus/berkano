@@ -11,7 +11,7 @@ package net.incongru.berkano.app;
  * can be restricted to a user or a group.
  *
  * 
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.3 $
  */

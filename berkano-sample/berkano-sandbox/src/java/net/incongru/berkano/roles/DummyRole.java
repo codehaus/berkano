@@ -3,7 +3,7 @@ package net.incongru.berkano.roles;
 import net.incongru.berkano.security.Role;
 
 /**
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */

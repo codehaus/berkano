@@ -2,7 +2,7 @@ package net.incongru.taskman;
 
 /**
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */

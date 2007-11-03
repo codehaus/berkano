@@ -4,7 +4,7 @@ package net.incongru.beantag;
  * todo: .. in fact, a "real" decorator should probably be a class that extends the original bean class,
  * and take the original/current instance as a constructor argument...
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.4 $
  */

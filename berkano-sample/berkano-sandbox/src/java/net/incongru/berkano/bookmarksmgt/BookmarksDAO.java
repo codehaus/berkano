@@ -9,7 +9,7 @@ import net.incongru.berkano.user.extensions.UserPropertyAccessor;
  * Defines a strategy for serializing bookmarks.
  * (basic implementations will be java serialization and xstream)
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
  */

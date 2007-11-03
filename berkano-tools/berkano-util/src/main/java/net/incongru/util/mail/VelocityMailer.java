@@ -15,7 +15,7 @@ import java.io.StringWriter;
  *
  * TODO : manage encoding
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.5 $
  */

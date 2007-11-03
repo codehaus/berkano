@@ -13,7 +13,7 @@ import java.util.Map;
  * and defining user permissions for each of these.
  *
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */

@@ -11,7 +11,7 @@ import java.io.Serializable;
  * A TaskDef is a task definition: once deployed, it can tell TaskMan what TaskAction
  * to take upon given events.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */

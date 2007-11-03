@@ -9,7 +9,7 @@ import net.incongru.berkano.user.User;
 import net.incongru.berkano.user.UnknownUserException;
 
 /**
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.5 $
  */

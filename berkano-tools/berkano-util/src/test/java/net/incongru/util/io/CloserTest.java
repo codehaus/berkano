@@ -4,10 +4,12 @@ import junit.framework.TestCase;
 
 import java.io.Closeable;
 import java.io.IOException;
+import static org.easymock.EasyMock.*;
+
 
 /**
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */

@@ -4,7 +4,7 @@ package net.incongru.berkano.bookmarks;
  *
  * @todo do we want to validate url? Maybe that can be done in a DAO or Factory class
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */

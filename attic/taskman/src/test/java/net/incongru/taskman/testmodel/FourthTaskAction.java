@@ -5,7 +5,7 @@ import net.incongru.taskman.action.TaskContext;
 
 /**
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */

@@ -5,7 +5,7 @@ import org.joda.time.DateTime;
 /**
  * .. some thing to keep a trace of events, assignments etc ?
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */

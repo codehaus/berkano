@@ -11,7 +11,7 @@ import net.incongru.berkano.user.User;
  * See the Gateway pattern in M.Fowler's book. It might also be seen as some sort of Adapter(GOF)
  * Also check Mapper(Fowler) and ServiceStub(Fowler)
  * 
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.3 $
  *

@@ -20,7 +20,7 @@ import java.io.PrintWriter;
  * velocity or freemarker, for either the header/footer or the
  * webwork views.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.4 $
  */

@@ -14,7 +14,7 @@ import net.incongru.taskman.TaskInstance;
  * TODO : actually the statement is probably false, since actions are currently
  * executed synchronously.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */

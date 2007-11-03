@@ -4,7 +4,7 @@ package net.incongru.taskman;
  * TaskSweeper implementations are responsible for
  * collecting remaining tasks and pushing out reminders.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */

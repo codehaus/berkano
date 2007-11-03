@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 
 /**
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.3 $
  */
@@ -72,7 +72,7 @@ public class HibernatedGroupDAOTest extends TestCase {
         um.setUserName("greg");
         um.setEmail("greg@incongru.net");
         um.setPassword("secret");
-        um.setFullName("Grégory Joseph");
+        um.setFullName("Grï¿½gory Joseph");
         GroupImpl gr = new GroupImpl();
         gr.setGroupName("TESTGRP");
         Set groups = new HashSet();

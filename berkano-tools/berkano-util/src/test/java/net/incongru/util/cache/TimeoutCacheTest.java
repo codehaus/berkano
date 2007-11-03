@@ -3,7 +3,7 @@ package net.incongru.util.cache;
 import junit.framework.TestCase;
 
 /**
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
  */

@@ -2,7 +2,7 @@ package net.incongru.berkano.bookmarks;
 
 /**
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */

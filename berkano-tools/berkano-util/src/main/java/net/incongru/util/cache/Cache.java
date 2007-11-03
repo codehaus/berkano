@@ -2,7 +2,7 @@ package net.incongru.util.cache;
 
 /**
  * A cache implements a given caching strategy and keeps objets in a map according to this strategy.
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */

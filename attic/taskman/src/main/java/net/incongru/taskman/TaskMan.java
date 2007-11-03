@@ -9,7 +9,7 @@ import java.util.List;
  * The TaskMan implementations are responsible for storing and retrieving tasks.
  * They're basically DAOs.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */

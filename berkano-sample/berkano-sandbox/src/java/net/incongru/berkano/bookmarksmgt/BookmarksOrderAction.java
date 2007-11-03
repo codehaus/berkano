@@ -4,7 +4,7 @@ import com.opensymphony.xwork.ActionSupport;
 import net.incongru.berkano.bookmarks.BookmarksTree;
 
 /**
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.4 $
  */

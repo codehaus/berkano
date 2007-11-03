@@ -31,7 +31,7 @@ import org.picocontainer.defaults.BasicComponentParameter;
 import java.util.Properties;
 
 /**
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.16 $
  */

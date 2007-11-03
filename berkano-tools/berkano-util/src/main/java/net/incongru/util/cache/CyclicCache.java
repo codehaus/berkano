@@ -3,7 +3,7 @@ package net.incongru.util.cache;
 /**
  * A cyclic cache simply lets its values timeout after a given amount of time.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */
