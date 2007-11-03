@@ -94,7 +94,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.0-beta-5</version>
+        <version>2.0-beta-7</version>
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -308,22 +308,21 @@
   </dependencies>
 
   <modules>
-    <!--<module>berkano-tools/jodatime-hibernate</module>-->
-    <!--<module>berkano-tools/taskman</module>-->
     <!--<module>berkano-tools/beandisplaytag</module>-->
     <!--<module>berkano-tools/kiss-taglib</module>-->
+    <!--<module>berkano-bookmarks/berkano-bookmarks</module>-->
+    <!--<module>puzzles/puzzles-core</module>-->
+
+    <module>berkano-tools/taskman</module>
+    <module>berkano-tools/berkano-util</module>
 
     <module>berkano-tools/pom-taglib</module>
     <module>berkano-tools/taglib-unit</module>
-    <module>berkano-tools/berkano-util</module>
+
     <module>berkano-user/berkano-user</module>
     <module>berkano-user/berkano-user-mgt-webwork</module>
     <module>berkano-user/berkano-seraph</module>
     <module>berkano-user/berkano-seraph-taglib</module>
-
-    <module>berkano-bookmarks/berkano-bookmarks</module>
-
-    <!--<module>puzzles/puzzles-core</module>-->
   </modules>
 
   <reporting>
