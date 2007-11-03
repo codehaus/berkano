@@ -1,1 +1,1 @@
-just a temp space for stuff that will or should be removed shortly
+Abandoned or unmaintained spikes or projects go here.
