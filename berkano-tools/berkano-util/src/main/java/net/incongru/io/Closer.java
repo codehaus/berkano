@@ -1,4 +1,4 @@
-package net.incongru.util.io;
+package net.incongru.io;
 
 import java.io.Closeable;
 import java.io.IOException;

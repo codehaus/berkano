@@ -1,7 +1,7 @@
-package net.incongru.util.io.xstream;
+package net.incongru.io.xstream;
 
 import com.thoughtworks.xstream.XStream;
-import net.incongru.util.io.IOProcessor;
+import net.incongru.io.IOProcessor;
 
 import java.io.IOException;
 import java.io.Writer;
