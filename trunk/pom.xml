@@ -326,8 +326,8 @@
     <!--<module>berkano-bookmarks/berkano-bookmarks</module>-->
     <!--<module>puzzles/puzzles-core</module>-->
 
-    <module>berkano-tools/taskman</module>
-    <module>berkano-tools/berkano-util</module>
+    <module>taskman</module>
+    <module>berkano-util</module>
     <module>berkano-io</module>
 
     <module>berkano-tools/pom-taglib</module>
