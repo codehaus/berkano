@@ -15,7 +15,7 @@ import java.sql.Types;
  * Stores the enum if the form of "pack.age.EnumClass/constantName"
  * in a VARCHAR field.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
  */

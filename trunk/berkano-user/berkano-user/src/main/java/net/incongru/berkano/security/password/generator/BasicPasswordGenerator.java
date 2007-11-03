@@ -8,7 +8,7 @@ import org.apache.commons.lang.RandomStringUtils;
  * is based on RandomStringUtils from jakarta-commons-lang, and generates
  * a random password of 6 characters composed of letters and numbers only.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */

@@ -4,7 +4,7 @@ import com.opensymphony.xwork.ActionSupport;
 
 /**
  * 
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */

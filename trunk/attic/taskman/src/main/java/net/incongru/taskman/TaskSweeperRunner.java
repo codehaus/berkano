@@ -9,7 +9,7 @@ import org.joda.time.Period;
  * TODO : keep a log of reminders ?
  * TODO : how do we know which tasks we already reminded ? using getLastReminder ?
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */

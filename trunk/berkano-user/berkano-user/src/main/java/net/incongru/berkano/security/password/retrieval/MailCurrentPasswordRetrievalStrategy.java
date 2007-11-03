@@ -10,7 +10,7 @@ import net.incongru.util.mail.Mailer;
  * {@link net.incongru.berkano.security.password.matching.CleanPasswordMatchingStrategy}
  * is used)
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
  */

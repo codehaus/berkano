@@ -16,7 +16,7 @@ import java.util.Locale;
  * test class MailerTest to avoid that any smart-ass build system skips because of
  * its name.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.4 $
  */

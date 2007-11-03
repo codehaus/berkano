@@ -14,7 +14,7 @@ import java.io.IOException;
  *          body-content="scriptless"
  *          description=""
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */

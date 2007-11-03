@@ -20,7 +20,7 @@ import org.jmock.Mock;
 
 /**
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */

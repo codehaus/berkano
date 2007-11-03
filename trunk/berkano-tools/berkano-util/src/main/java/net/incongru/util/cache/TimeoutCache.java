@@ -5,7 +5,7 @@ package net.incongru.util.cache;
  * If the object wasn't requested for that amount of time, the returned value will be null, because
  * the cached Object will be removed from the underlying map.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */

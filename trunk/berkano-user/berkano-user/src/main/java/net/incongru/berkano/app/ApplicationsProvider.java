@@ -10,7 +10,7 @@ import java.util.Map;
  * The default application will be the first one that was registered,
  * as soon as PICO-243 is fixed.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */

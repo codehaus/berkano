@@ -18,7 +18,7 @@ import java.io.IOException;
  *
  * TODO : i18n for title!?
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.3 $
  */

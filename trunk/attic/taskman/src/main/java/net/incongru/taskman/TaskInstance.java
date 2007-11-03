@@ -11,7 +11,7 @@ import java.util.Set;
  * An immutable interface for Tasks.
  * Mutable implementations should only be used by implementations of {@link TaskMan}
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $ 
  */

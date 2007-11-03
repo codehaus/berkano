@@ -9,7 +9,7 @@ import java.io.Serializable;
  *
  * <strong>You must implement equals and hashcode!!</strong>
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.5 $
  */

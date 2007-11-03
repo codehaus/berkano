@@ -14,7 +14,7 @@ import java.io.IOException;
  * }
  * </code>
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision: $
  *

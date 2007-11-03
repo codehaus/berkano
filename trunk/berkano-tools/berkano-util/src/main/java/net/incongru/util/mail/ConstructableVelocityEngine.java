@@ -10,7 +10,7 @@ import java.util.Properties;
  *
  * <strong>This will be deprecated once velocity-1.5 is generally available</strong>
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
  */

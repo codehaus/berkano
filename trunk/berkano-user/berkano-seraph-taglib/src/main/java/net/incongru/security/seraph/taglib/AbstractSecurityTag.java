@@ -18,7 +18,7 @@ import java.util.Set;
 
 /**
  * 
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
  */

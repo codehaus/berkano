@@ -5,7 +5,7 @@ import net.incongru.berkano.user.User;
 
 /**
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */

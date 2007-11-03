@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @todo (in this case, external might be renamed to ExternalHTTP)
  * @todo Actually, we should decide on this quite quickly to avoid having to rename this in a production system
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
  */

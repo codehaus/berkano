@@ -11,7 +11,7 @@ package net.incongru.berkano.app;
  * and defining user permissions for each of these.
  *
  * TODO : a "allowedValues" attribute? Is the value property relevant?
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */

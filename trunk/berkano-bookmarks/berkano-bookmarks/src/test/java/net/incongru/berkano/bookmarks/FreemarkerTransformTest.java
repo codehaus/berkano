@@ -9,7 +9,7 @@ import java.io.Writer;
 import java.util.HashMap;
 
 /**
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */

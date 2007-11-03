@@ -7,7 +7,7 @@ import java.util.Iterator;
  * Provides an additional method: getChildIterator.
  * The remove() method is not supported.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
  */

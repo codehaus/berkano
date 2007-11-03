@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.2 $
  */

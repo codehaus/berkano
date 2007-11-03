@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 /**
- * @author greg
+ * @author gjoseph
  * @author $Author: $ (last edit)
  * @version $Revision:  $
  */

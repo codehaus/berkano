@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * This is an hibernated implementation of User.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.12 $
  */

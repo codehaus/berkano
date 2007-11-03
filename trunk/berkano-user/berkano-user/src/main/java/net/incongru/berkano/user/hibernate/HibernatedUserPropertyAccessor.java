@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * An helper class to retrieve user/group properties.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.3 $
  */

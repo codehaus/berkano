@@ -20,7 +20,7 @@ import net.incongru.berkano.security.Role;
  * Each user can be a member of N groups, which in turn can have N
  * roles. (for later: Each role has a fixed set of permissions.)
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.1 $
  */

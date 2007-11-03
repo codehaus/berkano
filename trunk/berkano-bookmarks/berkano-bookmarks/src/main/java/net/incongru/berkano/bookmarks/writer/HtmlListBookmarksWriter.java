@@ -13,7 +13,7 @@ import java.io.Writer;
  * This class is not threadsafe : indentation might be corrupted if
  * we have multiple concurrent calls on the same instance.
  *
- * @author greg
+ * @author gjoseph
  * @author $Author: gj $ (last edit)
  * @version $Revision: 1.3 $
  */
